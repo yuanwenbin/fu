@@ -1,5 +1,5 @@
 *{margin:0; padding:0;}
-html{font-size:12px; font-family:'Microsoft YaHei','微软雅黑','宋体','黑体',Verdana, Geneva, sans-serif;color:#000;}
+html{font-size:14px; font-family:'Microsoft YaHei','微软雅黑','宋体','黑体',Verdana, Geneva, sans-serif;color:#000;}
 a{color:#000;text-decoration:none;}
 a:hover{text-decoration:underline;color:#fa5000;}
 img{border:none;}
@@ -26,7 +26,7 @@ background:url(../images/hnav.png) no-repeat;}
 .friendLinks{margin:0 50px;}
 .friendLinks a{padding-left:10px;padding-right:10px;}
 
-.footer{width:100%;padding-top:14px;background:url(../images/btbg.png) repeat-x;text-align:center;padding-bottom:30px;}
+.footer{width:100%;margin-top:15px;padding-top:14px;background:url(../images/btbg.png) repeat-x;text-align:center;padding-bottom:30px;}
 .footer p{line-height:22px;}
 
 .menuTopList ul li{position:relative;z-index:1;}
@@ -36,12 +36,13 @@ background:url(../images/hnav.png) no-repeat;}
 .subMenu{display:none;} 
 .subMenu{background:#dad6cc;margin-left:-32px;width:100%;text-align:center;}
 .menuTopList ul li a:hover{color:#ff0000;}
-.details_1{line-height:24px;font-size:12px;}
+.details_1{line-height:24px;font-size:14px;}
 .details_1 p{padding-top:10px;}
 .indexContent{margin-bottom:20px;}
 
-.contantLeft{float:left;width:45%;overflow:hidden;}
-.contantRight{float:right;width:52%;margin-right:1%;overflow:hidden;}
+.contantLeft{float:left;width:320px;overflow:hidden;margin-left:165px;}
+.contantRight{float:left;overflow:hidden;}
+.aboutUs{margin-top:70px;}
 .curlture{line-height:26px;font-size:14px;padding-top:20px;}
 .contantRight{padding-top:30px;}
 .details_img{width:100%;text-align:center;margin-top:40px;}
