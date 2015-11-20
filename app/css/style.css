@@ -1,0 +1,86 @@
+*{margin:0; padding:0;}
+html{font-size:12px; font-family:Verdana, Geneva, sans-serif;color:#000;}
+a{color:#000;text-decoration:none;}
+a:hover{text-decoration:underline;color:#fa5000;}
+img{border:none;}
+input, select,textarea{border:1px solid #ccc;}
+ul, li{list-style:none;}
+.clearBoth{clear:both;}
+.bodyLogin{background:#fff url(../images/loginBg.png) center 0 no-repeat;width:1200px;margin:0 auto;}
+.randChoice{background:#fff url(../images/sjbg.jpg) center 0 no-repeat;width:1200px;margin:0 auto;}
+.login{width:300px;margin-top:400px;margin-left:645px;}
+.bodyId{width:230px;height:30px;line-height:30px;border:1px ssolid #ccc;text-align:center;    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */}
+.loginTips{line-height:40px;height:40px;color:#fff;}
+
+.bodySj{background:#fff url(../images/sj.png) center 0 no-repeat;width:1200px;margin:0 auto;}
+.container{width:100%;}
+.sjTop{margin-left:340px;margin-top:187px;}
+.sjTop ul li{float:left;margin-left:30px;}
+
+.sjBanner{width:100%;}
+.sjBanner ul{margin-left:360px;margin-top:148px;}
+.sjBanner ul li{float:left;padding:12px;}
+#lottery ul li.active{background:#f28f35; color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    height: 89px;
+    line-height: 89px;
+    text-align: center;
+    width: 90px;}
+.sjChoiceBtn{width:100%;text-align:center;margin-top:58px;}
+.cancelBtn{margin-left:48px;}
+
+.sureBtn{width:100%;text-align:center;margin-top:40px;margin-bottom:40px;}
+
+
+.bodyBz{background:#fff url(../images/bz.png) center 0 no-repeat;width:1200px;margin:0 auto;}
+.bzFrom{width:375px;margin:150px auto 50px auto;}
+#bzForm input{height:38px;line-height:38px;border:1px solid #bf965b;width:240px;padding-left:14px; -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */}
+
+#bzForm input#demo{height:38px;line-height:38px;border:1px solid #bf965b;width:220px;padding-left:14px; -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */}
+	
+.bodyGd{background:#fff url(../images/hight.png) center 0 no-repeat;width:1200px;margin:0 auto;}
+.flagTags{text-align:center;margin-top:110px;}
+
+.areaTop{width:925px;margin:0 auto 0 auto;}
+.areaTop ul li{float:left;width:60px;height:30px;line-height:30px;text-align:center;margin-left:5px;margin-right:5px;margin-top:5px;}
+.areaTop .nowChoice a{text-decoration:underline;color:#999;}
+.areaTop a{color:#ff0000;font-size:12px;}
+
+.tags{width:910px;margin:0px auto 60px auto;}
+.tags ul li{float:left;margin-left:9px;margin-top:6px;}
+
+.myNoTag{background:url(../images/myNoTags.png) no-repeat;width:118px;height:32px;margin-left:220px;}
+.quyuTag{background:url(../images/quyu.png) 0px 4px no-repeat;height:26px;padding-left:54px;line-height:30px;margin-right:45px;}
+.quyuTag font{background:#b50d0d;color:#fffc00;line-height:30px;padding:0px 2px;font-weight:bold;font-size:16px;}
+.fuweiTag font{background:#b50d0d;color:#fffc00;line-height:30px;padding:0px 2px;font-weight:bold;font-size:16px;}
+.priceTag font{background:#b50d0d;color:#fffc00;line-height:30px;padding:0px 2px;font-weight:bold;font-size:16px;}
+.fuweiTag{background:url(../images/fuwei.png) 0px 4px no-repeat;height:26px;padding-left:54px;line-height:30px;margin-right:45px;}
+.priceTag{background:url(../images/priceTag.png) 0px 4px no-repeat;height:26px;padding-left:54px;line-height:30px;margin-right:45px;}
+.myNoTagBtn{margin-top:-5px;}
+.tagAbout ul li{float:left;}
+.tagAbout{margin-top:195px;}
+
+.bodyMyNo{background:#fff url(../images/myno.png) center 0 no-repeat;width:1200px;margin:0 auto;}
+.myNoContent{100%;margin-top:135px;margin-bottom:40px;}
+.timeTags{margin-left:420px;line-height:24px;font-size:20px;margin-bottom:42px;}
+.myNoChoice{margin-left:495px;height:85px;}
+.myNoContent p{text-align:center;}
+.timeTags font{color:#fa3c28;font-size:20px;font-weight:bold;}
+.myNoChoice span{color:#fa3c28;font-size:20px;font-weight:bold;}
+
+.details{margin-left:450px;margin-top:145px;}
+.details table tr{height:60px;}
+.details .myNo{font-size:18px;color:#ff0f00;font-weight:bold;}
+.details span{font-size:18px;color:#402400;font-weight:bold;}
+.sureBtnNo{margin-bottom:20px;text-align:center;width:100%;margin-top:50px;}
+.stime{line-height:38px;border:1px solid #bf965b;width:256px;padding-left:14px;height:38px; -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */}
+.stime option{line-height:38px;height:38px;}	

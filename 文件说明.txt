@@ -1,0 +1,8 @@
+前台：app/application
+后台：adminapp/applicationadmin
+
+修改文件fu\adminapp\editor\php/upload_json.php中的 FRONT_DOMAIN 值
+修改文件fu\adminapp\editor\php/file_manager_json.php中的 $myUrl 值
+
+修改文件fu\applicationadmin\config/constants.php 中的
+COOKIE_DOMAIN/COOKIE_NAME/PAGESIZE/PAGESIZEPOS/FRONT_DOMAIN

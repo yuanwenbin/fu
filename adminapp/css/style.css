@@ -1,0 +1,47 @@
+*{margin:0;padding:0;}
+body{font-size:12px; font-family:'Microsoft YaHei','宋体','黑体',Verdana, Geneva, sans-serif;color:#333;}
+select,option, select option{font-family:'Microsoft YaHei','宋体','黑体',Verdana, Geneva, sans-serif;color:#333;}
+img{border:none;}
+a{text-decoration:none;color:#444;}
+a:visited{text-decoration:none;}
+a:hover{text-decoration:underline;}
+ul,li{list-style:none;padding:0px;}
+h1,h2,h3,h4,h5,h6,p{margin:0;padding-left:5px;margin-left:5px;}
+input,select,textarea{border:1px solid #333;font-family:'Microsoft YaHei','宋体','黑体',Verdana, Geneva, sans-serif;}
+html{background:url(../images/backBg.png);}
+.loginBox{width:500px;margin:175px auto 20px auto;background:url(../images/bgImg.png) no-repeat;height:352px;padding-top:50px;}
+.clearBoth{clear:both;padding:0;margin:0;}
+
+
+.loginBox form input{border:1px solid #fff;height:46px;line-height:46px;}
+.loginInput{margin-left:150px;margin-top:13px;width:295px;}
+.loginInput2{margin-left:150px;margin-top:7px;width:295px;}
+.loginInput3{margin-left:50px;margin-top:14px;}
+.adminTop{padding-top:10px;padding-left:10px;border:1px solid #aaa;line-height:26px;}
+.adminMenu{border-right:1px solid #888;padding:10px;font-size:12px;line-height:22px;}
+.menuList li h2{font-size:14px;font-weight:normal;background:url(../images/ico.png) no-repeat;height:30px;line-height:30px;padding-left:35px;font-size:14px;}
+.menuList ul{padding-left:50px;}
+.defaultInfos{padding:10px;}
+.divInfos1{margin-top:10px;line-height:26px;}
+.divInfosSearch{}
+.headerLineBackground{background:#BBDDE5;}
+
+.roomOpen{padding:15px; line-height:26px;}
+.roomOpen label{font-weight:bold;}
+.roomOpen h3{background:#BBDDE5;}
+.roomList{padding:15px; line-height:26px;}
+.roomListInfos th{background:#BBDDE5;line-height:26px;}
+.listRoomColumns{background:#BBDDE5;}
+.roomListPage{width:100%;text-align:center;padding-top:20px;}
+.roomInfosDiv{padding-left:5%; }
+.searchListPos{line-height:26px;}
+
+.article_title{width:250px;}
+.tongJiTop{background:#ffffcc;padding-left:10px;}
+.numberColor{color:#ff6600;font-weight:bold;}
+.tongjiArea{width:100%;}
+.tongjiArea ul li{float:left;width:4%;text-align:center;height:30px;border:1px solid #aaa;font-size:16px;font-weight:bold;}
+.tongjiArea{padding-top:20px;}
+.statusArea_0,.statusArea_0 a{color:#ff0000;}
+.statusArea_1,.statusArea_1 a{color:#fe9900;}
+.statusArea_2,.statusArea_2 a{color:#46b33e;}
