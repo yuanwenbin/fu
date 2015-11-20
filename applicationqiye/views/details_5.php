@@ -71,7 +71,7 @@
 	<div class="indexContent">
 
 	<?php // echo $details ? $details[0]['article_content'] : '';?>
-		<div class="details_1">
+		<div class="details_1 aboutUs">
 			<div class="contantLeft">
 			<p>
 			<ul>
