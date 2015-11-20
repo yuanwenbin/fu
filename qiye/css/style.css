@@ -23,7 +23,7 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 
 .indexContent{}
 
-.friendLinks{margin:0 50px;}
+.friendLinks{margin:10px 50px; 0 50px;}
 .friendLinks a{padding-left:10px;padding-right:10px;}
 
 .footer{width:100%;margin-top:15px;padding-top:14px;background:url(../images/btbg.png) repeat-x;text-align:center;padding-bottom:30px;}
@@ -43,7 +43,7 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 .contantLeft{float:left;width:320px;overflow:hidden;margin-left:165px;}
 .contantRight{float:left;overflow:hidden;}
 .aboutUs{margin-top:70px;}
-.curlture{line-height:26px;font-size:14px;padding-top:20px;}
+.curlture{line-height:26px;font-size:14px;padding-top:20px;width:870px;margin:0 auto;}
 
 .details_img{width:100%;text-align:center;margin-top:40px;}
 
@@ -61,5 +61,8 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 /*幻灯片*/
 
 .details_1_top{width:100%;margin-top:20px;}
-.details_1_top ul li{float:left;margin:5px;}
-.details_1_top ul li.details_1_top_0{margin-left:145px;}
+.details_1_top ul li{float:left;margin:2px;}
+
+
+.details_ccgc{width:870px;margin:0 auto;}
+.details_about_bam{width:870px;margin:0 auto;}
