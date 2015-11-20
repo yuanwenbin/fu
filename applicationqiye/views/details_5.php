@@ -26,11 +26,18 @@
 		<ul>
 		  <li class="menuTopList_0">
 		  <a href="/">首页</a></li>
-		  <?php
+		  <?php   
 		  if($cate['cate']) {
 			foreach($cate['cate'] as $k=>$v)
-		    {	?>
-			  <li><a href="/Index/details/<?php echo $v['parent']['cate_id'];?>"><?php echo $v['parent']['cate_name']; ?></a>
+		    {	
+		        ?>
+			  <li>
+			  <?php if(!$v['sub']) {?>
+			  <a href="/Index/details/<?php echo $v['parent']['cate_id'];?>">
+			  <?php }else{?>
+			  <a href="javascript:void(0)">
+			  <?php } ?>
+			  <?php echo $v['parent']['cate_name']; ?></a>
 			  <?php
 			  if($v['sub']){
 				echo "<div class='subMenu'>";
