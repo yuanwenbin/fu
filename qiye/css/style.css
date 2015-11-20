@@ -34,7 +34,7 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 .currentMenu{background:url(../images/hnav_1.png)  repeat-x;z-index:1001;position:relative;}
 .menuTopList{position:relative;} 
 .subMenu{display:none;} 
-.subMenu{background:url(../images/hnav_1.png) repeat-x;margin-left:-32px;width:100%;text-align:center;}
+.subMenu{background:#dad6cc;margin-left:-32px;width:100%;text-align:center;}
 .menuTopList ul li a:hover{color:#ff0000;}
 .details_1{line-height:24px;font-size:14px;}
 .details_1 p{padding-top:10px;}
