@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>00<?php //echo $details ? $details[0]['article_title'] : '';?></title>
+<title>道教文化<?php //echo $details ? $details[0]['article_title'] : '';?></title>
 <meta name="Keywords" content="<?php //echo $details ? $details[0]['article_keywords'] : '';?>" />
 <meta name="Description" content="<?php //echo $details ? $details[0]['article_description'] : '';?>" />
 <meta name="robots" content="index, follow" />

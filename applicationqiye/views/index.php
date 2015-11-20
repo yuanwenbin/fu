@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>福位</title>
+<title>道教长春观城隍庙</title>
 <meta name="Keywords" content="" />
 <meta name="Description" content="" />
 <meta name="robots" content="index, follow" />
@@ -10,6 +10,7 @@
 <link href="/css/style.css" rel="stylesheet" type="text/css" />
 <script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="/js/js.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/lrtk.js"></script>
 </head>
 <body>
 <div class="container">
@@ -61,9 +62,34 @@
   <!-- bof body -->
   <div class="bodyContent">
 	<!-- bof banner -->
+	<!-- 
 	<div class="indexBanner">
 	<img src="/images/br01.png" />
-	</div>
+	</div> -->
+		<!-- 代码 开始 -->
+  <div id="playBox">
+    <div class="pre"></div>
+    <div class="next"></div>
+    <div class="smalltitle">
+      <ul>
+        <li class="thistitle"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <ul class="oUlplay">
+       <li><a href="javascript:void(0);"><img src="/images/br01.png"></a></li>
+       <li><a href="javascript:void(0);"><img src="/images/br01.png"></a></li>
+       <li><a href="javascript:void(0);"><img src="/images/br01.png"></a></li>
+       <li><a href="javascript:void(0);"><img src="/images/br01.png"></a></li>
+       <li><a href="javascript:void(0);"><img src="/images/br01.png"></a></li>
+       <li><a href="javascript:void(0);"><img src="/images/br01.png"></a></li>
+    </ul>
+  </div>
+<!-- 代码 结束 -->
 	<!-- eof banner -->
 	
 	<!-- bof indexContent -->

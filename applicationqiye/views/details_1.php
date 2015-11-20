@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>xx</title>
+<title>长春古观</title>
 <meta name="Keywords" content="<?php //echo $details ? $details[0]['article_keywords'] : '';?>" />
 <meta name="Description" content="<?php //echo $details ? $details[0]['article_description'] : '';?>" />
 <meta name="robots" content="index, follow" />
@@ -95,7 +95,7 @@
   </div>
 <!-- 代码 结束 -->
 	<?php// echo $details ? $details[0]['article_content'] : '';?>
-		<div class="details_1">
+		<div class="details_1 details_ccgc">
 		<p>长春观位于武昌大东门东北角双峰山南坡，黄鹄山(蛇山)中部，是我国道教著名十方丛林之一，为历代道教活动场所。称“江南一大福地”。观内崇奉道教全真派，以其创始人重阳祖师门人邱处机道号“长春子”命名。
 以纪念道教全真派北七真之一，龙门宗的创始人丘处机。丘处机，(公元1148年-1227，字通密，号长春子)在元军南下时“一言止杀“济世救民之劝德。始称“长春观”。</p>
  
