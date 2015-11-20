@@ -16,7 +16,7 @@ ul, li{list-style:none;}
 .menuTopList ul li{float:left;padding-left:32px;padding-right:32px;font-size:16px;
 line-height:40px;letter-spacing:6px;font-weight:600;}
 .menuTopList ul li.menuTopList_0{margin-left:170px;padding-left:38px;
-background:url(../images/hnav.png) no-repeat;}
+}
 
 .bodyContent{width:100%;}
 .indexBanner{width:860px;text-align:center;margin:10px auto 0 auto;}
@@ -31,10 +31,10 @@ background:url(../images/hnav.png) no-repeat;}
 
 .menuTopList ul li{position:relative;z-index:1;}
 .subMenu{position:absolute;z-index:1000;}
-.currentMenu{background:#dad6cc;z-index:1001;position:relative;}
+.currentMenu{background:url(../images/hnav_1.png)  repeat-x;z-index:1001;position:relative;}
 .menuTopList{position:relative;} 
 .subMenu{display:none;} 
-.subMenu{background:#dad6cc;margin-left:-32px;width:100%;text-align:center;}
+.subMenu{background:url(../images/hnav_1.png) repeat-x;margin-left:-32px;width:100%;text-align:center;}
 .menuTopList ul li a:hover{color:#ff0000;}
 .details_1{line-height:24px;font-size:14px;}
 .details_1 p{padding-top:10px;}
