@@ -36,6 +36,22 @@ class Index extends CI_Controller {
 	{
 	    
 	    $id = $this->uri->segment(3,1);
+			echo '<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>二级栏目内容待整理中</title>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+
+</head>
+<body>';
+			echo '内容有待整理中';
+			echo "</body></html>";
 	    //print_r($id);
 	}
 	
