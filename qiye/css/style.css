@@ -1,5 +1,5 @@
 *{margin:0; padding:0;}
-html{font-size:14px; font-family:'Microsoft YaHei','微软雅黑','宋体','黑体',Verdana, Geneva, sans-serif;color:#000;}
+html{font-size:14px; font-family:'Microsoft YaHei','微软雅黑','宋体','黑体',Verdana, Geneva, sans-serif;color:#000;background:#fbf6ef;}
 a{color:#000;text-decoration:none;}
 a:hover{text-decoration:underline;color:#fa5000;}
 img{border:none;}
@@ -61,8 +61,31 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 /*幻灯片*/
 
 .details_1_top{width:100%;margin-top:20px;}
-.details_1_top ul li{float:left;margin:2px;}
+.details_1_top ul li{float:left;margin:2px;margin-right:10px;}
 
 
 .details_ccgc{width:870px;margin:0 auto;}
 .details_about_bam{width:870px;margin:0 auto;}
+.details_about_city{width:908px;margin:0 auto;}
+
+.details_1_top_left{float:left;width:302px;margin-top:25px;}
+.details_1_top_left p{padding-bottom:10px;}
+.details_1_top_right{float:right;margin-top:35px;}
+.cityRoom_bg{width:100%;overflow:hidden;}
+.details_1_bottom_left{float:left;}
+
+.details_1_bottom_right{float:left;margin-left:20px;}
+
+.listItem{width:930px;margin:0 auto;margin-top:25px;}
+.listLeft{float:left;width:230px;}
+.listLeft h2{font-size:16px;font-weight:normal;padding-left:15px;line-height:40px;}
+.listLeft ul {border:1px solid #aaa;padding-left:15px;padding-bottom:15px;}
+.listLeft ul li{line-height:30px;}
+.listRight ul li{line-height:30px;}
+.listRight{float:left;margin-left:30px;margin-top:20px;}
+.listArticlesPage{margin-top:30px;}
+
+.listItemDetails{width:960px;margin:0 auto;margin-top:25px;}
+.listRightDetails{float:left;margin-left:30px;width:695px;}
+.listRightDetails h1{font-size:24px;font-weight:normal;line-height:28px;text-align:center;border-bottom:1px solid #aaa;padding-bottom:18px;}
+.listRightDetailsTips{text-align:center;padding-top:14px;font-size:12px;padding-bottom:10px;}
