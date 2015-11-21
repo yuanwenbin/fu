@@ -95,3 +95,5 @@ define('COOKIE_CUSTOMER_ID', 'font_klsfsjywrqirwywywqyr');
 
 // 牌位有效时间
 define('DATEHEADLINE', '7200');
+// 正常分页大小 
+define('PAGESIZE', 2);
