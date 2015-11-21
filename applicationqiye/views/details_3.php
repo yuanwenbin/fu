@@ -81,10 +81,10 @@
 	<div class="details_1 details_about_bam">
 	<div class="details_1_top">
 	<ul>
-	<li class="details_1_top_0"><img src="/images/zst01.jpg" /></li>
-	<li><img src="/images/zst02.jpg" /></li>
-	<li><img src="/images/zst03.jpg" /></li>
+	<li class="details_1_top_0"><img src="/images/zst03.jpg" /></li>
 	<li><img src="/images/zst04.jpg" /></li>
+	<li><img src="/images/zst05.jpg" /></li>
+	<li><img src="/images/zst06.jpg" /></li>
 	</ul>
 	<div class="clearBoth"></div>
 	</div>
@@ -99,13 +99,20 @@
 	<div class="details_1 details_about_bam">
 	<div class="details_1_top">
 	<ul>
-	<li class="details_1_top_0"><img src="/images/zst01.jpg" /></li>
-	<li><img src="/images/zst02.jpg" /></li>
-	<li><img src="/images/zst03.jpg" /></li>
-	<li><img src="/images/zst04.jpg" /></li>
+	<li class="details_1_top_0"><img src="/images/zst07.jpg" /></li>
+	<li><img src="/images/zst08.jpg" /></li>
+	<li><img src="/images/zst09.jpg" /></li>
+	<li><img src="/images/zst10.jpg" /></li>
 	</ul>
 	<div class="clearBoth"></div>
 	</div>
+
+	<div>
+	<p>
+	城隍庙位于长春观西苑原皇城水都地块，建成后将由道教博物馆、道教图书馆、道教音乐厅等组成。值得一提的是，特别建立都市祠堂一处，为有缘人留下一方神圣空间，可供各位道友、功德善主设立祖先牌位、福位（福位箱中可供奉祖先信物、遗物等），达到凝福聚运，专享“江南一大福地”风水庇佑之目的.
+	</p>
+	</div>
+
 
 	</div>
 	<!-- eof indexContent -->
