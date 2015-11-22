@@ -136,14 +136,8 @@
 	</div>
 	<!-- eof indexContent -->
 
-
-  </div>
-  <!-- eof body -->
-
-  <!-- bof footer -->
-  <div class="footer" style="margin-top:200px;">
 		<!-- bof link -->
-	<div class="friendLinks">
+	<div class="friendLinks" style="margin-top:200px;">
 		友情链接：
 		<a href="">国家宗教局</a>
 		<a href="">国家宗教局</a>
@@ -153,6 +147,12 @@
 		<a href="">国家宗教局</a>
 	</div>
 	<!-- eof link -->
+  </div>
+  <!-- eof body -->
+
+  <!-- bof footer -->
+  <div class="footer">
+
   <p>
 	  <font>宫观介绍</font>&nbsp;|&nbsp;<font>道教典籍</font>&nbsp;|&nbsp;<font>联系我们</font>&nbsp;|&nbsp;<font>道德艺术馆</font>
   </p>
