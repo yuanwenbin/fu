@@ -86,6 +86,7 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 .listArticlesPage{margin-top:30px;}
 
 .listItemDetails{width:960px;margin:0 auto;margin-top:25px;}
-.listRightDetails{float:left;margin-left:30px;width:695px;}
+.listRightDetails{float:left;margin-left:30px;width:695px;margin-top:43px;}
+.listArticles{margin-top:41px;}
 .listRightDetails h1{font-size:24px;font-weight:normal;line-height:28px;text-align:center;border-bottom:1px solid #aaa;padding-bottom:18px;}
 .listRightDetailsTips{text-align:center;padding-top:14px;font-size:12px;padding-bottom:10px;}
