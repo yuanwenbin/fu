@@ -95,7 +95,7 @@
 				<?php
 				foreach($list[0] as $v) { 
 				?>
-				<li><?php echo $v['curlture_headline']; ?></li>
+				<li><a href="/Index/curlture/<?php echo $v['curlture_id'];?>"><?php echo $v['curlture_headline']; ?></a></li>
 
 				<?php } ?>
 			</ul>
@@ -113,6 +113,23 @@
 			echo $curlture[1];
 		?>
 		</div>
+		<!-- bof list -->
+		<?php
+		if($list && $list[1]){
+		?>
+		<div class="curltureList">
+			<ul>
+				<?php
+				foreach($list[1] as $v) { 
+				?>
+				<li><a href="/Index/curlture/<?php echo $v['curlture_id'];?>"><?php echo $v['curlture_headline']; ?></a></li>
+
+				<?php } ?>
+			</ul>
+			<div class="clearBoth"></div>
+		</div>
+		<?php } ?>
+		<!-- eof list -->		
 	  </div>
 	  <!-- eof 1 -->
 	  
@@ -123,6 +140,23 @@
 			echo $curlture[2];
 		?>
 		</div>
+		<!-- bof list -->
+		<?php
+		if($list && $list[2]){
+		?>
+		<div class="curltureList">
+			<ul>
+				<?php
+				foreach($list[2] as $v) { 
+				?>
+				<li><a href="/Index/curlture/<?php echo $v['curlture_id'];?>"><?php echo $v['curlture_headline']; ?></a></li>
+
+				<?php } ?>
+			</ul>
+			<div class="clearBoth"></div>
+		</div>
+		<?php } ?>
+		<!-- eof list -->		
 	  </div>
 	  <!-- eof 1 -->
 
@@ -133,6 +167,31 @@
 			echo $curlture[3];
 		?>
 		</div>
+		<!-- bof list -->
+		<?php
+		if($list && $list[3]){
+		?>
+		<div class="curltureList" id="curltureListImg">
+			<ul>
+				<?php
+				foreach($list[3] as $v) { 
+				?>
+				<li>
+				<div>
+				<a href="/Index/curlture/<?php echo $v['curlture_id'];?>">
+				<img src="<?php echo $v['curlture_pic']; ?>" width="195" height="135" /></a>
+				</div>
+				<p>
+				<a href="/Index/curlture/<?php echo $v['curlture_id'];?>"><?php echo $v['curlture_headline']; ?></a>
+				</p>
+				</li>
+
+				<?php } ?>
+			</ul>
+			<div class="clearBoth"></div>
+		</div>
+		<?php } ?>
+		<!-- eof list -->		
 	  </div>
 	  <!-- eof 1 -->
 
