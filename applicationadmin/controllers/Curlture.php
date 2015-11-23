@@ -79,7 +79,7 @@ class Curlture extends CI_Controller {
 		$filePic = '';
 		if($_FILES['curlture_pic']['name'])
 		{
-			$filePic = fileUpload($_FILES['curlture_pic']);
+			$filePic = fileUpload($_FILES['curlture_pic'], '../qiye/images/');
 		}
 		$param = array();
 		$param['curlture_headline'] = addslashes($_POST['curlture_headline']);
