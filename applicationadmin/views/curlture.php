@@ -34,8 +34,7 @@ if(!$listArr)
 	<tr class=<?php if($k%2 != 0) echo 'headerLineBackground'; ?>>
 		<td width="20%" align="center">
 		<a href="/Curlture/addCurlture">增加</a>&nbsp;|&nbsp;
-		<a href="/Curlture/delCurlture?id=<?php echo $v['curlture_id']; ?>" onclick="javascript:return sureDel();">删除</a>&nbsp;|&nbsp;
-		<a href="/Curlture/editCurlture?id=<?php echo $v['curlture_id']; ?>">编辑</a>
+		<a href="/Curlture/delCurlture?id=<?php echo $v['curlture_id']; ?>" onclick="javascript:return sureDel();">删除</a>
 		</td>
 		<td width="70%" align="center"><?php echo $v['curlture_headline']; ?></td>
 		<td width="25%" align="center"><?php echo $curlture[$v['curlture_cate']]; ?></td>
