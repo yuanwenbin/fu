@@ -135,6 +135,20 @@ class Qiye_model extends CI_Model
 		return $totalNumber->total;
 	}
 	
+	/**
+	 * 查询文化
+	 */
+	function curltureModel()
+	{
+	    $sql = "select * from fu_curlture";
+	    $res = $this->db->query($sql);
+	    if($res->num_rows() <= 0)
+	    {
+	        return '';
+	    }
+	    return $res->result_array();
+	}
+	
 	
 	
 	
