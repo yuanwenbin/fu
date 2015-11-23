@@ -109,7 +109,7 @@ function perssion()
 	);
 
 	// 友情链接权限
-	$per['link'] = array(
+	$per['links'] = array(
 		'linkList'=>'友情链接',
 	);
 
