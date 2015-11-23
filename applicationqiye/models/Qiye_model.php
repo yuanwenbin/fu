@@ -138,9 +138,20 @@ class Qiye_model extends CI_Model
 	/**
 	 * 查询文化
 	 */
-	function curltureModel()
+	function curltureModel($param = array())
 	{
-	    $sql = "select * from fu_curlture";
+	    $str = "";
+	    if($param)
+	    {
+	        foreach($param as $k=>$v)
+	        {
+	            $str .= $k . " = '" . $v ."' and ";
+	        }
+	        $str = substr($str,0,-4);
+	        $sql = "select * from fu_curlture where " . $str;
+	    }else {
+	       $sql = "select * from fu_curlture";
+	    }
 	    $res = $this->db->query($sql);
 	    if($res->num_rows() <= 0)
 	    {
