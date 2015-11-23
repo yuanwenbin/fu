@@ -56,7 +56,7 @@ function authcode($string, $operation = 'DECODE', $key = 'lin3615?', $expiry = 0
 	}
 	
 	// 单文件上传
-	function fileUpload($filename)
+	function fileUpload($filename, $preDir = '../app/images/')
 	{
 		$fileName = '';
 		$arr = array('.jpg','.jpeg','.png','.gif','.bmp');
@@ -69,7 +69,7 @@ function authcode($string, $operation = 'DECODE', $key = 'lin3615?', $expiry = 0
 					{
 						exit('文件只能上传格式为jpg,jpeg,png,.gif,bmp');
 					}
-					$picname = '../app/images/' . date('YmdHis', time()) . '_' . rand(0,99999) . $picname_ext;
+					$picname = $preDir . date('YmdHis', time()) . '_' . rand(0,99999) . $picname_ext;
 					if(!move_uploaded_file($filename['tmp_name'], $picname)){
 						echo '上传失败，不能转移文件到相应的文件';
 						exit;
