@@ -88,7 +88,7 @@
 		</div>
 		<!-- bof list -->
 		<?php
-		if($list[0]){
+		if($list && $list[0]){
 		?>
 		<div class="curltureList">
 			<ul>
