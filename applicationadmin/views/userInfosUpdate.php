@@ -126,6 +126,40 @@
 		</td>
 	</tr>
 
+
+	<tr>
+		<td width="15%" align="right">
+		统计权限&nbsp;</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="tongji|tongjiList" <?php if($perssions[0] == 'all' || in_array('tongjiList', $perssions)){ echo 'checked';}?> />查看统计</p>
+		<p><input type="checkbox" name="role[]" value="tongji|clearList" <?php if($perssions[0] == 'all' || in_array('clearList', $perssions)){ echo 'checked';}?> />清空无效订单</p>
+		</td>
+	</tr>
+
+		<tr>
+		<td width="15%" align="right">
+		友情链接&nbsp;</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="link|linkList" <?php if($perssions[0] == 'all' || in_array('linkList', $perssions)){ echo 'checked';}?> />友情链接</p>
+		</td>
+	</tr>
+
+		<tr>
+		<td width="15%" align="right">
+		版权信息&nbsp;</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="copyright|copyrightInfo" <?php if($perssions[0] == 'all' || in_array('copyrightInfo', $perssions)){ echo 'checked';}?> />版权信息</p>
+		</td>
+	</tr>
+
+		<tr>
+		<td width="15%" align="right">
+		道教文化&nbsp;</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="curlture|curlture" <?php if($perssions[0] == 'all' || in_array('curlture', $perssions)){ echo 'checked';}?> />道教文化</p>
+		</td>
+	</tr>
+
 		<tr>
 		<td width="15%" align="right">&nbsp;</td>
 		<td>

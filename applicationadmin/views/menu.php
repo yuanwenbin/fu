@@ -90,6 +90,39 @@
 		</ul>
 	</li>	
 	<?php } ?>
+	
+	<?php if(hasPerssion($_SESSION['role'],'link')) { ?>
+	<li>
+		<h2>友情链接</h2>
+		<ul>
+
+		    <li><a href="/Link/linkList" target="mainFrame">友情链接</a></li>
+
+		</ul>
+	</li>	
+	<?php } ?>	
+	
+	<?php if(hasPerssion($_SESSION['role'],'copyright')) { ?>
+	<li>
+		<h2>版权信息</h2>
+		<ul>
+
+		    <li><a href="/Link/linkList" target="mainFrame">版权信息</a></li>
+
+		</ul>
+	</li>	
+	<?php } ?>	
+	
+	<?php if(hasPerssion($_SESSION['role'],'curlture')) { ?>
+	<li>
+		<h2>道教文化</h2>
+		<ul>
+
+		    <li><a href="/Curlture/curlture" target="mainFrame">道教文化</a></li>
+
+		</ul>
+	</li>	
+	<?php } ?>		
 
 </ul>
 </body>
