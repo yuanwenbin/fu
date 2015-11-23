@@ -183,6 +183,31 @@ class Index extends CI_Controller {
 	    	
 	 
 	}
+	
+	/**
+	 * 列表文章详情页
+	 */
+	function curlture()
+	{  
+	    $view = array();
+	    $cate = $this->menu();
+	    $view['cate'] = $cate;
+	    $id = $this->uri->segment(3,1);
+	    $id = intval($id);
+	    $article = $this->Qiye_model->curltureModel(array('curlture_id'=>$id));
+	    $view['article'] = $article;
+	    $curlture[0] = '道教典籍';
+	    $curlture[1] = '道教斋醮';
+	    $curlture[2] = '道教音乐';
+	    $curlture[3] = '道教艺术馆';
+	    $view['curlture'] = $curlture;
+	
+	   
+	    //print_r($view); exit;
+	    $this->load->view('curlture',$view);
+	
+	
+	}	
 
 
 
