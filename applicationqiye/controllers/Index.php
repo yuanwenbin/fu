@@ -113,7 +113,24 @@ class Index extends CI_Controller {
 			$this->load->view('details_1',$view);
 		}elseif($id ==2)
 		{
-			$this->load->view('details_2',$view);
+			// $this->load->view('details_2',$view);
+			// 查询文化表
+            $curlture[0] = '道教典籍';
+            $curlture[1] = '道教斋醮';
+            $curlture[2] = '道教音乐';
+            $curlture[3] = '道教艺术馆';
+            $view['curlture'] = $curlture;
+            $view['list'] = ''; 
+		    $result = $this->Qiye_model->curltureModel();
+		    if($result)
+		    {
+		        foreach($result as $k=>$v)
+		        {
+		            $view['list'][$v['curlture_cate']][] = $v;
+		        }
+		    } 
+		    
+		    $this->load->view('details_2',$view);
 		}elseif($id ==3)
 		{
 			$this->load->view('details_3',$view);
