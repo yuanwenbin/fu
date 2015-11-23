@@ -43,7 +43,7 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 .contantLeft{float:left;width:320px;overflow:hidden;margin-left:165px;}
 .contantRight{float:left;overflow:hidden;}
 .aboutUs{margin-top:70px;}
-.curlture{line-height:26px;font-size:14px;padding-top:20px;width:870px;margin:0 auto;}
+.curlture{line-height:26px;font-size:14px;padding-top:20px;width:1000px;margin:0 auto;}
 
 .details_img{width:100%;text-align:center;margin-top:40px;}
 
@@ -90,3 +90,8 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 .listArticles{margin-top:41px;}
 .listRightDetails h1{font-size:24px;font-weight:normal;line-height:28px;text-align:center;border-bottom:1px solid #aaa;padding-bottom:18px;}
 .listRightDetailsTips{text-align:center;padding-top:14px;font-size:12px;padding-bottom:10px;}
+
+.curlture_1{width:100%;margin-bottom:38px;}
+.curltureHeader{width:100%;background:#e3dfd6 url(../images/titbg.png) center no-repeat;height:58px;line-height:58px;text-align:center;color:#ff6000;font-size:30px;font-weight:bold;}
+.curltureList ul{margin-left:10px;}
+.curltureList ul li{list-style:disc;color:#8d4603;font-size:18px;width:220px;float:left;margin-left:105px;}
