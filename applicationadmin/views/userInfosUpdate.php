@@ -140,7 +140,7 @@
 		<td width="15%" align="right">
 		友情链接&nbsp;</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="link|linkList" <?php if($perssions[0] == 'all' || in_array('linkList', $perssions)){ echo 'checked';}?> />友情链接</p>
+		<p><input type="checkbox" name="role[]" value="links|linkList" <?php if($perssions[0] == 'all' || in_array('linkList', $perssions)){ echo 'checked';}?> />友情链接</p>
 		</td>
 	</tr>
 

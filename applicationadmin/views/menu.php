@@ -91,12 +91,12 @@
 	</li>	
 	<?php } ?>
 	
-	<?php if(hasPerssion($_SESSION['role'],'link')) { ?>
+	<?php if(hasPerssion($_SESSION['role'],'links')) { ?>
 	<li>
 		<h2>友情链接</h2>
 		<ul>
 
-		    <li><a href="/Link/linkList" target="mainFrame">友情链接</a></li>
+		    <li><a href="/Links/linkList" target="mainFrame">友情链接</a></li>
 
 		</ul>
 	</li>	
@@ -107,7 +107,7 @@
 		<h2>版权信息</h2>
 		<ul>
 
-		    <li><a href="/Link/linkList" target="mainFrame">版权信息</a></li>
+		    <li><a href="/Copyright/copyrightInfo" target="mainFrame">版权信息</a></li>
 
 		</ul>
 	</li>	

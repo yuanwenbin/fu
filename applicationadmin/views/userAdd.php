@@ -121,7 +121,7 @@
 		<td width="15%" align="right">
 		友情链接权限&nbsp;</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="link|linkList" />友情链接</p>
+		<p><input type="checkbox" name="role[]" value="links|linkList" />友情链接</p>
 		</td>
 	</tr>
 
