@@ -108,7 +108,20 @@ function perssion()
 		'userDel'=>'管理员删除',
 	);
 
+	// 友情链接权限
+	$per['link'] = array(
+		'linkList'=>'友情链接',
+	);
 
+	// 道教文化权限
+	$per['curlture'] = array(
+		'curlture'=>'道教文化',
+	);
+
+	// 版权信息权限
+	$per['copyright'] = array(
+		'copyrightInfo'=>'版权信息',
+	);
 	return $per;
 }
 /*
