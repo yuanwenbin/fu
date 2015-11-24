@@ -17,6 +17,8 @@ class Index extends CI_Controller {
 		$cate = $this->Qiye_model->menuModel();	
 		return $cate;
 	}
+	
+
 	/**
 	 * 首页
 	 */
@@ -25,7 +27,8 @@ class Index extends CI_Controller {
 		$view = array();
 		$cate = $this->menu();
 		$view['cate'] = $cate;
-		
+		$linksCopy = $this->Qiye_model->linksCopy();
+		$view['linksCopy'] = $linksCopy;
 		$this->load->view('index', $view);
 	}
 	
@@ -37,6 +40,8 @@ class Index extends CI_Controller {
 		$view = array();
 		$cate = $this->menu();
 		$view['cate'] = $cate;	
+		$linksCopy = $this->Qiye_model->linksCopy();
+		$view['linksCopy'] = $linksCopy;		
 	    $id = $this->uri->segment(3,1);
 	    $id = intval($id);
 	    if($id==6)
@@ -79,6 +84,8 @@ class Index extends CI_Controller {
 	    	$view['result']['listArticles'] = $listArticles;
 	    	$view['cateName'] = $cateName;
 	    	// print_r($view); exit;
+	    	$linksCopy = $this->Qiye_model->linksCopy();
+	    	$view['linksCopy'] = $linksCopy;
 	    	$this->load->view('listitem',$view);
 	    	
 	    	
@@ -107,6 +114,8 @@ class Index extends CI_Controller {
 	    */  
 		$cate = $this->menu();
 		$view['cate'] = $cate;
+		$linksCopy = $this->Qiye_model->linksCopy();
+		$view['linksCopy'] = $linksCopy;
 		$id = $this->uri->segment(3,1);
 		if($id ==1)
 		{
@@ -149,7 +158,9 @@ class Index extends CI_Controller {
 	{
 		$view = array();
 		$cate = $this->menu();
-		$view['cate'] = $cate;	
+		$view['cate'] = $cate;
+		$linksCopy = $this->Qiye_model->linksCopy();
+		$view['linksCopy'] = $linksCopy;
 	    $id = $this->uri->segment(3,1);
 	    $id = intval($id);
     	// 二级子栏目
@@ -192,6 +203,8 @@ class Index extends CI_Controller {
 	    $view = array();
 	    $cate = $this->menu();
 	    $view['cate'] = $cate;
+	    $linksCopy = $this->Qiye_model->linksCopy();
+	    $view['linksCopy'] = $linksCopy;
 	    $id = $this->uri->segment(3,1);
 	    $id = intval($id);
 	    $article = $this->Qiye_model->curltureModel(array('curlture_id'=>$id));
