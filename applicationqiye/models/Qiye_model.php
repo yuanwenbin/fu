@@ -150,7 +150,7 @@ class Qiye_model extends CI_Model
 	        $str = substr($str,0,-4);
 	        $sql = "select * from fu_curlture where " . $str;
 	    }else {
-	       $sql = "select * from fu_curlture";
+	       $sql = "select curlture_id,curlture_headline,curlture_cate,curlture_pic from fu_curlture";
 	    }
 	    $res = $this->db->query($sql);
 	    if($res->num_rows() <= 0)
