@@ -19,7 +19,7 @@
 		<th  width="10%" align="center">会员状态</th>
 		<th  width="20%" align="center">电子邮件</th>
 		<th  width="20%" align="center">注册时间</th>
-		<th  width=35%" align="center">操作</th>
+		<th  width="35%" align="center">操作</th>
 	</tr>
 	<?php 
 	foreach($result as $key=>$val){
