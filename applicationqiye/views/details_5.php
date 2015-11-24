@@ -99,15 +99,19 @@
 		</div>
 	</div>
 	<!-- eof indexContent -->
-		<!-- bof link -->
-	<div class="friendLinks" style="margin-top:200px;">
+	<!-- bof link -->
+	<div class="friendLinks">
 		友情链接：
-		<a href="">国家宗教局</a>
-		<a href="">国家宗教局</a>
-		<a href="">国家宗教局</a>
-		<a href="">国家宗教局</a>
-		<a href="">国家宗教局</a>
-		<a href="">国家宗教局</a>
+		<?php
+		if(isset($linksCopy) && $linksCopy['links']) {
+			foreach($linksCopy['links'] as $linkv)
+			{
+				echo $linkv['link_content'];
+			}
+		}
+		?>
+
+
 	</div>
 	<!-- eof link -->
 
@@ -115,17 +119,16 @@
   <!-- eof body -->
 
   <!-- bof footer -->
-  <div class="footer" >
-
-  <p>
-	  <font>宫观介绍</font>&nbsp;|&nbsp;<font>道教典籍</font>&nbsp;|&nbsp;<font>联系我们</font>&nbsp;|&nbsp;<font>道德艺术馆</font>
-  </p>
-    <p>
-	中国道教武汉长春观&nbsp;版权所有&nbsp;网站备案号：鄂ICP备123645号
-	</p>
-    <p>
-	地址：湖北省武汉市武珞路269号&nbsp;电话027-88842090 88720727 网址：wwww.lin3615.net
-	</p>
+  <div class="footer">
+		<?php	
+		if(isset($linksCopy) && $linksCopy['copyright']) {
+			foreach($linksCopy['copyright'] as $linkc)
+			{
+				echo $linkc['copy_content'];
+			}
+					
+		}
+		?>
   </div>
   <!-- eof footer -->
 </div>
