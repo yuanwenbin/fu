@@ -94,9 +94,9 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 .curlture_1{width:100%;margin-bottom:38px;}
 .curltureHeader{width:100%;background:#e3dfd6 url(../images/titbg.png) center no-repeat;height:58px;line-height:58px;text-align:center;color:#ff6000;font-size:30px;font-weight:bold;}
 .curltureList ul{margin-left:10px;}
-.curltureList ul li{list-style:disc;color:#8d4603;font-size:18px;width:308px;float:left;margin-left:10px;line-height:28px;margin-right:10px;}
+.curltureList ul li{list-style:disc;color:#8d4603;font-size:18px;width:220px;float:left;margin-left:100px;line-height:28px;}
 .curltureList ul li a{color:#8d4603;}
 .curltureList{padding-top:24px;}
-#curltureListImg ul li{list-style:none;text-align:center;}
+#curltureListImg ul li{list-style:none;text-align:center;font-size:18px;width:308px;float:left;margin-left:10px;line-height:28px;margin-right:10px;}
 #curltureListImg ul li p{margin-bottom:38px;font-weight:bold;}
-#curltureListImg ul li p a{color:#7f5d00;}
+#curltureListImg ul li p a{color:#8d4603;}
