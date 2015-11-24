@@ -160,6 +160,29 @@ class Qiye_model extends CI_Model
 	    return $res->result_array();
 	}
 	
+	function linksCopy()
+	{
+		$data = array();
+		$sql = "select * from fu_links";
+		$sqlCopy = "select * from fu_copy order by copy_id desc limit 1";
+		$res = $this->db->query($sql);
+		if($res->num_rows() <= 0)
+		{
+			$data['links'] = '';
+		}else {
+			$data['links'] = $res->result_array();
+		}
+			
+		$resCopy = $this->db->query($sqlCopy);
+		if($resCopy->num_rows() <= 0)
+		{
+			$data['copyright'] = '';
+		}else {
+			$data['copyright'] = $resCopy->result_array();
+		}
+		return $data;
+	}
+	
 	
 	
 	
