@@ -45,6 +45,47 @@ class Curlture_model extends CI_Model
 		$this->db->query($sql);
 		return $this->db->affected_rows();
 	}
+	/**
+	 * 友情链接
+	 */
+	function linksList()
+	{
+		$sql = "select * from fu_links";
+		$res = $this->db->query($sql);
+		return  $res->result_array();		
+	}
+	
+	/**
+	 * 增加友情链接内容
+	 * @param unknown $content
+	 */
+	function addLinksDealModel($content)
+	{
+		$sql = "insert into fu_links (link_content) values ('" . $content . "')";
+		$this->db->query($sql);
+		return $this->db->affected_rows();		
+	}
+	
+	/**
+	 * 版权信息
+	 */
+	function copyrightInfoModel()
+	{
+		$sql = "select * from fu_copy order by copy_id desc";
+		$res = $this->db->query($sql);
+		return  $res->result_array();
+	}
+	
+	/**
+	 * 增加版权信息处理
+	 * @param unknown $copy_content
+	 */
+	function addCopyrightDealModel($copy_content)
+	{
+		$sql = "insert into fu_copy (copy_content) values ('" . $copy_content . "')";
+		$this->db->query($sql);
+		return $this->db->affected_rows();		
+	}
 	
 	
 }
