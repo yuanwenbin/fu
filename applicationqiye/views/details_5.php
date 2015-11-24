@@ -8,8 +8,14 @@
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
 <link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.apibaidumap{width: 600px;height: 372px;}
+		#allmap{width: 600px;height:372px;}
+		p{ font-size:14px;}
+	</style>
 <script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="/js/js.js" type="text/javascript"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LlUdQsksnGzZUvWPQRNpckxD"></script>
 </head>
 <body>
 <div class="container">
@@ -92,8 +98,16 @@
 			</p>
 			</div>
 
-			<div class="contantRight">
-			<img src="/images/lxdt.jpg" />
+			<div class="contantRight apibaidumap">
+
+
+
+
+	<div id="allmap"></div>
+
+
+
+
 			</div>
 			<div class="clearBoth"></div>
 		</div>
@@ -134,3 +148,24 @@
 </div>
 </body>
 </html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var sContent =
+	"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>武汉市武珞路269号城隍庙</h4>" + 
+	"<img style='float:right;margin:4px' id='imgDemo' src='http://app.baidu.com/map/images/tiananmen.jpg' width='139' height='104' title='武汉市武珞路269号城隍庙'/>" + 
+	"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'></p>" + 
+	"</div>";
+	var map = new BMap.Map("allmap");
+	var point = new BMap.Point(114.327,30.546);
+	var marker = new BMap.Marker(point);
+	var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+	map.centerAndZoom(point, 15);
+	map.addOverlay(marker);
+	marker.addEventListener("click", function(){          
+	   this.openInfoWindow(infoWindow);
+	   //图片加载完毕重绘infowindow
+	   document.getElementById('imgDemo').onload = function (){
+		   infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+	   }
+	});
+</script>
