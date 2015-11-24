@@ -38,7 +38,7 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 .menuTopList ul li a:hover{color:#ff0000;}
 .details_1{line-height:24px;font-size:14px;}
 .details_1 p{padding-top:10px;}
-.indexContent{margin-bottom:20px;}
+.indexContent{margin-bottom:20px;min-height:500px;}
 
 .contantLeft{float:left;width:320px;overflow:hidden;margin-left:165px;}
 .contantRight{float:left;overflow:hidden;}
@@ -100,3 +100,4 @@ line-height:40px;letter-spacing:6px;font-weight:600;}
 #curltureListImg ul li{list-style:none;text-align:center;font-size:18px;width:308px;float:left;margin-left:10px;line-height:28px;margin-right:10px;}
 #curltureListImg ul li p{margin-bottom:38px;font-weight:bold;}
 #curltureListImg ul li p a{color:#8d4603;}
+#current a{color:#666;text-decoration:underline;}
