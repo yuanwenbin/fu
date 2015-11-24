@@ -86,7 +86,7 @@
 			<?php
 			foreach($result['subCate'] as $k=>$v) { 
 			?>
-			<li><a href="/Index/listitem/<?php echo $v['cate_id'];?>"><?php echo $v['cate_name']; ?></a></li>
+			<li <?php echo ($v['cate_id'] == $parent_id) ? "id='current'" :'';?>><a  href="/Index/listitem/<?php echo $v['cate_id'];?>"><?php echo $v['cate_name']; ?></a></li>
 			<?php } ?>
 			</ul>
 			</div>
