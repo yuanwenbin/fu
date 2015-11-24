@@ -88,7 +88,7 @@
 		</div>
 		<!-- bof list -->
 		<?php
-		if($list && $list[0]){
+		if(isset($list[0]) && $list[0]){
 		?>
 		<div class="curltureList">
 			<ul>
@@ -115,7 +115,7 @@
 		</div>
 		<!-- bof list -->
 		<?php
-		if($list && $list[1]){
+		if(isset($list[1]) && $list[1]){
 		?>
 		<div class="curltureList">
 			<ul>
@@ -142,7 +142,7 @@
 		</div>
 		<!-- bof list -->
 		<?php
-		if($list && $list[2]){
+		if(isset($list[2]) && $list[2]){
 		?>
 		<div class="curltureList">
 			<ul>
@@ -169,7 +169,7 @@
 		</div>
 		<!-- bof list -->
 		<?php
-		if($list && $list[3]){
+		if(isset($list[3]) && $list[3]){
 		?>
 		<div class="curltureList" id="curltureListImg">
 			<ul>
