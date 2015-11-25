@@ -43,7 +43,7 @@ class Curlture extends CI_Controller {
 	    $view['listArr'] = $curltureLists;
 	    $curlture[0] = '道教典籍';
 	    $curlture[1] = '道教斋醮';
-	    $curlture[2] = '道教音乐';
+	    // $curlture[2] = '道教音乐';
 	    $curlture[3] = '道教艺术馆';
 	    $view['curlture'] = $curlture;
 	   $this->load->view('curlture',$view);
@@ -60,7 +60,7 @@ class Curlture extends CI_Controller {
 		$view = array();
 		$curlture[0] = '道教典籍';
 		$curlture[1] = '道教斋醮';
-		$curlture[2] = '道教音乐';
+		// $curlture[2] = '道教音乐';
 		$curlture[3] = '道教艺术馆';
 		$view['curlture'] = $curlture;
 		$this->load->view('addCurlture',$view);		
