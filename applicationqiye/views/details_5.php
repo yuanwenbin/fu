@@ -11,7 +11,7 @@
 	<style type="text/css">
 		.apibaidumap{width: 600px;height: 372px;}
 		#allmap{width: 600px;height:372px;}
-		p{ font-size:14px;}
+		
 	</style>
 <script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="/js/js.js" type="text/javascript"></script>
