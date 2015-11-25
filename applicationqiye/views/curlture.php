@@ -86,7 +86,8 @@
 			<?php
 			foreach($curlture as $k=>$v) { 
 			?>
-			<li><a href="/Index/details/2"><?php echo $v; ?></a></li>
+			<li <?php echo ($k == $article[0]['curlture_cate']) ? "id='current'": '';?>>
+			<a href="/Index/details/2"><?php echo $v; ?></a></li>
 			<?php } ?>
 			</ul>
 			</div>
