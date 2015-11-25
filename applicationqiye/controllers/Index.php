@@ -126,7 +126,7 @@ class Index extends CI_Controller {
 			// 查询文化表
             $curlture[0] = '道教典籍';
             $curlture[1] = '道教斋醮';
-            $curlture[2] = '道教音乐';
+            //$curlture[2] = '道教音乐';
             $curlture[3] = '道教艺术馆';
             $view['curlture'] = $curlture;
             $view['list'] = ''; 
@@ -211,7 +211,7 @@ class Index extends CI_Controller {
 	    $view['article'] = $article;
 	    $curlture[0] = '道教典籍';
 	    $curlture[1] = '道教斋醮';
-	    $curlture[2] = '道教音乐';
+	    //$curlture[2] = '道教音乐';
 	    $curlture[3] = '道教艺术馆';
 	    $view['curlture'] = $curlture;
 	
