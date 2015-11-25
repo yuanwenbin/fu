@@ -133,32 +133,38 @@
 	  </div>
 	  <!-- eof 1 -->
 	  
-	  <!-- bof 1 -->
+	  <!-- bof 1 
+	
 	  <div class="curlture_1">
 		<div class="curltureHeader">
 		<?php
-			echo $curlture[2];
+			//echo $curlture[2];
 		?>
 		</div>
-		<!-- bof list -->
+		 bof list -->
 		<?php
-		if(isset($list[2]) && $list[2]){
-		?>
+		//if(isset($list[2]) && $list[2]){
+		?> <!-- 
 		<div class="curltureList">
-			<ul>
+			<ul> -->
 				<?php
-				foreach($list[2] as $v) { 
-				?>
-				<li><a href="/Index/curlture/<?php echo $v['curlture_id'];?>"><?php echo $v['curlture_headline']; ?></a></li>
+				//foreach($list[2] as $v) { 
+				?><!--
+				<li><a href="/Index/curlture/ -->
+				<?php //echo $v['curlture_id'];?>
+				<!--"> -->
+				<?php// echo $v['curlture_headline']; ?>
+				<!-- </a></li> -->
 
-				<?php } ?>
+				<?php //} ?>
+				<!-- 
 			</ul>
 			<div class="clearBoth"></div>
-		</div>
-		<?php } ?>
-		<!-- eof list -->		
+		</div> -->
+		<?php //} ?>
+		<!-- eof list 		
 	  </div>
-	  <!-- eof 1 -->
+	   eof 1 -->
 
 	  <!-- bof 1 -->
 	  <div class="curlture_1">
