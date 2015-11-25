@@ -131,7 +131,7 @@ class Choice extends CI_Controller {
 			 			$this->Choice_model->changTable($tableName, $paramUpdate, $where);
 			 				
 			 			// 修改用户状态
-			 			$paramUser = array('user_type'=>0,'user_selected'=>0, 'user_selected_date'=>0, 'user_location_id'=>0);
+			 			$paramUser = array('user_type'=>-1,'user_selected'=>0, 'user_selected_date'=>0, 'user_location_id'=>0);
 			 			$whereUser = array('body_id'=>$this->session->body_id);
 			 			$this->Choice_model->changTable('fu_user', $paramUser, $whereUser);
 			 		
@@ -221,7 +221,7 @@ class Choice extends CI_Controller {
 			                 'is_choice'=>0
 			             );
 			             $this->session->set_userdata($data);			             
-			             $paramUser = array('user_type'=>0,'user_selected'=>0, 'user_selected_date'=>0, 'user_location_id'=>0);
+			             $paramUser = array('user_type'=>-1,'user_selected'=>0, 'user_selected_date'=>0, 'user_location_id'=>0);
 			             // 修改牌位为未出售
 			             $this->Choice_model->changTable('fu_location_list', array('location_number'=>2), array('localtion_id'=>$customer['user_location_id']));
 			         }else {
