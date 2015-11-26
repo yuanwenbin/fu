@@ -225,6 +225,126 @@ class Index extends CI_Controller {
 	 * flag = 1 有已经完成订单(uflag)
 	 * flag = 2 有末支付的订单(uflag)
 	 * flag = 3 随机用户，已经选择过一次(uflag)
+	 =============
+	 {
+    "error": 0,
+    "msg": "成功登陆",
+    "flag": 0
+		}
+		===========
+		{
+    "error": 0,
+    "msg": "",
+    "flag": 1,
+    "orderInfo": {
+        "order_id": "3",
+        "order_user": "123455432112345543",
+        "order_payment": "1",
+        "order_status": "0",
+        "order_admin": null,
+        "order_room_id": "2",
+        "order_location_id": "105",
+        "order_location_type": "1",
+        "order_datetime": "1447584992",
+        "order_price": "8.88"
+    },
+    "roomInfo": {
+        "room_id": "2",
+        "room_number": "88",
+        "room_flag": "1",
+        "user_id": "1",
+        "room_time": "1444731257",
+        "room_full": "0",
+        "room_alias": "大发房间",
+        "room_description": "这是一个财运的房间，欢迎预订！！！"
+    },
+    "posInfo": {
+        "localtion_id": "105",
+        "location_room_id": "2",
+        "location_price": "8.88",
+        "location_details": null,
+        "location_pic": "0",
+        "location_type": "1",
+        "location_number": "0",
+        "location_date": "1447592192",
+        "location_alias": null,
+        "location_paytime": null,
+        "location_ispayment": "0",
+        "location_isshow": "1"
+    },
+    "userInfo": {
+        "user_id": "4",
+        "body_id": "123455432112345543",
+        "user_location_id": "105",
+        "user_type": "2",
+        "user_selected": "2",
+        "user_selected_date": "1447584992",
+        "user_datetime": "1447584933",
+        "user_name": "0",
+        "user_birthday": "0",
+        "user_time": "0"
+    }
+		}
+		==================
+	{
+    "error": 0,
+		"flag": 2
+    "msg": "",
+    "orderInfo": {
+        "order_id": "16",
+        "order_user": "987654321000000",
+        "order_payment": "0",
+        "order_status": "0",
+        "order_admin": null,
+        "order_room_id": "6",
+        "order_location_id": "688",
+        "order_location_type": "2",
+        "order_datetime": "1448505591",
+        "order_price": "9.90"
+    },
+    "roomInfo": {
+        "room_id": "6",
+        "room_number": "200",
+        "room_flag": "1",
+        "user_id": "1",
+        "room_time": "1445393103",
+        "room_full": "0",
+        "room_alias": "测试房间",
+        "room_description": "测试房间描述"
+    },
+    "posInfo": {
+        "localtion_id": "688",
+        "location_room_id": "6",
+        "location_price": "9.90",
+        "location_details": null,
+        "location_pic": "0",
+        "location_type": "0",
+        "location_number": "1",
+        "location_date": "1448512791",
+        "location_alias": null,
+        "location_paytime": null,
+        "location_ispayment": "0",
+        "location_isshow": "1"
+    },
+    "userInfo": {
+        "user_id": "18",
+        "body_id": "987654321000000",
+        "user_location_id": "688",
+        "user_type": "1",
+        "user_selected": "2",
+        "user_selected_date": "1448505591",
+        "user_datetime": "1448505576",
+        "user_name": "林小二",
+        "user_birthday": "2015-11-26",
+        "user_time": "2"
+    }
+	}
+	=========
+		{
+    "error": 0,
+    "msg": "已经选择过一次了",
+    "flag": 3
+		}
 	 */
 	function login()
 	{
@@ -233,7 +353,13 @@ class Index extends CI_Controller {
 	}
 	/**
 	 * 随机选号
+		{
+    "flag": 0,
+    "error": 0,
+    "msg": "随机选号页面"
+		}
 	 */
+	 /*
 	function byRand()
 	{
 		$status = $this->checkUser();
@@ -241,7 +367,38 @@ class Index extends CI_Controller {
 		{
 			die(json_encode($status));
 		}
+		$data = array();
+		$userInfo = $this->Choice_model->searchUser('fu_user', array('body_id'=>$this->bodyId));
+		// 判断选择是否有过期的
+		if($userInfo['user_selected_date'] < (time()-DATEHEADLINE))
+		{
+			$param['user_selected'] = 0;
+			$param['user_selected_date'] = 0;
+			$where = array('body_id'=>$this->bodyId, 'user_type'=>0);
+			$this->Choice_model->changTable('fu_user', $param, $where);	
+			$userInfo['user_selected'] = 0;
+			$userInfo['user_selected_date'] = 0;
+			$userInfo['user_type'] = 0;
+		}
+		$data['flag'] = 0;
+	  $data['error'] = 0;
+	  $data['msg'] = '随机选号页面';
+		die(json_encode($data));
+	}
+	*/
+	/**
+	 * 随机选号处理
+	 */
+	function byRandDo()
+	{
+		$status = $this->checkUser();
+		if($this->uflag == 1 || $this->uflag == 2)
+		{
+			die(json_encode($status));
+		}
 
+	 // 有选择过号，且有效
+	 $userInfo = $this->Choice_model->searchUser('fu_user', array('body_id'=>$this->bodyId));
 	}
 	
 }
