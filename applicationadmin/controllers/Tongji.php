@@ -34,14 +34,16 @@ class Tongji extends CI_Controller {
 	    // 开始时间
 	    if($startTime && $startTime != '')
 	    {
-	    	$param['startTime'] = strtotime($startTime)+7200;
+	    	// $param['startTime'] = strtotime($startTime)+7200;
+	    	$param['startTime'] = strtotime($startTime);
 	    	$startTime = strtotime($startTime);
 	    }	    
 		
 	    // 结束时间
 	    if($endTime && $endTime != '')
 	    {
-	    	$param['endTime'] = strtotime($endTime)-7200;
+	    	// $param['endTime'] = strtotime($endTime)-7200;
+	    	$param['endTime'] = strtotime($endTime);
 	    	$endTime = strtotime($endTime);
 	    }	    
 		
