@@ -99,11 +99,14 @@ var lottery={
 		$(lottery).find(".lottery-unit-"+index).addClass("active");
 		this.index=index;
 		//this.index=0
+		
 		return false;
 	},
 	stop:function(index){
 		this.prize=index;
-		// this.prize=0
+		this.prize=0;
+	  $("#lottery ul li").removeClass("active");
+		
 		return false;
 	}
 };
@@ -148,13 +151,15 @@ var click=false;
 $(document).ready(function(){
 	lottery.init('lottery');
     $(".startRand").click(function(){
+		$('#lottery ul li').removeClass('active').eq(0).html("<img src=\"/images/ico.png\">");
 		if (click) {
 			return false;
 		}else{
 			lottery.speed=20;
 			roll();
 			click=true;
-			
+			lottery.stop();
+
 			$.post('/Choice/byRandDo',{r:Math.random()},function(data){
 				if(data.count == 1)
 				{
@@ -172,6 +177,7 @@ $(document).ready(function(){
 				}				
 			}, 'json');
 			return true;
+
 		}
     });
     // 选号提示 
