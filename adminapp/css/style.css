@@ -14,9 +14,9 @@ html{background:url(../images/backBg.png);}
 
 
 input,button,select,textarea{outline:none}
-.loginBox form input{border:none;height:46px;line-height:46px;}
-.loginInput{margin-left:150px;margin-top:13px;width:295px;}
-.loginInput2{margin-left:150px;margin-top:7px;width:295px;}
+.loginBox form input{border:none;height:43px;line-height:40px;}
+.loginInput{margin-left:150px;margin-top:14px;width:295px;}
+.loginInput2{margin-left:150px;margin-top:12px;width:295px;}
 .loginInput3{margin-left:50px;margin-top:14px;}
 .adminTop{padding-top:10px;padding-left:10px;border:1px solid #aaa;line-height:26px;}
 .adminMenu{border-right:1px solid #888;padding:10px;font-size:12px;line-height:22px;}
@@ -46,3 +46,12 @@ input,button,select,textarea{outline:none}
 .statusArea_0,.statusArea_0 a{color:#ff0000;}
 .statusArea_1,.statusArea_1 a{color:#fe9900;}
 .statusArea_2,.statusArea_2 a{color:#46b33e;}
+input:-webkit-autofill {
+background-color: none;
+background-image: none;
+}
+input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px white inset;
+}
