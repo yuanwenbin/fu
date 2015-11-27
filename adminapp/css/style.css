@@ -13,7 +13,8 @@ html{background:url(../images/backBg.png);}
 .clearBoth{clear:both;padding:0;margin:0;}
 
 
-.loginBox form input{border:1px solid #fff;height:46px;line-height:46px;}
+input,button,select,textarea{outline:none}
+.loginBox form input{border:none;height:46px;line-height:46px;}
 .loginInput{margin-left:150px;margin-top:13px;width:295px;}
 .loginInput2{margin-left:150px;margin-top:7px;width:295px;}
 .loginInput3{margin-left:50px;margin-top:14px;}
