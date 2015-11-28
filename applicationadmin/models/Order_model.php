@@ -144,7 +144,8 @@ class Order_model extends CI_Model
     	$this->db->trans_start();
     	$orderSQL = "update fu_order_info set order_payment = " . $order_payment . " where order_id = " . $order_id;
 
-		$posSQL = "update fu_location_list set location_number = 0 where localtion_id = " . $location_id;
+		$posSQL = "update fu_location_list set location_number = 0,location_ispayment=1,
+		          location_paytime = '".time()."' where localtion_id = " . $location_id;
 		
     	$this->db->query($orderSQL);
     	$this->db->query($posSQL);
