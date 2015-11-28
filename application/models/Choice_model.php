@@ -91,7 +91,7 @@ class Choice_model extends CI_Model
      	*/
         
         // 修改为出售状态
-        $localSQL = "update fu_location_list set location_date = ".(time()+DATEHEADLINE).",
+        $localSQL = "update fu_location_list set location_date = ".time().",
             location_number = 1 where localtion_id = " . $changeParams['user_location_id'];
         
         $this->db->query($localSQL);
