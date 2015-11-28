@@ -89,28 +89,7 @@
 		<?php } ?>
 	</ul>
 	<div style="clear:both;"></div>
-	<?php
-	if($totalPages > 1){
-	?>
-	<div class="tongJiPage">
-	页码:<?php echo $page;?>/<?php echo $totalPages; ?>&nbsp;&nbsp;
-	<?php
-	$endTime = isset($endTime) && !empty($endTime) ? date('Y-m-d H:i:s',$endTime) : '';
-	$startTime = isset($startTime) && !empty($startTime) ? date('Y-m-d H:i:s',$startTime) : '';
-	$url = '?roomList='.$order_room_id.'&datetime='.$startTime.'&datetimes='.$endTime;
-	if($page > 1){
-	?>
-	<a href="/Tongji/tongjiList">首页</a>&nbsp;
-	<a href="/Tongji/tongjiList<?php echo $url."&page=" . ($page-1); ?>">上一页</a>&nbsp;
-	<?php 
-	}
-	if($totalPages > $page) {
-	?>
-	<a href="/Tongji/tongjiList<?php echo $url."&page=" . ($page+1); ?>">下一页</a>&nbsp;
-	<a href="/Tongji/tongjiList<?php echo $url."&page=" . $totalPages; ?>">末页</a>
-	<?php } ?>
-	</div>
-	<?php } ?>
+
 	</div>
 	<?php	} ?>
 </div>
