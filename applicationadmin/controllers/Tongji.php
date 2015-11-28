@@ -30,13 +30,14 @@ class Tongji extends CI_Controller {
 	    $endTime = $this->input->get_post('datetimes');
 	    $roomId = $this->input->get_post('roomList');
 	    $param = array();
-
+		$flag = 0; // 是否有时间查询 0-无,1-有
 	    // 开始时间
 	    if($startTime && $startTime != '')
 	    {
 	    	// $param['startTime'] = strtotime($startTime)+7200;
 	    	$param['startTime'] = strtotime($startTime);
 	    	$startTime = strtotime($startTime);
+	    	$flag = 1;
 	    }	    
 		
 	    // 结束时间
@@ -45,6 +46,7 @@ class Tongji extends CI_Controller {
 	    	// $param['endTime'] = strtotime($endTime)-7200;
 	    	$param['endTime'] = strtotime($endTime);
 	    	$endTime = strtotime($endTime);
+	    	$flag = 1;
 	    }	    
 		
 	    // 当前选择的号
