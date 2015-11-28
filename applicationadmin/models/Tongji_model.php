@@ -33,8 +33,8 @@ class Tongji_model extends CI_Model
     	    unset($param['order_room_id']);
     	}
     	$sql = "select count(*) as total from fu_location_list ";
-    	$sqlAfter1 = " location_number = 1";
-    	$sqlAfter2 = " location_number = 0";
+    	$sqlAfter1 = " location_number = 1"; // 正在出售
+    	$sqlAfter2 = " location_number = 0"; // 已经出售
     	$sql_1 = ""; // 出售中
     	$sql_2 = ""; // 已经出售
     	if($startTime && $endTime && $order_room_id)
@@ -294,21 +294,27 @@ class Tongji_model extends CI_Model
         $sql = "select * from fu_order_info";
         if($startTime && $endTime && $order_room_id)
         {
-            $sql .= " where " .$startTime . " and " . $endTime . " and " . $order_room_id . $limits;
+            // $sql .= " where " .$startTime . " and " . $endTime . " and " . $order_room_id . $limits;
+        	$sql .= " where " .$startTime . " and " . $endTime . " and " . $order_room_id;
         }elseif($startTime && $endTime){
-            $sql .= " where " .$startTime . " and " . $endTime  . $limits;
+            // $sql .= " where " .$startTime . " and " . $endTime  . $limits;
+        	$sql .= " where " .$startTime . " and " . $endTime;
         }elseif($startTime && $order_room_id)
         {
-            $sql .=" where " .$startTime . " and " . $order_room_id . $limits;
+            // $sql .=" where " .$startTime . " and " . $order_room_id . $limits;
+        	$sql .=" where " .$startTime . " and " . $order_room_id;
         }elseif($endTime && $order_room_id)
         {
-            $sql .=" where " .$endTime . " and " . $order_room_id . $limits;
+            // $sql .=" where " .$endTime . " and " . $order_room_id . $limits;
+        	$sql .=" where " .$endTime . " and " . $order_room_id;
         }elseif($startTime)
         {
-            $sql .= " where " .$startTime . $limits;
+            // $sql .= " where " .$startTime . $limits;
+        	$sql .= " where " .$startTime;
         }elseif($endTime)
         {
-            $sql .=" where " .$endTime . $limits;
+            //$sql .=" where " .$endTime . $limits;
+        	$sql .=" where " .$endTime;
         }
         else{
             if($order_room_id)
