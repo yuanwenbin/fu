@@ -5,8 +5,66 @@ class Tongji_model extends CI_Model
      * 统计相关牌位数
      * @param unknown $param
      */
-	
     function tongjiTotalPos($param)
+    {
+        $startTime = "";
+    	$endTime = "";
+    	$order_room_id = '';
+    	$data[0]=0; //出售中
+    	$data[1]=0; // 已经出售
+        $where = "where";
+    	if(isset($param['startTime']) && ($param['startTime']))
+    	{
+    		$where .= " location_date >= " . $param['startTime'] . "  and ";
+    		
+    	}
+    	unset($param['startTime']);
+    	if(isset($param['endTime']) && ($param['endTime']))
+    	{
+    		$where .= "  location_date <= " . $param['endTime'] . "  and ";
+    		
+    	}    	
+    	unset($param['endTime']);
+    	if(isset($param['order_room_id']) && ($param['order_room_id']))
+    	{
+    	    $where .= "  location_room_id = " . $param['order_room_id'] . "  and ";
+    	   
+    	}
+    	/*
+    	if($where == 'where')
+    	{
+    	    $where = "";
+    	}else {
+    	    $where = substr($where,0-4);
+    	}
+    	*/
+    	// 正在出售
+    	$sqlAfter1 = " location_number = 1"; 
+    	// 已经出售
+    	$sqlAfter2 = " location_number = 0";
+    	$sql_1 = "select count(*) as total from fu_location_list " . $where . $sqlAfter1;
+    	$sql_2 = "select count(*) as total from fu_location_list " . $where . $sqlAfter2;
+    	$res = $this->db->query($sql_1);
+    	 
+    	if($res->num_rows() > 0)
+    	{
+    	    $rowResult = $res->row();
+    	    $data[0] = $rowResult->total;
+    	}else {
+    	    $data[0] = 0;
+    	}
+    	 
+    	$res1 = $this->db->query($sql_2);
+    	if($res1->num_rows() > 0)
+    	{
+    	    $rowResult1 = $res1->row();
+    	    $data[1] = $rowResult1->total;
+    	}else {
+    	    $data[1] = 0;
+    	}
+    	return $data;
+    }
+    function tongjiTotalPos_s($param)
     {
     	$startTime = "";
     	$endTime = "";
@@ -96,44 +154,45 @@ class Tongji_model extends CI_Model
     }
     
     /**
-     * 分组统计
+     * 统计
      */
-    function tongjiGroupBy($param)
+    function orderList($param)
     {
     	
     	$where = " where ";
     	if(isset($param['startTime']) && ($param['startTime']))
     	{
     		$where .= " location_date > " . $param['startTime'] . " and ";
-    		unset($param['startTime']);
+
     	}
-    	 
+    	unset($param['startTime']);
     	if(isset($param['endTime']) && ($param['endTime']))
     	{
     		$where .= "  location_date < " . $param['endTime'] . " and ";
-    		unset($param['endTime']);
+
     	}    	
-
-
+    	unset($param['endTime']);
+        $page = $param['page'];
+        unset($param['page']);
     	if($param && is_array($param))
     	{
     		foreach($param as $key => $val)
     		{
     			$where .= " " . $key . " = '" . $val . "' and ";
     		}
+    	} 
+    	if($where == 'where')
+    	{
+    	    $where = '';
+    	}else {
+    	   $where = substr($where,0,-4);
     	}
-    	$where = substr($where,0,-4);
-    	$sql = "select count(*) as total,location_number from fu_location_list " . $where . " group by location_number";
+    	$startNumber = ($page - 1) * PAGESIZEFORTONGJI;
+    	$sql = "select * from fu_location_list " . $where . " limit " . $startNumber . "," . PAGESIZEFORTONGJI;
         $res = $this->db->query($sql);
     	if($res)
     	{
-    		$groupBy = array();
-    		$groupByResult = $res->result_array();
-    		foreach($groupByResult as $vv)
-    		{
-    			$groupBy[$vv['location_number']] = $vv['total'];
-    		}
-    		return $groupBy;
+    		return $res->result_array();
     	}else {
     		return '';
     	} 
@@ -146,15 +205,15 @@ class Tongji_model extends CI_Model
         if(isset($param['startTime']) && ($param['startTime']))
     	{
     		$where .= " location_date > " . $param['startTime'] . " and ";
-    		unset($param['startTime']);
+    		
     	}
-    	 
+    	unset($param['startTime']);
     	if(isset($param['endTime']) && ($param['endTime']))
     	{
     		$where .= "  location_date < " . $param['endTime'] . " and ";
-    		unset($param['endTime']);
+    		
     	}  
-
+    	unset($param['endTime']);
     	if($param && is_array($param))
     	{
     		foreach($param as $key => $val)
@@ -233,11 +292,45 @@ class Tongji_model extends CI_Model
         $res = $this->db->query($sql);
         return $res->row_array();
     }
+    
+    /**
+     * 查询表统计
+     * @param unknown $tableName
+     */
+    function queryCountCondtion($tableName, $param = array())
+    {
+        $sql = "select count(*) as total from " . $tableName;
+        if($param)
+        {
+            $where = " where ";
+            if(isset($param['startTime']) && $param['startTime'] != '')
+            {
+                $where .= " location_date >= " . $param['startTime'] . " and ";
+            }
+            unset($param['startTime']);
+            if(isset($param['endTime']) && $param['endTime'] != '')
+            {
+                $where .= " location_date <= " . $param['endTime'] . " and ";
+            }  
+            unset($param['endTime']);
+            if($param)
+            {
+                foreach($param as $k=>$v)
+                {
+                    $where .= $k . " = '". $v . "' and ";
+                }
+            }
+            $where = substr($where, 0,-4);
+            $sql .= $where;
+        }
+        $res = $this->db->query($sql);
+        return $res->row_array();
+    }    
     /**
      * 统计列表
      * @param unknown $param
      */
-    function orderList($param)
+    function orderLists($param)
     {
         $startTime = "";
         $endTime = "";
@@ -263,33 +356,7 @@ class Tongji_model extends CI_Model
             $location_room_id = " where location_room_id=" . $param['order_room_id'] . " ";
             unset($param['order_room_id']);
         }        
-        /*
-        $sql = "select * from fu_order_info";
-        if($startTime && $endTime && $order_room_id)
-        {
-            $sql .= " where " .$startTime . " and " . $endTime . " and " . $order_room_id . $limits;
-        }elseif($startTime && $endTime){
-            $sql .= " where " .$startTime . " and " . $endTime  . $limits;
-        }elseif($startTime && $order_room_id)
-        {
-            $sql .=" where " .$startTime . " and " . $order_room_id . $limits;
-        }elseif($endTime && $order_room_id)
-        {
-            $sql .=" where " .$endTime . " and " . $order_room_id . $limits;
-        }elseif($order_room_id)
-        {
-            $sql .=" where " . $order_room_id . $limits;;
-        }elseif($startTime)
-        {
-            $sql .= " where " .$startTime . $limits;
-        }elseif($endTime)
-        {
-            $sql .=" where " .$endTime . $limits;
-        }
-        else{
-            $sql = "select * from fu_location_list" . $limits;
-        }     
-        */
+
         
         $sql = "select * from fu_order_info";
         if($startTime && $endTime && $order_room_id)
