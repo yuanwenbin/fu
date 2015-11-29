@@ -899,11 +899,12 @@ class Choice extends CI_Controller {
 		}
 		// 正常提交,并插入订单表和修改用户表,牌位表状态用及修改session状态
 		// 1.插入订单表
+		$stime = time();
 		$orderParam = array('order_user'=>$this->session->body_id,
 							'order_room_id'=>$posInfos['location_room_id'],
 							'order_location_id'=>$posInfos['localtion_id'],
 							'order_location_type'=>1,
-							'order_datetime'=>time(),
+							'order_datetime'=>$stime,
 							'order_price'=>$posInfos['location_price']
 							);	
 		/*
@@ -924,13 +925,13 @@ class Choice extends CI_Controller {
 		$userParam = array('user_location_id'=>$posInfos['localtion_id'],
 							'user_type'=>2,
 							'user_selected'=>2,
-							'user_selected_date'=>time(),					
+							'user_selected_date'=>$stime,					
 		);
 		$this->Choice_model->changTable('fu_user', $userParam, array('body_id'=>$this->session->body_id));
 		
 		
 		// 4.修改牌位表为出售中
-		$posParam = array('location_number'=>1, 'location_date'=>time()+DATEHEADLINE);
+		$posParam = array('location_number'=>1, 'location_date'=>$stime);
 		$this->Choice_model->changTable('fu_location_list', $posParam, array('localtion_id'=>$posInfos['localtion_id']));
 		header("Location:/Choice/index");
 		exit;
