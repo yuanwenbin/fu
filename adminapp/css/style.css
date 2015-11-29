@@ -8,7 +8,7 @@ a:hover{text-decoration:underline;}
 ul,li{list-style:none;padding:0px;}
 h1,h2,h3,h4,h5,h6,p{margin:0;padding-left:5px;margin-left:5px;}
 input,select,textarea{border:1px solid #333;font-family:'Microsoft YaHei','宋体','黑体',Verdana, Geneva, sans-serif;}
-html{background:url(../images/backBg.png);}
+html{background:#e5e4dc;}
 .loginBox{width:500px;margin:175px auto 20px auto;background:url(../images/bgImg.png) no-repeat;height:352px;padding-top:50px;}
 .clearBoth{clear:both;padding:0;margin:0;}
 
@@ -18,23 +18,23 @@ input,button,select,textarea{outline:none}
 .loginInput{margin-left:150px;margin-top:14px;width:295px;}
 .loginInput2{margin-left:150px;margin-top:12px;width:295px;}
 .loginInput3{margin-left:50px;margin-top:14px;}
-.adminTop{padding-top:10px;padding-left:10px;border:1px solid #aaa;line-height:26px;}
+.adminTop{border:1px solid #aaa;line-height:26px;}
 .adminMenu{border-right:1px solid #888;padding:10px;font-size:12px;line-height:22px;}
 .menuList li h2{font-size:18px;font-weight:normal;background:url(../images/ico.png) no-repeat;height:30px;line-height:30px;padding-left:35px;}
 .menuList ul{padding-left:50px;font-size:14px;}
 .menuList ul li{line-height:26px;}
 
-.defaultInfos{padding:10px;}
+.defaultInfos{padding:10px;background:#fff;}
 .divInfos1{margin-top:10px;line-height:26px;}
 .divInfosSearch{}
-.headerLineBackground{background:#BBDDE5;}
+.headerLineBackground1{background:#e5e4dc;}
 
-.roomOpen{padding:15px; line-height:26px;}
+.roomOpen{ line-height:26px;background:#fff;}
 .roomOpen label{font-weight:bold;}
-.roomOpen h3{background:#BBDDE5;}
-.roomList{padding:15px; line-height:26px;}
-.roomListInfos th{background:#BBDDE5;line-height:26px;}
-.listRoomColumns{background:#BBDDE5;}
+.roomOpen h3{}
+.roomList{line-height:26px;background:#fff;}
+.roomListInfos th{background:#e5e4dc;line-height:26px;}
+.listRoomColumns{background:#e5e4dc;}
 .roomListPage{width:100%;text-align:center;padding-top:20px;}
 .roomInfosDiv{padding-left:5%; }
 .searchListPos{line-height:26px;}
@@ -58,9 +58,9 @@ input:-webkit-autofill,
         -webkit-box-shadow: 0 0 0 1000px white inset;
 }
 .topBg{height:75px;background:#d77a35;overflow:hidden;}
-.topMenuTagsLeft{float:left;}
+.topMenuTagsLeft{float:left;padding-left:10px;}
 .topMenuTagsRight{float:right;margin-right:30px;}
 .topMenuTagsLeft span{color:#d77a35;}
 .currentList a{text-decoration:underline;color:#ff0000;}
 .container{min-height:500px;}
-.footer{width:90%;text-align:center;margin-top:20px;margin-bottom:15px;}
+.footer{width:100%;text-align:center;padding-top:10px;padding-bottom:10px;background:#e5e4dc;margin-top:20px;}
