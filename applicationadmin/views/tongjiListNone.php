@@ -97,14 +97,17 @@
 	<?php
 	if($page > 1){
 	?>
-	<a href="/Tongji/tongjiList">首页</a>&nbsp;
-	<a href="/Tongji/tongjiList?page=<?php echo $page-1; ?>&roomList=<?php echo $order_room_id; ?>">上一页</a>&nbsp;
+	<a href="/Tongji/tongjiList?datetime=<?php echo isset($startTime) && !empty($startTime) ? date('Y-m-d H:i:s',$startTime) : '';?>&datetimes=<?php echo isset($endTime) && !empty($endTime) ? date('Y-m-d H:i:s',$endTime) : '';?>">首页</a>&nbsp;
+	<a href="/Tongji/tongjiList?datetime=<?php echo isset($startTime) && !empty($startTime) ? date('Y-m-d H:i:s',$startTime) : '';?>&datetimes=<?php echo isset($endTime) && !empty($endTime) ? date('Y-m-d H:i:s',$endTime) : '';?>&page=<?php echo $page-1; ?>&roomList=<?php echo $order_room_id; ?>">
+	上一页</a>&nbsp;
 	<?php 
 	}
 	if($totalPages > $page) {
 	?>
-	<a href="/Tongji/tongjiList?page=<?php echo $page+1; ?>&roomList=<?php echo $order_room_id; ?>">下一页</a>&nbsp;
-	<a href="/Tongji/tongjiList?page=<?php echo $totalPages; ?>&roomList=<?php echo $order_room_id; ?>">末页</a>
+	<a href="/Tongji/tongjiList?datetime=<?php echo isset($startTime) && !empty($startTime) ? date('Y-m-d H:i:s',$startTime) : '';?>&datetimes=<?php echo isset($endTime) && !empty($endTime) ? date('Y-m-d H:i:s',$endTime) : '';?>&page=<?php echo $page+1; ?>&roomList=<?php echo $order_room_id; ?>">
+	下一页</a>&nbsp;
+	<a href="/Tongji/tongjiList?datetime=<?php echo isset($startTime) && !empty($startTime) ? date('Y-m-d H:i:s',$startTime) : '';?>&datetimes=<?php echo isset($endTime) && !empty($endTime) ? date('Y-m-d H:i:s',$endTime) : '';?>&page=<?php echo $totalPages; ?>&roomList=<?php echo $order_room_id; ?>">
+	末页</a>
 	<?php } ?>
 	</div>
 	<?php } ?>
