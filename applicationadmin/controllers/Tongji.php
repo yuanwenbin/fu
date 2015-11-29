@@ -30,28 +30,24 @@ class Tongji extends CI_Controller {
 	    $endTime = $this->input->get_post('datetimes');
 	    $roomId = $this->input->get_post('roomList');
 	    $param = array();
-		$flag = 0; // 是否有时间查询 0-无,1-有
+	    $condition = array();
 	    // 开始时间
 	    if($startTime && $startTime != '')
 	    {
-	    	// $param['startTime'] = strtotime($startTime)+7200;
 	    	$param['startTime'] = strtotime($startTime);
 	    	$startTime = strtotime($startTime);
-	    	$flag = 1;
+	    	$condition['startTime'] = $startTime;
 	    }	    
 		
 	    // 结束时间
 	    if($endTime && $endTime != '')
 	    {
-	    	// $param['endTime'] = strtotime($endTime)-7200;
 	    	$param['endTime'] = strtotime($endTime);
 	    	$endTime = strtotime($endTime);
-	    	$flag = 1;
+	    	$condition['endTime'] = $endTime;
 	    }	    
 		
 	    // 当前选择的号
-	    $this->input->get_post('page');
-        
 	    $page = $this->input->get_post('page');
 	    if(!$page)
 	    {
@@ -60,9 +56,6 @@ class Tongji extends CI_Controller {
 	    	$page = intval($page) > 0 ? intval($page) : 1;
 	    }
 	    
-	    
-	    
-	    // $param_1 = $param;
 
 	    // 房间号
 	    if($roomId)
@@ -83,12 +76,15 @@ class Tongji extends CI_Controller {
 	    if($roomId)
 	    {
 	        $location_room['location_room_id'] = $roomId;
+	        $condition['location_room_id'] = $roomId;
 	    }else {
 	        $location_room= array();
 	    }
 	   
-	    
 	    $posCount = $this->Tongji_model->queryCount('fu_location_list',$location_room);
+	    
+	    // 条件查询总数
+	    $posCountCondition = $this->Tongji_model->queryCountCondtion('fu_location_list',$condition);
 	        
 	    // 正在/已经出售的牌位数
 	    $totalNumber = $this->Tongji_model->tongjiTotalPos($param);
@@ -96,9 +92,10 @@ class Tongji extends CI_Controller {
         //已经出售
         //$totalNum = $this->Tongji_model->tongjiTotalPos($param);
         $param['page'] = $page;
+        $condition['page'] = $page;
         // 销售列表
-        $list = $this->Tongji_model->orderList($param);
-        
+        $list = $this->Tongji_model->orderList($condition);
+        // print_r($list);
 	    // 房间列表
 	    $roomList = $this->Tongji_model->tongRoomList();
 	 	
@@ -112,15 +109,11 @@ class Tongji extends CI_Controller {
 	    $view['endTime'] = isset($endTime) && ($endTime) ? $endTime : ''; // 结束时间
 	    $view['list'] = $list;
 	    $view['page'] = $page;
-	    // if($startTime || $endTime || $roomId)
-	     if($startTime || $endTime)
-	    {      
-	        $view['totalPages'] = ceil(($totalNumber[0]+$totalNumber[1])/PAGESIZEFORTONGJI);
-	        $this->load->view('tongjiList', $view);
-	    }else {
-	        $view['totalPages'] = ceil($posCount['total']/PAGESIZEFORTONGJI);
-	        $this->load->view('tongjiListNone', $view);
-	    }
+
+        // $view['totalPages'] = ceil($posCount['total']/PAGESIZEFORTONGJI);  
+	    $view['totalPages'] = ceil($posCountCondition['total']/PAGESIZEFORTONGJI);
+        $this->load->view('tongjiListNone', $view);
+	  
 	     
 	}
 	
