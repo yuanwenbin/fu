@@ -352,6 +352,15 @@ class Index extends CI_Controller {
 			die(json_encode($status));
 	}
 	/**
+	 * 与 login方法一样，订单详情页罢了
+	 * @param $bodyId
+	 */
+	function details()
+	{
+	    $status = $this->checkUser();
+	    die(json_encode($status));	    
+	}
+	/**
 	 * 随机选号
 		{
     "flag": 0,
@@ -388,6 +397,10 @@ class Index extends CI_Controller {
 	*/
 	/**
 	 * 随机选号处理
+	 * error = 1,有错误观点
+	 * error = 0，成功
+	 * count = 1,还有一次机会,也可以提交
+	 * count = 2 已经选择两次了，直接跳到详情页
 	 */
 	function byRandDo()
 	{
@@ -399,6 +412,276 @@ class Index extends CI_Controller {
 
 	 // 有选择过号，且有效
 	 $userInfo = $this->Choice_model->searchUser('fu_user', array('body_id'=>$this->bodyId));
+	 // 更新用户表
+	 // $this->Choice_model->changTable('fu_user', array('user_selected'=>$userInfo['user_selected']+1), array('body_id'=>$this->bodyId));
+	 // 生成号码
+	 $randNo = $this->Choice_model->byRandModel();
+	 if(!$randNo)
+	 {
+	     $data = array('error'=>1, 'msg'=>'没有了号码');
+	     die(json_encode($data));
+	 }
+	 if(count($randNo)==1)
+	 {
+	     $arrIndex = 0;
+	 }else {
+	     $arrIndex = rand(0,count($randNo)-1);
+	 }	
+	 $data = array();
+	 $data['error']=0;
+	 // 选择的次数
+	 $counts = $userInfo['user_selected']+1;
+	 // 号码
+	 $randoNumber = $randNo[$arrIndex]['localtion_id'];
+	 // 查询牌位相关信息
+	 $paramPos['localtion_id'] = $randoNumber;
+	 $resPos = $this->Choice_model->searchUser('fu_location_list',$paramPos);
+	 // 修改牌位状态
+	 $this->Choice_model->changTable('fu_location_list', array('location_date'=>time(),'location_number'=>1), array('localtion_id'=>$randoNumber));
+	 // 还有机会选择
+	 if($counts < 2)
+	 {
+	     $data['count'] = 1;
+	     $data['number'] = $randoNumber;
+	     $data['flag'] = 0;
+	     // 修改数据库用户表状态
+	     $changeParams['user_selected'] = $data['count'];
+	     $changeParams['user_selected_date'] =time();
+	     // $changeParams['user_location_id'] =$randoNumber;
+	     $changeParams['user_type'] =0;
+	     //$this->Choice_model->changeApiModel($changeParams, $this->bodyId);
+	     $this->Choice_model->changTable('fu_user', array('user_selected'=>1, 'user_type'=>0), array('body_id'=>$this->bodyId));
+	     die(json_encode($data));    
+	 }else {
+	     // 已经选择两次了
+	     $data['count'] = 2;
+	     $data['number'] = $randoNumber;
+	     $data['flag'] = 0;
+	     // 选择过的牌位，恢复时间
+	     $location_id = $userInfo['user_location_id'];
+	     $this->Choice_model->changTable('fu_location_list', array('location_date'=>0,'location_number'=>2), array('localtion_id'=>$location_id));
+	     $this->Choice_model->changTable('fu_user', array('user_selected'=>2,'user_location_id'=>$randoNumber,'user_selected_date'=>time(), 'user_type'=>0), array('body_id'=>$this->bodyId));
+         // 插入订单
+         $order = array();
+	     $order['order_room_id'] = $resPos['location_room_id'];
+	     $order['order_user'] = $this->bodyId;
+	     $order['order_location_id'] = $randoNumber;
+	     $order['order_location_type'] = 0; 
+	     $order['order_datetime'] = time(); 
+	     $order['order_price'] = $resPos['location_price'];
+	     $this->Choice_model->insertOrder('fu_order_info',$order);
+	     die(json_encode($data));  
+	 }
+	 
+	}
+	
+    /**
+     * 手动提交随机
+     * $number 随机号
+     */
+	function randomSubmit()
+	{
+	    $status = $this->checkUser();
+	    if($this->uflag == 1 || $this->uflag == 2)
+	    {
+	        die(json_encode($status));
+	    }	    
+	    $bodyId = $this->bodyId;
+	    $numberNo = $this->input->get_post('number');
+	    // 查询牌位相关信息
+	    $paramPos['localtion_id'] = $numberNo;
+	    $resPos = $this->Choice_model->searchUser('fu_location_list',$paramPos);
+	    // 插入订单
+	    $order = array();
+	    $order['order_room_id'] = $resPos['location_room_id'];
+	    $order['order_user'] = $this->bodyId;
+	    $order['order_location_id'] = $numberNo;
+	    $order['order_location_type'] = 0;
+	    $order['order_datetime'] = time();
+	    $order['order_price'] = $resPos['location_price'];
+	    $lastId = $this->Choice_model->insertOrder('fu_order_info',$order);
+	    $data = array();
+	    $data['flag'] = 0;
+	    if($lastId)
+	    {
+	        $data['error'] = 0;
+	        $data['msg'] = '成功提交';
+	    }else {
+	        $data['error'] = 1;
+	        $data['msg'] = '提交失败';	      
+	    }
+	    $data['flag'] = 0;
+	    die(json_encode($data));
+	}
+	
+	/**
+	 * 生辰八字
+	 * $username,userbirth,stime
+	 * $bodyId
+	 */
+	function byBirthday()
+	{
+	    $status = $this->checkUser();
+	    if($this->uflag == 1 || $this->uflag == 2)
+	    {
+	        die(json_encode($status));
+	    }	
+	    // 验证传递过来的三个字段，姓名，时辰，生日
+	    $username = $this->input->get_post('username');
+	    $userbirth = $this->input->get_post('userbirth');
+	    $stime = $this->input->get_post('stime');
+	    if(!$username || !$userbirth || !$stime)
+	    {
+	        $data = array('error'=>1, 'msg'=>'填写的姓名，时辰，生日不完整');
+	        die(json_encode($data));
+	    }
+	    // 产生随机数
+	    $randNo = $this->Choice_model->byRandModel();
+	    if(!$randNo)
+	    {
+	        $data = array('error'=>1, 'msg'=>'没有相关号码了，请联系管理员！','flag'=>0);
+	        die(json_encode($data));
+	    }
+	    if(count($randNo)==1)
+	    {
+	        $arrIndex = 0;
+	    }else {
+	        $arrIndex = rand(0,count($randNo)-1);
+	    }
+	    // 修改数据库用户表状态
+	    $changeParams['user_selected'] = 2;
+	    $changeParams['user_selected_date'] =time();
+	    $changeParams['user_location_id'] =$randNo[$arrIndex]['localtion_id'];
+	    $changeParams['user_type'] =1;
+	    $changeParams['user_name'] =$username;
+	    $changeParams['user_birthday'] =$userbirth;
+	    $changeParams['user_time'] =$stime;
+        // 修改数据库用户表状态
+	    $this->Choice_model->changTable('fu_user',$changeParams,array('body_id'=>$this->bodyId));
+
+	    // 修改牌位状态
+	    $this->Choice_model->changTable('fu_location_list', array('location_date'=>time(),'location_number'=>1), array('localtion_id'=>$changeParams['user_location_id']));
+	    
+	    // 插入订单
+	    // 查询牌位相关信息
+	    $paramPos['localtion_id'] = $changeParams['user_location_id'];
+	    $resPos = $this->Choice_model->searchUser('fu_location_list',$paramPos);
+	    $order = array();
+	    $order['order_room_id'] = $resPos['location_room_id'];
+	    $order['order_user'] = $this->bodyId;
+	    $order['order_location_id'] = $paramPos['localtion_id'];
+	    $order['order_location_type'] = 1;
+	    $order['order_datetime'] = time();
+	    $order['order_price'] = $resPos['location_price'];
+	    $lastId = $this->Choice_model->insertOrder('fu_order_info',$order);	 
+	    $data = array();
+	    $data['flag'] = 0;
+	    if($lastId)
+	    {
+	        $data['error'] = 0;
+	        $data['msg'] = '生辰八字提交成功';
+	    }else {
+	        $data['error'] = 1;
+	        $data['msg'] = '生辰八字提交失败';	        
+	    }
+	    die(json_encode($data));
+	}
+	
+	/**
+	 * 高端定抽详情
+	 * $bodyId
+	 * $highNum 号码
+	 */
+	function byhigh()
+	{
+	    $status = $this->checkUser();
+	    if($this->uflag == 1 || $this->uflag == 2)
+	    {
+	        die(json_encode($status));
+	    }	
+	    $data = array();
+	    $highNum = intval($this->input->get_post('highNum')); 
+	    if(!$highNum)   
+	    {
+	        $data['error'] = 1;
+	        $data['msg'] = '不存在该号码';
+	        die(json_encode($data));
+	    }
+	    $data['flag'] = 0;
+	    // 查询牌位相关信息
+	    $paramPos['localtion_id'] = $highNum;
+	    $resPos = $this->Choice_model->searchUser('fu_location_list',$paramPos);
+	    // 查看详情
+	    $roomInfos = $this->Choice_model->searchUser('fu_room_list',array('room_id'=>$resPos['location_room_id']));
+	    $param = array('localtion_id'=>$highNum, 'location_type'=>1, 'location_isshow'=>1);
+	    $posInfos = $this->Choice_model->searchUser('fu_location_list',$param);
+	    $data['roomInfos'] = $roomInfos;
+	    $data['posInfos'] = $posInfos;
+	    $data['error'] = 0;
+	    $data['msg']='号码详情';
+	    die(json_encode($data));
+	}
+	
+	/**
+	 * 高端定制提交
+	 */
+	function byHighDo()
+	{
+	    $status = $this->checkUser();
+	    if($this->uflag == 1 || $this->uflag == 2)
+	    {
+	        die(json_encode($status));
+	    }
+	    $data = array();
+	    $highNum = intval($this->input->get_post('highNum'));
+	    if(!$highNum)
+	    {
+	        $data['error'] = 1;
+	        $data['msg'] = '不存在该号码';
+	        die(json_encode($data));
+	    }
+	    // 是否是正常未出售
+	    $param = array('localtion_id'=>$highNum, 'location_type'=>1, 'location_number'=>2, 'location_isshow'=>1);
+	    $posInfos = $this->Choice_model->searchUser('fu_location_list',$param);
+	    
+	    if(!$posInfos)
+	    {
+	        $data['error'] = 1;
+	        $data['msg'] = '该号码已经被购买';
+	        die(json_encode($data));
+	    }	
+	    // 1.插入订单表
+	    $stime = time();
+	    $orderParam = array('order_user'=>$this->bodyId,
+	        'order_room_id'=>$posInfos['location_room_id'],
+	        'order_location_id'=>$posInfos['localtion_id'],
+	        'order_location_type'=>1,
+	        'order_datetime'=>$stime,
+	        'order_price'=>$posInfos['location_price']
+	    );
+	    $this->Choice_model->insertOrder('fu_order_info', $orderParam);
+	    
+	    // 2.修改用户表之前订过的牌位状态
+	    $userPosInfos = $this->Choice_model->searchUser('fu_user',array('body_id'=>$this->bodyId));	    
+	    if(!$userPosInfos['user_type'] && $userPosInfos['user_location_id'])
+	    {
+	        $userPosParam = array('location_number'=>2, 'location_date'=>0);
+	        $this->Choice_model->changTable('fu_location_list', $userPosParam, array('localtion_id'=>$userPosInfos['user_location_id']));
+	    }
+	    // 3.修改用户表
+	    $userParam = array('user_location_id'=>$posInfos['localtion_id'],
+	        'user_type'=>2,
+	        'user_selected'=>2,
+	        'user_selected_date'=>$stime,
+	    );
+	    $this->Choice_model->changTable('fu_user', $userParam, array('body_id'=>$this->bodyId));
+	    $posParam = array('location_number'=>1, 'location_date'=>$stime);
+	    $this->Choice_model->changTable('fu_location_list', $posParam, array('localtion_id'=>$posInfos['localtion_id']));
+	    
+	    $data['flag'] = 0;
+	    $data['error'] = 0;
+	    $data['msg'] = '成功提交高端接口';
+	    die(json_encode($data));
 	}
 	
 }
