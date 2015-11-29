@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomInfosDiv">
+<div class="roomInfosDiv container">
 <h3 class="headerLineBackground">会员 <?php echo $user->admin_user;?> 信息</h3>
 <table border="1" cellpadding="0" cellspacing="0" width="90%">	
 	<tr>
@@ -68,6 +68,9 @@
 	</tr>			
 </table>
 
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 </body>
 </html>

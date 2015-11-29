@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
-<div class="roomListInfos">
+<div class="roomListInfos container">
 <h3 class="headerLineBackground">批量修改</h3>
 <div class="modMuch">
 <?php 
@@ -60,6 +60,9 @@ if(hasPerssion($_SESSION['role'], 'posLocation')){ ?>
 
 
 </div>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 <script type="text/javascript">
 $(document).ready(function(){

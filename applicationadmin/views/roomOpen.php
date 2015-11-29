@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomOpen">
+<div class="container">
 <h3>开设房间、牌位中心</h3>
 <form method="post" action="/Room/RoomOpenAdd">
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
@@ -62,6 +63,10 @@
 	</tr>
 </table>
 </form>
+</div>
+<div class="footer">
+所有权归本站所有
+</div>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("input[name='submit']").click(function(){

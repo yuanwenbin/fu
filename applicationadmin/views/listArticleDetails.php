@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomInfosDiv">
+<div class="roomInfosDiv container">
 <h2 class="headerLineBackground"><?php echo $result->article_title;?></h2>
 <table border="0" cellpadding="5" cellspacing="5">	
 	<tr>
@@ -75,6 +75,9 @@
 		</td>		
 	</tr>			
 </table>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 </body>
 </html>

@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="defaultInfos">
+<div class="container">
 <h4>会员查询</h4>
 
 <!-- bof one -->
@@ -28,6 +29,10 @@
 <br />
 请在上面框中输入要查询的会员身份证号
 <!--  eof infos -->
+</div>
+<div class="footer">
+所有权归本站所有
+</div>
 <script type="text/javascript">
 $(document).ready(function(){
 	/*

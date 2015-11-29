@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
-<div class="roomInfosDiv">
+<div class="roomInfosDiv container">
 <h3 class="headerLineBackground">订单详情</h3>
 <table border="0" cellpadding="5" cellspacing="5" width="90%">	
 	<tr>
@@ -136,6 +136,9 @@
 		</td>		
 	</tr>			
 </table>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 <script type="text/javascript">
 $(document).ready(function(){

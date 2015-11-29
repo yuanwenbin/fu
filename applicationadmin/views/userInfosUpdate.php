@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomInfosDiv">
+<div class="roomInfosDiv container">
 <h3 class="headerLineBackground">会员 <?php echo $user->admin_user;?> 信息</h3>
 <form action="/User/userInfosUpdateDeal" method="post">
 <input type="hidden" name="admin_id" value="<?php echo $user->admin_id;?>" />
@@ -169,6 +169,9 @@
 	</tr>			
 </table>
 </form>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 </body>
 </html>

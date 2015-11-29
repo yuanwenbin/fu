@@ -18,7 +18,7 @@ if(!$listArr)
 	exit;
 }
 ?>
-<div class="roomInfosDiv">
+<div class="roomInfosDiv container">
 <h3>道教文化列表</h3>
 <table border="0" cellpadding="5" cellspacing="0" width="100%">	
 	<tr class='headerLineBackground'>
@@ -43,6 +43,9 @@ if(!$listArr)
 
 	<?php } ?>
 </table>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 <script type="text/javascript">
 function sureDel()

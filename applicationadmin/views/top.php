@@ -10,12 +10,22 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="adminTop">
-欢迎光临：
-<?php
-echo $username;
-?>
-&nbsp;&nbsp;
-<a href="/Index/logout" target="_top">退出</a>&nbsp;&nbsp;
-<a href="/Index/index" target="_top">返回首页</a>
+<div class="topMenuTags">
+    <div class="topBg"><img src="/images/title_background.png" /></div>
+    <div class="topMenuTagsLeft">
+                欢迎光临：<span>
+    <?php
+    echo $username;
+    ?>
+    </span>
+    &nbsp;&nbsp;
+    <a href="/Index/logout" target="_top">退出</a>&nbsp;&nbsp;
+    <a href="/Index/index" target="_top">返回首页</a>
+    </div>
+    <div class="topMenuTagsRight">
+    <?php echo date('Y-m-d H:i:s', time());?>
+    </div>
+    <div class="clearBoth"></div>
+</div>
 </body>
 </html>

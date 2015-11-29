@@ -10,6 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="defaultInfos searchListPos">
+<div class="container">
 <h4>房间牌位查询</h4>
 
 <!-- bof one -->
@@ -143,6 +144,9 @@ if(isset($roomList) && $roomList)
 </table>
 </div>
 <!--  eof infos -->
-
+</div>
+<div class="footer">
+所有权归本站所有
+</div>
 </body>
 </html>

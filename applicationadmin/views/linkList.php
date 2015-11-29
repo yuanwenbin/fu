@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomListInfos">
+<div class="roomListInfos container">
 <h3 class="headerLineBackground">友情链接 信息</h3>
 
 <table border="0" cellspacing="5" cellpadding="5" width="100%">
@@ -33,6 +33,9 @@
 	</tr>
 	<?php } ?>
 </table>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 <script type="text/javascript">
 function sureDel()

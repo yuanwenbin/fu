@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomListInfos">
+<div class="roomListInfos container">
 <h3 class="headerLineBackground">订单查询信息</h3>
 
 <p class="roomListPage">
@@ -18,5 +18,8 @@
 </p>
 </div>
 
+<div class="footer">
+所有权归本站所有
+</div>
 </body>
 </html>

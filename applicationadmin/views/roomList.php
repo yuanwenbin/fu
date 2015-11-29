@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomListInfos">
+<div class="roomListInfos container">
 <h3 class="headerLineBackground">房间 列表 信息</h3>
 <?php
 if(!$roomList) { ?>
@@ -63,6 +63,9 @@ if(!$roomList) { ?>
 &nbsp;&nbsp;<a href="/Room/roomList?page=<?php echo $totalPage;?>">末页</a>
 <?php } ?>
 </p>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 <script type="text/javascript">
 function sureDel()

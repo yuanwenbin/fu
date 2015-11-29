@@ -33,6 +33,7 @@
     </script>	
 </head>
 <body class="defaultInfos">
+<div class="container">
 <h4>订单列表</h4>
 
 <!-- bof one -->
@@ -178,6 +179,9 @@ foreach($result['resultList'] as $k=>$v){
 </div>
 
 <!--  eof infos -->
-
+</div>
+<div class="footer">
+所有权归本站所有
+</div>
 </body>
 </html>

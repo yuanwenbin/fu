@@ -66,6 +66,7 @@ if(!$cate_name)
 	
 </head>
 <body class="roomOpen">
+<div class="container">
 <h3>增加文章</h3>
 <form method="post" action="/Article/addArticleDeal">
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
@@ -144,6 +145,10 @@ if(!$cate_name)
 </table>
 
 </form>
+</div>
+<div class="footer">
+所有权归本站所有
+</div>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("input[name='submit']").click(function(){
@@ -159,5 +164,6 @@ $(document).ready(function(){
 	
 });
 </script>
+
 </body>
 </html>

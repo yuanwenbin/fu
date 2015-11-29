@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomListInfos">
+<div class="roomListInfos container">
 <h3 class="headerLineBackground">文章分类信息</h3>
 <?php
 if(!$cate_name) { ?>
@@ -60,6 +60,9 @@ if(!$cate_name) { ?>
 </table>
 <?php } ?>
 
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 <script type="text/javascript">
 function sureDel()

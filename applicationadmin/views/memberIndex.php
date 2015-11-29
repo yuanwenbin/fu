@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomListInfos">
+<div class="roomListInfos container">
 <h2 class="headerLineBackground">会员列表 信息</h2>
 <table border="0" cellspacing="5" cellpadding="5" width="100%">
 	<tr>
@@ -60,6 +60,9 @@
 &nbsp;&nbsp;<a href="/Member/index?page=<?php echo $totalPage;?>">末页</a>
 <?php } ?>
 </p>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 <script type="text/javascript">
 function sureDel()

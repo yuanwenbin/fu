@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomOpen">
+<div class="container">
 <h3>增加管理员</h3>
 <form method="post" action="/User/userAddDeal">
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
@@ -154,6 +155,10 @@
 </table>
 
 </form>
+</div>
+<div class="footer">
+所有权归本站所有
+</div>
 <script type="text/javascript">
 
 $(document).ready(function(){

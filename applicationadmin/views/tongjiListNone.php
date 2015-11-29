@@ -36,7 +36,7 @@
     }) 
     </script>	
 <body class="roomList">
-<div class="roomListInfos">
+<div class="roomListInfos container">
 	<h3 class="headerLineBackground">房间牌位统计信息</h3>
 	<div class="tongJiSearch">
 	    <form action="/Tongji/tongjiList" method="get"> 
@@ -113,6 +113,9 @@
 	<?php } ?>
 	</div>
 	<?php	} ?>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 </body>
 </html>

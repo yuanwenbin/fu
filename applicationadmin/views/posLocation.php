@@ -33,7 +33,7 @@
     </script>	
 </head>
 <body class="roomList">
-<div class="roomInfosDiv">
+<div class="roomInfosDiv container">
 <h3 class="headerLineBackground">牌位相关,房间号:<?php echo $result['location_room_id'];?>,牌位号:<?php echo $result['localtion_id'];?></h3>
 <form action="/Room/posLocationDeal" method="post" enctype="multipart/form-data">
 <input type="hidden" name="localtion_id" value="<?php echo $result['localtion_id'];?>"  />
@@ -143,6 +143,9 @@
 	</tr>						
 </table>
 </form>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 </body>
 </html>

@@ -8,6 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台菜单</title>
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="adminMenu">
 
@@ -127,3 +128,12 @@
 </ul>
 </body>
 </html>
+<<script type="text/javascript">
+$(document).ready(function(){
+    $(".menuList ul li").click(function(){
+        $(".menuList ul li").removeClass('currentList');
+        $(this).addClass('currentList');
+      });
+	
+});
+</script>

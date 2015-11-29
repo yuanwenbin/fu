@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomListInfos">
+<div class="roomListInfos container">
 <?php
 if(!$roomList) { ?>
 	暂时无相关房间，<a href="/Room/roomOpen">点击增加房间</a>
@@ -49,6 +49,8 @@ if(!$roomList) { ?>
 <?php } ?>
 </p>
 </div>
-
+<div class="footer">
+所有权归本站所有
+</div>
 </body>
 </html>

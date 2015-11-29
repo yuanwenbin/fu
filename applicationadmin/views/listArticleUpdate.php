@@ -59,6 +59,7 @@
 	
 </head>
 <body class="roomOpen">
+<div class="container">
 <h3>修改文章</h3>
 <form method="post" action="/Article/updateArticleDeal">
 <input type="hidden" name="article_id" value="<?php echo $result->article_id; ?>" />
@@ -127,6 +128,10 @@
 </table>
 
 </form>
+</div>
+<div class="footer">
+所有权归本站所有
+</div>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("input[name='submit']").click(function(){
