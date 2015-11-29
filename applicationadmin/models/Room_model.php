@@ -207,6 +207,10 @@ class Room_model extends CI_Model
 		{
 			$sql .= ",location_pic = '".$filePic."'";
 		}
+		if($location_number == 2)
+		{
+			$sql .= ",location_date = 0";	
+		}
 		$sql .= " where localtion_id = " . $localtion_id;
 		$this->db->query($sql);
 		return $this->db->affected_rows();
