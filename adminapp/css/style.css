@@ -20,8 +20,10 @@ input,button,select,textarea{outline:none}
 .loginInput3{margin-left:50px;margin-top:14px;}
 .adminTop{padding-top:10px;padding-left:10px;border:1px solid #aaa;line-height:26px;}
 .adminMenu{border-right:1px solid #888;padding:10px;font-size:12px;line-height:22px;}
-.menuList li h2{font-size:14px;font-weight:normal;background:url(../images/ico.png) no-repeat;height:30px;line-height:30px;padding-left:35px;font-size:14px;}
-.menuList ul{padding-left:50px;}
+.menuList li h2{font-size:18px;font-weight:normal;background:url(../images/ico.png) no-repeat;height:30px;line-height:30px;padding-left:35px;}
+.menuList ul{padding-left:50px;font-size:14px;}
+.menuList ul li{line-height:26px;}
+
 .defaultInfos{padding:10px;}
 .divInfos1{margin-top:10px;line-height:26px;}
 .divInfosSearch{}
@@ -55,3 +57,10 @@ input:-webkit-autofill,
     select:-webkit-autofill {
         -webkit-box-shadow: 0 0 0 1000px white inset;
 }
+.topBg{height:75px;background:#d77a35;overflow:hidden;}
+.topMenuTagsLeft{float:left;}
+.topMenuTagsRight{float:right;margin-right:30px;}
+.topMenuTagsLeft span{color:#d77a35;}
+.currentList a{text-decoration:underline;color:#ff0000;}
+.container{min-height:500px;}
+.footer{width:90%;text-align:center;margin-top:20px;margin-bottom:15px;}
