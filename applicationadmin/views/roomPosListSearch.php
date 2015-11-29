@@ -51,7 +51,7 @@ if(isset($roomList) && $roomList)
 <div class="roomInfosDiv">
 
 <table border="0" cellpadding="5" cellspacing="0">	
-	<tr class='headerLineBackground'>
+	<tr class='headerLineBackground1'>
 		<th width="10%" align="center">操作</th>
 		<th width="5%" align="center">房间号</th>
 		<th width="5%" align="center">牌位号</th>
@@ -64,7 +64,7 @@ if(isset($roomList) && $roomList)
 		<th width="15%" align="center">牌位描述</th>
 	</tr>
 	<?php foreach($result as $k=>$v) {?>
-	<tr <?php echo ($k%2) ? "class='headerLineBackground'" : '';?>>
+	<tr <?php echo ($k%2) ? "class='headerLineBackground1'" : '';?>>
 		<td widtd="10%" align="center">
 		<a href="/Room/posLocation?id=<?php echo $v['localtion_id']; ?>">编辑
 		</a>

@@ -13,14 +13,14 @@
 <div class="roomInfosDiv container">
 <h3>文章列表</h3>
 <table border="0" cellpadding="5" cellspacing="0" width="100%">	
-	<tr class='headerLineBackground'>
+	<tr class='headerLineBackground1'>
 		<th width="30%" align="center">操作</th>
 		<th width="25%" align="center">文章标题</th>
 		<th width="25%" align="center">文章优化标题</th>
 		<th width="15%" align="center">文章开启状态</th>
 	</tr>
 	<?php foreach($result as $k=>$v) {?>
-	<tr <?php echo ($k%2) ? "class='headerLineBackground'" : '';?>>
+	<tr <?php echo ($k%2) ? "class='headerLineBackground1'" : '';?>>
 		<td widtd="30%" align="center">
 		<?php if(hasPerssion($_SESSION['role'], 'listArticleUpdate')){ ?>
 		<a href="/Article/listArticleUpdate?id=<?php echo $v['article_id']; ?>">编辑

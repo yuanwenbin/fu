@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomInfosDiv">
+<div class="roomInfosDiv container">
 <h3 class="headerLineBackground">分类名称:<?php echo $cate[0]['cate_name'];?></h3>
 <form action="/Article/updateCateDeal" method="post">
 <input type="hidden" name="cate_id" value="<?php echo $cate[0]['cate_id'];?>"  />
@@ -54,6 +54,9 @@
 	</tr>						
 </table>
 </form>
+</div>
+<div class="footer">
+所有权归本站所有
 </div>
 </body>
 </html>

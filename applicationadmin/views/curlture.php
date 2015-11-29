@@ -21,7 +21,7 @@ if(!$listArr)
 <div class="roomInfosDiv container">
 <h3>道教文化列表</h3>
 <table border="0" cellpadding="5" cellspacing="0" width="100%">	
-	<tr class='headerLineBackground'>
+	<tr class='headerLineBackground1'>
 		<th width="20%" align="center">操作</th>
 		<th width="50%" align="center">文化标题</th>
 		<th width="25%" align="center">文化分类</th>
@@ -31,7 +31,7 @@ if(!$listArr)
 	foreach($listArr as $k=>$v) { 
 
 	?>
-	<tr class=<?php if($k%2 != 0) echo 'headerLineBackground'; ?>>
+	<tr class=<?php if($k%2 != 0) echo 'headerLineBackground1'; ?>>
 		<td width="20%" align="center">
 		<a href="/Curlture/addCurlture">增加</a>&nbsp;|&nbsp;
 		<a href="/Curlture/delCurlture?id=<?php echo $v['curlture_id']; ?>" onclick="javascript:return sureDel();">删除</a>
