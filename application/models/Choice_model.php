@@ -100,6 +100,26 @@ class Choice_model extends CI_Model
 
         $this->db->query($sql);            
     }
+    
+    function changeApiModel($changeParams, $bodyId)
+    {
+        $str = " ";
+        foreach($changeParams as $k=>$v)
+        {
+            $str .= $k ." = '" . $v . "',";
+        }
+        $str = substr($str,0,-1);
+        /*
+        // 修改为出售状态
+        $localSQL = "update fu_location_list set location_date = ".$changeParams['user_selected_date'].",
+            location_number = 1 where localtion_id = " . $changeParams['user_location_id'];
+        
+        $this->db->query($localSQL);
+        */
+        $sql = "update fu_user set " . $str . " where body_id = " . $bodyId;
+        
+        $this->db->query($sql);        
+    }
 
     /**
      * 查看单表
