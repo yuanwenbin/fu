@@ -12,7 +12,7 @@
 <body class="roomList">
 <div class="roomListInfos container">
 <h2 class="headerLineBackground">查询会员列表 信息</h2>
-<table border="0" cellspacing="5" cellpadding="5" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
 		<th width="30%" align="center">会员身份证号</th>
 		<th  width="10%" align="center">选择的牌位</th>
@@ -33,6 +33,9 @@
 		<td  width="10%" align="center"><?php echo $val['user_selected'];?></td>
 		<td  width="30%" align="center"><?php echo date('Y-m-d H:i:s',$val['user_selected_date']);?></td>
 
+	</tr>
+	<tr>
+		<td colspan="5"><hr/></td>
 	</tr>
 	<?php } ?>
 </table>

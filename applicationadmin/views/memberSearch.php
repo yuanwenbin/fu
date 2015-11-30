@@ -12,7 +12,7 @@
 </head>
 <body class="defaultInfos">
 <div class="container">
-<h4>会员查询</h4>
+<h2 class="headerLineBackground">会员查询</h2>
 
 <!-- bof one -->
 <div class="divInfos1 searchListPos">

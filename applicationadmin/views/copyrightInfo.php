@@ -13,7 +13,7 @@
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">版权 信息(以第一条为准)</h3>
 
-<table border="0" cellspacing="5" cellpadding="5" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
 		<th width="20%" align="center">操作</th>
 		<th  width="75%" align="center">版权内容</th>
@@ -21,7 +21,7 @@
 	<?php 
 	foreach($result as $key=>$val){
 	?>
-	<tr <?php echo ($key % 2) ? 'class="listRoomColumns"' : '';?>class="fuck">
+	<tr>
 		<td width="20%" align="center">
 		<a href="/Copyright/addCopyRight">增加版权</a>&nbsp;|&nbsp;
 		<a href="/Copyright/delCopyRight/<?php echo $val['copy_id']; ?>" onclick="return sureDel();">删除版权 </a>
@@ -30,6 +30,9 @@
 		
 		<?php echo $val['copy_content'];?>
 		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr/></td>
 	</tr>
 	<?php } ?>
 </table>

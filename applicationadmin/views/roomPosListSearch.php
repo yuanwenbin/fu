@@ -11,7 +11,7 @@
 </head>
 <body class="defaultInfos searchListPos">
 <div class="container">
-<h4>房间牌位查询</h4>
+<h2 class="headerLineBackground">房间牌位查询</h2>
 
 <!-- bof one -->
 <div class="divInfosSearch">
@@ -64,7 +64,7 @@ if(isset($roomList) && $roomList)
 		<th width="15%" align="center">牌位描述</th>
 	</tr>
 	<?php foreach($result as $k=>$v) {?>
-	<tr <?php echo ($k%2) ? "class='headerLineBackground1'" : '';?>>
+	<tr <?php //echo ($k%2) ? "class='headerLineBackground1'" : '';?>>
 		<td widtd="10%" align="center">
 		<a href="/Room/posLocation?id=<?php echo $v['localtion_id']; ?>">编辑
 		</a>
@@ -125,6 +125,9 @@ if(isset($roomList) && $roomList)
 		}
 		?>		
 		</td>	
+	</tr>
+	<tr>
+		<td colspan="10"><hr/></td>
 	</tr>
 	<?php } ?>	
 	<tr>

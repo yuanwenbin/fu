@@ -17,7 +17,7 @@ if(!$roomList) { ?>
 <?php }else {
 ?>
 <h3>请选择要编辑的房间牌位</h3>
-<table border="0" cellspacing="5" cellpadding="5" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
 		<th width="10%" align="center">房间号</th>
 		<th  width="20%" align="center">房间名称</th>
@@ -27,11 +27,14 @@ if(!$roomList) { ?>
 	<?php 
 	foreach($roomList as $key=>$val){
 	?>
-	<tr <?php echo ($key % 2) ? 'class="listRoomColumns"' : '';?>class="fuck">
+	<tr>
 		<td width="10%" align="center"><a href="/Room/postionList?id=<?php echo $val['room_id'];?>"><?php echo $val['room_id'];?></a></td>
 		<td  width="20%" align="center"><a href="/Room/postionList?id=<?php echo $val['room_id'];?>"><?php echo $val['room_alias'];?></a></td>
 		<td  width="65%" align="center"><a href="/Room/postionList?id=<?php echo $val['room_id'];?>"><?php echo $val['room_description'];?></a></td>
 	
+	</tr>
+	<tr>
+	   <td colspan="3"><hr/></td>
 	</tr>
 	<?php } ?>
 </table>

@@ -13,7 +13,7 @@
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">友情链接 信息</h3>
 
-<table border="0" cellspacing="5" cellpadding="5" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
 		<th width="20%" align="center">操作</th>
 		<th  width="75%" align="center">链接内容</th>
@@ -30,6 +30,9 @@
 		
 		<?php echo $val['link_content'];?>
 		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr/></td>
 	</tr>
 	<?php } ?>
 </table>

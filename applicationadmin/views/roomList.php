@@ -17,7 +17,7 @@ if(!$roomList) { ?>
 	暂时无相关房间，<a href="/Room/roomOpen">点击增加房间</a>
 <?php }else {
 ?>
-<table border="0" cellspacing="5" cellpadding="5" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
 		<th width="10%" align="center">房间号</th>
 		<th  width="10%" align="center">牌位数</th>
@@ -47,6 +47,9 @@ if(!$roomList) { ?>
 		&nbsp;<a href="/Room/updateRoom?roomId=<?php echo $val['room_id'];?>">编辑</a>
 		<?php } ?>
 		</td>	
+	</tr>
+	<tr>
+	   <td colspan="5"><hr/></td>
 	</tr>
 	<?php } ?>
 </table>

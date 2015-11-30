@@ -29,7 +29,7 @@ if(!$cate_name) { ?>
 	<?php 
 	foreach($cate_name as $key=>$val){
 	?>
-	<tr <?php echo ($key % 2) ? 'class="listRoomColumns"' : '';?>class="fuck">
+	<tr>
 		<td width="10%" align="center"><?php echo $val['cate_id'];?></td>
 		<td  width="27%" align="center"><?php echo $val['cate_name'];?></td>
 		<td  width="10%" align="center">
@@ -55,6 +55,9 @@ if(!$cate_name) { ?>
 		&nbsp;<a href="/Article/updateCate?cate_id=<?php echo $val['cate_id'];?>">编辑</a>
 		<?php } ?>
 		</td>	
+	</tr>
+	<tr>
+		<td colspan="6"><hr/></td>
 	</tr>
 	<?php } ?>
 </table>

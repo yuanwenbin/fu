@@ -10,7 +10,7 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="defaultInfos">
-<h4>房间牌位查询</h4>
+<h2 class="headerLineBackground">房间牌位查询</h2>
 
 <!-- bof one -->
 <div class="divInfos1 searchListPos">

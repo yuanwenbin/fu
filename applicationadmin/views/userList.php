@@ -13,7 +13,7 @@
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">管理员列表 信息</h3>
 
-<table border="0" cellspacing="5" cellpadding="5" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
 		<th width="10%" align="center">会员名</th>
 		<th  width="10%" align="center">会员状态</th>
@@ -35,6 +35,9 @@
 		&nbsp;<a href="/User/userInfos?id=<?php echo $val['admin_id'];?>">查看</a>
 		&nbsp;<a href="/User/userInfosUpdate?id=<?php echo $val['admin_id'];?>">编辑</a>
 		</td>	
+	</tr>
+	<tr>
+		<td colspan="5"><hr/></td>
 	</tr>
 	<?php } ?>
 </table>
