@@ -129,9 +129,7 @@
 
 </form>
 </div>
-<div class="footer">
-所有权归本站所有
-</div>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$("input[name='submit']").click(function(){

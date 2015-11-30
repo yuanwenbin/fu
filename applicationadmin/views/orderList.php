@@ -180,8 +180,6 @@ foreach($result['resultList'] as $k=>$v){
 
 <!--  eof infos -->
 </div>
-<div class="footer">
-所有权归本站所有
-</div>
+
 </body>
 </html>

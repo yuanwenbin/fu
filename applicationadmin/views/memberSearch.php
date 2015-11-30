@@ -30,9 +30,7 @@
 请在上面框中输入要查询的会员身份证号
 <!--  eof infos -->
 </div>
-<div class="footer">
-所有权归本站所有
-</div>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	/*
