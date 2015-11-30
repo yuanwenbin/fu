@@ -104,6 +104,15 @@ class Index extends CI_Controller {
     }
     
     /**
+     * 底部信息
+     */
+    function footer()
+    {
+    	$this->isLogin();
+    	$this->load->view('footer');
+    }
+    
+    /**
      * 退出登陆
      */
     function logout()
