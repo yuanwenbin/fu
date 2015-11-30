@@ -128,7 +128,7 @@
 </ul>
 </body>
 </html>
-<<script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function(){
     $(".menuList ul li").click(function(){
         $(".menuList ul li").removeClass('currentList');
