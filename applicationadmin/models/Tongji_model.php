@@ -241,8 +241,45 @@ class Tongji_model extends CI_Model
      */
     function clearListModel()
     {
+    	$affectTime = time() - 7200;
+    	$sql = "select order_location_id from fu_order_info where order_payment = 0 and order_datetime < " . $affectTime;
+    	$res = $this->db->query($sql);
+    	$ids = '';
+    	if($res->num_rows() > 0)
+    	{
+    		$affectRes = $res->result_array();
+    		$ids = "(";
+    		foreach($affectRes as $v)
+    		{
+    			$ids .= $v['order_location_id'] . ",";
+    		}   
+    		$ids = substr($ids,0,-1) . ")";
+    		$userSQL = "delete from fu_user where user_location_id in " . $ids;
+    	}
+ 	
+    	
+    	
+    	
+    	$upSQL = "update fu_location_list set location_number = 2,location_date=0 where location_date < " . $affectTime . " and location_ispayment = 0";
+    	$delSql = "delete from fu_order_info where order_payment = 0 and order_datetime <  " . $affectTime;
+
+    	$this->db->trans_start();
+    	$this->db->query($upSQL);
+    	$this->db->query($delSql);
+    	if($ids)
+    	{
+    		$this->db->query($userSQL);
+    	}
+    	$this->db->trans_complete();
+    	// 操作失败
+    	if ($this->db->trans_status() === FALSE)
+    	{
+    		return '';
+    	}
+    	return 1;
+    	/*
         $affectTime = time() - 7200;
-        $sql = "select order_location_id from fu_order_info where order_payment = 0 and order_datetime < " . $affectTime;
+        $sql = "select order_location_id from fu_order_info where order_payment = 0 and order_datetime < " . $affectTime;	echo $sql; exit;
         $res = $this->db->query($sql);
        
         if($res->num_rows() < 1)
@@ -270,6 +307,7 @@ class Tongji_model extends CI_Model
 			return '';
 		}
 		return 1;
+		*/
     }
     /**
      * 查询表统计
