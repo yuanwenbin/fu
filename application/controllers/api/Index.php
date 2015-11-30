@@ -35,6 +35,7 @@ class Index extends CI_Controller {
 		
 		if(!$bodyId || (strlen($bodyId) != 15 && strlen($bodyId) != 18))
 		{
+			header('Content-type: application/json');
 			$data['msg'] = '身份证号码不对';
 			die(json_encode($data));
 		}
@@ -44,6 +45,7 @@ class Index extends CI_Controller {
 		$match_2 = '/^\d{17}(\d|X|x)$/';
 		if(!preg_match($match, $bodyId) && !preg_match($match_2, $bodyId))
 		{
+			header('Content-type: application/json');
 			$data['msg'] = '身份证号码不对';
 			die(json_encode($data));
 		}
@@ -349,6 +351,7 @@ class Index extends CI_Controller {
 	function login()
 	{
 			$status = $this->checkUser();
+			header('Content-type: application/json');			
 			die(json_encode($status));
 	}
 	/**
@@ -358,6 +361,7 @@ class Index extends CI_Controller {
 	function details()
 	{
 	    $status = $this->checkUser();
+	    header('Content-type: application/json');
 	    die(json_encode($status));	    
 	}
 	/**
@@ -407,6 +411,7 @@ class Index extends CI_Controller {
 		$status = $this->checkUser();
 		if($this->uflag == 1 || $this->uflag == 2)
 		{
+			header('Content-type: application/json');
 			die(json_encode($status));
 		}
 
@@ -418,6 +423,7 @@ class Index extends CI_Controller {
 	 $randNo = $this->Choice_model->byRandModel();
 	 if(!$randNo)
 	 {
+	 	 header('Content-type: application/json');
 	     $data = array('error'=>1, 'msg'=>'没有了号码');
 	     die(json_encode($data));
 	 }
@@ -451,6 +457,7 @@ class Index extends CI_Controller {
 	     $changeParams['user_type'] =0;
 	     //$this->Choice_model->changeApiModel($changeParams, $this->bodyId);
 	     $this->Choice_model->changTable('fu_user', array('user_selected'=>1, 'user_type'=>0), array('body_id'=>$this->bodyId));
+	     header('Content-type: application/json');
 	     die(json_encode($data));    
 	 }else {
 	     // 已经选择两次了
@@ -470,6 +477,7 @@ class Index extends CI_Controller {
 	     $order['order_datetime'] = time(); 
 	     $order['order_price'] = $resPos['location_price'];
 	     $this->Choice_model->insertOrder('fu_order_info',$order);
+	     header('Content-type: application/json');
 	     die(json_encode($data));  
 	 }
 	 
@@ -484,6 +492,7 @@ class Index extends CI_Controller {
 	    $status = $this->checkUser();
 	    if($this->uflag == 1 || $this->uflag == 2)
 	    {
+	    	header('Content-type: application/json');
 	        die(json_encode($status));
 	    }	    
 	    $bodyId = $this->bodyId;
@@ -511,6 +520,7 @@ class Index extends CI_Controller {
 	        $data['msg'] = '提交失败';	      
 	    }
 	    $data['flag'] = 0;
+	    header('Content-type: application/json');
 	    die(json_encode($data));
 	}
 	
@@ -524,6 +534,7 @@ class Index extends CI_Controller {
 	    $status = $this->checkUser();
 	    if($this->uflag == 1 || $this->uflag == 2)
 	    {
+	    	header('Content-type: application/json');
 	        die(json_encode($status));
 	    }	
 	    // 验证传递过来的三个字段，姓名，时辰，生日
@@ -533,6 +544,7 @@ class Index extends CI_Controller {
 	    if(!$username || !$userbirth || !$stime)
 	    {
 	        $data = array('error'=>1, 'msg'=>'填写的姓名，时辰，生日不完整');
+	        header('Content-type: application/json');
 	        die(json_encode($data));
 	    }
 	    // 产生随机数
@@ -540,6 +552,7 @@ class Index extends CI_Controller {
 	    if(!$randNo)
 	    {
 	        $data = array('error'=>1, 'msg'=>'没有相关号码了，请联系管理员！','flag'=>0);
+	        header('Content-type: application/json');
 	        die(json_encode($data));
 	    }
 	    if(count($randNo)==1)
@@ -584,6 +597,7 @@ class Index extends CI_Controller {
 	        $data['error'] = 1;
 	        $data['msg'] = '生辰八字提交失败';	        
 	    }
+	    header('Content-type: application/json');
 	    die(json_encode($data));
 	}
 	
@@ -597,6 +611,7 @@ class Index extends CI_Controller {
 	    $status = $this->checkUser();
 	    if($this->uflag == 1 || $this->uflag == 2)
 	    {
+	    	header('Content-type: application/json');
 	        die(json_encode($status));
 	    }	
 	    $data = array();
@@ -605,6 +620,7 @@ class Index extends CI_Controller {
 	    {
 	        $data['error'] = 1;
 	        $data['msg'] = '不存在该号码';
+	        header('Content-type: application/json');
 	        die(json_encode($data));
 	    }
 	    $data['flag'] = 0;
@@ -619,6 +635,7 @@ class Index extends CI_Controller {
 	    $data['posInfos'] = $posInfos;
 	    $data['error'] = 0;
 	    $data['msg']='号码详情';
+	    header('Content-type: application/json');
 	    die(json_encode($data));
 	}
 	
@@ -630,6 +647,7 @@ class Index extends CI_Controller {
 	    $status = $this->checkUser();
 	    if($this->uflag == 1 || $this->uflag == 2)
 	    {
+	    	header('Content-type: application/json');
 	        die(json_encode($status));
 	    }
 	    $data = array();
@@ -638,6 +656,7 @@ class Index extends CI_Controller {
 	    {
 	        $data['error'] = 1;
 	        $data['msg'] = '不存在该号码';
+	        header('Content-type: application/json');
 	        die(json_encode($data));
 	    }
 	    // 是否是正常未出售
@@ -648,6 +667,7 @@ class Index extends CI_Controller {
 	    {
 	        $data['error'] = 1;
 	        $data['msg'] = '该号码已经被购买';
+	        header('Content-type: application/json');
 	        die(json_encode($data));
 	    }	
 	    // 1.插入订单表
@@ -681,6 +701,7 @@ class Index extends CI_Controller {
 	    $data['flag'] = 0;
 	    $data['error'] = 0;
 	    $data['msg'] = '成功提交高端接口';
+	    header('Content-type: application/json');
 	    die(json_encode($data));
 	}
 	
