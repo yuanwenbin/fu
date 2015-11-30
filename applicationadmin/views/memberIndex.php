@@ -42,7 +42,9 @@
 		}
 		// echo $val['user_type'] == 2 ? '高端用户' : ($val['user_type'] == 1 ? '生辰八字': '随机用户');?>
 		</td>
-		<td  width="10%" align="center"><?php echo $val['user_selected'];?></td>
+		<td  width="10%" align="center">
+		<?php echo $val['user_type'] > 0 ? 1 : $val['user_selected'];?>
+		</td>
 		<td  width="30%" align="center"><?php echo $val['user_selected_date'] ? date('Y-m-d H:i:s',$val['user_selected_date']) : '无';?></td>
 	</tr>
 	<?php } ?>
