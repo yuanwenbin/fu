@@ -32,11 +32,11 @@ input,button,select,textarea{outline:none}
 .roomOpen{ line-height:26px;background:#fff;}
 .roomOpen label{font-weight:bold;}
 .roomOpen h3{}
-.roomList{line-height:26px;background:#fff;}
-.roomListInfos th{background:#e5e4dc;line-height:26px;}
-.listRoomColumns{background:#e5e4dc;}
+.roomList{line-height:30px;background:#fff;width:98%;}
+.roomListInfos th{background:#e5e4dc;line-height:30px;}
+.listRoomColumns{}
 .roomListPage{width:100%;text-align:center;padding-top:20px;}
-.roomInfosDiv{padding-left:5%; }
+.roomInfosDiv{padding-left:1%; }
 .searchListPos{line-height:26px;}
 
 .article_title{width:250px;}
@@ -65,3 +65,4 @@ input:-webkit-autofill,
 .container{min-height:500px;font-size:14px;}
 .footer{width:100%;text-align:center;padding-top:10px;padding-bottom:10px;background:#f4f4f4;}
 .headerLineBackground{font-size:16px;}
+hr{border:none;border-bottom:1px solid #d8d8d8;}
