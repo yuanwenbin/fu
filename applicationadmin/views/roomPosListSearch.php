@@ -93,7 +93,7 @@ if(isset($roomList) && $roomList)
 		if($v['location_number'] == 1){
 			if($v['location_date'])
 			{
-				echo date('Y-m-d H:i:s',$v['location_date']);
+				echo date('Y-m-d H:i:s',$v['location_date']+7200);
 			}else {
 				echo '正在选号中';
 			}
