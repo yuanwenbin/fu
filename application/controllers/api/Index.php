@@ -583,7 +583,7 @@ class Index extends CI_Controller {
 	    $order['order_room_id'] = $resPos['location_room_id'];
 	    $order['order_user'] = $this->bodyId;
 	    $order['order_location_id'] = $paramPos['localtion_id'];
-	    $order['order_location_type'] = 1;
+	    $order['order_location_type'] = 2;
 	    $order['order_datetime'] = time();
 	    $order['order_price'] = $resPos['location_price'];
 	    $lastId = $this->Choice_model->insertOrder('fu_order_info',$order);	 
