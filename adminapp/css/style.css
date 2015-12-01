@@ -31,7 +31,7 @@ input,button,select,textarea{outline:none}
 
 .roomOpen{ line-height:26px;background:#fff;}
 .roomOpen label{font-weight:bold;}
-.roomOpen h3{}
+.roomOpen h3{font-size: 16px;}
 .roomList{line-height:30px;background:#fff;width:98%;}
 .roomListInfos th{background:#e5e4dc;line-height:30px;}
 .listRoomColumns{}
@@ -66,3 +66,6 @@ input:-webkit-autofill,
 .footer{width:100%;text-align:center;padding-top:10px;padding-bottom:10px;background:#f4f4f4;}
 .headerLineBackground{font-size:16px;}
 hr{border:none;border-bottom:1px solid #d8d8d8;}
+.orderListDiv{line-height:30px;}
+#loginBg{background:url(../images/backBg.png);}
+.orderListDetails a{text-decoration:underline;color:#008800;}
