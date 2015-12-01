@@ -38,7 +38,7 @@ if(isset($roomList) && $roomList)
 销售状态：
 <select name="status">
 <option value="all" <?php if($status == 'all'){echo 'selected';}?>>全部</option>
-<option value="2" <?php if($status == 2){echo 'selected';}?>>末出售</option>
+<option value="2" <?php if($status == 2){echo 'selected';}?>>未出售</option>
 <option value="1" <?php if($status == 1){echo 'selected';}?>>出售中</option>
 <option value="3" <?php if($status == 3){echo 'selected';}?>>已出售</option>
 </select>
@@ -87,7 +87,7 @@ if(isset($roomList) && $roomList)
 		</td>
 		<td widtd="5%" align="center"><?php echo $v['location_price']; ?></td>
 		<td widtd="10%" align="center"><?php echo $v['location_type'] ? '高端定制' : '随机/生辰八字'; ?></td>
-		<td widtd="5%" align="center"><?php echo $v['location_number']==2 ? '末售' : ($v['location_number'] == 1 ? '出售中' : '已售'); ?></td>
+		<td widtd="5%" align="center"><?php echo $v['location_number']==2 ? '未售' : ($v['location_number'] == 1 ? '出售中' : '已售'); ?></td>
 		<td widtd="10%" align="center">
 		<?php 
 		if($v['location_number'] == 1){

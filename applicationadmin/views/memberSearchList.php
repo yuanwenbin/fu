@@ -14,28 +14,33 @@
 <h2 class="headerLineBackground">查询会员列表 信息</h2>
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
-		<th width="30%" align="center">会员身份证号</th>
+		<th width="25%" align="center">会员身份证号</th>
 		<th  width="10%" align="center">选择的牌位</th>
 		<th  width="15%" align="center">会员类型</th>
 		<th  width="10%" align="center">选择的次数</th>
-		<th  width="30%" align="center">选号时间</th>
+		<th  width="10%" align="center">用户来源</th>
+		<th  width="25%" align="center">选号时间</th>
 	</tr>
 	<?php 
 	foreach($result as $key=>$val){
 	?>
 	<tr <?php echo ($key % 2) ? 'class="listRoomColumns"' : '';?>class="fuck">
-		<td width="30%" align="center"><?php echo $val['body_id'];?></td>
+		<td width="25%" align="center"><?php echo $val['body_id'];?></td>
 		<td  width="10%" align="center"><?php echo $val['user_location_id'];?></td>
 		<td  width="15%" align="center">
 		<?php 
 		echo $val['user_type'] == 2 ? '高端用户' : ($val['user_type'] == 1 ? '生辰八字': '随机用户');?>
 		</td>
 		<td  width="10%" align="center"><?php echo $val['user_selected'];?></td>
-		<td  width="30%" align="center"><?php echo date('Y-m-d H:i:s',$val['user_selected_date']);?></td>
+		<td  width="10%" align="center">
+		<?php
+		echo $source[$val['source']];?>
+		</td>
+		<td  width="25%" align="center"><?php echo date('Y-m-d H:i:s',$val['user_selected_date']);?></td>
 
 	</tr>
 	<tr>
-		<td colspan="5"><hr/></td>
+		<td colspan="6"><hr/></td>
 	</tr>
 	<?php } ?>
 </table>

@@ -91,30 +91,31 @@ if($result['order_payment'] == 'all'){
 <!-- eof one -->
 
 <!--  bof infos -->
-<div>
+<div class="roomListInfos orderListDiv">
 <?php if(!$result['totalNumber'] || !$result['resultList']){?>
 没有数据
 <?php } else { ?>
-<table width="100%" border="none" cellspacing="0" cellpadding="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
-	<th width="18%" align="center">用户名</th>
-	<th width="10%" align="center">房间号</th>
-	<th width="12%" align="center">牌位号</th>
+	<th width="15%" align="center">用户名</th>
+	<th width="8%" align="center">房间号</th>
+	<th width="8%" align="center">牌位号</th>
 	<th width="10%" align="center">牌位类型</th>
 	<th width="15%" align="center">下单时间</th>
-	<th width="12%" align="center">金额</th>
-	<th width="10%" align="center">是否支付</th>
+	<th width="10%" align="center">金额</th>
+	<th width="8%" align="center">是否支付</th>
+	<th width="8%" align="center">订单来源</th>
 	<th width="10%" align="center">操作</th>
-	<th width="12%" align="center">操作员</th>
+	<th width="7%" align="center">操作员</th>
 
 </tr>
 <?php
 foreach($result['resultList'] as $k=>$v){
 ?>
 <tr>
-	<td width="18%" align="center"><?php echo $v['order_user']; ?></td>
-	<td width="10%" align="center"><?php echo $v['order_room_id']; ?></td>
-	<td width="12%" align="center"><?php echo $v['order_location_id']; ?></td>
+	<td width="15%" align="center"><?php echo $v['order_user']; ?></td>
+	<td width="8%" align="center"><?php echo $v['order_room_id']; ?></td>
+	<td width="8%" align="center"><?php echo $v['order_location_id']; ?></td>
 	<td width="10%" align="center">
 	<?php if($v['order_location_type']==1){
 		echo '高端定制';
@@ -126,8 +127,8 @@ foreach($result['resultList'] as $k=>$v){
 	?>
 	 </td>
 	<td width="15%" align="center"><?php echo date('Y-m-d H:i:s', $v['order_datetime']); ?></td>
-	<td width="12%" align="center"><?php echo $v['order_price']; ?></td>
-	<td width="10%" align="center">
+	<td width="10%" align="center"><?php echo $v['order_price']; ?></td>
+	<td width="8%" align="center">
 	<?php
 	if($v['order_payment'])
 	{
@@ -138,13 +139,19 @@ foreach($result['resultList'] as $k=>$v){
 	}
 	?>
 	</td>
-	<td width="10%" align="center">
+	<td width="8%" align="center">
+	<?php echo $source[$v['source']]; ?> 
+	</td>
+	<td width="10%" align="center" class="orderListDetails">
 	<a href="/Order/posInfos?id=<?php echo $v['order_id']; ?>">
 	查看
 	</a>
 	</td>
-	<td width="12%" align="center"><?php echo $v['order_admin']; ?></td>
+	<td width="7%" align="center"><?php echo $v['order_admin']; ?></td>
 </tr>
+	<tr>
+		<td colspan="10"><hr/></td>
+	</tr>
 <?php } ?>
 
 

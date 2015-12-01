@@ -73,15 +73,15 @@
 		<td>
 		<select name="location_number">
 		<?php if($result['location_number'] == 2) {?>
-		<option value="2" selected>末出售</option>
+		<option value="2" selected>未出售</option>
 		<option value="1">出售中</option>
 		<option value="0">已出售</option>
 		<?php }elseif($result['location_number'] == 1) {?>
-		<option value="2">末出售</option>
+		<option value="2">未出售</option>
 		<option value="1" selected>出售中</option>
 		<option value="0">已出售</option>
 		<?php }else{ ?>
-		<option value="2">末出售</option>
+		<option value="2">未出售</option>
 		<option value="1">出售中</option>
 		<option value="0" selected>已出售</option>		
 		<?php } ?>
@@ -95,10 +95,10 @@
 		<select name="location_ispayment">
 		<?php if($result['location_ispayment']) {?>
 		<option value="1" selected>已付款</option>
-		<option value="0">末付款</option>
+		<option value="0">未付款</option>
 		<?php }else{ ?>
 		<option value="1">已付款</option>
-		<option value="0" selected>末付款</option>	
+		<option value="0" selected>未付款</option>	
 		<?php } ?>
 		</select>
 		</td>		

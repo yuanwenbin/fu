@@ -37,7 +37,7 @@ if(isset($roomList) && $roomList)
 销售状态：
 <select name="status">
 <option value="all" <?php if($status == 'all'){echo 'selected';}?>>全部</option>
-<option value="2" <?php if($status == 2){echo 'selected';}?>>末出售</option>
+<option value="2" <?php if($status == 2){echo 'selected';}?>>未出售</option>
 <option value="1" <?php if($status == 1){echo 'selected';}?>>出售中</option>
 <option value="3" <?php if($status == 3){echo 'selected';}?>>已出售</option>
 </select>

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html id="loginBg">
 <head>
 	<meta http-equiv="content-type" content="text/html" />
 	<meta name="author" content="orange" />
