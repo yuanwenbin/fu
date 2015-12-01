@@ -115,6 +115,8 @@ class Index extends CI_Controller {
 			 			$param = $resInfo;
 			 			$param['order_del_user'] = $this->bodyId;
 			 			$param['order_del_time'] = time();
+			 			$param['source'] = 2;
+			 		
 			 			// 插入删除日志表
 			 			$affectRow = $this->Choice_model->insertOrder($table,$param);
 			 			// 删除数据
@@ -201,6 +203,7 @@ class Index extends CI_Controller {
 			$param['body_id'] = $this->bodyId;
 			$param['user_datetime'] = time();
 			$param['user_type'] = -1;
+			$param['source'] =2;
 			$customerId = $this->Choice_model->insertOrder('fu_user',$param);
 			if($customerId)
 			{
@@ -451,12 +454,13 @@ class Index extends CI_Controller {
 	     $data['number'] = $randoNumber;
 	     $data['flag'] = 0;
 	     // 修改数据库用户表状态
-	     $changeParams['user_selected'] = $data['count'];
+	     $changeParams['user_selected'] = 1;
 	     $changeParams['user_selected_date'] =time();
-	     // $changeParams['user_location_id'] =$randoNumber;
+	     $changeParams['user_location_id'] =$randoNumber;
 	     $changeParams['user_type'] =0;
+	     $changeParams['source'] =2;
 	     //$this->Choice_model->changeApiModel($changeParams, $this->bodyId);
-	     $this->Choice_model->changTable('fu_user', array('user_selected'=>1, 'user_type'=>0), array('body_id'=>$this->bodyId));
+	     $this->Choice_model->changTable('fu_user', $changeParams, array('body_id'=>$this->bodyId));
 	     header('Content-type: application/json');
 	     die(json_encode($data));    
 	 }else {
@@ -467,7 +471,7 @@ class Index extends CI_Controller {
 	     // 选择过的牌位，恢复时间
 	     $location_id = $userInfo['user_location_id'];
 	     $this->Choice_model->changTable('fu_location_list', array('location_date'=>0,'location_number'=>2), array('localtion_id'=>$location_id));
-	     $this->Choice_model->changTable('fu_user', array('user_selected'=>2,'user_location_id'=>$randoNumber,'user_selected_date'=>time(), 'user_type'=>0), array('body_id'=>$this->bodyId));
+	     $this->Choice_model->changTable('fu_user', array('user_selected'=>2,'user_location_id'=>$randoNumber,'user_selected_date'=>time(), 'user_type'=>0,'source'=>2), array('body_id'=>$this->bodyId));
          // 插入订单
          $order = array();
 	     $order['order_room_id'] = $resPos['location_room_id'];
@@ -476,6 +480,8 @@ class Index extends CI_Controller {
 	     $order['order_location_type'] = 0; 
 	     $order['order_datetime'] = time(); 
 	     $order['order_price'] = $resPos['location_price'];
+	     
+	     $order['source'] = 2;
 	     $this->Choice_model->insertOrder('fu_order_info',$order);
 	     header('Content-type: application/json');
 	     die(json_encode($data));  
@@ -508,6 +514,7 @@ class Index extends CI_Controller {
 	    $order['order_location_type'] = 0;
 	    $order['order_datetime'] = time();
 	    $order['order_price'] = $resPos['location_price'];
+	    $order['source'] = 2;
 	    $lastId = $this->Choice_model->insertOrder('fu_order_info',$order);
 	    $data = array();
 	    $data['flag'] = 0;
@@ -586,6 +593,7 @@ class Index extends CI_Controller {
 	    $order['order_location_type'] = 2;
 	    $order['order_datetime'] = time();
 	    $order['order_price'] = $resPos['location_price'];
+	    $order['source'] = 2;
 	    $lastId = $this->Choice_model->insertOrder('fu_order_info',$order);	 
 	    $data = array();
 	    $data['flag'] = 0;
@@ -677,7 +685,8 @@ class Index extends CI_Controller {
 	        'order_location_id'=>$posInfos['localtion_id'],
 	        'order_location_type'=>1,
 	        'order_datetime'=>$stime,
-	        'order_price'=>$posInfos['location_price']
+	        'order_price'=>$posInfos['location_price'],
+	    	'source' => 2,
 	    );
 	    $this->Choice_model->insertOrder('fu_order_info', $orderParam);
 	    
