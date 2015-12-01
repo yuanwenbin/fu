@@ -50,7 +50,7 @@ if(isset($roomList) && $roomList)
 <!--  bof infos -->
 <div class="roomInfosDiv">
 
-<table border="0" cellpadding="5" cellspacing="0">	
+<table border="0" cellpadding="0" cellspacing="0" width="100%">	
 	<tr class='headerLineBackground1'>
 		<th width="10%" align="center">操作</th>
 		<th width="5%" align="center">房间号</th>
