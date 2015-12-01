@@ -67,7 +67,7 @@
 			<td width="18%" align="left">房间总数:&nbsp;<span class="numberColor"><?php echo $room_list_count['total']; ?></span></td>
 
 	    	<td width="18%" align="left">牌位总数:&nbsp;<span class="numberColor"><?php echo $posCount['total']; ?></span></td>
-	    	<td width="18%" align="left">末销售:&nbsp;<span class="numberColor">
+	    	<td width="18%" align="left">未销售:&nbsp;<span class="numberColor">
 	    	<?php echo ($posCount['total'] - $complete - $posIng); ?></span></td>
 	    	<td width="18%" align="left"><span class="statusArea_0">已销售:</span>&nbsp;<span class="numberColor statusArea_0">
 	    	<?php echo $complete; ?>
