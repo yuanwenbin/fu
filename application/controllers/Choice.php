@@ -437,7 +437,10 @@ class Choice extends CI_Controller {
        // 修改数据库用户表状态
        $changeParams['user_selected'] = $data['count'];
        $changeParams['user_selected_date'] =time();	
+    
        $changeParams['user_location_id'] =$randNo[$arrIndex]['localtion_id'];
+       
+       
        $changeParams['user_type'] =0;
        $this->Choice_model->byRandChangeModel($changeParams, $this->session->customerId);
      
