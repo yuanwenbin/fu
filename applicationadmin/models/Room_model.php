@@ -217,6 +217,16 @@ class Room_model extends CI_Model
 	}
 	
 	/**
+	 * 更新用户表和订单表
+	 * @param int $id 牌位号
+	 */
+	function updateUserOrder($id)
+	{
+		// 更新用户表
+		$sqlUser = "update fu_user set ";
+	}
+	
+	/**
 	 * @deprecated 删除牌位
 	 * @param int $locationId 牌位
 	 */
@@ -383,6 +393,53 @@ class Room_model extends CI_Model
 			return $this->db->affected_rows();			
 		}
 	}
+	
+	/**
+	 * 查看单表
+	 * @param unknown $table
+	 * @param unknown $param
+	 * @return array 单条记录
+	 */
+	function searchUser($table,$param)
+	{
+		$where = " ";
+		foreach($param as $k=>$v)
+		{
+			$where .= " " . $k . " = '" . $v . "' and";
+		}
+	
+		$where = substr($where, 0, -4);
+	
+		$sql = "select * from ".$table." where " . $where;
+		$res = $this->db->query($sql);
+		if($res)
+		{
+			return $res->row_array();
+		}else {
+			return '';
+		}
+	}
+
+	/**
+	 * 单表插入
+	 * @param unknown $table
+	 * @param unknown $param
+	 */
+	function insertOrder($table,$param)
+	{
+		$key = "";
+		$value = "";
+		foreach($param as $k=>$v)
+		{
+			$key .= $k . ",";
+			$value .= "'" . $v . "',";
+		}
+		$key = substr($key,0,-1);
+		$value = substr($value,0,-1);
+		$sql = "insert into " . $table ."(".$key .") values (" . $value . ")";
+		$this->db->query($sql);
+		return $this->db->insert_id();
+	}	
 	
 	
 }
