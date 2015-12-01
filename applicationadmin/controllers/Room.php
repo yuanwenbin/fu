@@ -356,12 +356,54 @@ class Room extends CI_Controller {
 		// 
 		$location_number = intval($this->input->post_get('location_number'));
 		$location_ispayment = intval($this->input->post_get('location_ispayment'));
+		$location_paytime = '';
 		if($this->input->post_get('datetime'))
 		{
     		$datetime = addslashes($this->input->post_get('datetime'));
     		$location_paytime = strtotime($datetime);
-		}else{
-		    $location_paytime = 0;
+    		$location_ispayment = 1;		
+		}
+		// 销售状态-已经出售/或者是已经支付
+		if(!$location_number || $location_ispayment)
+		{
+			$location_ispayment = 1; // 支付
+			$location_paytime = $location_paytime ? $location_paytime : time(); // 支付时间
+			$location_number = 0; // 已经出售
+			
+			// 订单表,先查询，没有再插入
+			$param = array();
+			// 1.查询用户表
+			$userInfo = $this->Room_model->searchUser('fu_user', array('user_location_id'=>$localtion_id));
+			
+			// 2.查询订单表
+			$orderInfo = $this->Room_model->searchUser('fu_order_info', array('order_location_id'=>$localtion_id));
+			// 如果订单存在
+			if($orderInfo)
+			{
+				$where = array('order_location_id'=>$localtion_id);
+				$param['order_payment'] = 1;
+				$this->Room_model->updateTable('fu_order_info',$param, $where);
+			}else {
+				// 订单不存在
+				// 查询房间
+				$roomInfo = $this->Room_model->searchUser('fu_location_list', array('localtion_id'=>$localtion_id));
+				$param = array();
+				$param['order_user'] = $userInfo['body_id'];
+				$param['order_room_id'] = $roomInfo['location_room_id'];
+				$param['order_location_id'] = $localtion_id;
+				$param['order_location_type'] = $userInfo['user_type'];
+				$param['order_datetime'] = time();
+				$param['order_price'] = $location_price;
+				$param['order_payment'] = 1;
+				$param['source'] = $userInfo['source'];
+				$affectRes = $this->Room_model->insertOrder('fu_order_info',$param);
+			}			
+		}else {
+			// 出售中/未出售&&未支付
+			$location_paytime = 0;
+			$location_number = 1;
+			$location_ispayment = 0;
+			
 		}
 		// 上传图片
 		$filePic = '';

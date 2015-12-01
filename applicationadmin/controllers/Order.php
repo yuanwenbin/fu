@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Order extends CI_Controller {
+	private $source = array(1=>'pc',2=>'android',3=>'ois',4=>'wap');
 	function __construct()
 	{
 		parent::__construct();
@@ -119,7 +120,8 @@ class Order extends CI_Controller {
 	    $view['result']['page'] = $page;
 	    $view['result']['totalPage'] = $totalPage;
         $view['result']['resultList'] = $resultList; 
-  
+        $view['source'] = $this->source;
+  		
 	    $this->load->view('orderList',$view);
 	}
 

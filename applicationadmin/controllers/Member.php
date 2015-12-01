@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Member extends CI_Controller {
+	private $source = array(1=>'pc',2=>'android',3=>'ois',4=>'wap');
 	function __construct()
 	{
 		parent::__construct();
@@ -62,6 +63,7 @@ class Member extends CI_Controller {
 			$view['nextPage'] = $page+1;
 			$view['endPage'] = $totalPage;
 		}
+		$view['source'] = $this->source;
 		$this->load->view('memberIndex',$view);
 		
 	}
@@ -112,6 +114,7 @@ class Member extends CI_Controller {
 				exit;				
 			}
 			$view['result'] = $res;
+			$view['source'] = $this->source;
 			$this->load->view('memberSearchList',$view);
 		}
 		
