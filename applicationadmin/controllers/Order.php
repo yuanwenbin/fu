@@ -30,7 +30,7 @@ class Order extends CI_Controller {
 	    
 	    $view = array();
 	    $param = array();
-	    $page = $this->input->get_post('page');
+	    $page = intval($this->input->get_post('page'));
 	    if(!$page)
 	    {
 	        $page = 1;
@@ -42,8 +42,8 @@ class Order extends CI_Controller {
 	        $view['result']['order_room_id'] = '';
 	    }else
 	    {
-	        $param['order_room_id'] = $order_room_id;
-	        $view['result']['order_room_id'] = $order_room_id;
+	        $param['order_room_id'] = addslashes($order_room_id);
+	        $view['result']['order_room_id'] = addslashes($order_room_id);
 	    }
 	    // 牌位类型   
 	    $order_location_type = $this->input->get_post('order_location_type');
@@ -72,11 +72,11 @@ class Order extends CI_Controller {
         }
 	    
 	    //开始时间
-	    $datetime = $this->input->get_post('datetime');
+	    $datetime = addslashes($this->input->get_post('datetime'));
         if($datetime)
         {
-            $param['order_datetime']=strtotime($datetime);
-            $view['result']['datetime'] = strtotime($datetime);;  
+            $param['order_datetime']=strtotime(addslashes($datetime));
+            $view['result']['datetime'] = strtotime(addslashes($datetime)); 
         }else {
             $view['result']['datetime'] = '';
         }
@@ -85,8 +85,8 @@ class Order extends CI_Controller {
 	
 	    if($datetimes)
 	    {
-	        $param['order_datetimes']=strtotime($datetimes);
-	        $view['result']['datetimes'] = strtotime($datetimes);
+	        $param['order_datetimes']=strtotime(addslashes($datetimes));
+	        $view['result']['datetimes'] = strtotime(addslashes($datetimes));
 	    }else {
 	        $view['result']['datetimes'] = '';
 	    }
@@ -95,8 +95,8 @@ class Order extends CI_Controller {
 	    $bodyId = $this->input->get_post('bodyId');
 	    if($bodyId)
 	    {
-	        $view['result']['bodyId'] = addslashes(trim(strip_tags($bodyId)));
-	        $param['order_user'] = addslashes(trim(strip_tags($bodyId)));
+	        $view['result']['bodyId'] = trim(strip_tags($bodyId));
+	        $param['order_user'] = trim(strip_tags($bodyId));
 	    }else {
 	        $view['result']['bodyId'] = '';
 	    }

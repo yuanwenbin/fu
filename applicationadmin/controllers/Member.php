@@ -106,6 +106,7 @@ class Member extends CI_Controller {
 		{	
 			$this->load->view('memberSearch');
 		}else {
+			$bodyId = addslashes($bodyId);
 			$res = $this->Member_model->memberSearch($bodyId);
 			if(!$res)
 			{

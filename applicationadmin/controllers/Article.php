@@ -265,7 +265,7 @@ class Article extends CI_Controller {
 			$data['msg'] = '没有添加分类名称';
 			die(json_encode($data));
 		}
-		$param = array('cate_name'=>$cate_name, 'cate_parent' => $cate_parent, 'cate_sort'=>$cate_sort,'cate_show'=>$cate_show);
+		$param = array('cate_name'=>addslashes($cate_name), 'cate_parent' => $cate_parent, 'cate_sort'=>$cate_sort,'cate_show'=>$cate_show);
 		
 		
 		$res = $this->Article_model->addCateDealModel($param);
