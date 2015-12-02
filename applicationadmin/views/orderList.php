@@ -140,7 +140,7 @@ foreach($result['resultList'] as $k=>$v){
 	?>
 	</td>
 	<td width="8%" align="center">
-	<?php echo $v['source'] ? $source[$v['source']] : ''; ?> 
+	<?php echo $v['source'] ? $source[$v['source']] :'管理员：' .$username; ?> 
 	</td>
 	<td width="10%" align="center" class="orderListDetails">
 	<a href="/Order/posInfos?id=<?php echo $v['order_id']; ?>">
