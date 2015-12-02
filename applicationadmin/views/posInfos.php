@@ -95,7 +95,7 @@
 		?>
 		</td>		
 	</tr>	
- 	<?php if($result['userInfo']['user_type'] == 1) { ?>
+ 	<?php if(isset($result['userInfo']['user_type']) && $result['userInfo']['user_type'] == 1) { ?>
 	<tr>
 		<td width="20%" align="right">姓名：</td>
 		<td>
