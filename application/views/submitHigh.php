@@ -28,12 +28,26 @@
 		<table>
 			<tr>
 				<td width="124"><img src="/images/detailNo.png" /></td>
-				<td width="170"><font class="myNo"><?php echo $result['posInfos']['localtion_id'];?></font></td>
+				<td width="170"><font class="myNo">
+				<?php 
+				if($result['posInfos']['location_alias'])
+				{
+					echo '('. $result['posInfos']['location_alias'] .')' . "&nbsp;";
+				}
+				echo $result['posInfos']['localtion_id'];?>
+				</font></td>
 			</tr>
 
 			<tr>
 				<td  width="124"><img src="/images/detailArea.png" /></td>
-				<td width="170"><span><?php echo $result['posInfos']['location_room_id'];?></span></td>
+				<td width="170"><span>
+				<?php 
+				if($result['roomInfos']['room_alias'])
+				{
+					echo '('.$result['roomInfos']['room_alias'].')'."&nbsp;";
+				}
+				echo $result['posInfos']['location_room_id'];?>
+				</span></td>
 			</tr>
 
 			<tr>
