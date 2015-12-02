@@ -121,7 +121,7 @@ class Order extends CI_Controller {
 	    $view['result']['totalPage'] = $totalPage;
         $view['result']['resultList'] = $resultList; 
         $view['source'] = $this->source;
-  		
+        $view['username'] = $this->session->userdata('admin_user');
 	    $this->load->view('orderList',$view);
 	}
 
@@ -157,7 +157,7 @@ class Order extends CI_Controller {
 	    $roomInfo = $this->Order_model->posInfosModel('fu_room_list', array('room_id'=>$orderInfo[0]['order_room_id']));
 	    $view['result']['orderInfo'] = $orderInfo[0];
 	    $view['result']['posInfo'] = $posInfo[0];
-	    $view['result']['userInfo'] = $userInfo[0];
+	    $view['result']['userInfo'] = isset($userInfo[0]) && $userInfo[0] ? $userInfo[0] : '';
 	    $view['result']['roomInfo'] = $roomInfo[0];
 	    
 	    $stime[1] = '子时(23:00-00:59)';
@@ -173,6 +173,8 @@ class Order extends CI_Controller {
 	    $stime[11] = '戌时(19:00-20:59)';
 	    $stime[12] = '亥时(21:00-22:59)';
 	    $view['result']['stime'] =  $stime;
+	    $view['username'] = $this->session->userdata('admin_user');
+	    
 	    $this->load->view('posInfos', $view);
 	}
 	
