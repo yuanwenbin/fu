@@ -71,36 +71,26 @@
 	<tr>
 		<td width="20%" align="right">牌位销售状态：</td>
 		<td>
-		<select name="location_number">
 		<?php if($result['location_number'] == 2) {?>
-		<option value="2" selected>未出售</option>
-		<option value="1">出售中</option>
-		<option value="0">已出售</option>
-		<?php }elseif($result['location_number'] == 1) {?>
-		<option value="2">未出售</option>
-		<option value="1" selected>出售中</option>
-		<option value="0">已出售</option>
-		<?php }else{ ?>
-		<option value="2">未出售</option>
-		<option value="1">出售中</option>
-		<option value="0" selected>已出售</option>		
-		<?php } ?>
-		</select>
+		未出售
+	<?php }elseif($result['location_number'] == 1) {?>
+		出售中
+	<?php }else{ ?>
+	已出售
+<?php } ?>
+
 		</td>		
 	</tr>	
 	
 	<tr>
 		<td width="20%" align="right">是否已付款：</td>
 		<td>
-		<select name="location_ispayment">
 		<?php if($result['location_ispayment']) {?>
-		<option value="1" selected>已付款</option>
-		<option value="0">未付款</option>
+		已付款
 		<?php }else{ ?>
-		<option value="1">已付款</option>
-		<option value="0" selected>未付款</option>	
+		未付款	
 		<?php } ?>
-		</select>
+
 		</td>		
 	</tr>	
 			
@@ -117,9 +107,9 @@
 	<tr>
 		<td width="20%" align="right">牌位支付时间：</td>
 		<td>
-		<input type="text" name="datetime" class="ui_timepicker" value="<?php  echo $result['location_paytime'] ? date('Y-m-d H:i:s',$result['location_paytime']) : '';?>" />
+		<?php  echo $result['location_paytime'] ? date('Y-m-d H:i:s',$result['location_paytime']) : '无';?>
 		</td>		
-	</tr>
+	</tr> 
 	
 	<tr>
 		<td width="20%" align="right">牌位新图片：</td>
