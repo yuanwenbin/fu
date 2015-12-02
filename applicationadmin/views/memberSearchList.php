@@ -46,7 +46,7 @@
 		<?php
 		echo $source[$val['source']];?>
 		</td>
-		<td  width="25%" align="center"><?php echo date('Y-m-d H:i:s',$val['user_selected_date']);?></td>
+		<td  width="25%" align="center"><?php echo $val['user_selected_date'] ? date('Y-m-d H:i:s',$val['user_selected_date']) : '无';?></td>
 
 	</tr>
 	<tr>
