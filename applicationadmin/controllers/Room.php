@@ -354,9 +354,10 @@ class Room extends CI_Controller {
 		$location_alias = addslashes($this->input->post_get('location_alias'));
 		$location_details = addslashes($this->input->post_get('location_details'));
 		// 
-		$location_number = intval($this->input->post_get('location_number'));
-		$location_ispayment = intval($this->input->post_get('location_ispayment'));
-		$location_paytime = '';
+		// $location_number = intval($this->input->post_get('location_number'));
+		// $location_ispayment = intval($this->input->post_get('location_ispayment'));
+		// $location_paytime = '';
+		/*
 		if($this->input->post_get('datetime'))
 		{
     		$datetime = addslashes($this->input->post_get('datetime'));
@@ -404,14 +405,15 @@ class Room extends CI_Controller {
 			$location_number = 1;
 			$location_ispayment = 0;
 			
-		}
+		} */
 		// 上传图片
 		$filePic = '';
 		if($_FILES['location_pic_new']['name'])
 		{
 			$filePic = fileUpload($_FILES['location_pic_new']);
 		}
-		$result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_number,$location_ispayment,$location_paytime);
+		// $result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_number,$location_ispayment,$location_paytime);
+		$result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic);
 		if($result)
 		{
 			$this->load->view('success');
