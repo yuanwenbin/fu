@@ -111,7 +111,7 @@
 	<tr>
 		<td width="20%" align="right">时辰：</td>
 		<td>
-		<?php echo $result['userInfo']['user_time'];?>
+		<?php echo $result['stime'][$result['userInfo']['user_time']];?>
 		</td>		
 	</tr>
 	<?php } ?>
