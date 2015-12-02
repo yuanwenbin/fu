@@ -10,10 +10,10 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
-<div class="roomInfosDiv container">
+<div class="roomInfosDiv container roomListInfos">
 <h3>房间号:<?php echo $result[0]['location_room_id']; ?></h3>
-<table border="0" cellpadding="5" cellspacing="0" width="90%">	
-	<tr class='headerLineBackground'>
+<table border="0" cellpadding="0" cellspacing="0" width="98%">	
+	<tr>
 		<th width="10%" align="center">操作</th>
 		<th width="5%" align="center">房间号</th>
 		<th width="5%" align="center">牌位号</th>
@@ -26,7 +26,7 @@
 		<th width="15%" align="center">牌位描述</th>
 	</tr>
 	<?php foreach($result as $k=>$v) {?>
-	<tr <?php echo ($k%2) ? "class='headerLineBackground'" : '';?>>
+	<tr <?php // echo ($k%2) ? "class='headerLineBackground'" : '';?>>
 		<td widtd="10%" align="center">
 		<?php if(hasPerssion($_SESSION['role'], 'posLocation')){ ?>
 		<a href="/Room/posLocation?id=<?php echo $v['localtion_id']; ?>">编辑
@@ -53,7 +53,7 @@
 		</td>
 		<td widtd="5%" align="center"><?php echo $v['location_price']; ?></td>
 		<td widtd="10%" align="center"><?php echo $v['location_type'] ? '高端定制' : '随机/生辰八字'; ?></td>
-		<td widtd="5%" align="center"><?php echo $v['location_number']==2 ? '末售' : ($v['location_number'] == 1 ? '出售中' : '已售'); ?></td>
+		<td widtd="5%" align="center"><?php echo $v['location_number']==2 ? '未售' : ($v['location_number'] == 1 ? '出售中' : '已售'); ?></td>
 		<td widtd="10%" align="center">
 		<?php 
 		if($v['location_number'] == 1){
@@ -86,6 +86,9 @@
 		}
 		?>		
 		</td>	
+	</tr>
+	<tr>
+		<td colspan="10"><hr /></td>
 	</tr>
 	<?php } ?>	
 	<tr>
