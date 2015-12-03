@@ -122,6 +122,11 @@ function perssion()
 	$per['copyright'] = array(
 		'copyrightInfo'=>'版权信息',
 	);
+	
+	// 关于我们
+	$per['aboutus'] = array(
+			'aboutUsInfo'=>'关于我们',
+	);	
 	return $per;
 }
 /*
