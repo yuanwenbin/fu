@@ -90,6 +90,9 @@
 			if($aboutUs)
 			{
 				echo $aboutUs[0]['about_content'];
+			}else
+			{
+				echo "&nbsp;";
 			}
 			?>
 			</div>
