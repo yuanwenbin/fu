@@ -87,5 +87,31 @@ class Curlture_model extends CI_Model
 		return $this->db->affected_rows();		
 	}
 	
+	/**
+	 * 查询关于我们
+	 */
+	function aboutUsInfoModel()
+	{
+		$sql = "select * from fu_about_us order by about_id desc limit 1";
+		$res = $this->db->query($sql);
+		return  $res->result_array();
+	}
+	
+	/**
+	 * @param string $content 内容
+	 * @param int $id id
+	 */
+	function addAboutusDealModel($content,$id='')
+	{
+		if($id)
+		{
+			$sql = "update fu_about_us set about_content = '".$content."' where about_id = " . $id;
+		}else
+		{
+			$sql = "insert into fu_about_us(about_content) values('".$content."')";
+		}
+		$this->db->query($sql);
+		return $this->db->affected_rows();	
+	}
 	
 }
