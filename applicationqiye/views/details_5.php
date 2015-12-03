@@ -86,16 +86,12 @@
 	<?php // echo $details ? $details[0]['article_content'] : '';?>
 		<div class="details_1 aboutUs">
 			<div class="contantLeft">
-			<p>
-			<ul>
-			<li>中国道教武汉长春观</li>
-			<li>地址：武汉市武昌区武珞路269号</li>
-			<li>邮编：430071</li>
-			<li>电话：027-88842090 88870713 88871395</li>
-			<li>传真：027-88842090</li>
-			<li>网址：www.whccg.com</li>
-			</ul>
-			</p>
+			<?php 
+			if($aboutUs)
+			{
+				echo $aboutUs[0]['about_content'];
+			}
+			?>
 			</div>
 
 			<div class="contantRight apibaidumap">
