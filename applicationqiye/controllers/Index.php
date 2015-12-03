@@ -147,6 +147,8 @@ class Index extends CI_Controller {
 		{
 			$this->load->view('details_4',$view);
 		}else {
+			$aboutUs = $this->Qiye_model->aboutUs();
+			$view['aboutUs'] = $aboutUs;
 			$this->load->view('details_5',$view);
 		}
 	}
