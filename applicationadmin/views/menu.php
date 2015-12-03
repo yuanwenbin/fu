@@ -123,6 +123,28 @@
 
 		</ul>
 	</li>	
+	<?php } ?>	
+	
+	<?php if(hasPerssion($_SESSION['role'],'aboutus')) { ?>
+	<li>
+		<h2>版权信息</h2>
+		<ul>
+
+		    <li><a href="/Aboutus/aboutUsInfo" target="mainFrame">关于我们</a></li>
+
+		</ul>
+	</li>	
+	<?php } ?>	
+	
+	<?php if(hasPerssion($_SESSION['role'],'curlture')) { ?>
+	<li>
+		<h2>道教文化</h2>
+		<ul>
+
+		    <li><a href="/Curlture/curlture" target="mainFrame">道教文化</a></li>
+
+		</ul>
+	</li>	
 	<?php } ?>		
 
 </ul>

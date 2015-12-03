@@ -140,6 +140,13 @@
 		<p><input type="checkbox" name="role[]" value="copyright|copyright" />版权信息权限</p>
 		</td>
 	</tr>
+	<tr>
+		<td width="15%" align="right">
+		关于我们&nbsp;</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="aboutus|aboutUsInfo" />关于我们</p>
+		</td>
+	</tr>	
 </table>
 
 
