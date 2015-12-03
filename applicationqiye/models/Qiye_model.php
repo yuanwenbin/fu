@@ -183,6 +183,23 @@ class Qiye_model extends CI_Model
 		return $data;
 	}
 	
+	/**
+	 * 查询关于我们
+	 */
+	function aboutUs()
+	{
+		$sql = "select * from fu_about_us order by about_id desc limit 1";
+		
+		$res = $this->db->query($sql);
+		if($res->num_rows() <= 0)
+		{
+			$data = '';
+		}else {
+			$data = $res->result_array();
+		}	
+		return 	$data;
+	}
+	
 	
 	
 	
