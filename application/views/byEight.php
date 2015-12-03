@@ -43,18 +43,18 @@
 			<td width="120"><img src="/images/time.png" /></td>
 			<td>
 			<select name="stime" class="stime">
-			<option value="1">子时(23:00-00:59)</option>
-			<option value="2">丑时(01:00-02:59)</option>
-			<option value="3">寅时(03:00-04:59)</option>
-			<option value="4">卯时(05:00-06:59)</option>
-			<option value="5">辰时(07:00-08:59)</option>
-			<option value="6">巳时(09:00-10:59)</option>
-			<option value="7">午时(11:00-12:59)</option>
-			<option value="8">未时(13:00-14:59)</option>
-			<option value="9">申时(15:00-16:59)</option>
-			<option value="10">酉时(17:00-18:59)</option>
-			<option value="11">戌时(19:00-20:59)</option>
-			<option value="12">亥时(21:00-22:59)</option>
+			<option value="子时(23:00-00:59)">子时(23:00-00:59)</option>
+			<option value="丑时(01:00-02:59)">丑时(01:00-02:59)</option>
+			<option value="寅时(03:00-04:59)">寅时(03:00-04:59)</option>
+			<option value="卯时(05:00-06:59)">卯时(05:00-06:59)</option>
+			<option value="辰时(07:00-08:59)">辰时(07:00-08:59)</option>
+			<option value="巳时(09:00-10:59)">巳时(09:00-10:59)</option>
+			<option value="午时(11:00-12:59)">午时(11:00-12:59)</option>
+			<option value="未时(13:00-14:59)">未时(13:00-14:59)</option>
+			<option value="申时(15:00-16:59)">申时(15:00-16:59)</option>
+			<option value="酉时(17:00-18:59)">酉时(17:00-18:59)</option>
+			<option value="戌时(19:00-20:59)">戌时(19:00-20:59)</option>
+			<option value="亥时(21:00-22:59)">亥时(21:00-22:59)</option>
 			</select>
 			</td>
 		</tr>
