@@ -6,6 +6,14 @@
 <meta name="keywords" content="seo keyword" />
 <meta name="description" content="description" />
 <link type="text/css" rel="stylesheet" href="/css/style.css">
+<style type="text/css">
+
+
+#refuseContent{position:fixed;z-index:9999;display:none;height:300px;width:600px;border:1px solid #444;background:#fff;overflow-y:auto;}
+.refuseContent{margin:20px;}
+.refuseContent textarea{border:1px solid #444;padding:3px;}
+
+</style>
 <script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
 <body class="bodySj">
@@ -14,9 +22,9 @@
 	<!-- bof 11 -->
 	<div class="sjTop">
 	<ul>
-	<li><a href="javascript:void(0);"><img src="/images/sjBtnImg.png" /></a></li>
+	<li><a href="javascript:void(0);"  class="refuseDevilery"><img src="/images/sjBtnImg.png" /></a></li>
 	<li><a href="/Choice/byEight"><img src="/images/bzBtn.png" /></a></li>
-	<li><a href="/Choice/byHigh"><img src="/images/gdBtn.png" /></a></li>
+	<li><a href="javascript:void(0);"><img src="/images/gdBtn.png" /></a></li>
 	<li><a href="javascript:void(0);" id="noChoice"><img src="/images/myNoBtn.png" /></a></li>
 	</ul>
 	<br class="clearBoth" />
@@ -68,6 +76,40 @@
 	<!-- eof 44 -->
 </div>
 <!-- eof container -->
+
+<div id="refuseContent">
+	
+	<div class="refuseContent">
+	<form action="" method="post">
+	<table border="0" cellpadding="0" cellspacing="0" width="90%">
+		<tr>
+			<td width="20%" align="right">拒绝理由</td>
+			<td><textarea name="content" rows="5" cols="40"></textarea></td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">&nbsp;</td>
+			<td>
+			<input type="hidden" name="invoice" value="" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">&nbsp;</td>
+			<td>
+			&nbsp;&nbsp;
+			<a href="javascript:void(0);" id="refuseCancel">取消</a>
+			&nbsp;
+			<a href="javascript:void(0);" id="refuseSubmit">提交</a>
+			</td>
+		</tr>
+	</table>
+		
+
+	</form>
+	</div>   
+	      
+</div>
+
+
 <script type="text/javascript">
 
 var lottery={
@@ -194,6 +236,21 @@ $(document).ready(function(){
 	
 });
 
+
+$(document).ready(function(){
+
+
+	$('.refuseDevilery').click(function(){
+
+		var  windowHeight=$(window).height(); 
+		var  windowWidth=$(window).width(); 
+		var tops = (windowHeight - 300)/2;
+		var widths = (windowWidth - 600)/2;
+		$("#refuseContent").css({top:tops,left:widths});
+		$("#refuseContent").show();		 
+	});
+	
+});
 
 </script>
 </body>

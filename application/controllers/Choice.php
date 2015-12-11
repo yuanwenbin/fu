@@ -767,7 +767,13 @@ class Choice extends CI_Controller {
 	    {
 	        header("Location:/Index/index");
 	        exit;
-	    }	    
+	    }
+
+	    
+	    if( !isset($this->session->highFlag) || !($this->session->highFlag) )
+	    {
+	  		exit('nnnnnnnnn');
+	    }
 	    /*
 	    if(!$status || $status > 2)
 	    {
