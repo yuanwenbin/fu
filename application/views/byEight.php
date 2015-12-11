@@ -6,8 +6,48 @@
 <meta name="keywords" content="seo keyword" />
 <meta name="description" content="description" />
 <link type="text/css" rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" src="/js/laydate.js"></script>
+<link href='/css/fullcalendar.css' rel='stylesheet' />
+<style type="text/css">
+.dib{display:inline-block;}
+.date-zone {position: relative;width:200px;border: 1px solid #ccc;}
+.calendarWrapper {position: absolute;top: 40px;left: 0;z-index:9999;background:#fff;}
+.date-inp {border: 0 none;vertical-align: top;line-height: 25px;text-indent: 5px;}
+.icon_date {cursor: pointer; margin-left: 220px;margin-top: -31px;position: absolute;}
+.fc-button-today {display: none;}
+</style>
+<!--  <script type="text/javascript" src="/js/laydate.js"></script> -->
+
 <script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+
+<script src='/js/jquery-ui.custom.min.js'></script>
+<script src='/js/fullcalendar.js'></script>
+<script type="text/javascript">
+/** 当天信息初始化 **/
+$(function() {
+    var dayDate = new Date();
+    var d = $.fullCalendar.formatDate(dayDate, "dddd");
+    var m = $.fullCalendar.formatDate(dayDate, "yyyy年MM月dd日");
+    var lunarDate = lunar(dayDate);
+});
+/** calendar配置 **/
+$(document).ready(
+    function() {
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth()+1;
+        var y = date.getFullYear();
+        $(".date-inp").val(y+"-"+m+"-"+d);
+        $("#calendar").fullCalendar();
+    });
+/** 绑定事件到日期下拉框 **/
+$(function() {
+    $("#fc-dateSelect").delegate("select", "change", function() {
+        var fcsYear = $("#fcs_date_year").val();
+        var fcsMonth = $("#fcs_date_month").val();
+        $("#calendar").fullCalendar('gotoDate', fcsYear, fcsMonth);
+    });
+});
+</script>
 </head>
 <body class="bodyBz">
 <!-- bof container-->
@@ -34,8 +74,22 @@
 
 		<tr style="height:60px;">
 			<td width="120"><img src="/images/birthday.png" /></td>
-				<td><div class="demo1">
-		<input class="laydate-icon" id="demo" name="userbirth" value=""></td>
+				<td>
+				<div class="demo1"><!-- 
+		<input class="laydate-icon" id="demo" name="userbirth" value=""> -->
+		
+	<div class="date-zone">
+		
+		<input type="text" class="date-inp" name="datetimes">
+		<span class="icon_date"><img src="/images/icon_date.png"></span>
+		<div class="calendarWrapper">
+		    <div id="calendar" class="dib"></div>
+		</div>
+	
+	
+	</div>		
+		
+		</td>
 	</div>
 		</tr>
 
@@ -79,7 +133,7 @@ $(document).ready(function(){
     });
 	$("#eightBtn").click(function(){
 	var username = $("input[name='username']").val();
-	var userbirth = $("input[name='userbirth']").val();
+	var userbirth = $("input[name='datetimes']").val();
 	var stime = $("select[name='stime']").val();
 	if(username == '' || userbirth == '' || stime == '')
 	{
@@ -89,15 +143,28 @@ $(document).ready(function(){
 	$.post('/Choice/byEightDeal', {username:username,userbirth:userbirth,stime:stime}, function(data){
 		if(!data.error)
 		{
-			window.document.location.href="/Choice/index";
+			 window.document.location.href="/Choice/index";
 		}
 	});
 });
 
 });
 
+// 新的双日历
+$(function(){
+	$(".calendarWrapper").hide();
+	$(".icon_date").on('click', function(){
+		$(".calendarWrapper").toggle();
+	})
+
+	$(".calendarWrapper").delegate('.fc-widget-content', 'click', function(event) {
+		$(".date-inp").val($(this).data('date'));
+		$(".calendarWrapper").hide();
+	});
+});
 
 
+/*
 !function(){
 	laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
 	laydate({elem: '#demo'});//绑定元素
@@ -132,6 +199,7 @@ laydate(start);
 laydate(end);
 
 //自定义日期格式
+
 laydate({
     elem: '#test1',
     format: 'YYYY年MM月DD日',
@@ -142,12 +210,13 @@ laydate({
 });
 
 //日期范围限定在昨天到明天
+
 laydate({
     elem: '#hello3',
     min: laydate.now(-1), //-1代表昨天，-2代表前天，以此类推
     max: laydate.now(+1) //+1代表明天，+2代表后天，以此类推
 });
-
+*/
 </script>
 </body>
 </html>
