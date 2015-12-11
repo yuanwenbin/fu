@@ -126,6 +126,14 @@ function perssion()
 	// 关于我们
 	$per['aboutus'] = array(
 			'aboutUsInfo'=>'关于我们',
+	);
+
+	// 密码管理
+	$per['password'] = array(
+			'passwordCheckForRand'=>'查看随机密码',
+			'passwordCheckForHigh'=>'查看高端密码',
+			'passwordAddForRand'=>'设置随机密码',
+			'passwordAddForHigh'=>'设置高端节密码',
 	);	
 	return $per;
 }
