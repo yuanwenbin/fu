@@ -147,6 +147,18 @@
 		<p><input type="checkbox" name="role[]" value="aboutus|aboutUsInfo" />关于我们</p>
 		</td>
 	</tr>	
+	
+	<tr>
+		<td width="15%" align="right">
+		密码权限&nbsp;
+		</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="password|passwordCheckForRand" />查看随机密码</p>
+		<p><input type="checkbox" name="role[]" value="password|passwordCheckForHigh" />查看高端密码</p>
+		<p><input type="checkbox" name="role[]" value="password|passwordAddForRand" />设置随机密码</p>
+		<p><input type="checkbox" name="role[]" value="password|passwordAddForHigh" />设置高端节密码</p>		
+		</td>
+	</tr>	
 </table>
 
 

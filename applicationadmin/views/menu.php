@@ -147,6 +147,35 @@
 	</li>	
 	<?php } ?>		
 
+	<?php if(hasPerssion($_SESSION['role'],'orderList')) { ?>
+	<li>
+		<h2>订单管理中心</h2>
+		<ul>
+			<li><a href="/Order/orderList" target="mainFrame">订单列表</a></li>
+		</ul>
+	</li>
+	<?php } ?>
+	
+	<?php if(hasPerssion($_SESSION['role'],'password')) { ?>
+	<li>
+		<h2>密码管理</h2>
+		<ul>
+			<?php if(hasPerssion($_SESSION['role'],'passwordCheckForRand')) { ?>
+			<li><a href="/Password/passwordCheckForRand" target="mainFrame">查看随机密码</a></li>
+			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'passwordCheckForHigh')) { ?>
+			<li><a href="/Password/passwordCheckForHigh" target="mainFrame">查看高端密码</a></li>
+			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'passwordAddForRand')) { ?>
+			<li><a href="/Password/passwordAddForRand" target="mainFrame">设置随机密码</a></li>
+			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'passwordAddForHigh')) { ?>
+			<li><a href="/Password/passwordAddForHigh" target="mainFrame">设置高端节密码</a></li>
+			<?php } ?>						
+		</ul>
+	</li>
+	<?php } ?>	
+	
 </ul>
 </body>
 </html>
