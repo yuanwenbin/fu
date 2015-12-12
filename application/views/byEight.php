@@ -15,7 +15,7 @@
 .icon_date {cursor: pointer; margin-left: 220px;margin-top: -31px;position: absolute;}
 .fc-button-today {display: none;}
 
-#refuseContent{position:fixed;z-index:9999;display:none;height:145px;width:250px;border:1px solid #444;background:#fff;overflow-y:auto;}
+#refuseContent{position:fixed;z-index:9999;display:none;height:145px;width:280px;border:1px solid #444;background:#fff;overflow-y:auto;}
 .refuseContent{margin:15px;margin-top:35px;}
 .refuseContent input{border:1px solid #444;padding:3px;}
 #notice{text-align:center;color:#ff0000;line-height:28px;}
@@ -138,18 +138,18 @@ $(function() {
 	
 	<div class="refuseContent">
 	<form action="" method="post">
-	<table border="0" cellpadding="0" cellspacing="0" width="90%">
+	<table border="0" cellpadding="0" cellspacing="0" width="98%">
 		<tr>
-			<td width="44%" align="right">高端密码&nbsp;</td>
-			<td><input type="text" name="content" value=""></td>
+			<td width="30%" align="center">高端密码&nbsp;</td>
+			<td width="62%"><input type="text" name="content" value=""></td>
 		</tr>
 		<tr>
-			<td width="44%" align="right">&nbsp;&nbsp;</td>
-			<td>&nbsp;</td>
+			<td width="30%" align="center">&nbsp;&nbsp;</td>
+			<td width="62%">&nbsp;</td>
 		</tr>
 		<tr>
-			<td width="44%" align="right">&nbsp;</td>
-			<td>
+			<td width="30%" align="center">&nbsp;</td>
+			<td width="62%">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="javascript:void(0);" id="refuseCancel">取消</a>
 			&nbsp;
@@ -264,7 +264,7 @@ $(document).ready(function(){
 		var  windowHeight=$(window).height(); 
 		var  windowWidth=$(window).width(); 
 		var tops = (windowHeight - 145)/2;
-		var widths = (windowWidth - 250)/2;
+		var widths = (windowWidth - 280)/2;
 		$("#refuseContent").css({top:tops,left:widths});
 		$("#refuseContent").show();		 
 	});

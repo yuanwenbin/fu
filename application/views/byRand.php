@@ -7,15 +7,17 @@
 <meta name="description" content="description" />
 <link type="text/css" rel="stylesheet" href="/css/style.css">
 <style type="text/css">
-#refuseContent{position:fixed;z-index:9999;display:none;height:145px;width:250px;border:1px solid #444;background:#fff;overflow-y:auto;}
+#refuseContent{position:fixed;z-index:9999;display:none;height:145px;width:280px;border:1px solid #444;background:#fff;overflow-y:auto;}
 .refuseContent{margin:15px;margin-top:35px;}
 .refuseContent input{border:1px solid #444;padding:3px;}
 #notice{text-align:center;color:#ff0000;line-height:28px;}
 
-#randContent{position:fixed;z-index:9999;display:none;height:145px;width:250px;border:1px solid #444;background:#fff;overflow-y:auto;}
+#randContent{position:fixed;z-index:9999;display:none;height:145px;width:280px;border:1px solid #444;background:#fff;overflow-y:auto;}
 .randContent{margin:15px;margin-top:35px;}
 .randContent input{border:1px solid #444;padding:3px;}
 #randnotice{text-align:center;color:#ff0000;line-height:28px;}
+
+
 </style>
 <script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
@@ -89,19 +91,19 @@
 	
 	<div class="refuseContent">
 	<form action="" method="post">
-	<table border="0" cellpadding="0" cellspacing="0" width="90%">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
 		<tr>
-			<td width="44%" align="right">高端密码&nbsp;</td>
-			<td><input type="text" name="content" value=""></td>
+			<td width="30%" align="center">高端密码&nbsp;</td>
+			<td width="63%"><input type="text" name="content" value=""></td>
 		</tr>
 		<tr>
-			<td width="44%" align="right">&nbsp;&nbsp;</td>
-			<td>&nbsp;</td>
+			<td width="30%" align="center">&nbsp;&nbsp;</td>
+			<td width="63%">&nbsp;</td>
 		</tr>
 		<tr>
-			<td width="44%" align="right">&nbsp;</td>
-			<td>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<td width="30%" align="center">&nbsp;</td>
+			<td width="63%">
+			&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="javascript:void(0);" id="refuseCancel">取消</a>
 			&nbsp;
 			<a href="javascript:void(0);" id="refuseSubmit">提交</a>
@@ -122,18 +124,18 @@
 	
 	<div class="randContent">
 	<form action="" method="post">
-	<table border="0" cellpadding="0" cellspacing="0" width="90%">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
 		<tr>
-			<td width="44%" align="right">随机密码&nbsp;</td>
-			<td><input type="text" name="randcontent" value=""></td>
+			<td width="30%" align="center">&nbsp;随机密码</td>
+			<td width="63%"><input type="text" name="randcontent" value=""></td>
 		</tr>
 		<tr>
-			<td width="44%" align="right">&nbsp;&nbsp;</td>
-			<td>&nbsp;</td>
+			<td width="30%" align="center">&nbsp;&nbsp;</td>
+			<td  width="63%">&nbsp;</td>
 		</tr>
 		<tr>
-			<td width="44%" align="right">&nbsp;</td>
-			<td>
+			<td width="30%" align="center">&nbsp;</td>
+			<td width="63%">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="javascript:void(0);" id="randCancel">取消</a>
 			&nbsp;
@@ -286,10 +288,10 @@ $(document).ready(function(){
        		var  windowHeight=$(window).height(); 
         	var  windowWidth=$(window).width(); 
         	var tops = (windowHeight - 145)/2;
-        	var widths = (windowWidth - 250)/2;
+        	var widths = (windowWidth - 280)/2;
         	$("#randContent").css({top:tops,left:widths});
         	$("#randContent").show();		 
-        	
+     
 
         	$("input[name='randcontent']").focus(function(){
         		$("#randnotice").html("");
@@ -339,7 +341,7 @@ $(document).ready(function(){
 		var  windowHeight=$(window).height(); 
 		var  windowWidth=$(window).width(); 
 		var tops = (windowHeight - 145)/2;
-		var widths = (windowWidth - 250)/2;
+		var widths = (windowWidth - 280)/2;
 		$("#refuseContent").css({top:tops,left:widths});
 		$("#refuseContent").show();		 
 	});
