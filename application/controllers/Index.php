@@ -17,7 +17,8 @@ class Index extends CI_Controller {
 				'user_selected'=>0,
 				'user_selected_date'=>0,
 				'isNew' => 1,
-				'is_complete' => 0
+				'is_complete' => 0,
+				'highFlag'=>''
 		);
 		foreach($data as $k=>$v)
 		{

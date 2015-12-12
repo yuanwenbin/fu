@@ -7,12 +7,10 @@
 <meta name="description" content="description" />
 <link type="text/css" rel="stylesheet" href="/css/style.css">
 <style type="text/css">
-
-
-#refuseContent{position:fixed;z-index:9999;display:none;height:300px;width:600px;border:1px solid #444;background:#fff;overflow-y:auto;}
-.refuseContent{margin:20px;}
-.refuseContent textarea{border:1px solid #444;padding:3px;}
-
+#refuseContent{position:fixed;z-index:9999;display:none;height:145px;width:250px;border:1px solid #444;background:#fff;overflow-y:auto;}
+.refuseContent{margin:15px;margin-top:35px;}
+.refuseContent input{border:1px solid #444;padding:3px;}
+#notice{text-align:center;color:#ff0000;line-height:28px;}
 </style>
 <script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
@@ -22,9 +20,13 @@
 	<!-- bof 11 -->
 	<div class="sjTop">
 	<ul>
-	<li><a href="javascript:void(0);"  class="refuseDevilery"><img src="/images/sjBtnImg.png" /></a></li>
+	<li><a href="javascript:void(0);"><img src="/images/sjBtnImg.png" /></a></li>
 	<li><a href="/Choice/byEight"><img src="/images/bzBtn.png" /></a></li>
-	<li><a href="javascript:void(0);"><img src="/images/gdBtn.png" /></a></li>
+	<?php if($highFlag) {?>
+	<li><a href="/Choice/byHigh"><img src="/images/gdBtn.png" /></a></li>
+	<?php }else{?>
+	<li><a href="javascript:void(0);"  class="refuseDevilery"><img src="/images/gdBtn.png" /></a></li>
+	<?php } ?>
 	<li><a href="javascript:void(0);" id="noChoice"><img src="/images/myNoBtn.png" /></a></li>
 	</ul>
 	<br class="clearBoth" />
@@ -83,19 +85,17 @@
 	<form action="" method="post">
 	<table border="0" cellpadding="0" cellspacing="0" width="90%">
 		<tr>
-			<td width="20%" align="right">拒绝理由</td>
-			<td><textarea name="content" rows="5" cols="40"></textarea></td>
+			<td width="44%" align="right">高端密码&nbsp;</td>
+			<td><input type="text" name="content" value=""></td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">&nbsp;</td>
-			<td>
-			<input type="hidden" name="invoice" value="" />
-			</td>
+			<td width="44%" align="right">&nbsp;&nbsp;</td>
+			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">&nbsp;</td>
+			<td width="44%" align="right">&nbsp;</td>
 			<td>
-			&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="javascript:void(0);" id="refuseCancel">取消</a>
 			&nbsp;
 			<a href="javascript:void(0);" id="refuseSubmit">提交</a>
@@ -105,6 +105,7 @@
 		
 
 	</form>
+	<p id="notice"></p>
 	</div>   
 	      
 </div>
@@ -236,20 +237,45 @@ $(document).ready(function(){
 	
 });
 
-
+// 高端密码
 $(document).ready(function(){
-
-
 	$('.refuseDevilery').click(function(){
-
 		var  windowHeight=$(window).height(); 
 		var  windowWidth=$(window).width(); 
-		var tops = (windowHeight - 300)/2;
-		var widths = (windowWidth - 600)/2;
+		var tops = (windowHeight - 145)/2;
+		var widths = (windowWidth - 250)/2;
 		$("#refuseContent").css({top:tops,left:widths});
 		$("#refuseContent").show();		 
 	});
-	
+
+	$("input[name='content']").focus(function(){
+		$("#notice").html("");
+	});
+
+	$("#refuseCancel").click(function(){
+		$("#refuseContent").hide();	
+		$("#notice").html("");
+	});
+
+	$("#refuseSubmit").click(function(){
+		var pass = $("input[name='content']").val();
+		if(pass == '')
+		{
+			$("#notice").html("请输入密码");
+			return false;
+		}
+		var url = "/Choice/highCheckPass";
+		var param = {pass:pass};
+		$.post(url,param,function(data){
+			if(data.error)
+			{
+				$("#notice").html(data.msg);
+			}else
+			{
+				window.location.href="/Choice/byHigh";
+			}
+		},'json');
+	});
 });
 
 </script>

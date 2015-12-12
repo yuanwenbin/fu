@@ -354,6 +354,12 @@ class Choice extends CI_Controller {
 	   			$userInfo['user_type'] = 0;
 	   		}
 	   		$view['userInfo'] = $userInfo;
+	   		if($this->session->highFlag)
+	   		{
+				$view['highFlag'] = 1;
+	   		}else {
+	   			$view['highFlag'] = 0;
+	   		}
 	   		$this->load->view('byRand',$view); 
 	   }else {
 	   		header("Location:/Index/index");
@@ -621,6 +627,7 @@ class Choice extends CI_Controller {
 	    }
 	    // 有末完成订单
 	    $uncompleteParam = " order_user = " . $this->session->body_id ." and order_payment =0 and order_datetime > " . (time()-DATEHEADLINE);
+	 
 	    $orderUncomplete = $this->orderUncomplete('fu_order_info', $uncompleteParam);
 	    if($orderUncomplete)
 	    {
@@ -647,7 +654,13 @@ class Choice extends CI_Controller {
 	        $userInfo['user_selected'] = 0;
 	        $userInfo['user_selected_date'] = 0;
 	        $userInfo['user_type'] = 0;
-	    }	    
+	    }
+	    if($this->session->highFlag)
+	    {
+	    	$view['highFlag'] = 1;
+	    }else {
+	    	$view['highFlag'] = 0;
+	    }	    	    
 	   $this->load->view('byEight', $view);
 	}
 	
@@ -768,11 +781,11 @@ class Choice extends CI_Controller {
 	        header("Location:/Index/index");
 	        exit;
 	    }
-
-	    
-	    if( !isset($this->session->highFlag) || !($this->session->highFlag) )
-	    {
-	  		exit('nnnnnnnnn');
+	
+	    if(!($this->session->highFlag))
+	    {	
+	        header("Location:/Choice/byRand");
+	        exit;
 	    }
 	    /*
 	    if(!$status || $status > 2)
@@ -781,19 +794,22 @@ class Choice extends CI_Controller {
 	        exit;
 	    }	
 	    */
+
 	    // 有完成订单
 	    $completeParam = array('order_user'=>$this->session->body_id, 'order_payment'=>1);
 	    $orderComplete = $this->orderComplete('fu_order_info', $completeParam);
-	    
+	 
 	    if($orderComplete)
 	    {
 	        header("Location:/Choice/index");
 	        exit;
-	    }	
+	    }
+	   
 	    // 有末完成订单
-	    $uncompleteParam = " order_user = " . $this->session->body_id ." and order_payment =0 and order_datetime > " . (time()-DATEHEADLINE);
+	    $uncompleteParam = " order_user = '" . $this->session->body_id ."' and order_payment =0 and order_datetime > " . (time()-DATEHEADLINE);
+	   
 	    $orderUncomplete = $this->orderUncomplete('fu_order_info', $uncompleteParam);
-
+	
 	    if($orderUncomplete)
 	    {
 	        header("Location:/Choice/index");
@@ -983,5 +999,35 @@ class Choice extends CI_Controller {
 	    // 出售状态 
 	    $data['sale'] = $locationInfos['location_number'];
 	    die(json_encode($data));
+	}
+	
+	
+	function highCheckPass()
+	{
+		$data = array('error'=>true,'msg'=>'非法操作');
+		if(!$this->session->body_id)
+		{
+			die(json_encode($data));
+		}
+		
+	
+		$pass = trim($this->input->get_post('pass'));
+		if(!$pass)
+		{
+			$data['msg'] = '密码不能为空';
+			die(json_encode($data));
+		}
+		$pass = addslashes($pass);
+		$res = $this->Choice_model->checkPass($pass,1);
+		if($res)
+		{
+			$data = array('error'=>false,'msg'=>'正确');
+			$param['highFlag'] = $pass;
+			$this->session->set_userdata($param);
+		}else {
+			$data['msg'] = '密码错误';
+		}
+		
+		die(json_encode($data));
 	}
 }

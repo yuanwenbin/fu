@@ -116,7 +116,7 @@ class Choice_model extends CI_Model
         
         $this->db->query($localSQL);
         */
-        $sql = "update fu_user set " . $str . " where body_id = " . $bodyId;
+        $sql = "update fu_user set " . $str . " where body_id = '" . $bodyId . "'";
         
         $this->db->query($sql);        
     }
@@ -208,6 +208,7 @@ class Choice_model extends CI_Model
     function searchUncompleteOrder($table,$where)
     {
         $sql = "select * from " . $table . " where " .$where;
+		
         $res = $this->db->query($sql);
         if($res)
         {
@@ -279,6 +280,24 @@ class Choice_model extends CI_Model
         $sql = "insert into " . $table ."(".$key .") values (" . $value . ")";
         $this->db->query($sql);
         return $this->db->insert_id();
+    }
+    
+    /**
+     * 查询密码
+     * @param string $pass 密码
+     * @param int $flag 密码类型
+     * @return string
+     */
+    function checkPass($pass,$flag)
+    {
+    	$sql = "select  * from fu_password where ps_flag = " . $flag . " and ps_password = '" . $pass ."' order by ps_id desc limit 1";
+    	$res = $this->db->query($sql);
+    	if($res)
+    	{
+    		return $res->row_array();
+    	}else {
+    		return '';
+    	}
     }
 
 
