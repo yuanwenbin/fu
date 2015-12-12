@@ -24,7 +24,7 @@ class Choice_model extends CI_Model
      */
     /*
      * 
-     *        $changeParams['user_selected'] = $data['count'];
+     * $changeParams['user_selected'] = $data['count'];
        $changeParams['user_selected_date'] =time();	
        $changeParams['user_location_id'] =$randNo[$arrIndex]['localtion_id'];
        $changeParams['user_type'] =0;
@@ -39,7 +39,7 @@ class Choice_model extends CI_Model
         }
         $str = substr($str,0,-1);
         // 修改用户状态,即已经达到2次选择了
-        if($changeParams['user_selected'] == 2)
+        if($changeParams['user_selected'] >= 2)
         {   
         	// 修改牌位信息,即查询上一次的号码修改为未出售
         	$userSQL = "select user_location_id from fu_user where user_id = " . $customerId;
@@ -57,39 +57,7 @@ class Choice_model extends CI_Model
         		}
         	}        	
         }
-        // 修改用户状态,即已经达到2次选择了
-        /*
-        if($changeParams['user_selected'] == 2)
-        {
-            /*
-            // 修改牌位信息
-            $userSQL = "select user_location_id from fu_user where user_id = " . $customerId;
-            $userRes = $this->db->query($userSQL);
-            if($userRes)
-            {
-                $userResRow = $userRes->row_array();
-                $location_id = $userResRow['user_location_id'];
-                // 把前一次的选号设置为原始末售状态
-                $sqlLocation = "update fu_location_list set location_date = 0,location_number = 2
-                                where localtion_id = " . $location_id;
-                $this->db->query($sqlLocation);
-            }
-            
-            // 修改为出售状态
-            $localSQL = "update fu_location_list set location_date = ".(time()+DATEHEADLINE).",
-            location_number = 1 where localtion_id = " . $changeParams['user_location_id'];
-            
-            $this->db->query($localSQL);            
 
-        }else {
-        	// 修改为出售状态
-            $localSQL = "update fu_location_list set location_date = ".(time()+DATEHEADLINE).",
-            location_number = 1 where localtion_id = " . $changeParams['user_location_id'];
-        
-        	$this->db->query($localSQL);
-        }    
-     	*/
-        
         // 修改为出售状态
         $localSQL = "update fu_location_list set location_date = ".time().",
             location_number = 1 where localtion_id = " . $changeParams['user_location_id'];

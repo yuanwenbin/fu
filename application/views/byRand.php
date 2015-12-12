@@ -11,6 +11,11 @@
 .refuseContent{margin:15px;margin-top:35px;}
 .refuseContent input{border:1px solid #444;padding:3px;}
 #notice{text-align:center;color:#ff0000;line-height:28px;}
+
+#randContent{position:fixed;z-index:9999;display:none;height:145px;width:250px;border:1px solid #444;background:#fff;overflow-y:auto;}
+.randContent{margin:15px;margin-top:35px;}
+.randContent input{border:1px solid #444;padding:3px;}
+#randnotice{text-align:center;color:#ff0000;line-height:28px;}
 </style>
 <script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
@@ -79,6 +84,7 @@
 </div>
 <!-- eof container -->
 
+<!-- bof 高端验证入口  -->
 <div id="refuseContent">
 	
 	<div class="refuseContent">
@@ -109,7 +115,40 @@
 	</div>   
 	      
 </div>
+<!-- eof 高端验证入口  -->
 
+<!-- bof 随机验证入口  -->
+<div id="randContent">
+	
+	<div class="randContent">
+	<form action="" method="post">
+	<table border="0" cellpadding="0" cellspacing="0" width="90%">
+		<tr>
+			<td width="44%" align="right">随机密码&nbsp;</td>
+			<td><input type="text" name="randcontent" value=""></td>
+		</tr>
+		<tr>
+			<td width="44%" align="right">&nbsp;&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="44%" align="right">&nbsp;</td>
+			<td>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="javascript:void(0);" id="randCancel">取消</a>
+			&nbsp;
+			<a href="javascript:void(0);" id="randSubmit">提交</a>
+			</td>
+		</tr>
+	</table>
+		
+
+	</form>
+	<p id="randnotice" data-attr="<?php echo $userInfo['user_selected']; ?>"></p>
+	</div>   
+	      
+</div>
+<!-- eof 随机验证入口  -->
 
 <script type="text/javascript">
 
@@ -204,17 +243,26 @@ $(document).ready(function(){
 			lottery.stop();
 
 			$.post('/Choice/byRandDo',{r:Math.random()},function(data){
-				if(data.count == 1)
+				if(data.error)
+				{
+					window.location.href="/Index/index";
+					return true;
+				}
+				$("#randnotice").attr({'data-attr':data.count});
+
+				if(data.count <= 2 )
 				{
 					$('.cancelBtn').html("<img src=\"/images/qxcx.jpg\" />");
 				    $('.sureBtn').html("<a href=\"/Choice/byRandSubmit\"><img src=\"/images/qdxh.jpg\" /></a>");
 				    //显示号码
 				    // $('#lottery ul li.active').html(data.msg);
 				    $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg);
+				    // 如果是第2次选择了，则再时行选择就得验证密码
 					return false;
 				}else
 				{   
 					$('#lottery ul li').removeClass('active').eq(0).addClass('active').html("选号中...");
+					// $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg);
 					window.location.href="/Choice/byRandSubmit";
 					return true;
 				}				
@@ -230,6 +278,54 @@ $(document).ready(function(){
     });
     //检测是否选号了 /Choice/byRandSubmit
     $('.cancelBtn').click(function(){
+        var dd = $("#randnotice").attr('data-attr');
+        dd = parseInt(dd);
+        // 验证
+        if(dd==2)
+        {
+       		var  windowHeight=$(window).height(); 
+        	var  windowWidth=$(window).width(); 
+        	var tops = (windowHeight - 145)/2;
+        	var widths = (windowWidth - 250)/2;
+        	$("#randContent").css({top:tops,left:widths});
+        	$("#randContent").show();		 
+        	
+
+        	$("input[name='randcontent']").focus(function(){
+        		$("#randnotice").html("");
+        	});
+
+        	$("#randCancel").click(function(){
+        		$("#randContent").hide();	
+        		$("#randnotice").html("");
+        	});
+
+        	$("#randSubmit").click(function(){
+        		var pass = $("input[name='randcontent']").val();
+        		if(pass == '')
+        		{
+        			$("#randnotice").html("请输入密码");
+        			return false;
+        		}
+        		 var url = "/Choice/randCheckPass";
+        		var param = {pass:pass};
+        		$.post(url,param,function(data){
+        			if(data.error)
+        			{
+        				$("#randnotice").html(data.msg);
+        			}else
+        			{
+                		$("#randContent").hide();	
+                		$("#randnotice").html("");
+                		//取消按钮
+                        $('#lottery ul li').removeClass('active').html("<img src=\"/images/ico.png\" />");
+                        $('#cancelBtn_1').html("<img src=\"/images/qxcx_1.png\" />");
+                        $('.sureBtn').html("<a href=\"javascript:void(0);\"><img src=\"/images/qdxh_1.png\" /></a>");
+        			}
+        		},'json');
+        	});
+        	return false;
+        }
         $('#lottery ul li').removeClass('active').html("<img src=\"/images/ico.png\" />");
         $(this).html("<img src=\"/images/qxcx_1.png\" />");
         $('.sureBtn').html("<a href=\"javascript:void(0);\"><img src=\"/images/qdxh_1.png\" /></a>");

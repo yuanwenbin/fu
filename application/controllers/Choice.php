@@ -354,6 +354,7 @@ class Choice extends CI_Controller {
 	   			$userInfo['user_type'] = 0;
 	   		}
 	   		$view['userInfo'] = $userInfo;
+	  
 	   		if($this->session->highFlag)
 	   		{
 				$view['highFlag'] = 1;
@@ -374,13 +375,13 @@ class Choice extends CI_Controller {
 		// 是否是非法操作
 		if(!$this->orderStatus())
 	    {
-	        $arr = array('error'=>1, 'msg'=>'请先登陆!', 'count'=>0);
+	        $arr = array('error'=>1, 'msg'=>'请先登陆!', 'count'=>3);
 	        die(json_encode($arr));
 	    }
 	    
 	    if($this->orderStatus() > 2)
 	    {
-	    	$arr = array('error'=>1, 'msg'=>'你已经选择过号码了！', 'count'=>2);
+	    	$arr = array('error'=>1, 'msg'=>'你已经选择过号码了！', 'count'=>3);
 	    	die(json_encode($arr));	    	
 	    }	
 	    $data = array('error'=>1, 'msg'=>'没有相关号码了，请联系管理员！', 'count'=>0, 'isjump'=>0);
@@ -393,32 +394,19 @@ class Choice extends CI_Controller {
        	}else {
        		$data['msg'] = '你不是随机用户,而是高端用户!';
        	}
-       	$data['count'] = 2;
+       	$data['count'] = 3;
        	die(json_encode($data));
        }
  
        // 有选择过号，且有效
-       $userInfo = $this->Choice_model->searchUser('fu_user', array('body_id'=>$this->session->body_id));
-       /*
-       if($this->orderStatus() == 2)
-       {
-       	$userInfo = $this->Choice_model->searchUser('fu_user', array('body_id'=>$this->session->body_id));
-       	$param = array(
-       			'user_selected'=>$userInfo['user_selected']
-       	);
-       }else {
-       	//无选择过，或已经失效
-       	$param = array(
-       			'user_selected'=>1
-       	);
-       }
-       */              
+       $userInfo = $this->Choice_model->searchUser('fu_user', array('body_id'=>$this->session->body_id));             
        // $this->session->set_userdata($param);
        $data['count'] = $userInfo['user_selected'];	
-       if($userInfo['user_selected'] == 2)
+       if($userInfo['user_selected'] == 3)
        {
-	       	$data['msg'] = '成功选择两次，并完成了订单选号';
-	       	$data['count'] = 2;
+	       	$data['msg'] = '成功选择3次';
+	       	$data['count'] = 3;
+	       	$data['error'] = 0;
 	       	die(json_encode($data));
        }else {
        	    // 更新用户表 
@@ -449,12 +437,14 @@ class Choice extends CI_Controller {
        
        $changeParams['user_type'] =0;
        $this->Choice_model->byRandChangeModel($changeParams, $this->session->customerId);
-     
+     	/**	
        if($data['count'] ==2){
-       		$data['msg'] = '你已经选择了两次了';
+       		//$data['msg'] = '你已经选择了两次了';
+       		$data['msg'] = $randNo[$arrIndex]['localtion_id'];
         	//$this->byRandSubmit();
         	$data['isjump'] = 1;
        }
+        */
        die(json_encode($data));
 	}
 	
@@ -1001,7 +991,9 @@ class Choice extends CI_Controller {
 	    die(json_encode($data));
 	}
 	
-	
+	/**
+	 * 高端验证
+	 */
 	function highCheckPass()
 	{
 		$data = array('error'=>true,'msg'=>'非法操作');
@@ -1012,7 +1004,7 @@ class Choice extends CI_Controller {
 		
 	
 		$pass = trim($this->input->get_post('pass'));
-		if(!$pass)
+		if(!$pass && $pass != 0)
 		{
 			$data['msg'] = '密码不能为空';
 			die(json_encode($data));
@@ -1027,7 +1019,35 @@ class Choice extends CI_Controller {
 		}else {
 			$data['msg'] = '密码错误';
 		}
-		
 		die(json_encode($data));
 	}
+	
+	/**
+	 * 随机多次输入验证
+	 */
+	function randCheckPass()
+	{
+		$data = array('error'=>true,'msg'=>'非法操作');
+		if(!$this->session->body_id)
+		{
+			die(json_encode($data));
+		}
+	
+	
+		$pass = trim($this->input->get_post('pass'));
+		if(!$pass && $pass != 0)
+		{
+			$data['msg'] = '密码不能为空';
+			die(json_encode($data));
+		}
+		$pass = addslashes($pass);
+		$res = $this->Choice_model->checkPass($pass,0);
+		if($res)
+		{
+			$data = array('error'=>false,'msg'=>'正确');
+		}else {
+			$data['msg'] = '密码错误';
+		}
+		die(json_encode($data));
+	}	
 }
