@@ -67,7 +67,7 @@ class Password extends CI_Controller {
 	        echo "请联系管理员设置 高端密码";
 				}else
 				{
-					 echo "<a href='/Password/passwordCheckForHigh'>设置高端密码</a>";
+					 echo "<a href='/Password/passwordAddForHigh'>设置高端密码</a>";
 				}
 				exit;
 			}
