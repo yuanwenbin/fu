@@ -42,7 +42,7 @@ class Choice_model extends CI_Model
         if($changeParams['user_selected'] >= 2)
         {   
         	// 修改牌位信息,即查询上一次的号码修改为未出售
-        	$userSQL = "select user_location_id from fu_user where user_id = " . $customerId;
+        	$userSQL = "select user_location_id from fu_user where user_id = '" . $customerId ."'";
         	$userRes = $this->db->query($userSQL);
         	if($userRes)
         	{
@@ -176,7 +176,7 @@ class Choice_model extends CI_Model
     function searchUncompleteOrder($table,$where)
     {
         $sql = "select * from " . $table . " where " .$where;
-		
+
         $res = $this->db->query($sql);
         if($res)
         {
