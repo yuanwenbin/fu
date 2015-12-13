@@ -14,8 +14,8 @@ ul, li{list-style:none;}
     border-radius:5px;            /* W3C syntax */}
 .loginTips{line-height:40px;height:40px;color:#fff;}
 
-.bodySj{background:#fff url(../images/sj.png) center 0 no-repeat;width:1200px;margin:0 auto;}
-.container{width:100%;}
+.bodySj{background:#fff url(../images/sj.png) center 0 no-repeat;width:100%;}
+.container{width:1200px;margin:0 auto;}
 .sjTop{margin-left:340px;margin-top:187px;}
 .sjTop ul li{float:left;margin-left:30px;}
 
@@ -36,7 +36,7 @@ height: 89px;line-height: 89px;text-align: center;}
 .sureBtn{width:100%;text-align:center;margin-top:40px;margin-bottom:40px;}
 
 
-.bodyBz{background:#fff url(../images/bz.png) center 0 no-repeat;width:1200px;margin:0 auto;}
+.bodyBz{background:#fff url(../images/bz.png) center 0 no-repeat;width:100%;}
 .bzFrom{width:375px;margin:150px auto 50px auto;}
 #bzForm input{height:38px;line-height:38px;border:1px solid #bf965b;width:240px;padding-left:14px; -moz-border-radius: 5px;      /* Gecko browsers */
     -webkit-border-radius: 5px;   /* Webkit browsers */
