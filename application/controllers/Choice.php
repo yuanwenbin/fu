@@ -614,12 +614,13 @@ class Choice extends CI_Controller {
 	    {
 	        header("Location:/Choice/index");
 	        exit;
-	    }
+	    }  
 	    // 有末完成订单
-	    $uncompleteParam = " order_user = " . $this->session->body_id ." and order_payment =0 and order_datetime > " . (time()-DATEHEADLINE);
+	    $uncompleteParam = " order_user = '" . $this->session->body_id ."' and order_payment =0 and order_datetime > " . (time()-DATEHEADLINE);
 	 
 	    $orderUncomplete = $this->orderUncomplete('fu_order_info', $uncompleteParam);
-	    if($orderUncomplete)
+
+ 	    if($orderUncomplete)
 	    {
 	        header("Location:/Choice/index");
 	        exit;
