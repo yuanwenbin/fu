@@ -19,7 +19,9 @@
 .refuseContent{margin:15px;margin-top:35px;}
 .refuseContent input{border:1px solid #444;padding:3px;}
 #notice{text-align:center;color:#ff0000;line-height:28px;}
-
+.myDiv{width:100%;height:100%;position:fixed;background:#000; background-color:rgba(0,,0,0.5);
+filter:Alpha(opacity=50);-moz-opacity:0.5; 
+opacity:0.5;z-index:9999;margin-top:-187px;}
 </style>
 <!--  <script type="text/javascript" src="/js/laydate.js"></script> -->
 
@@ -56,6 +58,7 @@ $(function() {
 </script>
 </head>
 <body class="bodyBz">
+<div id="myDiv"></div>
 <!-- bof container-->
 <div class="container">
 	<!-- bof 11 -->
@@ -265,6 +268,7 @@ $(document).ready(function(){
 		var  windowWidth=$(window).width(); 
 		var tops = (windowHeight - 145)/2;
 		var widths = (windowWidth - 280)/2;
+		$("#myDiv").addClass('myDiv');
 		$("#refuseContent").css({top:tops,left:widths});
 		$("#refuseContent").show();		 
 	});
@@ -276,6 +280,7 @@ $(document).ready(function(){
 	$("#refuseCancel").click(function(){
 		$("#refuseContent").hide();	
 		$("#notice").html("");
+		$("#myDiv").removeClass('myDiv');
 	});
 
 	$("#refuseSubmit").click(function(){
@@ -294,6 +299,7 @@ $(document).ready(function(){
 			}else
 			{
 				window.location.href="/Choice/byHigh";
+				$("#myDiv").removeClass('myDiv');
 			}
 		},'json');
 	});
