@@ -181,6 +181,17 @@
 	</tr>	
 	
 	
+	<tr>
+		<td width="15%" align="right">
+		价格分类权限&nbsp;
+		</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="price|priceList" <?php if($perssions[0] == 'all' || in_array('priceList', $perssions)){ echo 'checked';}?> />价格查看</p>
+		<p><input type="checkbox" name="role[]" value="price|priceAdd" <?php if($perssions[0] == 'all' || in_array('priceAdd', $perssions)){ echo 'checked';}?> />价格增加</p>
+		<p><input type="checkbox" name="role[]" value="price|priceDel" <?php if($perssions[0] == 'all' || in_array('priceDel', $perssions)){ echo 'checked';}?> />价格删除</p>
+		<p><input type="checkbox" name="role[]" value="price|priceUpdate" <?php if($perssions[0] == 'all' || in_array('priceUpdate', $perssions)){ echo 'checked';}?> />价格修改</p>		
+		</td>
+	</tr>	
 		<tr>
 		<td width="15%" align="right">&nbsp;</td>
 		<td>

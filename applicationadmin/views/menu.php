@@ -176,6 +176,27 @@
 	</li>
 	<?php } ?>	
 	
+	<?php if(hasPerssion($_SESSION['role'],'price')) { ?>
+	<li>
+		<h2>价格分类管理</h2>
+		<ul>
+			<?php if(hasPerssion($_SESSION['role'],'priceList')) { ?>
+			<li><a href="/Price/priceList" target="mainFrame">价格查看</a></li>
+			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'priceAdd')) { ?>
+			<li><a href="/Price/priceAdd" target="mainFrame">价格增加</a></li>
+			<?php } ?>
+			<!-- 
+			<?php //if(hasPerssion($_SESSION['role'],'priceDel')) { ?>
+			<li><a href="/Price/priceDel" target="mainFrame">价格删除</a></li>
+			<?php// } ?>
+			<?php //if(hasPerssion($_SESSION['role'],'priceUpdate')) { ?>
+			<li><a href="/Price/priceUpdate" target="mainFrame">价格修改</a></li>
+			<?php //} ?>	-->					
+		</ul>
+	</li>
+	<?php } ?>		
+	
 </ul>
 </body>
 </html>

@@ -135,6 +135,13 @@ function perssion()
 			'passwordAddForRand'=>'设置随机密码',
 			'passwordAddForHigh'=>'设置高端节密码',
 	);	
+	// 价格分类管理
+	$per['price'] = array(
+			'priceList'=>'价格查看',
+			'priceAdd'=>'价格增加',
+			'priceDel'=>'价格删除',
+			'priceUpdate'=>'价格修改',
+	);	
 	return $per;
 }
 /*

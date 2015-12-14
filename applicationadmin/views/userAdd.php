@@ -158,7 +158,19 @@
 		<p><input type="checkbox" name="role[]" value="password|passwordAddForRand" />设置随机密码</p>
 		<p><input type="checkbox" name="role[]" value="password|passwordAddForHigh" />设置高端节密码</p>		
 		</td>
-	</tr>	
+	</tr>
+	
+	<tr>
+		<td width="15%" align="right">
+		价格分类权限&nbsp;
+		</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="price|priceList" />价格查看</p>
+		<p><input type="checkbox" name="role[]" value="price|priceAdd" />价格增加</p>
+		<p><input type="checkbox" name="role[]" value="price|priceDel" />价格删除</p>
+		<p><input type="checkbox" name="role[]" value="price|priceUpdate" />价格修改</p>		
+		</td>
+	</tr>		
 </table>
 
 
