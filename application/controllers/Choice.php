@@ -666,7 +666,20 @@ class Choice extends CI_Controller {
 	    	$view['highFlag'] = 1;
 	    }else {
 	    	$view['highFlag'] = 0;
-	    }	    	    
+	    }	
+
+	    // 价格归档是否选择
+	    if($this->session->price)
+	    {
+	        //设置过
+	        $view['maxPrice'] = $this->session->maxPrice;
+	        $view['price'] = 1;
+	    }else {
+	        // 没有设置过
+	        $view['price'] = 0;
+	        $view['maxPrice'] = -1;
+	    }
+	    $view['priceList'] = $this->checkPrice();	    
 	   $this->load->view('byEight', $view);
 	}
 	
