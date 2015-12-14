@@ -292,8 +292,10 @@ $(document).ready(function(){
 
 				if(data.error)
 				{
-					window.location.href="/Index/index";
-					return true;
+					//window.location.href="/Index/index";
+					//return true;
+				    alert(data.msg);
+					return false;
 				}
 				$("#randnotice").attr({'data-attr':data.count});
 
