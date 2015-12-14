@@ -199,6 +199,10 @@ $(document).ready(function(){
 		if(!data.error)
 		{
 			 window.document.location.href="/Choice/index";
+		}else
+		{
+			 alert(data.msg);
+			 return false; 
 		}
 	});	
 });
