@@ -9,6 +9,22 @@ class Index extends CI_Controller {
 	}
 	public function index()
 	{  
+		/**
+				'customerId'=>'', // 用户自增 id
+				'body_id'=>'', // 身份证号码
+				'user_location_id'=>0, // 用户选择的牌位id
+				'user_type'=>0, // 用户类型
+				'user_selected'=>0, // 选择次数
+				'user_selected_date'=>0, // 选择时间
+				'isNew' => 1, // 是否是新用户
+				'is_complete' => 0, // 是否完成
+				'highFlag'=>'', // 是否验证过高端
+				'price'=>'', // 价格标识
+				'minPrice'=>'',  // 最小价格
+				'maxPrice'=>'', // 大价格
+				'count'=>0,	 // 选择的次数
+				'randThird'=>0, // 是否是已经验证可以进行第三次随机选号
+		 */
 		$data = array(
 				'customerId'=>'',
 				'body_id'=>'',
@@ -19,7 +35,11 @@ class Index extends CI_Controller {
 				'isNew' => 1,
 				'is_complete' => 0,
 				'highFlag'=>'',
+				'price'=>'',
+				'minPrice'=>'',
+				'maxPrice'=>'',
 				'count'=>0,
+				'randThird'=>0,
 		);
 		foreach($data as $k=>$v)
 		{

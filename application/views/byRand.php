@@ -17,6 +17,15 @@
 .randContent input{border:1px solid #444;padding:3px;}
 #randnotice{text-align:center;color:#ff0000;line-height:28px;}
 
+#priceNotice{text-align:center;color:#ff0000;line-height:28px;}
+
+#priceContent{position:fixed;z-index:9999;display:block;height:100px;width:255px;border:1px solid #444;background:#fff;overflow-y:auto;}
+.priceContent{margin:30px 0 0 15px;}
+.priceContent select{border:1px solid #444;padding:3px;}
+.priceContent select option{height:24px;line-height:24px;}
+
+
+
 .myDiv{width:100%;height:100%;position:fixed;background:#000; background-color:rgba(0,,0,0.5);
 filter:Alpha(opacity=50);-moz-opacity:0.5; 
 opacity:0.5;z-index:9999;margin-top:-187px;}
@@ -40,9 +49,20 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 	<li><a href="javascript:void(0);" id="noChoice"><img src="/images/myNoBtn.png" /></a></li>
 	</ul>
 	<br class="clearBoth" />
+	<!-- bof selectPrice -->
+	<?php // print_r($priceList); PRINT_R($maxPrice);?>
+	<div class="selectPriceBox">
+	价格选择：&nbsp;<select name="selectPriceBox">
+	<?php foreach($priceList as $kv) {?>
+	<option value="<?php echo $kv['price_min'] . ',' . $kv['price_max']; ?>" <?php if($maxPrice == $kv['price_max']) echo 'selected';?>>
+	<?php echo $kv['price_min'] . ' - ' . $kv['price_max']; ?></option>
+	<?php } ?>
+	</select>
+	</div>
+	<!-- eof selecPrice  -->
 	</div>
 	<!-- eof 11 -->
-
+	
 	<!-- bof 22 -->
 	<div class="sjBanner" id="lottery">
 		<ul>
@@ -57,7 +77,7 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 
 	<!-- bof 33 -->
 	<div class="sjChoiceBtn">
-	<a href="javascript:void(0);" class="startRand"><img src="/images/ksxh.jpg" /></a>
+	<a href="javascript:void(0);" class="startRand" id="startRand"><img src="/images/ksxh.jpg" /></a>
 	
 	<?php if($userInfo['user_selected']) {?>
 	<a href="javascript:void(0);" class="cancelBtn" id="cancelBtn">
@@ -88,6 +108,27 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 	<!-- eof 44 -->
 </div>
 <!-- eof container -->
+
+<!-- bof 价格档次选择  -->
+<?php if(!$price) { ?>
+<div id="priceContent">
+	
+	<div class="priceContent">
+	<form onSubmit="javascript:return false;">
+	<label>价位：</label><select name="price">
+	<?php foreach($priceList as $vv) {?>
+	<option value="<?php echo $vv['price_min'] . ',' . $vv['price_max'];?>"><?php echo $vv['price_min'] . '-' . $vv['price_max'];?></option>
+	<?php } ?>
+	</select>&nbsp;&nbsp;
+	<input type="submit" name="submitPrice" value="提交" />
+	
+	</form>
+	<p id="priceNotice"></p>
+	</div>   
+	      
+</div>
+<?php } ?>
+<!-- eof 价格档次选择  -->
 
 <!-- bof 高端验证入口  -->
 <div id="refuseContent">
@@ -248,6 +289,7 @@ $(document).ready(function(){
 			lottery.stop();
 
 			$.post('/Choice/byRandDo',{r:Math.random()},function(data){
+
 				if(data.error)
 				{
 					window.location.href="/Index/index";
@@ -255,15 +297,27 @@ $(document).ready(function(){
 				}
 				$("#randnotice").attr({'data-attr':data.count});
 
-				if(data.count <= 2 )
+				if(data.count == 1 )
 				{
 					$('.cancelBtn').html("<img src=\"/images/qxcx.jpg\" />");
 				    $('.sureBtn').html("<a href=\"/Choice/byRandSubmit\"><img src=\"/images/qdxh.jpg\" /></a>");
 				    //显示号码
 				    // $('#lottery ul li.active').html(data.msg);
 				    $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg);
-				    // 如果是第2次选择了，则再时行选择就得验证密码
 					return false;
+				}else if(data.count == 2)
+				{
+					$('.cancelBtn').html("<img src=\"/images/qxcx.jpg\" />");
+				    $('.sureBtn').html("<a href=\"/Choice/byRandSubmit\"><img src=\"/images/qdxh.jpg\" /></a>");
+				    //显示号码
+				    // $('#lottery ul li.active').html(data.msg);
+				    $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg);
+									
+					if(parseInt(data.randThird) == 0)
+					{
+						alert(data.msg);
+					}
+				    return false;	
 				}else
 				{   
 					$('#lottery ul li').removeClass('active').eq(0).addClass('active').html("选号中...");
@@ -384,6 +438,55 @@ $(document).ready(function(){
 		},'json');
 	});
 });
+
+// 价格归档
+$(document).ready(function(){
+	// 如果没有设置 0－没有,1-设置过
+	var price = "<?php echo $price; ?>";
+	$("#priceNotice").html("");
+	if(price == 0)
+	{
+		var  windowHeight=$(window).height(); 
+		var  windowWidth=$(window).width(); 
+		var tops = (windowHeight - 100)/2;
+		var widths = (windowWidth - 255)/2;
+		$("#myDiv").addClass('myDiv');
+		$("#priceContent").css({top:tops,left:widths});
+		$("#priceContent").show();
+		$("input[name='submitPrice']").click(function(data){
+			$("#priceNotice").html("");
+			var url = "/Choice/selectPrice";
+			var price = $("select[name='price']").val();
+			var param = {price:price};
+			$.post(url,param,function(data){
+				if(data.error)
+				{
+					$("#priceNotice").html(data.msg);
+				}else
+				{
+					window.location.href="/Choice/byRand";
+				}	
+			},'json');
+			
+			
+		});			
+	}
+
+	// 可以重新选择价格
+	$("select[name='selectPriceBox']").change(function(){
+		var selectPrice = $(this).val();
+		var url = "/Choice/selectPrice";
+		var param = {price:selectPrice};
+	
+		$.post(url,param,function(data){
+			if(!data.error)
+			{
+				window.location.href="/Choice/byRand";
+			}	
+		},'json');		
+	});
+	
+});	
 
 </script>
 </body>

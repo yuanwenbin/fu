@@ -338,7 +338,6 @@ class Choice extends CI_Controller {
 	{
 	   // 是否已经合法跳转
 	   $status = $this->orderStatus();
-
 	   if($status && $status < 3)
 	   {
 	   		$userInfo = $this->Choice_model->searchUser('fu_user', array('body_id'=>$this->session->body_id));
@@ -354,13 +353,25 @@ class Choice extends CI_Controller {
 	   			$userInfo['user_type'] = 0;
 	   		}
 	   		$view['userInfo'] = $userInfo;
-	  
+	   		// 高端定位是否验证
 	   		if($this->session->highFlag)
 	   		{
 				$view['highFlag'] = 1;
 	   		}else {
 	   			$view['highFlag'] = 0;
 	   		}
+	   		// 价格归档是否选择
+	   		if($this->session->price)
+	   		{	
+	   			//设置过
+	   			$view['maxPrice'] = $this->session->maxPrice;
+	   			$view['price'] = 1;
+	   		}else {
+	   			// 没有设置过
+	   			$view['price'] = 0;
+	   			$view['maxPrice'] = -1;
+	   		}
+	   		$view['priceList'] = $this->checkPrice();
 	   		$this->load->view('byRand',$view); 
 	   }else {
 	   		header("Location:/Index/index");
@@ -402,6 +413,7 @@ class Choice extends CI_Controller {
        $userInfo = $this->Choice_model->searchUser('fu_user', array('body_id'=>$this->session->body_id));             
        // $this->session->set_userdata($param);
        $data['count'] = $userInfo['user_selected'];	
+       $data['randThird'] = $this->session->randThird;
        if($userInfo['user_selected'] == 3)
        {
 	       	$data['msg'] = '成功选择3次';
@@ -409,10 +421,21 @@ class Choice extends CI_Controller {
 	       	$data['error'] = 0;
 	       	die(json_encode($data));
        }else {
+	       	if($data['count'] == 2)
+	       	{
+	       		$randThird = $this->session->randThird;
+	       		if(!$randThird)
+	       		{
+	       			$data['msg'] = '先验证';
+	       			$data['error'] = 0;
+	       			die(json_encode($data));
+	       		}
+	       	}       	
        	    // 更新用户表 
        		$this->Choice_model->changTable('fu_user', array('user_selected'=>$userInfo['user_selected']+1), array('body_id'=>$this->session->body_id));
        		$data['count'] = $userInfo['user_selected']+1;
        }
+
        $randNo = $this->Choice_model->byRandModel();
    
        if(!$randNo)
@@ -437,14 +460,6 @@ class Choice extends CI_Controller {
        
        $changeParams['user_type'] =0;
        $this->Choice_model->byRandChangeModel($changeParams, $this->session->customerId);
-     	/**	
-       if($data['count'] ==2){
-       		//$data['msg'] = '你已经选择了两次了';
-       		$data['msg'] = $randNo[$arrIndex]['localtion_id'];
-        	//$this->byRandSubmit();
-        	$data['isjump'] = 1;
-       }
-        */
        die(json_encode($data));
 	}
 	
@@ -831,10 +846,23 @@ class Choice extends CI_Controller {
         	$param = array('location_type'=>1, 'location_room_id'=>$roomId);
         	// $res = $this->Choice_model->searchMulti($tableName,$param);searchMultiFields
         	$fields = " localtion_id,location_number ";
-        	$res = $this->Choice_model->searchMultiFields($tableName,$param,$fields);
+        	$price = array('minPrice' =>$this->session->minPrice, 'maxPrice' =>$this->session->maxPrice);
+        	$res = $this->Choice_model->searchMultiFields($tableName,$param,$fields,$price);
         	$view['roomList'] = $roomIds;
         	$view['roomId'] = $roomId;
-        	$view['result'] = $res;    
+        	$view['result'] = $res; 
+        	// 价格归档是否选择
+        	if($this->session->price)
+        	{
+        		//设置过
+        		$view['maxPrice'] = $this->session->maxPrice;
+        		$view['price'] = 1;
+        	}else {
+        		// 没有设置过
+        		$view['price'] = 0;
+        		$view['maxPrice'] = -1;
+        	}
+        	$view['priceList'] = $this->checkPrice();	
         	$this->load->view('byHigh', $view);        	
         }else {
         	// 没有相关房间
@@ -1045,10 +1073,47 @@ class Choice extends CI_Controller {
 		$res = $this->Choice_model->checkPass($pass,0);
 		if($res)
 		{
+			$param['randThird'] = 1;
+			$this->session->set_userdata($param);
 			$data = array('error'=>false,'msg'=>'正确');
 		}else {
 			$data['msg'] = '密码错误';
 		}
 		die(json_encode($data));
 	}	
+	
+	/**
+	 * 查询价格归档
+	 */
+	private  function checkPrice()
+	{
+		$res = $this->Choice_model->checkPriceModel();
+		return $res;
+	}
+	
+	/**
+	 * 价格选择
+	 */
+	function selectPrice()
+	{
+		
+		$data = array('error'=>true,'msg'=>'非法操作');
+		$status = $this->orderStatus();
+		if($status == 0 || $status > 2)
+		{
+			die(json_encode($data));
+		}
+		$price = addslashes(trim($this->input->get_post('price')));	
+		if($price == '')
+		{
+			die(json_encode($data));
+		}	
+		$priceArr = explode(',', $price);
+		$param['minPrice'] = $priceArr[0];
+		$param['maxPrice'] = $priceArr[1];
+		$param['price'] =1;
+		$this->session->set_userdata($param);
+		$data = array('error'=>false);
+		die(json_encode($data));
+	}
 }

@@ -20,6 +20,17 @@
 	<li><a href="javascript:void(0);" id="noChoice"><img src="/images/myNoBtn.png" /></a></li>
 	</ul>
 	<br class="clearBoth" />
+	<!-- bof selectPrice -->
+	<?php // print_r($priceList); PRINT_R($maxPrice);?>
+	<div class="selectPriceBox">
+	价格选择：&nbsp;<select name="selectPriceBox">
+	<?php foreach($priceList as $kv) {?>
+	<option value="<?php echo $kv['price_min'] . ',' . $kv['price_max']; ?>" <?php if($maxPrice == $kv['price_max']) echo 'selected';?>>
+	<?php echo $kv['price_min'] . ' - ' . $kv['price_max']; ?></option>
+	<?php } ?>
+	</select>
+	</div>
+	<!-- eof selecPrice  -->	
 	</div>
 	<!-- eof 11 -->
 
@@ -142,6 +153,20 @@ $(document).ready(function(){
 		}
 		return true;
 	});
+
+	// 可以重新选择价格
+	$("select[name='selectPriceBox']").change(function(){
+		var selectPrice = $(this).val();
+		var url = "/Choice/selectPrice";
+		var param = {price:selectPrice};
+		
+		$.post(url,param,function(data){
+			if(!data.error)
+			{
+				window.location.href="/Choice/byHigh";
+			}	
+		},'json');		
+	});	
 });
 </script>
 </body>

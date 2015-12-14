@@ -4,16 +4,28 @@ class Choice_model extends CI_Model
     /**
      * 随机选号
      */
-    function byRandModel()
+    function byRandModel($minPrice = '',$maxPrice = '')
     {
         $data = array();
-        $sql = "select localtion_id from fu_location_list where location_type = 0 and location_number = 2 and location_isshow = 1";
+        $where = " and ";
+        if($minPrice== '')
+        {
+        	$minPrice = $this->session->minPrice;
+        }
+        if($maxPrice== '')
+        {
+        	$maxPrice = $this->session->maxPrice;
+        } 
+        $where .= " location_price >= " . $minPrice . " and location_price < " . $maxPrice;
+        $sql = "select localtion_id from fu_location_list where location_type = 0 and location_number = 2 and location_isshow = 1 " . $where;
+        
         $res = $this->db->query($sql);
         if(!$res)
         {
             return $data;
         }
         $resIdArr = $res->result_array();
+        
         return $resIdArr;
     }
     
@@ -152,7 +164,7 @@ class Choice_model extends CI_Model
      * @param string $fields 字段列表
      * @return array 多条记录
      */
-    function searchMultiFields($table,$param,$fields = '*')
+    function searchMultiFields($table,$param,$fields = '*', $price = '')
     {
         $where = " ";
         foreach($param as $k=>$v)
@@ -161,6 +173,10 @@ class Choice_model extends CI_Model
         }
     
         $where = substr($where, 0, -4);
+        if($price != '')
+        {
+        	$where .= " and location_price >= " . $price['minPrice'] . " and location_price < " . $price['maxPrice'];
+        }
         $sql = "select * from ".$table." where " . $where;
         $res = $this->db->query($sql);
         if($res)
@@ -266,6 +282,16 @@ class Choice_model extends CI_Model
     	}else {
     		return '';
     	}
+    }
+    
+    /**
+     * 查询价格归档
+     */
+    function checkPriceModel()
+    {
+    	$sql = "select * from fu_price order by price_min desc";
+    	$result = $this->db->query($sql);
+    	return $result->result_array();    	
     }
 
 
