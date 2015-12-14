@@ -20,7 +20,7 @@ ul, li{list-style:none;}
 .sjTop ul li{float:left;margin-left:30px;}
 
 .sjBanner{width:100%;}
-.sjBanner ul{margin-left:360px;margin-top:148px;}
+.sjBanner ul{margin-left:360px;margin-top:112px;}
 .sjBanner ul li{float:left;padding:12px;font-size: 20px;font-weight: bold;color: #fff;
 height: 89px;line-height: 89px;text-align: center;}
 #lottery ul li.active{background:#f28f35; color: #fff;
@@ -66,7 +66,7 @@ height: 89px;line-height: 89px;text-align: center;}
 .priceTag{background:url(../images/priceTag.png) 0px 4px no-repeat;height:26px;padding-left:54px;line-height:30px;margin-right:45px;}
 .myNoTagBtn{margin-top:-5px;}
 .tagAbout ul li{float:left;}
-.tagAbout{margin-top:195px;}
+.tagAbout{margin-top:159px;}
 
 .bodyMyNo{background:#fff url(../images/myno.png) center 0 no-repeat;width:1200px;margin:0 auto;}
 .myNoContent{100%;margin-top:135px;margin-bottom:40px;}
@@ -84,4 +84,12 @@ height: 89px;line-height: 89px;text-align: center;}
 .stime{line-height:38px;border:1px solid #bf965b;width:256px;padding-left:14px;height:38px; -moz-border-radius: 5px;      /* Gecko browsers */
     -webkit-border-radius: 5px;   /* Webkit browsers */
     border-radius:5px;            /* W3C syntax */}
-.stime option{line-height:38px;height:38px;}	
+.stime option{line-height:38px;height:38px;}
+
+.priceContent label{font-weight:bold;font-size:14px;}
+
+.selectPriceBox{color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 198px;
+    margin-top: 15px;}
