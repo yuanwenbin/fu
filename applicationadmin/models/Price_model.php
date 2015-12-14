@@ -70,8 +70,8 @@ class Price_model extends CI_Model
 	function checkMaxMinPriceModel()
 	{
 		$data = array();
-		$minSQL = "select min(price_min) as price_min from fu_price";
-		$maxSQL = "select max(price_max) as price_max from fu_price";
+		$minSQL = "select min(location_price) as price_min from fu_location_list";
+		$maxSQL = "select max(location_price) as price_max from fu_location_list";
 		$resMin = $this->db->query($minSQL);
 		$data['minVal'] = $resMin->row();
 		
