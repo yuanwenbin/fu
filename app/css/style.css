@@ -37,7 +37,7 @@ height: 89px;line-height: 89px;text-align: center;}
 
 
 .bodyBz{background:#fff url(../images/bz.png) center 0 no-repeat;width:100%;}
-.bzFrom{width:375px;margin:150px auto 50px auto;}
+.bzFrom{width:375px;margin:114px auto 50px auto;}
 #bzForm input{height:38px;line-height:38px;border:1px solid #bf965b;width:240px;padding-left:14px; -moz-border-radius: 5px;      /* Gecko browsers */
     -webkit-border-radius: 5px;   /* Webkit browsers */
     border-radius:5px;            /* W3C syntax */}
