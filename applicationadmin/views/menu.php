@@ -185,17 +185,44 @@
 			<?php } ?>
 			<?php if(hasPerssion($_SESSION['role'],'priceAdd')) { ?>
 			<li><a href="/Price/priceAdd" target="mainFrame">价格增加</a></li>
-			<?php } ?>
-			<!-- 
-			<?php //if(hasPerssion($_SESSION['role'],'priceDel')) { ?>
-			<li><a href="/Price/priceDel" target="mainFrame">价格删除</a></li>
-			<?php// } ?>
-			<?php //if(hasPerssion($_SESSION['role'],'priceUpdate')) { ?>
-			<li><a href="/Price/priceUpdate" target="mainFrame">价格修改</a></li>
-			<?php //} ?>	-->					
+			<?php } ?>			
 		</ul>
 	</li>
-	<?php } ?>		
+	<?php } ?>	
+	
+	<?php if(hasPerssion($_SESSION['role'],'memberteam')) { ?>
+	<li>
+		<h2>业务员管理</h2>
+		<ul>
+			<?php if(hasPerssion($_SESSION['role'],'memberteamList')) { ?>
+			<li><a href="/Memberteam/memberteamList" target="mainFrame">分组查看</a></li>
+			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'memberteamAdd')) { ?>
+			<li><a href="/Memberteam/memberteamAdd" target="mainFrame">分组增加</a></li>
+			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'memberteamDel')) { ?>
+			<li><a href="/Memberteam/memberteamDel" target="mainFrame">分组删除</a></li>
+			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'memberteamUpdate')) { ?>
+			<li><a href="/Memberteam/memberteamUpdate" target="mainFrame">分组编辑</a></li>
+			<?php } ?>	
+
+			<?php if(hasPerssion($_SESSION['role'],'memberteamListUser')) { ?>
+			<li><a href="/Memberteam/memberteamListUser" target="mainFrame">业务员列表</a></li>
+			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'memberteamAddUser')) { ?>
+			<li><a href="/Memberteam/memberteamAddUser" target="mainFrame">业务员增加</a></li>
+			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'memberteamDelUser')) { ?>
+			<li><a href="/Memberteam/memberteamDelUser" target="mainFrame">业务员删除</a></li>
+			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'memberteamUpdateUser')) { ?>
+			<li><a href="/Memberteam/memberteamUpdateUser" target="mainFrame">业务员编辑</a></li>
+			<?php } ?>				
+			
+		</ul>
+	</li>
+	<?php } ?>			
 	
 </ul>
 </body>

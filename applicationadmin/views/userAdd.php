@@ -170,6 +170,23 @@
 		<p><input type="checkbox" name="role[]" value="price|priceDel" />价格删除</p>
 		<p><input type="checkbox" name="role[]" value="price|priceUpdate" />价格修改</p>		
 		</td>
+	</tr>	
+	
+	<tr>
+		<td width="15%" align="right">
+		业务员管理&nbsp;
+		</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamList" />分组查看</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAdd" />分组增加</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamDel" />分组删除</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdate" />分组编辑</p>	
+		
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamListUser" />业务员列表</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAddUser" />业务员增加</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamDelUser" />业务员删除</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdateUser" />业务员编辑</p>					
+		</td>
 	</tr>		
 </table>
 
