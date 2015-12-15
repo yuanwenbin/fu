@@ -242,6 +242,7 @@ class Tongji_model extends CI_Model
     function clearListModel()
     {
     	$affectTime = time() - 7200;
+    	
     	$sql = "select order_location_id from fu_order_info where order_payment = 0 and order_datetime < " . $affectTime;
     	$res = $this->db->query($sql);
     	$ids = '';
@@ -254,7 +255,9 @@ class Tongji_model extends CI_Model
     			$ids .= $v['order_location_id'] . ",";
     		}   
     		$ids = substr($ids,0,-1) . ")";
-    		$userSQL = "delete from fu_user where user_location_id in " . $ids;
+    		//$userSQL = "delete from fu_user where user_location_id in " . $ids;
+    		$userSQL = "update fu_user set user_location_id = 0,user_type = -1,user_selected=0,user_selected_date=0
+										user_location_id in " . $ids;
     	}
  	
     	
@@ -266,10 +269,12 @@ class Tongji_model extends CI_Model
     	$this->db->trans_start();
     	$this->db->query($upSQL);
     	$this->db->query($delSql);
+    	
     	if($ids)
     	{
     		$this->db->query($userSQL);
     	}
+    	
     	$this->db->trans_complete();
     	// 操作失败
     	if ($this->db->trans_status() === FALSE)
