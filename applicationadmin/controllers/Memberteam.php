@@ -33,7 +33,7 @@ class Memberteam extends CI_Controller {
 		if(!$memberteamList)
 		{
 			echo '暂时没有相关内容';
-			if(hasPerssion($_SESSION['role'], 'memberteamList'))
+			if(hasPerssion($_SESSION['role'], 'memberteamAdd'))
 			{
 				echo '<a href="/Memberteam/memberteamAdd">点击添加业务员分组</a>';
 			}
@@ -44,54 +44,62 @@ class Memberteam extends CI_Controller {
 		}		
 	}
 
+
 	
 	/**
-	 * 友情链接
+	 * 增加业务员分组
 	 */
-	function linkList()
-	{  
-		if(!hasPerssion($_SESSION['role'], 'linkList')){
-	        exit('无权限,请点击左栏目操作');
-	    }	
-		$linkList = $this->Curlture_model->linksList();
-		if(!$linkList)
-		{
-			echo '暂时没有相关内容,';
-			echo '<a href="/Links/addLinks">点击添加</a>';
-		}else {
-			$view = array();
-			$view['result'] = $linkList;
-			$this->load->view('linkList',$view);
+	function memberteamAdd()
+	{
+		if(!hasPerssion($_SESSION['role'], 'memberteamAdd')){
+			exit('无权限,请点击左栏目操作');
 		}
-	  //$this->load->view('userAdd');  
+		$view = array();
+		$view['teamList'] = '';
+		if(hasPerssion($_SESSION['role'], 'memberteamList')){
+	       $memberteamList = $this->Memberteam_model->memberteamListModel();
+		   if($memberteamList)
+			{
+				$view['teamList'] = $memberteamList;
+			}
+	    }
+		$this->load->view('memberteamAdd', $view);		
 	}
 	
 	/**
-	 * 增加友情链接
+	 * 增加业务员分组处理
 	 */
-	function addLinks()
+	function memberteamAddDeal()
 	{
-		if(!hasPerssion($_SESSION['role'], 'linkList')){
+		if(!hasPerssion($_SESSION['role'], 'memberteamAdd')){
 			exit('无权限,请点击左栏目操作');
 		}
-		$this->load->view('addLinks');		
-	}
 	
-	/**
-	 * 增加友情链接处理
-	 */
-	function addLinksDeal()
-	{
-		if(!hasPerssion($_SESSION['role'], 'linkList')){
-			exit('无权限,请点击左栏目操作');
-		}
-		$link_content = addslashes($this->input->get_post('friendLinks'));
-		if(!$link_content)
+		$memberteamAdd = addslashes($this->input->get_post('memberteamAdd'));
+		if(!$memberteamAdd)
 		{
 			$this->load->view('failure');
 		}else {
-			$this->Curlture_model->addLinksDealModel($link_content);
-			$this->load->view('success');
+			// 先检查是否存在重复的
+			$res = $this->Memberteam_model->memberteamQueryModel('fu_team',array('team_name'=>$memberteamAdd));
+			if($res)
+			{
+				exit('存在重复的分组名!请点击左栏目操作');
+			}
+			$param = array();
+			$param['team_name'] = $memberteamAdd;
+			$param['team_create'] = time();
+			$param['team_user_id'] = $this->session->userId;
+			$param['team_user_name'] = $this->session->admin_user;
+			$affectRow = $this->Memberteam_model->memberteamAddModel('fu_team',$param);
+			if($affectRow)
+			{
+				$this->load->view('success');
+			}else
+			{
+				$this->load->view('failure');
+			}
+			
 		}
 		
 	}
