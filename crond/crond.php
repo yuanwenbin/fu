@@ -27,6 +27,7 @@ class Model
 	function clearData()
 	{
     	$affectTime = time() - 7200;
+			/*
     	$sql = "select order_location_id from fu_order_info where order_payment = 0 and order_datetime < " . $affectTime;
     	$res = $this->query($sql);
     	$ids = '';
@@ -40,14 +41,17 @@ class Model
     		$ids = substr($ids,0,-1) . ")";
     		$userSQL = "delete from fu_user where user_location_id in " . $ids;
     	}
+			*/
     	$upSQL = "update fu_location_list set location_number = 2,location_date=0 where location_date < " . $affectTime . " and location_ispayment = 0";
     	$delSql = "delete from fu_order_info where order_payment = 0 and order_datetime <  " . $affectTime;
     	$this->update($upSQL);
     	$this->update($delSql);
+			/*
     	if($ids)
     	{
     		$this->update($userSQL);
     	}
+			*/
 
 	}
 
