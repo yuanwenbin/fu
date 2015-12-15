@@ -141,6 +141,18 @@ function perssion()
 			'priceAdd'=>'价格增加',
 			'priceDel'=>'价格删除',
 			'priceUpdate'=>'价格修改',
+	);
+
+	// 业务员管理
+	$per['memberteam'] = array(
+	    'memberteamList'=>'分组查看',
+	    'memberteamAdd'=>'分组增加',
+	    'memberteamDel'=>'分组删除',
+	    'memberteamUpdate'=>'分组编辑',
+	    'memberteamListUser'=>'业务员列表',
+	    'memberteamAddUser'=>'业务员增加',
+	    'memberteamDelUser'=>'业务员删除',
+	    'memberteamUpdateUser'=>'业务员编辑',	    
 	);	
 	return $per;
 }
