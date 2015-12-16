@@ -60,20 +60,16 @@ class Memberteam_model extends CI_Model
 	
     }
     /**
-     * 查看用户权限
+     * 删除业务分组及相关的员工
      * @param unknown $admin_id
      */
-    function perssionInfos($admin_id)
+    function memberteamDelDealModel($id)
     {
-    	$sql = "select persion_controller  from fu_admin_perssion where admin_id = " . $admin_id;
-		$result = $this->db->query($sql);
-		if($result->num_rows() < 1)
-		{
-			return '';
-		}else {
-			$idResult= $result->row();
-			return $idResult->persion_controller;
-		}   
+		$sqlTeam = "delete from fu_team where id = '" . $id . "'";
+		$sqlMember = "delete from fu_member where member_team_id = '" . $id . "'";
+		$this->db->query($sqlTeam);
+		$this->db->query($sqlMember); 
+		return true;
     }
     
     /**
@@ -87,57 +83,22 @@ class Memberteam_model extends CI_Model
     }
     
     /**
-     * 
+     * 业务员列表
      */
-    function userDel($admin_id)
+    function memberteamListUserModel()
     {
-        $sql = "delete from fu_admin where admin_id = " . $admin_id;
-        $this->db->query($sql);
-        return $this->db->affected_rows();        
+        $sql = "select * from fu_member as fm left join fu_team as ft on fm.member_team_id = ft.id";
+		$result = $this->db->query($sql);
+		if($result->num_rows() < 1)
+		{
+			return '';
+		}else {
+			return $result->result_array();
+		}   
     } 
     
-    /**
-     *
-     */
-    function userPerDel($admin_id)
-    {
-        $sql = "delete from fu_admin_perssion where admin_id = " . $admin_id;
-        $this->db->query($sql);
-        return $this->db->affected_rows();
-    }    
+   
     
-    function userInfos($admin_id)
-    {
-        $sql = "select * from fu_admin where admin_id = " . $admin_id;
-        $res = $this->db->query($sql);
-        return $res->row();
-    }
-    
-    function userInfosUpdateDeal($admin_id,$param)
-    {
-        if(isset($param['admin_password']) && !empty($param['admin_password']))
-        {
-            $sql = "update fu_admin set admin_user = '" .$param['admin_user']. "',
-                admin_password = '".md5($param['admin_password'] . $param['admin_salt'])."',
-                admin_salt = '" .$param['admin_salt']."',admin_email = '".$param['admin_email']."',
-                admin_status = '" .$param['admin_status'] . "' where admin_id = " . $admin_id;
-        }else {
-            $sql = "update fu_admin set admin_user = '" .$param['admin_user']. "',
-                admin_email = '".$param['admin_email']."',
-                admin_status = '" .$param['admin_status'] . "' where admin_id = " . $admin_id;            
-        }
-        $this->db->query($sql);
-        return $this->db->affected_rows();        
-    }
-    /**
-     * 更新用户权限
-     * @param unknown $admin_id
-     * @param unknown $perssion
-     */
-    function updatePerssion($admin_id, $perssion)
-    {
-        $upSQL = "update fu_admin_perssion set persion_controller = '" .$perssion. "' where admin_id = " . $admin_id;  
-        $this->db->query($upSQL);
-        return $this->db->affected_rows();         
-    }
+
+
 }

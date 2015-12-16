@@ -105,21 +105,99 @@ class Memberteam extends CI_Controller {
 	}
 	
 	/**
-	 * 删除友情链接
+	 * 删除分组
 	 */
-	function delLinks()
+	function memberteamDel()
 	{
-		if(!hasPerssion($_SESSION['role'], 'linkList')){
+		if(!hasPerssion($_SESSION['role'], 'memberteamDel')){
 			exit('无权限,请点击左栏目操作');
 		}
-		$id = $this->uri->segment(3,1);
-		$id = intval($id);
-		if(!$id)
+		$memberteamList = $this->Memberteam_model->memberteamListModel();
+		if(!$memberteamList)
+		{
+			echo '暂时没有相关内容';
+			if(hasPerssion($_SESSION['role'], 'memberteamAdd'))
+			{
+				echo '<a href="/Memberteam/memberteamAdd">点击添加业务员分组</a>';
+			}
+		}else {
+			$view = array();
+			$view['result'] = $memberteamList;
+			$this->load->view('memberteamDel',$view);
+		}		
+	}
+
+	/**
+	 * 删除分组处理
+	 */
+	function memberteamDelDeal()
+	{
+		if(!hasPerssion($_SESSION['role'], 'memberteamDel')){
+			exit('无权限,请点击左栏目操作');
+		}
+
+		$id = intval($this->input->get_post('id'));
+		if(!$id || $id < 1)
 		{
 			$this->load->view('failure');
-		}else {
-			$this->Curlture_model->delCurltureModel('fu_links',array('link_id'=>$id));
+		}else
+		{
+			$this->Memberteam_model->memberteamDelDealModel($id);
 			$this->load->view('success');
 		}
+	}
+	/**
+	 * 分组编辑
+	 */
+	function memberteamUpdate()
+	{
+		exit("此功能暂时不开放");
+	}
+	/**
+	 * 业务员列表
+	 */
+	function memberteamListUser()
+	{
+		if(!hasPerssion($_SESSION['role'], 'memberteamListUser')){
+			exit('无权限,请点击左栏目操作');
+		}	
+		$memberteamListUser = $this->Memberteam_model->memberteamListUserModel();
+		if(!$memberteamListUser)
+		{
+			echo '没有相关数据! ';
+			if(!hasPerssion($_SESSION['role'], 'memberteamAddUser')){
+				exit('请联系管理员');
+			}
+			echo "&nbsp;点击<a href=\"/Memberteam/memberteamAddUser\">添加</a>";
+			exit();
+		}
+		$view['memberteamListUser'] = $memberteamListUser;
+		$this->load->view('memberteamListUser', $view);
+	}
+	
+	/**
+	 * 增加业务员
+	 */
+	function memberteamAddUser()
+	{
+		if(!hasPerssion($_SESSION['role'], 'memberteamAddUser')){
+			exit('无权限,请点击左栏目操作');
+		}
+		$memberteamList = $this->Memberteam_model->memberteamListModel();
+		if(!$memberteamList)
+		{
+			echo ('没有相关分组');
+			if(!hasPerssion($_SESSION['role'], 'memberteamAdd')){
+				exit("，请先联系管理员添加业务员分组!");
+			}else
+			{
+				echo "<a href=\"/Memberteam/memberteamAdd\">添加业务员分组</a>";
+				exit();
+			}
+		}
+		// 展示列表
+		$view['memberteamList'] = $memberteamList;
+	
+		$this->load->view('memberteamAddUser',$view);
 	}
 }
