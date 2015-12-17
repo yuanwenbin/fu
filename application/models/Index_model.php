@@ -49,4 +49,44 @@ class Index_model extends CI_Model
 		}
 		return $res->row_array();
 	}
+	
+	/**
+	 * 检查是否登记过
+	 * @param unknown $bodyId
+	 */
+	function userCheck($bodyId)
+	{
+		$sql = "select * from fu_user where body_id = '".$bodyId."' limit 1";
+		$res = $this->db->query($sql);
+		if($res->num_rows() < 1)
+		{
+			return false;
+		}
+		return true;		
+	}
+	
+	/**
+	 * 更新用户信息
+	 * @param unknown $tableName
+	 * @param unknown $param
+	 * @param unknown $where
+	 */
+	function userUpdate($tableName,$param,$where)
+	{
+		$fields = "";
+		$whereStr = " where 1=1 ";
+		foreach($param as $kk=>$vv)
+		{
+			$fields .= $kk . " = '" . $vv . "',";
+		}
+		$fields = substr($fields,0,-1);
+		foreach($where as $k=>$v)
+		{
+			$whereStr .= " and " . $k . " = '" . $v ."' and ";
+		}
+		$whereStr = substr($whereStr,0,-4);
+		$sql = "update " . $tableName . " set " . $fields . $whereStr;
+		$res = $this->db->query($sql);
+		return $this->db->affected_rows();
+	}
 }

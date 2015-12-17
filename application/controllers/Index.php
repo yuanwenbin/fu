@@ -67,6 +67,12 @@ class Index extends CI_Controller {
 	
 	public function login()
 	{
+		// 判断是否有业务员登陆了
+		if(!$this->session->member_id)
+		{
+			header("Location:/Index/member");
+			exit;
+		}
 		// 身份证号码
 		$bodyId = strip_addslashe($this->input->get_post('bodyId'));
 		
@@ -140,6 +146,12 @@ class Index extends CI_Controller {
 	 */ 
 	function logout()
 	{
+		// 判断是否有业务员登陆了
+		if(!$this->session->member_id)
+		{
+			header("Location:/Index/member");
+			exit;
+		}		
 		if(isset($_SESSION) && !empty($_SESSION))
 		{
 			foreach($_SESSION as $kk => $vv)
@@ -147,8 +159,121 @@ class Index extends CI_Controller {
 				unset($_SESSION[$kk]);
 			}
 		}
-		
+		unset($_SESSION);
 		header("Location:/Index/index");
+	}
+	
+	function menus()
+	{
+		// 判断是否有业务员登陆了
+		if(!$this->session->member_id)
+		{
+			header("Location:/Index/member");
+			exit;
+		}
+		// 业务员选择
+		$this->load->view('menus');		
+	}
+	
+	/**
+	 * 用户来访登记
+	 */
+	function register()
+	{
+		// 判断是否有业务员登陆了
+		if(!$this->session->member_id)
+		{
+			header("Location:/Index/member");
+			exit;
+		}
+		$this->load->view('register');	
+	}
+	
+	/**
+	 * 来访登记处理
+	 */
+	function registerDeal()
+	{
+		$data = array();
+		$data['error'] = true;
+		$data['msg'] = '非法操作';
+		// 判断是否有业务员登陆了
+		if(!$this->session->member_id)
+		{
+			die(json_encode($data));
+		}	
+		$body_id = strip_addslashe(trim($this->input->get_post('body_id')));
+		$user_telphone = strip_addslashe(trim($this->input->get_post('user_telphone')));
+		$user_phone = strip_addslashe(trim($this->input->get_post('user_phone')));;
+		// 身份证号码
+		if(!$body_id || (strlen($body_id) != 15 && strlen($body_id) != 18))
+		{
+			$data['msg'] = '身份份证有误码';
+			die(json_encode($data));
+		}
+		if(!$user_telphone || (strlen($user_telphone) != 11))
+		{
+			$data['msg'] = '身份份证有误码';
+			die(json_encode($data));
+		}
+		// 手机验证
+		$telMatch = '/^\d{11}$/';
+		if(!preg_match($telMatch, $user_telphone))
+		{
+			$data['msg'] = '手机号码误码';
+			die(json_encode($data));
+		}	
+			
+		//$match = '/(^\d{14}$)|(^\d{17}](\d|X|x)$)/';
+		$match = '/^\d{14}(\d|X|x)$/';
+		$match_2 = '/^\d{17}(\d|X|x)$/';
+		if(!preg_match($match, $body_id) && !preg_match($match_2, $body_id))
+		{
+			$data['msg'] = '身份份证有误码';
+			die(json_encode($data));
+		}
+		$body_id = addslashes($body_id);
+		$user_telphone = addslashes($user_telphone);
+		$user_phone = $user_phone ? addslashes($user_phone) : '0';
+		// 先判断用户是否已经登记过
+		$status = $this->Index_model->userCheck($body_id);
+		// 存在的，则更新手机号，电话号码
+		if($status)
+		{
+			$paramUpdate = array();
+			$where = array();
+			$paramUpdate['user_telphone'] = $user_telphone;
+			$paramUpdate['user_phone'] = $user_phone;
+			$where['body_id'] = $body_id;
+			$res = $this->Index_model->userUpdate('fu_user',$paramUpdate,$where);
+			if($res)
+			{
+				$data['error'] = false;
+				$data['msg'] = '此用户登记过，已经成功更新信息';				
+			}else {
+				$data['error'] = true;
+				$data['msg'] = '此用户登记过，更新信息失败，请稍后重试';				
+			}
+			die(json_encode($data));
+		}
+		
+		$param = array();
+		$param['body_id'] = $body_id;
+		$param['user_telphone'] = $user_telphone;
+		$param['user_phone'] = $user_phone;
+		$param['user_team_id'] = $this->session->member_team_id; 
+		$param['user_member_id'] = $this->session->member_id; 
+		$param['user_type'] = -1;
+		$param['user_datetime'] = time();
+		$res = $this->Index_model->bodyInsert($param);
+		if($res)
+		{
+			$data['error'] = false;
+			$data['msg'] = '登记成功';		
+		}else {
+			$data['msg'] = '登记失错，请重试';
+		}
+		die(json_encode($data));
 	}
 		
 	/*

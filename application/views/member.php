@@ -52,7 +52,7 @@ $(document).ready(function(){
 				return false;
 			}else
 			{
-				window.location.href="/Index/index";
+				window.location.href="/Index/menus";
 			}
 		},'json');
 		return false;	
