@@ -1,0 +1,71 @@
+*{margin:0;padding:0;}
+body{font-size:12px; font-family:'Microsoft YaHei','宋体','黑体',Verdana, Geneva, sans-serif;color:#333;}
+select,option, select option{font-family:'Microsoft YaHei','宋体','黑体',Verdana, Geneva, sans-serif;color:#333;}
+img{border:none;}
+a{text-decoration:none;color:#444;}
+a:visited{text-decoration:none;}
+a:hover{text-decoration:underline;}
+ul,li{list-style:none;padding:0px;}
+h1,h2,h3,h4,h5,h6,p{margin:0;padding-left:5px;margin-left:5px;}
+input,select,textarea{border:1px solid #333;font-family:'Microsoft YaHei','宋体','黑体',Verdana, Geneva, sans-serif;}
+html{}
+.loginBox{width:500px;margin:175px auto 20px auto;background:url(../images/bgImg.png) no-repeat;height:352px;padding-top:50px;}
+.clearBoth{clear:both;padding:0;margin:0;}
+
+
+input,button,select,textarea{outline:none}
+.loginBox form input{border:none;height:43px;line-height:40px;}
+.loginInput{margin-left:150px;margin-top:14px;width:295px;}
+.loginInput2{margin-left:150px;margin-top:12px;width:295px;}
+.loginInput3{margin-left:50px;margin-top:14px;}
+.adminTop{border:1px solid #aaa;line-height:46px;background:#fcfcfc;font-size:16px;}
+.adminMenu{border-right:1px solid #888;padding:10px;font-size:12px;line-height:22px;background:#f8f8f8;}
+.menuList li h2{font-size:16px;font-weight:normal;background:url(../images/ico.png) no-repeat;height:30px;line-height:30px;padding-left:35px;}
+.menuList ul{padding-left:50px;font-size:14px;}
+.menuList ul li{line-height:26px;}
+
+.defaultInfos{padding:10px;background:#fff;}
+.divInfos1{margin-top:10px;line-height:26px;}
+.divInfosSearch{}
+.headerLineBackground1{background:#e5e4dc;}
+
+.roomOpen{ line-height:26px;background:#fff;}
+.roomOpen label{font-weight:bold;}
+.roomOpen h3{font-size: 16px;}
+.roomList{line-height:30px;background:#fff;width:98%;}
+.roomListInfos th{background:#e5e4dc;line-height:30px;}
+.listRoomColumns{}
+.roomListPage{width:100%;text-align:center;padding-top:20px;}
+.roomInfosDiv{padding-left:1%; }
+.searchListPos{line-height:26px;}
+
+.article_title{width:250px;}
+.tongJiTop{background:#ffffcc;padding-left:10px;}
+.numberColor{color:#ff6600;font-weight:bold;}
+.tongjiArea{width:100%;}
+.tongjiArea ul li{float:left;width:4%;text-align:center;height:30px;border:1px solid #aaa;font-size:16px;font-weight:bold;}
+.tongjiArea{padding-top:20px;}
+.statusArea_0,.statusArea_0 a{color:#ff0000;}
+.statusArea_1,.statusArea_1 a{color:#fe9900;}
+.statusArea_2,.statusArea_2 a{color:#46b33e;}
+input:-webkit-autofill {
+background-color: none;
+background-image: none;
+}
+input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+.topBg{height:75px;background:#d77a35;overflow:hidden;}
+.topMenuTagsLeft{float:left;padding-left:10px;}
+.topMenuTagsRight{float:right;margin-right:30px;}
+.topMenuTagsLeft span{color:#d77a35;}
+.currentList a{text-decoration:underline;color:#ff0000;}
+.container{min-height:500px;font-size:14px;}
+.footer{width:100%;text-align:center;padding-top:10px;padding-bottom:10px;background:#f4f4f4;}
+.headerLineBackground{font-size:16px;}
+hr{border:none;border-bottom:1px solid #d8d8d8;}
+.orderListDiv{line-height:30px;}
+#loginBg{background:url(../images/backBg.png);}
+.orderListDetails a{text-decoration:underline;color:#008800;}
