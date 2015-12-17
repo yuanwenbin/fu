@@ -135,17 +135,7 @@
 		</ul>
 	</li>	
 	<?php } ?>	
-	
-	<?php if(hasPerssion($_SESSION['role'],'curlture')) { ?>
-	<li>
-		<h2>道教文化</h2>
-		<ul>
-
-		    <li><a href="/Curlture/curlture" target="mainFrame">道教文化</a></li>
-
-		</ul>
-	</li>	
-	<?php } ?>		
+		
 
 	<?php if(hasPerssion($_SESSION['role'],'orderList')) { ?>
 	<li>
