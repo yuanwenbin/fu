@@ -16,7 +16,7 @@
 		<td align="center"><input type="text" name="bodyId" value="" class="bodyId" /></td>
 	</tr>
 	<tr>
-		<td align="center"><p class="loginTips">&nbsp;</p></td>
+		<td align="center"><p class="loginTips"><a href="/Index/logout">清空信息</a></p></td>
 	</tr>
 	<tr>
 		<td  align="center"><input type="image" name="submit" src="/images/loginBtn.png" /></td>
