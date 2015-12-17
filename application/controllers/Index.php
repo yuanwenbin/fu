@@ -25,6 +25,13 @@ class Index extends CI_Controller {
 				'count'=>0,	 // 选择的次数
 				'randThird'=>0, // 是否是已经验证可以进行第三次随机选号
 		 */
+		// 判断是否有业务员登陆了
+		if(!$this->session->member_id)
+		{
+			header("Location:/Index/member");
+			exit;
+		}
+
 		$data = array(
 				'customerId'=>'',
 				'body_id'=>'',
@@ -45,7 +52,7 @@ class Index extends CI_Controller {
 		{
 			unset($_SESSION[$k]);
 		}
-		unset($_SESSION);
+	
 		$bodyIdJiami = isset($_COOKIE[COOKIE_CUSTOMER_BODYID_FRONT]) && !empty($_COOKIE[COOKIE_CUSTOMER_BODYID_FRONT]) ? $_COOKIE[COOKIE_CUSTOMER_BODYID_FRONT] : '';
 		if($bodyIdJiami)
 		{
@@ -82,6 +89,68 @@ class Index extends CI_Controller {
 		set_cookie(COOKIE_CUSTOMER_BODYID_FRONT, $bodyIdEncode, COOKIE_EXPIRE_FRONT,COOKIE_DOMAIN_FRONT,COOKIE_PATH_FRONT);		
 		header("Location:/Choice/Index");
 	}
+	
+	/**
+	 * 业务员登陆入口
+	 */
+	function member()
+	{
+		if($this->session->member_id)
+		{
+			header("Location:/Index/index");
+			exit;
+		}
+		// 显示登陆框	
+		$this->load->view('member');
+	}
+	
+	/**
+	 * 业务登陆入口验证
+	 */
+	function memberValidate()
+	{
+		$data = array();
+		$data['error'] = true;
+		$data['msg'] = '非法操作';
+		$username = addslashes($this->input->get_post('username'));
+		$password = addslashes($this->input->get_post('password'));
+		if($username == '' || $password == '')
+		{
+			die(json_encode($data));
+		}
+		$member = $this->Index_model->memberValidateModel($username,$password);
+		if(!$member)
+		{
+			$data['msg'] = '账号密码出错';
+			die(json_encode($data));
+		}
+		if(!$member['member_flag'])
+		{
+			$data['msg'] = '账号被冻结，请联系管理员解冻';
+			die(json_encode($data));
+		}
+		$this->session->set_userdata($member);
+		$data['error'] = false;
+		$data['msg'] = '成功登陆';
+		die(json_encode($data));		
+	}
+	
+	/**
+	 * 清空全部信息
+	 */ 
+	function logout()
+	{
+		if(isset($_SESSION) && !empty($_SESSION))
+		{
+			foreach($_SESSION as $kk => $vv)
+			{
+				unset($_SESSION[$kk]);
+			}
+		}
+		
+		header("Location:/Index/index");
+	}
+		
 	/*
 	public function login()
 	{

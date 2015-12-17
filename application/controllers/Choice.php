@@ -10,6 +10,13 @@ class Choice extends CI_Controller {
 	// 是否登陆了
 	function userIsLogin()
 	{
+		// 判断是否有业务员登陆了
+		if(!$this->session->member_id)
+		{
+			header("Location:/Index/member");
+			exit;
+		}
+		// 判断是否登陆了		
 	    if(!$this->session->body_id)
 	    {
 	        header("Location:/Index/index");
@@ -276,6 +283,8 @@ class Choice extends CI_Controller {
 			$param['body_id'] = $this->session->body_id;
 			$param['user_datetime'] = time();
 			$param['user_type'] = -1;
+			$param['user_member_id'] = $this->session->member_user_id;
+			$param['user_team_id'] = $this->session->member_team_id;
 			$customerId = $this->Choice_model->insertOrder('fu_user',$param);
 			if($customerId)
 			{
@@ -335,7 +344,7 @@ class Choice extends CI_Controller {
 	 * 随机选号展示
 	 */
 	function byRand()
-	{
+	{	
 	   // 是否已经合法跳转
 	   $status = $this->orderStatus();
 	   if($status && $status < 3)
