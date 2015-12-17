@@ -33,4 +33,20 @@ class Index_model extends CI_Model
 		$this->db->query($sql);
 		return $this->db->insert_id();
 	}
+	
+	/**
+	 * 业务员登陆验证
+	 * @param string $username
+	 * @param string $password
+	 */
+	function memberValidateModel($username,$password)
+	{
+		$sql = "select * from fu_member where member_username = '".$username."' and member_password = '".$password."' limit 1";
+		$res = $this->db->query($sql);
+		if($res->num_rows() < 1)
+		{
+			return array();
+		}
+		return $res->row_array();
+	}
 }
