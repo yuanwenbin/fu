@@ -18,7 +18,7 @@
 	</div>
 	<div  class="menusBottom">
 		<div  class="menusBottomLeft"><a href="">统计中心</a></div>
-		<div class="menusBottomRight"><a href="">管理后台</a></div>
+		<div class="menusBottomRight"><a href="/Members/index">管理后台</a></div>
 		<br class="clearBoth" />
 	</div>
 	
