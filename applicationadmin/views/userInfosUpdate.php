@@ -206,7 +206,8 @@
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamListUser" <?php if($perssions[0] == 'all' || in_array('memberteamListUser', $perssions)){ echo 'checked';}?> />业务员列表</p>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAddUser" <?php if($perssions[0] == 'all' || in_array('memberteamAddUser', $perssions)){ echo 'checked';}?> />业务员增加</p>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamDelUser" <?php if($perssions[0] == 'all' || in_array('memberteamDelUser', $perssions)){ echo 'checked';}?> />业务员删除</p>
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdateUser" <?php if($perssions[0] == 'all' || in_array('memberteamUpdateUser', $perssions)){ echo 'checked';}?> />业务员编辑</p>				
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdateUser" <?php if($perssions[0] == 'all' || in_array('memberteamUpdateUser', $perssions)){ echo 'checked';}?> />业务员编辑</p>	
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamSaleUser" <?php if($perssions[0] == 'all' || in_array('memberteamSaleUser', $perssions)){ echo 'checked';}?> />业务员业绩查看</p>			
 		</td>
 	</tr>	
 	

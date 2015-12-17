@@ -152,7 +152,8 @@ function perssion()
 	    'memberteamListUser'=>'业务员列表',
 	    'memberteamAddUser'=>'业务员增加',
 	    'memberteamDelUser'=>'业务员删除',
-	    'memberteamUpdateUser'=>'业务员编辑',	    
+	    'memberteamUpdateUser'=>'业务员编辑',
+	    'memberteamSaleUser'=>'业务员业绩',
 	);	
 	return $per;
 }

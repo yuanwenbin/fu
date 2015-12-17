@@ -185,7 +185,8 @@
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamListUser" />业务员列表</p>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAddUser" />业务员增加</p>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamDelUser" />业务员删除</p>
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdateUser" />业务员编辑</p>					
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdateUser" />业务员编辑</p>	
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamSaleUser" />业务员业绩查看</p>			
 		</td>
 	</tr>		
 </table>
