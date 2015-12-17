@@ -69,3 +69,14 @@ hr{border:none;border-bottom:1px solid #d8d8d8;}
 .orderListDiv{line-height:30px;}
 #loginBg{background:url(../images/backBg.png);}
 .orderListDetails a{text-decoration:underline;color:#008800;}
+/*写菜单入口*/
+.menusBox{width:300px;margin:100px auto 10px auto;}
+.menusTopLeft,.menusBottomLeft{width:140px;float:left;border:1px solid #888;text-align:center;height:100px;line-height:100px;
+	font-weight:normal;	margin-bottom:15px;	font-size:14px;
+}
+.menusTopRight,.menusBottomRight{width:140px;float:right;border:1px solid #888;text-align:center;height:100px;line-height:100px;
+font-weight:normal;margin-bottom:15px;font-size:14px;}
+
+/*来访登记*/
+.register{width:300px;margin:100px auto 10px auto;}
+.register input{padding-left:3px;}
