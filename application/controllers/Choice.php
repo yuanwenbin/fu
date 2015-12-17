@@ -283,7 +283,7 @@ class Choice extends CI_Controller {
 			$param['body_id'] = $this->session->body_id;
 			$param['user_datetime'] = time();
 			$param['user_type'] = -1;
-			$param['user_member_id'] = $this->session->member_user_id;
+			$param['user_member_id'] = $this->session->member_id;
 			$param['user_team_id'] = $this->session->member_team_id;
 			$customerId = $this->Choice_model->insertOrder('fu_user',$param);
 			if($customerId)

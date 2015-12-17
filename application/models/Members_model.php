@@ -16,7 +16,10 @@ class Members_model extends CI_Model
 			$startNumber = ($page-1) * $pageSize;
 			$limit .= " limit " . $startNumber . "," . $pageSize;
 		}
-		$sql = "select *  from fu_user where user_member_id = '" . $member_id . "' order by user_id desc" . $limit;
+		$sql = "select *  from fu_user as fu_user 
+		        left join fu_order_info as fu_order_info
+		        on fu_user.body_id = fu_order_info.order_user
+		        where fu_user.user_member_id = '" . $member_id . "' order by fu_user.user_id desc" . $limit;
 		$query = $this->db->query($sql);
 		if ($query->num_rows() > 0) {
 				return $query->result_array();
@@ -103,7 +106,7 @@ class Members_model extends CI_Model
 		$andFields = "";
 		if(isset($param['order_payment']))
 		{
-			$andFields .= " and fu_order_info = '" .$param['order_payment'] ."'";
+			$andFields .= " and fu_order_info.order_payment = '" .$param['order_payment'] ."'";
 		}
 		$sql = "select sum(fu_order_info.order_price) as total from fu_order_info as fu_order_info
 					join fu_user as fu_user on fu_order_info.order_user = fu_user.body_id

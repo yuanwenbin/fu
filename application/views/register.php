@@ -31,6 +31,7 @@
 			<td height="28">&nbsp;
 			<input type="reset" name="reset" value="重置" />&nbsp;&nbsp;
 			<input type="submit" name="submit" value="提交" />&nbsp;&nbsp;
+			<a href="/Index/menus">菜单中心</a>
 			</td>
 		</tr>
 	</table>
