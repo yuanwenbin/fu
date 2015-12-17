@@ -12,34 +12,39 @@
 <body class="roomList">
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">
-业务员分组列表
+业务员列表
 </h3>
 
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
-		<th width="30%" align="center">分组名</th>
-		<th width="30%" align="center">增加管理员</th>
-		<th width="35%" align="center">增加时间</th>
+		<th width="20%" align="center">用户名</th>
+		<th width="20%" align="center">手机号</th>
+		<th width="20%" align="center">分组名</th>
+		<th width="18%" align="center">真名</th>
+		<th width="20%" align="center">开设时间</th>
 	</tr>
-	<?php
-	if(isset($result) && ($result)) {
-	foreach($result as $key=>$val){
+	<?php 
+	if(isset($memberteamListUser) && ($memberteamListUser)) {
+	foreach($memberteamListUser as $key=>$val){
 	?>
 	<tr>
-		<td width="30%" align="center">
+		<td width="20%" align="center">
+		<?php echo $val['member_username']; ?>
+		</td>
+		<td width="20%" align="center">
+		<?php echo $val['member_telphone']; ?>
+		</td>
+		<td width="20%" align="center">
 		<?php echo $val['team_name']; ?>
 		</td>
-		<td width="30%" align="center">
-		<?php echo $val['team_user_name']; ?>
+		<td width="18%" align="center">
+		<?php echo $val['member_realname']; ?>
 		</td>
-		<td width="35%" align="center">
-		<?php echo date('Y-m-d H:i:s', $val['team_create']); ?>
+		<td width="20%" align="center">
+		<?php echo date('Y-m-d H:i:s',$val['member_create']); ?>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="4"><hr/></td>
-	</tr>
-	<?php } }else { ?>
+	<?php } } else {?>
 	<tr>
 		<td colspan="3">暂时没有相关内容</td>
 	</tr>

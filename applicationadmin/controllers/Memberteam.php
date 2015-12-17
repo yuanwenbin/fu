@@ -197,7 +197,63 @@ class Memberteam extends CI_Controller {
 		}
 		// 展示列表
 		$view['memberteamList'] = $memberteamList;
-	
+		
 		$this->load->view('memberteamAddUser',$view);
+	}
+
+	/**
+	 * 增加业务员处理
+	 */
+	function memberteamAddUserDeal()
+	{
+		if(!hasPerssion($_SESSION['role'], 'memberteamAddUser')){
+			exit('无权限,请点击左栏目操作');
+		}
+		
+		$member_team_id = intval($this->input->get_post('member_team_id'));
+		$member_username = addslashes($this->input->get_post('member_username'));
+		$member_password = addslashes($this->input->get_post('member_password'));
+		$member_realname = addslashes($this->input->get_post('member_realname'));
+		$member_telphone = addslashes($this->input->get_post('member_telphone'));
+		$member_phone = addslashes($this->input->get_post('member_phone'));
+		$member_user_id = $this->session->userId;
+		$member_user_name = $this->session->admin_user;
+		$member_create = time();
+		if(!$member_team_id || !$member_username || !$member_password || !$member_realname || !$member_telphone)
+		{
+			exit('非法操作');
+		}
+		$param = array('member_team_id'=>$member_team_id,
+					   'member_username'=>$member_username,
+						'member_password'=>$member_password,
+						'member_realname'=>$member_realname,
+						'member_telphone'=>$member_telphone,
+						'member_phone'=>$member_phone,
+						'member_user_id'=>$member_user_id,
+						'member_user_name'=>$member_user_name,
+						'member_create'=>$member_create
+						);
+		$affectRow = $this->Memberteam_model->memberteamAddModel('fu_member',$param);
+		if($affectRow)
+		{
+			$this->load->view('success');
+		}else
+		{
+			$this->load->view('failure');
+		}
+	}
+	/**
+	 * 删除业务员
+	 */
+	function memberteamDelUser()
+	{
+		exit('此功能暂不开放');
+	}
+	/**
+	 * 编辑业务员
+	 */
+	function memberteamUpdateUser()
+	{
+		exit('此功能暂不开放');
 	}
 }
