@@ -69,3 +69,18 @@ hr{border:none;border-bottom:1px solid #d8d8d8;}
 .orderListDiv{line-height:30px;}
 #loginBg{background:url(../images/backBg.png);}
 .orderListDetails a{text-decoration:underline;color:#008800;}
+
+/*业务员统计中心*/
+.members{}
+.headerLineBackground{text-align:center;line-height:30px;margin-top:10px;}
+.headerLineBackground font{color:#ff0000;}
+.members table tr{line-height:30px;}
+.members table tr td{border-top:1px solid #d8d8d8;}
+.backBtnMember{text-align:center;line-height:40px;}
+
+/*业务员拉的会员列表*/
+.membersUserList{width:1000px;margin:0 auto;}
+.headerLineBackground{text-align:center;line-height:30px;margin-top:15px;}
+.headerLineBackground font{color:#ff0000;}
+.membersUserList table tr{line-height:30px;}
+.membersUserList table tr td{border-top:1px solid #d8d8d8;}
