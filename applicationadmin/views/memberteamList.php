@@ -42,8 +42,11 @@
 		<a href="/Memberteam/memberteamAdd">分组增加</a>&nbsp;&nbsp;
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'memberteamDel')) { ?>
-		<a class="delTeam" href="/Memberteam/memberteamDelDeal?id=<?php echo $val['id'];?>">删除</a>
+		<a class="delTeam" href="/Memberteam/memberteamDelDeal?id=<?php echo $val['id'];?>">删除</a>&nbsp;&nbsp;
 		<?php } ?>
+		<?php if(hasPerssion($_SESSION['role'],'memberteamUpdate')) { ?>
+		<a href="/Memberteam/memberteamUpdate?id=<?php echo $val['id'];?>">分组编辑</a>
+		<?php } ?>	
 
 		</td>
 	</tr>

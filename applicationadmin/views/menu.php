@@ -188,17 +188,9 @@
 			<li><a href="/Memberteam/memberteamList" target="mainFrame">分组查看</a></li>
 			<?php } ?>
 
-			<?php if(hasPerssion($_SESSION['role'],'memberteamUpdate')) { ?>
-			<li><a href="/Memberteam/memberteamUpdate" target="mainFrame">分组编辑</a></li>
-			<?php } ?>	
-
 			<?php if(hasPerssion($_SESSION['role'],'memberteamListUser')) { ?>
 			<li><a href="/Memberteam/memberteamListUser" target="mainFrame">业务员列表</a></li>
 			<?php } ?>
-			<?php if(hasPerssion($_SESSION['role'],'memberteamUpdateUser')) { ?>
-			<li><a href="/Memberteam/memberteamUpdateUser" target="mainFrame">业务员编辑</a></li>
-			<?php } ?>				
-			
 		</ul>
 	</li>
 	<?php } ?>			

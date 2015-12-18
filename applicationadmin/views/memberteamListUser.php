@@ -8,6 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
@@ -49,12 +50,15 @@
 		<a href="/Memberteam/memberteamAddUser">增加</a>&nbsp;
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'memberteamDelUser')) { ?>
-		<a href="/Memberteam/memberteamDelUser">删除</a>
+		<a href="/Memberteam/memberteamDelUser?id=<?php echo $val['member_id'];?>" class="sureDel">删除</a>
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'memberteamSaleUser')) { ?>
-		<a href="/Memberteam/memberteamSaleUser?id=<?php echo $val['member_id'];?>">业绩</a>
+		<a  href="/Memberteam/memberteamSaleUser?id=<?php echo $val['member_id'];?>">业绩</a>
 		<?php } ?>
-		</td>
+		<?php if(hasPerssion($_SESSION['role'],'memberteamUpdateUser')) { ?>
+		<a href="/Memberteam/memberteamUpdateUser?id=<?php echo $val['member_id'];?>">编辑</a>
+		<?php } ?>
+		</td> 
 	</tr>
 	<?php } } else {?>
 	<tr>
@@ -63,7 +67,17 @@
 	<?php } ?>
 </table>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".sureDel").click(function(){
+		if(confirm("确定要删除吗？"))
+		{
+			return true;
+		}
+		return false;
+	});		
+});
 
-
+</script>
 </body>
 </html>
