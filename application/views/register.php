@@ -18,19 +18,19 @@
 	<form>
 	<table border="0" cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-			<td width="100" align="right" height="28">登记身份证号码&nbsp;</td>
-			<td  height="28"><input type="text" name="body_id" value="" />&nbsp;(*)</td>
+			<td width="140" align="right" height="28">登记身份证号码&nbsp;</td>
+			<td  height="28"><input type="text" name="body_id" value="" />&nbsp;<font>(*)</font></td>
 		</tr>
 		<tr>
-			<td width="100" align="right"  height="28">手机号码&nbsp;</td>
-			<td  height="28"><input type="text" name="user_telphone" value="" />&nbsp;(*)</td>
+			<td width="140" align="right"  height="28">手机号码&nbsp;</td>
+			<td  height="28"><input type="text" name="user_telphone" value="" />&nbsp;<font>(*)</font></td>
 		</tr>
 		<tr>
-			<td width="100" align="right"  height="28">电话号码&nbsp;</td>
+			<td width="140" align="right"  height="28">电话号码&nbsp;</td>
 			<td  height="28"><input type="text" name="user_phone" value="" /></td>
 		</tr>
 		<tr>
-			<td width="100" align="right"  height="28">&nbsp;</td>
+			<td width="140" align="right"  height="28">&nbsp;</td>
 			<td height="28">&nbsp;
 			<input type="reset" name="reset" value="重置" />&nbsp;&nbsp;
 			<input type="submit" name="submit" value="提交" />&nbsp;&nbsp;
