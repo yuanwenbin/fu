@@ -52,7 +52,7 @@
 		<a href="/Memberteam/memberteamDelUser">删除</a>
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'memberteamSaleUser')) { ?>
-		<a href="/Memberteam/memberteamSaleUser">业绩</a>
+		<a href="/Memberteam/memberteamSaleUser?id=<?php echo $val['member_id'];?>">业绩</a>
 		<?php } ?>
 		</td>
 	</tr>

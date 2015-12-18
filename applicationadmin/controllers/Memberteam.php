@@ -151,6 +151,9 @@ class Memberteam extends CI_Controller {
 	 */
 	function memberteamUpdate()
 	{
+	    if(!hasPerssion($_SESSION['role'], 'memberteamUpdate')){
+	        exit('无权限,请点击左栏目操作');
+	    }	    
 		exit("此功能暂时不开放");
 	}
 	/**
@@ -247,6 +250,9 @@ class Memberteam extends CI_Controller {
 	 */
 	function memberteamDelUser()
 	{
+	    if(!hasPerssion($_SESSION['role'], 'memberteamDelUser')){
+	        exit('无权限,请点击左栏目操作');
+	    }	    
 		exit('此功能暂不开放');
 	}
 	/**
@@ -254,6 +260,84 @@ class Memberteam extends CI_Controller {
 	 */
 	function memberteamUpdateUser()
 	{
+	    if(!hasPerssion($_SESSION['role'], 'memberteamUpdateUser')){
+	        exit('无权限,请点击左栏目操作');
+	    }	    
 		exit('此功能暂不开放');
 	}
+	
+	/**
+	 * 业务员业绩
+	 */
+	function memberteamSaleUser()
+	{
+	    if(!hasPerssion($_SESSION['role'], 'memberteamSaleUser')){
+	        exit('无权限,请点击左栏目操作');
+	    }	
+        $id = intval(trim($this->input->get_post('id')));
+        if(!$id || $id < 0)
+        {
+            exit('非法操作');
+        }
+        //会员总数
+        $param['user_member_id'] = $id;
+        $totalMembers = $this->Memberteam_model->orderTotalNumberModel($param);
+        // 总金额
+        $totalMoney = $this->Memberteam_model->orderTotalMoneyModel($param);
+        // 已经支付金额
+        $param['order_payment'] = 1;
+        $totalMoneyPay = $this->Memberteam_model->orderTotalMoneyModel($param);
+        $memberInfos = $this->Memberteam_model->getMemberTeam($id);
+        if(!$memberInfos)
+        {
+            exit('没有相关记录');
+        }
+        $view['memberInfos'] = $memberInfos;
+        $view['totalMembers'] = $totalMembers;
+        $view['totalMoney'] = $totalMoney;
+        $view['totalMoneyPay'] = $totalMoneyPay; 
+        $this->load->view('memberteamSaleUser',$view);       
+	}
+	
+	/**
+	 * 业务员用户列表
+	 */
+	function MemberteamUserList()
+	{
+		if(!hasPerssion($_SESSION['role'], 'memberteamSaleUser')){
+	        exit('无权限,请点击左栏目操作');
+	    }
+	    $id = intval(trim($this->input->get_post('id')));
+	    if(!$id || $id < 0)
+	    {
+	        exit('非法操作');
+	    }  
+	    // 会员列表
+	    $userList = $this->Memberteam_model->MemberteamUserListModel($id);
+	    $view['userList'] = $userList;
+	    $memberInfos = $this->Memberteam_model->getMemberTeam($id);
+	    $view['memberInfos'] = $memberInfos;
+	    $this->load->view('MemberteamUserList', $view);
+	}
+
+	/**
+	 * 业务员订单列表
+	 */
+	function MemberteamOrderList()
+	{
+		if(!hasPerssion($_SESSION['role'], 'memberteamSaleUser')){
+            exit('无权限,请点击左栏目操作');
+	    }
+	    $id = intval(trim($this->input->get_post('id')));
+	    if(!$id || $id < 0)
+	    {
+	        exit('非法操作');
+	    }
+	    $order_payment = 'all'; // 是否支付
+	    $orderList = $this->Memberteam_model->MemberteamOrderListModel($id, $order_payment);
+	    $view['memberOrderList'] = $orderList;
+	    $memberInfos = $this->Memberteam_model->getMemberTeam($id);
+	    $view['memberInfos'] = $memberInfos;
+	    $this->load->view('MemberteamOrderList', $view);
+	}	
 }
