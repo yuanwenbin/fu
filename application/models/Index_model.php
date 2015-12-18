@@ -45,6 +45,12 @@ class Index_model extends CI_Model
 		$res = $this->db->query($sql);
 		if($res->num_rows() < 1)
 		{
+			$sql = "select * from fu_member where member_telphone = '".$username."' and member_password = '".$password."' limit 1";
+			$res = $this->db->query($sql);
+			if($res->num_rows())
+			{
+				return $res->row_array();
+			}
 			return array();
 		}
 		return $res->row_array();
