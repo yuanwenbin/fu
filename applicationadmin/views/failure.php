@@ -10,7 +10,6 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="defaultInfos container">
-<h4 class="headerLineBackground">操作中心</h4>
 <a href="javascript:goBack();">操作失败!请稍后再试&nbsp;点击立即返回</a><br />
 3 秒后将返回上一页
 <script type="text/javascript">
