@@ -95,7 +95,7 @@ height: 89px;line-height: 89px;text-align: center;}
     margin-top: 15px;}
 
 /*统计中心*/
-.members{width:600px;margin:0 auto;}
+.members{width:600px;margin:0 auto;font-size:14px;}
 .headerLineBackground{text-align:center;line-height:30px;margin-top:40px;}
 .headerLineBackground font{color:#ff0000;}
 .members table tr{line-height:30px;}
@@ -103,7 +103,7 @@ height: 89px;line-height: 89px;text-align: center;}
 .backBtnMember{text-align:center;line-height:40px;}
 
 /*业务员拉的会员列表*/
-.membersUserList{width:1200px;margin:0 auto;}
+.membersUserList{width:1200px;margin:0 auto;font-size:14px;}
 .headerLineBackground{text-align:center;line-height:30px;margin-top:15px;}
 .headerLineBackground font{color:#ff0000;}
 .membersUserList table tr{line-height:30px;}
