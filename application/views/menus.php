@@ -8,6 +8,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
 	<link href="/css/member.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+.userMemberinfos{text-align:center;}
+	</style>
 	<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
 <body>
@@ -24,7 +27,13 @@
 		<div  class="menusBottomLeft"><a href="/Members/index">统计中心</a></div>
 		<div class="menusBottomRight"><a href="/Membersteam/index" class="myBack">管理后台</a></div>
 		<br class="clearBoth" />
+		<div class="userMemberinfos">
+		当前登陆用户：<?php echo $_SESSION['member_username'];?>&nbsp;&nbsp;
+		<a href="/Index/logout">清空信息？</a>
+		</div>
 	</div>
+	
+
 	
 </div>
 <script type="text/javascript">
