@@ -29,7 +29,7 @@
 		<br class="clearBoth" />
 		<div class="userMemberinfos">
 		当前登陆用户：<?php echo $_SESSION['member_username'];?>&nbsp;&nbsp;
-		<a href="/Index/logout">清空信息？</a>
+		<a href="/Index/logout">重新登陆？</a>
 		</div>
 	</div>
 	
