@@ -154,7 +154,59 @@ class Memberteam extends CI_Controller {
 	    if(!hasPerssion($_SESSION['role'], 'memberteamUpdate')){
 	        exit('无权限,请点击左栏目操作');
 	    }	    
-		exit("此功能暂时不开放");
+	    $id = intval($this->input->get_post('id'));
+	    if(!$id || $id < 1)
+	    {
+	    	exit('非法操作');
+	    }
+    	$memberTeam = $this->Memberteam_model->searchInfos('fu_team',array('id'=>$id));
+    	if(!$memberTeam)
+    	{
+    		exit('没有相关数据');
+    	}
+    	$view['memberteamList']='';
+    	if(hasPerssion($_SESSION['role'], 'memberteamList')){
+    		$memberteamList = $this->Memberteam_model->memberteamListModel();
+    		$view['memberteamList'] = $memberteamList;
+    	}
+    	
+    	$view['memberteamUpdate'] = $memberTeam;
+    	$this->load->view('memberteamUpdate', $view);
+	    	
+	}
+	
+	/**
+	 * 分组编辑处理
+	 */
+	function memberteamUpdateDeal()
+	{
+		$data = array('error'=>true,'msg'=>'非法操作');
+		if(!hasPerssion($_SESSION['role'], 'memberteamUpdate')){
+			die(json_encode($data));
+		}	
+		$id = intval($this->input->get_post('id'));
+		$team_name = addslashes(trim($this->input->get_post('team_name')));
+		if($id < 1 || $team_name == '')
+		{
+			die(json_encode($data));
+		}
+		// 查询对应的名称是否已经存在
+		$hasRes = $this->Memberteam_model->searchInfos('fu_team',array('team_name'=>$team_name));
+		if($hasRes)
+		{
+			$data['msg'] = '此名称已经存在';
+			die(json_encode($data));
+		}
+		$affectRow = $this->Memberteam_model->updateInfosModel('fu_team',array('team_name'=>$team_name), array('id'=>$id));
+		if($affectRow)
+		{
+			$data['error'] = false;
+			$data['msg'] = '操作成功';
+		}else {
+			$data['error'] = true;
+			$data['msg'] = '操作失败';			
+		}
+		die(json_encode($data));
 	}
 	/**
 	 * 业务员列表
@@ -253,7 +305,18 @@ class Memberteam extends CI_Controller {
 	    if(!hasPerssion($_SESSION['role'], 'memberteamDelUser')){
 	        exit('无权限,请点击左栏目操作');
 	    }	    
-		exit('此功能暂不开放');
+	    $id = intval(trim($this->input->get_post('id')));
+	    if(!$id || $id < 0)
+	    {
+	    	exit('非法操作');
+	    }
+	    $affectRow = $this->Memberteam_model->delInfosModel('fu_member', array('member_id'=>$id));
+	    if($affectRow)
+	    {
+	    	$this->load->view('success');
+	    }else {
+	    	$this->load->view('failure');
+	    }
 	}
 	/**
 	 * 编辑业务员
@@ -263,7 +326,73 @@ class Memberteam extends CI_Controller {
 	    if(!hasPerssion($_SESSION['role'], 'memberteamUpdateUser')){
 	        exit('无权限,请点击左栏目操作');
 	    }	    
-		exit('此功能暂不开放');
+		$id = intval(trim($this->input->get_post('id')));
+	    if(!$id || $id < 0)
+	    {
+	    	exit('非法操作');
+	    }
+	    // 展示业务员信息
+	    $memberteaminfos = $this->Memberteam_model->searchInfos('fu_member', array('member_id'=>$id));
+	    if(!$memberteaminfos)
+	    {
+	    	exit('没有相关内容');
+	    }
+	    $view['memberteaminfos'] = $memberteaminfos;
+
+	    $this->load->view('memberteamUpdateUser', $view);
+	}
+	
+	/**
+	 * 业务员编辑处理
+	 */
+	function memberteamUpdateUserDeal()
+	{
+		$data = array();
+		$data['error'] = true;
+		$data['msg'] = '非法操作';
+		if(!hasPerssion($_SESSION['role'], 'memberteamUpdateUser')){
+			die(json_encode($data));
+		}
+		$id = intval($this->input->get_post('id'));	
+		$member_username = addslashes(trim($this->input->get_post('member_username')));	
+		$member_realname = addslashes(trim($this->input->get_post('member_realname')));
+		$member_password = addslashes(trim($this->input->get_post('member_password')));
+		$member_telphone = addslashes(trim($this->input->get_post('member_telphone')));
+		$member_phone = addslashes(trim($this->input->get_post('member_phone')));
+		$member_flag = intval(trim($this->input->get_post('member_flag'))) ? intval(trim($this->input->get_post('member_flag'))) : '0';
+		if(!$id || !$member_username || !$member_realname || !$member_password || !$member_telphone)
+		{
+			die(json_encode($data));
+		}
+		// 查询用户是否存在
+		$hasRes = $this->Memberteam_model->searchInfos('fu_member', array('member_id'=>$id));
+		if(!$hasRes)
+		{
+			$data['msg'] = '该业务员不存在';
+			die(json_encode($data));
+		}
+
+		$param = array(
+				'member_username' =>$member_username,
+				'member_realname' =>$member_realname,
+				'member_password' =>$member_password,
+				'member_telphone' =>$member_telphone,
+				'member_phone' =>$member_phone,
+				'member_username' =>$member_username,
+				'member_username' =>$member_username,
+				'member_username' =>$member_username,
+		);
+		
+		$where = array('member_id'=>$id);
+		$affectRow = $this->Memberteam_model->updateInfosModel('fu_member',$param,$where);
+		if($affectRow)
+		{
+			$data['error'] = false;
+			$data['msg'] = '更新成功';
+			die(json_encode($data));
+		}
+		$data['msg'] = '更新失败';
+		die(json_encode($data));
 	}
 	
 	/**
