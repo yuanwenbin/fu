@@ -11,6 +11,9 @@
 	<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
 <body>
+<div class="topBg">
+<img src="/images/title_background.png" />
+</div>
 <div class="menusBox">
 	<div class="menusTop">
 		<div class="menusTopLeft"><a href="/Index/index">选号系统</a></div>

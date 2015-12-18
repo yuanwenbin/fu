@@ -10,6 +10,9 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
+<div class="topBg">
+<img src="/images/title_background.png" />
+</div>
 <div class="roomListInfos membersUserList">
 <h3 class="headerLineBackground">
 业务员&nbsp;<font><?php echo $name; ?></font>&nbsp;订单列表
