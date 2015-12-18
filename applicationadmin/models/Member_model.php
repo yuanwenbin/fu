@@ -55,4 +55,25 @@ class Member_model extends CI_Model
 		$result = $this->db->query($sql);
 		return $result->result_array();		
 	}
+	
+	/**
+	 * 查询表
+	 * @param unknown $tableName
+	 * @param unknown $param
+	 */
+	function searchInfos($tableName, $param)
+	{
+		$where = " where ";
+		foreach($param as $kk=>$vv)
+		{
+			$where .= " and " . $kk . " = '" .$vv . "'";
+		}
+		$sql = "select * from " . $tableName . $where;
+		$query = $this->db->query($sql);
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		} else {
+			return '';
+		}		
+	}
 }

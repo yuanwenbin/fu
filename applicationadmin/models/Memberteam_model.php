@@ -213,7 +213,90 @@ class Memberteam_model extends CI_Model
         } else {
             return '';
         }
-    }   
+    }  
+
+    /**
+     * 查询表
+     * @param unknown $tableName
+     * @param unknown $param
+     */
+    function searchInfos($tableName, $param)
+    {
+    	$where = " where ";
+    	foreach($param as $kk=>$vv)
+    	{
+    		$where .= $kk . " = '" .$vv . "' and ";
+    	}
+    	$where = substr($where,0,-4);
+    	$sql = "select * from " . $tableName . $where;
+    	$query = $this->db->query($sql);
+    	if ($query->num_rows() > 0) {
+    		return $query->result_array();
+    	} else {
+    		return '';
+    	}
+    }  
+	
+    /**
+     * 更新数据表
+     * @param string $tableName 表名
+     * @param array $param 要修改的值
+     * @param array $where 条件
+     */
+    function updateInfosModel($tableName,$param,$where)
+    {
+    	$whereStr = " where ";
+    	foreach($where as $k=>$v)
+    	{
+    		$whereStr .= $k . " = '" . $v . "' and ";
+    	}
+    	$whereStr = substr($whereStr,0,-4);
+    	$paramStr = " set ";
+    	foreach($param as $kk=>$vv)
+    	{
+    		$paramStr .= $kk ." = '" . $vv . "',";
+    	}
+    	$paramStr = substr($paramStr,0,-1);
+    	$sql = "update " . $tableName .$paramStr .$whereStr; 
+        $this->db->query($sql);
+        return $this->db->affected_rows();  
+    }
+    
+    /**
+     * 删除记录
+     * @param string $tableName
+     * @param array $param
+     */
+    function delInfosModel($tableName, $param)
+    {
+    	$where = " where ";
+    	foreach($param as $k=>$v)
+    	{
+    		$where .= $k ." = '" . $v."' and ";
+    	}
+    	$where = substr($where, 0,-4);
+    	$sql = "delete from " . $tableName. $where;
+    	$this->db->query($sql);
+    	return $this->db->affected_rows();
+    }
+    
+    /**
+     * 检验是否已经存在同样的名称
+     * @param unknown $tableName
+     * @param unknown $param
+     */
+	function hasExists($tableName,$param)
+	{
+		$where = "";
+		foreach($param as $k => $v)
+		{
+			$where .= $k . "!='" . $v."' and ";
+		}
+		$where = substr($where, 0,-4);
+		$sql = " select * from " . $tableName . " where " . $where;
+		$query = $this->db->query($sql);
+		return $query->num_rows();
+	}
 
 
 }
