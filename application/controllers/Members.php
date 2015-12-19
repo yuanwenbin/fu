@@ -56,7 +56,7 @@ class Members extends CI_Controller {
 	    // 判断业务员是否登陆了
 	    $this->isLoginMember();	 
 	    // 会员列表
-	    $userList = $this->Members_model->userListModel($this->session->member_id);
+	    $userList = $this->Members_model->userListRegisterModel($this->session->member_id);
 	    $view['userList'] = $userList;
 	    $view['name'] = $this->session->member_username;
 
