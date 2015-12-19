@@ -23,47 +23,27 @@
 	<tr><td align="center">没有相关数据</td></tr>
 	<?php }else{ ?>
 	<tr>
-		<th width="18%" align="center">身份证号码</th>
-		<th width="10%" align="center">手机号码</th>
-		<th width="13%" align="center">选择号码</th>
-		<th width="10%" align="center">是否支付</th>
-		<th width="25%" align="center">用户类型</th>
-		<th width="10%" align="center">价格</th>
-		<th width="14%" align="center">下单时间</th>
+		<th width="20%" align="center">称呼</th>
+		<th width="25%" align="center">手机号码</th>
+		<th width="25%" align="center">身份证号码</th>
+		<th width="30%" align="center">登记时间</th>
 	</tr>
 	<?php
 		foreach($userList as $k=>$v) { 
 	?>
 	<tr>
-		<td widtd="18%" align="center"><?php echo $v['body_id']; ?></td>
-		<td widtd="10%" align="center">
-		<?php echo $v['user_telphone'] ? $v['user_telphone'] : $v['user_phone']; ?>
-		</td>
-		<td widtd="13%" align="center">
-		<?php echo $v['order_location_id'] ? $v['order_location_id'] : '无'; ?>
-		</td>
-		<td widtd="10%" align="center">
-		<?php echo $v['order_payment'] ? '是' : '无'; ?>
+		<td widtd="20%" align="center"><?php echo $v['user_phone'] ? $v['user_phone'] :'无'; ?></td>
+		<td widtd="25%" align="center">
+		<?php echo $v['user_telphone'] ? $v['user_telphone'] : '无'; ?>
 		</td>
 		<td widtd="25%" align="center">
-		<?php if(!$v['user_type']) { ?>
-		 随机用户
-		<?php } else if($v['user_type'] == 1) {  ?>
-		生辰用户,
-		<?php echo $v['user_name'] .'-' . $v['user_birthday'] . '-' . $v['user_time'];?>
-		<?php } else if($v['user_type'] == 2) { ?>
-		高端用户
-		<?php }else { ?>
-		未确定
-		<?php } ?>
+		<?php echo $v['body_id'] ? $v['body_id'] : '无'; ?>
 		</td>
-		<td widtd="10%" align="center"><?php echo $v['order_price']; ?></td>
-		<td widtd="14%" align="center">
-		<?php if($v['order_datetime']) { 
-		echo date('Y-m-d H:i:s', $v['order_datetime']);
-		 }else{ ?>
-		无订单	
-		<?php } ?>
+		<td widtd="30%" align="center">
+		<?php  
+		echo date('Y-m-d H:i:s', $v['user_datetime']);
+		?>
+		
 		</td>
 	</tr>
 	<?php } } ?>

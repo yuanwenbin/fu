@@ -36,7 +36,7 @@
 		<td width="20%" align="left"><?php echo number_format(($totalMoney-$totalMoneyPay),2);?></td>
 	</tr>
 	<tr>
-		<td width="20%" align="right"><a href="/Members/userList">查看用户列表</a>&nbsp;&nbsp;</td>
+		<td width="20%" align="right"><a href="/Members/userList">登记用户列表</a>&nbsp;&nbsp;</td>
 		<td width="20%" align="left">&nbsp;&nbsp;<a href="/Members/orderList">查看订单列表</a>
 		&nbsp;&nbsp;
 		<a href="/Index/menus">菜单中心</a>

@@ -26,7 +26,7 @@
 			<td  height="28"><input type="text" name="user_telphone" value="" />&nbsp;<font>(*)</font></td>
 		</tr>
 		<tr>
-			<td width="140" align="right"  height="28">电话号码&nbsp;</td>
+			<td width="140" align="right"  height="28">称呼&nbsp;</td>
 			<td  height="28"><input type="text" name="user_phone" value="" /></td>
 		</tr>
 		<tr>
