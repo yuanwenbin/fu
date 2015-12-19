@@ -256,15 +256,15 @@ class Tongji_model extends CI_Model
     		}   
     		$ids = substr($ids,0,-1) . ")";
     		//$userSQL = "delete from fu_user where user_location_id in " . $ids;
-    		$userSQL = "update fu_user set user_location_id = 0,user_type = -1,user_selected=0,user_selected_date=0
-										user_location_id in " . $ids;
+    		$userSQL = "update fu_user set user_location_id = '0',user_type = '-1',user_selected='0',user_selected_date='0'
+						where user_location_id in " . $ids;
     	}
  	
     	
     	
     	
-    	$upSQL = "update fu_location_list set location_number = 2,location_date=0 where location_date < " . $affectTime . " and location_ispayment = 0";
-    	$delSql = "delete from fu_order_info where order_payment = 0 and order_datetime <  " . $affectTime;
+    	$upSQL = "update fu_location_list set location_number = '2',location_date='0' where location_date < " . $affectTime . " and location_ispayment = '0'";
+    	$delSql = "delete from fu_order_info where order_payment = '0' and order_datetime <  " . $affectTime;
 
     	$this->db->trans_start();
     	$this->db->query($upSQL);
