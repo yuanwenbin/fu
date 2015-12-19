@@ -29,6 +29,35 @@ class Members_model extends CI_Model
 	}
 	
 	/**
+	 * 查询业务员的登记会员列表
+	 * @param string $member_id 业务员id
+	 * @param int $page
+	 * @param int $pageSize
+	 * @return array
+	 */
+	function userListRegisterModel($member_id, $page='', $pageSize = '')
+	{
+		$limit = " ";
+		if($page && $pageSize)
+		{
+			$startNumber = ($page-1) * $pageSize;
+			$limit .= " limit " . $startNumber . "," . $pageSize;
+		}
+		$sql = "select *  from fu_user as fu_user
+		        left join fu_order_info as fu_order_info
+		        on fu_user.body_id = fu_order_info.order_user
+		        where fu_user.user_member_id = '" . $member_id . "'
+				and fu_user.user_location_id = '0'
+		        		order by fu_user.user_id desc" . $limit;
+		$query = $this->db->query($sql);
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		} else {
+			return '';
+		}
+	}	
+	
+	/**
 	 * 业务员下的会员总数
 	 * @param int $member_id
 	 * @return int
