@@ -72,10 +72,18 @@ hr{border:none;border-bottom:1px solid #d8d8d8;}
 /*写菜单入口*/
 .menusBox{width:300px;margin:100px auto 10px auto;}
 .menusTopLeft,.menusBottomLeft{width:140px;float:left;border:1px solid #888;text-align:center;height:100px;line-height:100px;
-	font-weight:normal;	margin-bottom:15px;	font-size:14px;
+	font-weight:normal;	margin-bottom:15px;	font-size:14px;background:#d77a35;
+	-moz-border-radius: 15px;      /* Gecko browsers */
+    -webkit-border-radius: 15px;   /* Webkit browsers */
+    border-radius:15px;            /* W3C syntax */
 }
 .menusTopRight,.menusBottomRight{width:140px;float:right;border:1px solid #888;text-align:center;height:100px;line-height:100px;
-font-weight:normal;margin-bottom:15px;font-size:14px;}
+font-weight:normal;margin-bottom:15px;font-size:14px;background:#d77a35;
+	-moz-border-radius: 15px;      /* Gecko browsers */
+    -webkit-border-radius: 15px;   /* Webkit browsers */
+    border-radius:15px;            /* W3C syntax */
+	}
+.menusTopLeft a,.menusBottomLeft a,.menusTopRight a,.menusBottomRight a{color:#eee;font-weight:bold;}
 
 /*来访登记*/
 .register{width:350px;margin:100px auto 10px auto;font-size:14px;}
