@@ -25,7 +25,15 @@
 	</div>
 	<div  class="menusBottom">
 		<div  class="menusBottomLeft"><a href="/Members/index">统计中心</a></div>
-		<div class="menusBottomRight"><a href="/Membersteam/index" class="myBack">管理后台</a></div>
+		<div class="menusBottomRight">
+		<?php if($_SESSION['member_teamid']) { ?>
+		<a href="/Index/infoList" class="myBack">管理后台</a>
+		<?php }else { ?>
+		
+        &nbsp;
+		
+		<?php  }?>
+		</div>
 		<br class="clearBoth" />
 		<div class="userMemberinfos">
 		当前登陆用户：<?php echo $_SESSION['member_username'];?>&nbsp;&nbsp;
@@ -36,13 +44,5 @@
 
 	
 </div>
-<script type="text/javascript">
-$(document).ready(function(){
-	$(".myBack").click(function(){
-		alert("非管理员，无权访问");
-		return false;
-	});
-});
-</script>
 </body>
 </html>
