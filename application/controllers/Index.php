@@ -61,7 +61,6 @@ class Index extends CI_Controller {
 		{
 			$view['bodyId'] = '';
 		}
-		
 		$this->load->view('index', $view);
 	}
 	
@@ -274,6 +273,92 @@ class Index extends CI_Controller {
 			$data['msg'] = '登记失错，请重试';
 		}
 		die(json_encode($data));
+	}
+	
+	/**
+	 * 组长登陆
+	 */
+	function infoList()
+	{
+	    // 判断是否有业务员登陆了
+	    if(!$this->session->member_id)
+	    {
+	        header("Location:/Index/member");
+	        exit;
+	    }
+	    // 判断是否是组长
+	    if(!$this->session->member_teamid)
+	    {
+	        header("Location:/Index/member");
+	        exit;
+	    }
+	    // 书写统计中心
+	    // 业务员总数
+	    $paramMember['member_team_id'] = $this->session->member_id;
+	    $memberCount = $this->Index_model->queryCountModel('fu_member',$paramMember);
+	    
+	    $view['userCount'] =  $memberCount;
+	    // 旗下业务员的用户总数
+	    $paramMemberUser['member_team_id'] = $this->session->member_id;
+	    $memberUserList = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
+
+	    $memberUserCount = 0;
+	    $ids = '';
+	    if($memberUserList)
+	    {
+	        $ids .= "(";
+	        foreach ($memberUserList as $kk=>$vv)
+	        {
+	            $ids .= "'" . $vv['member_id']."',";
+	        }
+	        $ids = substr($ids,0,-1) . ")";
+	        $memberUserCount = $this->Index_model->queryCountInModel('fu_user',$ids,'user_team_id');
+	    }
+	    
+	    $view['memberUserCount'] =  $memberUserCount;
+	     
+	    // 订单数
+	    $orderAllCount = 0;
+	    $orderNotPayCount = 0;
+	    $orderAllCountMoney = 0.00;
+	    $orderNotPayCountMoney = 0.00;
+	    if($memberUserCount)
+	    {
+	         
+	        $memberForUserList = $this->Index_model->queryCountInListModel('fu_user',$ids,'user_team_id');
+	        if($memberForUserList)
+	        {
+	            $idss = "(";
+	            foreach($memberForUserList as $k=>$v)
+	            {
+	                $idss .= "'".$v['user_id'] ."',";
+	            }
+	            $idss = substr($idss,0,-1) . ")";
+	            $userList = $this->Index_model->queryCountInListModel('fu_user',$idss,'user_id');
+	            if($userList)
+	            {
+	                $idStr = "(";
+	                foreach($userList as $kkk=>$vvv)
+	                {
+	                    $idStr .= "'" . $vvv['body_id'] . "',";
+	                }
+	                $idStr = substr($idStr,0,-1) . ")";
+	                $orderAllCount = $this->Index_model->queryCountInModel('fu_order_info',$idStr,'order_user');
+	                //总金额
+	                $orderAllCountMoney = $this->Index_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price');
+	                 
+	                $orderNotPayCount = $this->Index_model->queryCountInModel('fu_order_info',$idStr,'order_user',array('order_payment'=>1));
+	                // 末支付金额
+	                $orderNotPayCountMoney = $this->Index_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price',array('order_payment'=>1));
+	            }
+	        }
+	    }
+	    $view['orderAllCount'] = $orderAllCount;
+	    $view['orderNotPayCount'] = $orderNotPayCount;
+	    $view['orderAllCountMoney'] = number_format($orderAllCountMoney,2);
+	    $view['orderNotPayCountMoney'] = number_format($orderNotPayCountMoney,2);
+
+	    $this->load->view('infoList', $view);	    	    	    
 	}
 		
 	/*
