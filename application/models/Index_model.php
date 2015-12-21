@@ -95,4 +95,115 @@ class Index_model extends CI_Model
 		$res = $this->db->query($sql);
 		return $this->db->affected_rows();
 	}
+	
+	/**
+	 * 查询表记录总数
+	 * @param unknown $tableName
+	 * @param unknown $param
+	 */
+	function queryCountModel($tableName, $param)
+	{
+	    $where = " where ";
+	    foreach($param as $kk=>$vv)
+	    {
+	        $where .= $kk . " = '" .$vv . "' and ";
+	    }
+	    $where = substr($where,0,-4);
+	    $sql = "select count(*) as total from " . $tableName . $where;
+	    $result = $this->db->query($sql);
+	    $rowResult = $result->row();
+	    return $rowResult->total;
+	}
+
+	/**
+	 * 查询表记录
+	 * @param unknown $tableName
+	 * @param unknown $param
+	 */
+	function searchInfos($tableName, $param)
+	{
+	    $where = " where ";
+	    foreach($param as $kk=>$vv)
+	    {
+	        $where .= $kk . " = '" .$vv . "' and ";
+	    }
+	    $where = substr($where,0,-4);
+	    $sql = "select * from " . $tableName . $where;
+	    $query = $this->db->query($sql);
+	    if ($query->num_rows() > 0) {
+	        return $query->result_array();
+	    } else {
+	        return '';
+	    }
+	}
+
+	/**
+	 * 查询 in 条件的数据总数
+	 * @param unknown $tableName
+	 * @param unknown $where
+	 * @param unknown $ins
+	 */
+	function queryCountInModel($tableName,$where,$ins,$param = '')
+	{
+	    if($param)
+	    {
+	        $str = " and ";
+	        foreach($param as $kk=>$vv)
+	        {
+	            $str .= $kk ."='" . $vv . "',";
+	        }
+	        $str = substr($str, 0,-1);
+	        $whereStr = " where " . $ins . " in " . $where . $str;
+	    }else {
+	        $whereStr = " where " . $ins . " in " . $where;
+	    }
+	    $sql = "select count(*) as total from " . $tableName . $whereStr;
+	    $result = $this->db->query($sql);
+	    $rowResult = $result->row();
+	    return $rowResult->total;
+	}
+
+	/**
+	 * 查询 in 条件的数据列表
+	 * @param unknown $tableName
+	 * @param unknown $where
+	 * @param unknown $ins
+	 */
+	function queryCountInListModel($tableName,$where,$ins)
+	{
+	    $whereStr = " where " . $ins . " in " . $where;
+	    $sql = "select * from " . $tableName . $whereStr;
+	    $query = $this->db->query($sql);
+	    if ($query->num_rows() > 0) {
+	        return $query->result_array();
+	    } else {
+	        return '';
+	    }
+	}
+
+	/**
+	 * 查询 in 条件的数据总和
+	 * @param unknown $tableName
+	 * @param unknown $where
+	 * @param unknown $ins
+	 */
+	function queryCountInMoneyModel($tableName,$where,$ins,$fields,$param = '')
+	{
+	    if($param)
+	    {
+	        $str = " and ";
+	        foreach($param as $kk=>$vv)
+	        {
+	            $str .= $kk ."='" . $vv . "',";
+	        }
+	        $str = substr($str, 0,-1);
+	        $whereStr = " where " . $ins . " in " . $where . $str;
+	    }else {
+	        $whereStr = " where " . $ins . " in " . $where;
+	    }
+	    $sql = "select sum(".$fields.") as total from " . $tableName . $whereStr;
+	    $result = $this->db->query($sql);
+	    $rowResult = $result->row();
+	    return $rowResult->total;
+	}	
 }
