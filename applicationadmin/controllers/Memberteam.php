@@ -56,13 +56,14 @@ class Memberteam extends CI_Controller {
 		}
 		$view = array();
 		$view['teamList'] = '';
-		if(hasPerssion($_SESSION['role'], 'memberteamList')){
-	       $memberteamList = $this->Memberteam_model->memberteamListModel();
-		   if($memberteamList)
-			{
-				$view['teamList'] = $memberteamList;
-			}
-	    }
+		// if(hasPerssion($_SESSION['role'], 'memberteamList')){
+       $memberteamList = $this->Memberteam_model->memberteamListModel();
+	   if($memberteamList)
+		{
+			$view['teamList'] = $memberteamList;
+		}
+	    // }
+
 		$this->load->view('memberteamAdd', $view);		
 	}
 	
@@ -91,8 +92,35 @@ class Memberteam extends CI_Controller {
 			$param['team_create'] = time();
 			$param['team_user_id'] = $this->session->userId;
 			$param['team_user_name'] = $this->session->admin_user;
-			$affectRow = $this->Memberteam_model->memberteamAddModel('fu_team',$param);
-			if($affectRow)
+			// 增加分组
+			$insert_id = $this->Memberteam_model->memberteamAddModel('fu_team',$param, 1);
+			// 增加业务员
+			$member_username = addslashes($this->input->get_post('member_username'));
+			$member_password = addslashes($this->input->get_post('member_password'));
+			$member_realname = addslashes($this->input->get_post('member_realname'));
+			$member_telphone = addslashes($this->input->get_post('member_telphone'));
+			$member_phone = addslashes($this->input->get_post('member_phone'));
+			$member_user_id = $this->session->userId;
+			$member_user_name = $this->session->admin_user;
+			$member_create = time();
+			if(!$member_username || !$member_password || !$member_realname || !$member_telphone)
+			{
+			    exit('非法操作');
+			}
+			$param = array('member_team_id'=>$insert_id,
+			    'member_username'=>$member_username,
+			    'member_password'=>$member_password,
+			    'member_realname'=>$member_realname,
+			    'member_telphone'=>$member_telphone,
+			    'member_phone'=>$member_phone,
+			    'member_user_id'=>$member_user_id,
+			    'member_user_name'=>$member_user_name,
+			    'member_create'=>$member_create,
+			    'member_teamid'=>$insert_id,
+			);
+			$affectRows = $this->Memberteam_model->memberteamAddModel('fu_member',$param);			
+
+			if($affectRows)
 			{
 				$this->load->view('success');
 			}else
@@ -458,7 +486,7 @@ class Memberteam extends CI_Controller {
             exit('无权限,请点击左栏目操作');
 	    }
 	    $id = intval(trim($this->input->get_post('id')));
-	    if(!$id || $id < 0)
+	    if(!$id || $id < 1)
 	    {
 	        exit('非法操作');
 	    }
@@ -469,4 +497,93 @@ class Memberteam extends CI_Controller {
 	    $view['memberInfos'] = $memberInfos;
 	    $this->load->view('MemberteamOrderList', $view);
 	}	
+	
+	/**
+	 * 查看分组组长信息
+	 */
+	function memberteamInfos()
+	{
+	    if(!hasPerssion($_SESSION['role'], 'memberteamInfos')){
+	        exit('无权限,请点击左栏目操作');
+	    }
+	    $id = intval(trim($this->input->get_post('id')));
+	    if(!$id || $id < 1)
+	    {
+	        exit('非法操作');
+	    }
+	    $view = array();
+	    // 该业务员信息
+	    $param['member_teamid'] = $id;
+	    $memberteamInfos = $this->Memberteam_model->memberteamQueryModel('fu_member',$param);
+	    if(!$memberteamInfos)
+	    {
+	        exit('该业务员不存在');
+	    }
+	    $view['memberteamInfos'] =  $memberteamInfos; 
+	    // 业务员总数
+	    $paramMember['member_team_id'] = $memberteamInfos[0]['member_teamid'];
+	    $memberCount = $this->Memberteam_model->queryCountModel('fu_member',$paramMember);
+		    
+	    $view['userCount'] =  $memberCount;
+	    // 旗下业务员的用户总数
+	    $paramMemberUser['member_team_id'] = $memberteamInfos[0]['member_team_id'];
+	    $memberUserList = $this->Memberteam_model->searchInfos('fu_member',$paramMemberUser);
+
+	    $memberUserCount = 0;
+	    $ids = '';
+	    if($memberUserList)
+	    {
+	        $ids .= "(";
+	        foreach ($memberUserList as $kk=>$vv)
+	        {
+	            $ids .= "'" . $vv['member_id']."',";
+	        }
+	        $ids = substr($ids,0,-1) . ")";
+	        $memberUserCount = $this->Memberteam_model->queryCountInModel('fu_user',$ids,'user_team_id');        
+	    }	
+
+	    $view['memberUserCount'] =  $memberUserCount;
+	    
+	    // 订单数
+	    $orderAllCount = 0;
+	    $orderNotPayCount = 0;
+	    $orderAllCountMoney = 0.00;
+	    $orderNotPayCountMoney = 0.00;
+	    if($memberUserCount)
+	    {
+	        
+	        $memberForUserList = $this->Memberteam_model->queryCountInListModel('fu_user',$ids,'user_team_id');
+	        if($memberForUserList)
+	        {
+	            $idss = "(";
+	            foreach($memberForUserList as $k=>$v)
+	            {
+	                $idss .= "'".$v['user_id'] ."',";
+	            }
+	            $idss = substr($idss,0,-1) . ")";
+	            $userList = $this->Memberteam_model->queryCountInListModel('fu_user',$idss,'user_id');
+	            if($userList)
+	            {
+	                $idStr = "(";
+	                foreach($userList as $kkk=>$vvv)
+	                {
+	                    $idStr .= "'" . $vvv['body_id'] . "',";
+	                }
+	                $idStr = substr($idStr,0,-1) . ")";
+	                $orderAllCount = $this->Memberteam_model->queryCountInModel('fu_order_info',$idStr,'order_user');
+	                //总金额
+	                $orderAllCountMoney = $this->Memberteam_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price');
+	                
+	                $orderNotPayCount = $this->Memberteam_model->queryCountInModel('fu_order_info',$idStr,'order_user',array('order_payment'=>1));
+	                // 末支付金额
+	                $orderNotPayCountMoney = $this->Memberteam_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price',array('order_payment'=>1));
+	            }
+	        }
+	    }
+	    $view['orderAllCount'] = $orderAllCount;
+	    $view['orderNotPayCount'] = $orderNotPayCount;
+	    $view['orderAllCountMoney'] = number_format($orderAllCountMoney,2);
+	    $view['orderNotPayCountMoney'] = number_format($orderNotPayCountMoney,2);
+	    $this->load->view('memberteamInfos', $view);   	    
+	}
 }
