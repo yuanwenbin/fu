@@ -181,6 +181,7 @@
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAdd" />分组增加</p>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamDel" />分组删除</p>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdate" />分组编辑</p>	
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamInfos" />分组详情</p>
 		
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamListUser" />业务员列表</p>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAddUser" />业务员增加</p>

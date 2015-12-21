@@ -202,6 +202,7 @@
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAdd" <?php if($perssions[0] == 'all' || in_array('memberteamAdd', $perssions)){ echo 'checked';}?> />分组增加</p>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamDel" <?php if($perssions[0] == 'all' || in_array('memberteamDel', $perssions)){ echo 'checked';}?> />分组删除</p>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdate" <?php if($perssions[0] == 'all' || in_array('memberteamUpdate', $perssions)){ echo 'checked';}?> />分组编辑</p>	
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamInfos" <?php if($perssions[0] == 'all' || in_array('memberteamInfos', $perssions)){ echo 'checked';}?> />分组统计</p>
 		
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamListUser" <?php if($perssions[0] == 'all' || in_array('memberteamListUser', $perssions)){ echo 'checked';}?> />业务员列表</p>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAddUser" <?php if($perssions[0] == 'all' || in_array('memberteamAddUser', $perssions)){ echo 'checked';}?> />业务员增加</p>

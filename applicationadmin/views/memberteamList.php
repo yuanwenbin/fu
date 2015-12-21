@@ -47,6 +47,9 @@
 		<?php if(hasPerssion($_SESSION['role'],'memberteamUpdate')) { ?>
 		<a href="/Memberteam/memberteamUpdate?id=<?php echo $val['id'];?>">分组编辑</a>
 		<?php } ?>	
+		<?php if(hasPerssion($_SESSION['role'],'memberteamInfos')) { ?>
+		<a href="/Memberteam/memberteamInfos?id=<?php echo $val['id'];?>">查看信息</a>
+		<?php } ?>			
 
 		</td>
 	</tr>

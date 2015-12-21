@@ -20,6 +20,37 @@
 		<td width="20%" align="right"><label>业务员分组名：</label></td>
 		<td><input type="text" name="memberteamAdd" value="" style="width:300px;" /></td>
 	</tr>
+
+	<tr>
+		<td width="20%" align="right"><label>业务员登陆名：</label></td>
+		<td><input type="text" name="member_username" value="" style="width:120px;" />(*)</td>
+	</tr>
+
+	<tr>
+		<td width="20%" align="right"><label>业务员登陆密码：</label></td>
+		<td><input type="text" name="member_password" value="" style="width:120px;" />(*)</td>
+	</tr>
+
+	<tr>
+		<td width="20%" align="right"><label>业务员重复登陆密码：</label></td>
+		<td><input type="text" name="member_password_s" value="" style="width:120px;" />(*)</td>
+	</tr>
+
+	<tr>
+		<td width="20%" align="right"><label>业务员真实姓名：</label></td>
+		<td><input type="text" name="member_realname" value="" style="width:120px;" />(*)</td>
+	</tr>
+
+	<tr>
+		<td width="20%" align="right"><label>业务员手机号码：</label></td>
+		<td><input type="text" name="member_telphone" value="" style="width:120px;" />(*)</td>
+	</tr>
+
+	<tr>
+		<td width="20%" align="right"><label>业务员电话号码：</label></td>
+		<td><input type="text" name="member_phone" value="" style="width:120px;" /></td>
+	</tr>
+	
 	<tr>
 		<td width="20%" align="right">&nbsp;</td>
 		<td>
@@ -57,7 +88,39 @@ $(document).ready(function(){
 			alert("请输入内容");
 			return false;
 		}
+		var member_username = $("input[name='member_username']").val();
+		var member_password = $("input[name='member_password']").val();
+		var member_password_s = $("input[name='member_password_s']").val();
+		var member_realname = $("input[name='member_realname']").val();
+		var member_telphone = $("input[name='member_telphone']").val();
+		if(member_username == '')
+		{
+			alert("用记名不能为空");
+			return false;
+		}
+		if(member_password == '')
+		{
+			alert("密码不能为空");
+			return false;
+		}
 
+		if(member_password != member_password_s)
+		{
+			alert("丙次密码不同");
+			return false;
+		}
+
+		if(member_realname == '')
+		{
+			alert("真实姓名不能为空");
+			return false;
+		}
+		if(member_telphone == '')
+		{
+			alert("手机号码不能为空");
+			return false;
+		}
+		return true;
 
 	});
 });
