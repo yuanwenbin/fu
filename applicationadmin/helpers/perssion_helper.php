@@ -149,6 +149,7 @@ function perssion()
 	    'memberteamAdd'=>'分组增加',
 	    'memberteamDel'=>'分组删除',
 	    'memberteamUpdate'=>'分组编辑',
+	    'memberteamInfos'=>'分组组长信息',
 	    'memberteamListUser'=>'业务员列表',
 	    'memberteamAddUser'=>'业务员增加',
 	    'memberteamDelUser'=>'业务员删除',
