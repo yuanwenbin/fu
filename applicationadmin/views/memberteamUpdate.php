@@ -24,6 +24,18 @@
 		&nbsp;<input type="submit" name="submit" value="提交修改" />
 		</td>		
 	</tr>
+
+	<tr>
+		<td width="20%" align="right">分组组长选择：</td>
+		<td>
+		<select name="member_teamid">
+		<?php  foreach($memberLists as $vv) { ?>
+			<option value="<?php echo $vv['member_id']; ?>" <?php if($memberteamUpdate[0]['id'] == $vv['member_teamid']) echo 'selected'; ?>>
+			<?php echo $vv['member_username']; ?><?php if($memberteamUpdate[0]['id'] == $vv['member_teamid']) echo '-现在组长'; ?></option>
+		<?php } ?>
+		</select>(不修改，则不用理会)
+		</td>		
+	</tr>
 	<?php 
 	if($memberteamList) { ?>
 	<tr>
@@ -47,6 +59,7 @@ $(document).ready(function(){
 	$("input[name='submit']").click(function(){
 		var team_name = $("input[name='team_name']").val();
 		var id = $("input[name='id']").val();
+		var member_teamid = $("select[name='member_teamid']").val();
 		if(team_name=='')
 		{
 			alert("请输入分组名");
@@ -57,7 +70,7 @@ $(document).ready(function(){
 			alert("非法操作");
 			return false;
 		}
-		var param = {id:id,team_name:team_name};
+		var param = {id:id,team_name:team_name,member_teamid:member_teamid};
 		var url = "/Memberteam/memberteamUpdateDeal";
 		$.post(url,param,function(data){
 			if(data.error)
