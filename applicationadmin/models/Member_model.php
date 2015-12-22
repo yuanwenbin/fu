@@ -61,12 +61,15 @@ class Member_model extends CI_Model
 	 * @param unknown $tableName
 	 * @param unknown $param
 	 */
-	function searchInfos($tableName, $param)
+	function searchInfos($tableName, $param = '')
 	{
-		$where = " where ";
-		foreach($param as $kk=>$vv)
+		$where = " where 1 = 1 ";
+		if($param)
 		{
-			$where .= " and " . $kk . " = '" .$vv . "'";
+			foreach($param as $kk=>$vv)
+			{
+				$where .= " and " . $kk . " = '" .$vv . "'";
+			}
 		}
 		$sql = "select * from " . $tableName . $where;
 		$query = $this->db->query($sql);
@@ -76,4 +79,6 @@ class Member_model extends CI_Model
 			return '';
 		}		
 	}
+
+	
 }
