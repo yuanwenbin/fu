@@ -24,7 +24,7 @@
 	<?php 
 	foreach($result as $key=>$val){
 	?>
-	<tr <?php echo ($key % 2) ? 'class="listRoomColumns"' : '';?>class="fuck">
+	<tr>
 		<td width="10%" align="center"><?php echo $val['admin_user'];?></td>
 		<td  width="10%" align="center">
 		<?php if($val['admin_status']){echo '是';}else{ echo '否';}?></td>

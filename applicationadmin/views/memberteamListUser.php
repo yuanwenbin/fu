@@ -60,7 +60,10 @@
 		<?php } ?>
 		</td> 
 	</tr>
-	<?php } } else {?>
+	<tr>
+		<td colspan="6"><hr/></td>
+	</tr>
+	<?php }  } else {?>
 	<tr>
 		<td colspan="6">暂时没有相关内容</td>
 	</tr>
