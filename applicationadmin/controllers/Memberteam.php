@@ -197,10 +197,13 @@ class Memberteam extends CI_Controller {
     		$memberteamList = $this->Memberteam_model->memberteamListModel();
     		$view['memberteamList'] = $memberteamList;
     	}
-    	
-    	$view['memberteamUpdate'] = $memberTeam;
+			$view['memberteamUpdate'] = $memberTeam;
+    	// 业务员列表
+			$this->load->model('Member_model');
+			$memberLists = $this->Member_model->searchInfos('fu_member',array('member_flag'=>1));
+			$view['memberLists'] = $memberLists;
+	
     	$this->load->view('memberteamUpdate', $view);
-	    	
 	}
 	
 	/**
@@ -212,27 +215,47 @@ class Memberteam extends CI_Controller {
 		if(!hasPerssion($_SESSION['role'], 'memberteamUpdate')){
 			die(json_encode($data));
 		}	
+		// 组id
 		$id = intval($this->input->get_post('id'));
+		// 组名
 		$team_name = addslashes(trim($this->input->get_post('team_name')));
+		// 成员id
+		$member_teamid = intval($this->input->get_post('member_teamid'));
 		if($id < 1 || $team_name == '')
 		{
 			die(json_encode($data));
 		}
 		// 查询对应的名称是否已经存在
+		
 		$hasRes = $this->Memberteam_model->searchInfos('fu_team',array('team_name'=>$team_name));
+		/**
 		if($hasRes)
 		{
 			$data['msg'] = '此名称已经存在';
 			die(json_encode($data));
 		}
+		*/
 		$affectRow = $this->Memberteam_model->updateInfosModel('fu_team',array('team_name'=>$team_name), array('id'=>$id));
+		// 更新组长
+
+		$affectRowsOld = $this->Memberteam_model->updateInfosModel('fu_member',array('member_teamid'=>'0'), array('member_teamid'=>$id));
+		$affectRows = $this->Memberteam_model->updateInfosModel('fu_member',array('member_teamid'=>$id), array('member_id'=>$member_teamid));
+	
+
 		if($affectRow)
 		{
 			$data['error'] = false;
 			$data['msg'] = '操作成功';
 		}else {
-			$data['error'] = true;
-			$data['msg'] = '操作失败';			
+			if($hasRes)
+			{
+				$data['error'] = false;
+				$data['msg'] = '操作成功';
+			}else
+			{
+				$data['error'] = true;
+				$data['msg'] = '操作失败,或组长名也存在';		
+			}
 		}
 		die(json_encode($data));
 	}
