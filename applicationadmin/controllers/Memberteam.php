@@ -267,7 +267,21 @@ class Memberteam extends CI_Controller {
 		if(!hasPerssion($_SESSION['role'], 'memberteamListUser')){
 			exit('无权限,请点击左栏目操作');
 		}	
-		$memberteamListUser = $this->Memberteam_model->memberteamListUserModel();
+		$page = intval($this->input->get_post('page'));
+		if($page < 1)
+		{
+			$page = 1;
+		}
+		$pageSize = 10;
+		// 总记录数
+		$totalRecords =  $this->Memberteam_model->queryCountModel('fu_member');	
+		// 总页码
+		$totalPage = ceil($totalRecords/$pageSize);
+		if($page > $totalPage)
+		{
+			$page = $totalPage;
+		}
+		$memberteamListUser = $this->Memberteam_model->memberteamListUserModel($page,$pageSize);
 		if(!$memberteamListUser)
 		{
 			echo '没有相关数据! ';
@@ -277,7 +291,11 @@ class Memberteam extends CI_Controller {
 			echo "&nbsp;点击<a href=\"/Memberteam/memberteamAddUser\">添加</a>";
 			exit();
 		}
+		$view['total'] = $totalRecords;
+		$view['totalPage'] = $totalPage;
+		$view['page'] = $page;
 		$view['memberteamListUser'] = $memberteamListUser;
+
 		$this->load->view('memberteamListUser', $view);
 	}
 	
@@ -491,10 +509,28 @@ class Memberteam extends CI_Controller {
 	    if(!$id || $id < 0)
 	    {
 	        exit('非法操作');
-	    }  
+	    } 
+	    $page = intval($this->input->get_post('page'));
+	    if($page < 1)
+	    {
+	    	$page = 1;
+	    }
+	    $pageSize = 10;
+	    // 会员总数
+	    $total = $this->Memberteam_model->queryCountModel('fu_user', array('user_member_id'=>$id));
+		$totalPage = ceil($total/$pageSize);
+		if($page > $totalPage)
+		{
+			$page = $totalPage;
+		}
+		$view['page'] = $page;
+		$view['totalPage'] = $totalPage;
+		$view['total'] = $total;
+		$view['id'] = $id;		
 	    // 会员列表
-	    $userList = $this->Memberteam_model->MemberteamUserListModel($id);
+	    $userList = $this->Memberteam_model->MemberteamUserListModel($id,$page,$pageSize);
 	    $view['userList'] = $userList;
+	    // 业务员详情信息
 	    $memberInfos = $this->Memberteam_model->getMemberTeam($id);
 	    $view['memberInfos'] = $memberInfos;
 	    $this->load->view('MemberteamUserList', $view);
@@ -504,7 +540,7 @@ class Memberteam extends CI_Controller {
 	 * 业务员订单列表
 	 */
 	function MemberteamOrderList()
-	{
+	{	
 		if(!hasPerssion($_SESSION['role'], 'memberteamSaleUser')){
             exit('无权限,请点击左栏目操作');
 	    }
@@ -513,9 +549,30 @@ class Memberteam extends CI_Controller {
 	    {
 	        exit('非法操作');
 	    }
+	    $view['id'] = $id;
+	    $page = intval($this->input->get('page'));
+	    if($page <1)
+	    {
+	    	$page = 1;
+	    }
+	    $pageSize = 10;
 	    $order_payment = 'all'; // 是否支付
-	    $orderList = $this->Memberteam_model->MemberteamOrderListModel($id, $order_payment);
+	    // 总记录数
+	    $orderListCount = $this->Memberteam_model->memberteamOrderTotalModel($id, $order_payment);
+	    $view['id'] = $id;
+	    $view['total'] = $orderListCount;
+	    $view['page'] = $page;
+	    $totalPage = ceil($orderListCount/$pageSize);
+	    $view['totalPage'] = $totalPage;
+	    
+	    if($page > $totalPage)
+	    {
+	    	$page = $totalPage;
+	    }
+	    // 订单列表
+	    $orderList = $this->Memberteam_model->MemberteamOrderListModel($id, $order_payment,$page,$pageSize);
 	    $view['memberOrderList'] = $orderList;
+	    //业务员信息
 	    $memberInfos = $this->Memberteam_model->getMemberTeam($id);
 	    $view['memberInfos'] = $memberInfos;
 	    $this->load->view('MemberteamOrderList', $view);
