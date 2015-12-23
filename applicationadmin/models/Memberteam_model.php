@@ -88,10 +88,19 @@ class Memberteam_model extends CI_Model
     
     /**
      * 业务员列表
+     * @param int $page
+     * @param int $pageSize
+     * @
      */
-    function memberteamListUserModel()
+    function memberteamListUserModel($page='',$pageSize='')
     {
-        $sql = "select * from fu_member as fm left join fu_team as ft on fm.member_team_id = ft.id";
+    	$limit = "";
+    	if($page && $pageSize)
+    	{
+    		$startNumber = ($page - 1) * $pageSize;
+    		$limit .= " limit " .$startNumber .", " . $pageSize;	
+    	}
+        $sql = "select * from fu_member as fm left join fu_team as ft on fm.member_team_id = ft.id " . $limit;
 		$result = $this->db->query($sql);
 		if($result->num_rows() < 1)
 		{
@@ -217,7 +226,25 @@ class Memberteam_model extends CI_Model
         } else {
             return '';
         }
-    }  
+    } 
+
+	function memberteamOrderTotalModel($member_id,$order_payment='')
+	{
+		$where = " ";
+	
+		if($order_payment != 'all')
+		{
+			$where = " and oi.order_payment = '".$order_payment."' ";
+		}
+
+		$sql = "select count(*) as total from fu_order_info as oi join fu_location_list ll
+						on oi.order_location_id = ll.localtion_id
+						join fu_user as u on oi.order_user = u.body_id
+						where  u.user_member_id = '".$member_id."' " . $where . " order by oi.order_id desc ";
+		$result = $this->db->query($sql);
+		$rowResult = $result->row();
+		return $rowResult->total;
+	}
 
     /**
      * 查询表记录
@@ -247,14 +274,17 @@ class Memberteam_model extends CI_Model
      * @param unknown $tableName
      * @param unknown $param
      */
-    function queryCountModel($tableName, $param)
+    function queryCountModel($tableName, $param = '')
     {
-        $where = " where ";
-        foreach($param as $kk=>$vv)
+        $where = " where 1=1 ";
+        if($param)
         {
-            $where .= $kk . " = '" .$vv . "' and ";
+	        foreach($param as $kk=>$vv)
+	        {
+	            $where .= " and " .$kk . " = '" .$vv . "'";
+	        }
         }
-        $where = substr($where,0,-4);
+        
         $sql = "select count(*) as total from " . $tableName . $where;
         $result = $this->db->query($sql);
         $rowResult = $result->row();
