@@ -355,9 +355,8 @@ class Index extends CI_Controller {
 	    }
 	    $view['orderAllCount'] = $orderAllCount;
 	    $view['orderNotPayCount'] = $orderNotPayCount;
-	    $view['orderAllCountMoney'] = number_format($orderAllCountMoney,2);
-	    $view['orderNotPayCountMoney'] = number_format($orderNotPayCountMoney,2);
-
+	    $view['orderAllCountMoney'] = $orderAllCountMoney;
+	    $view['orderNotPayCountMoney'] = $orderNotPayCountMoney;
 	    $this->load->view('infoList', $view);	    	    	    
 	}
 		
