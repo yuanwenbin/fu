@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/css/style.css?v=20151223" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
@@ -18,10 +18,11 @@
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
-		<th width="15%" align="center">用户名</th>
+		<th width="10%" align="center">用户名</th>
 		<th width="15%" align="center">手机号</th>
 		<th width="15%" align="center">分组名</th>
-		<th width="15%" align="center">真名</th>
+		<th width="12%" align="center">真名</th>
+		<th width="8%" align="center">状态</th>
 		<th width="20%" align="center">开设时间</th>
 		<th width="20%" align="center">操作</th>
 	</tr>
@@ -30,7 +31,7 @@
 	foreach($memberteamListUser as $key=>$val){
 	?>
 	<tr>
-		<td width="15%" align="center">
+		<td width="10%" align="center">
 		<?php echo $val['member_username']; ?>
 		</td>
 		<td width="15%" align="center">
@@ -39,9 +40,12 @@
 		<td width="15%" align="center">
 		<?php echo $val['team_name']; ?>
 		</td>
-		<td width="15%" align="center">
+		<td width="12%" align="center">
 		<?php echo $val['member_realname']; ?>
 		</td>
+		<td width="8%" align="center"> 
+		<?php echo $val['member_flag'] ? '正常':'冻结'; ?>
+		</td>		
 		<td width="20%" align="center">
 		<?php echo date('Y-m-d H:i:s',$val['member_create']); ?>
 		</td>
@@ -61,14 +65,46 @@
 		</td> 
 	</tr>
 	<tr>
-		<td colspan="6"><hr/></td>
+		<td colspan="7"><hr/></td>
 	</tr>
 	<?php }  } else {?>
 	<tr>
-		<td colspan="6">暂时没有相关内容</td>
+		<td colspan="7">暂时没有相关内容</td>
 	</tr>
 	<?php } ?>
 </table>
+<!--  bof 页码  -->
+<p class="pages">
+总记录数：<?php echo $total;?>&nbsp;&nbsp; 总页码：<?php echo $totalPage; ?>&nbsp;&nbsp; 页码列表：  
+<?php 
+if($page > 1) { 
+	$fromPage = $page - 5;
+	
+	for($i = $fromPage; $i < $page;$i++) { 
+		if($i < 1)
+		{
+			continue;
+		}
+?>
+	<a href="/Memberteam/memberteamListUser?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+<?php } }
+	$toPage = $page + 5;
+	for($ii=$page; $ii<=$toPage;$ii++)
+	{
+		if($ii > $totalPage)
+		{
+			break;
+		}
+?>
+<?php if($ii == $page) {?>
+<font><?php echo $ii; ?></font>&nbsp;
+<?php }else {?>
+<a href="/Memberteam/memberteamListUser?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<?php } 
+	 }
+ ?>
+</p>
+<!--  eof 页码  -->
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
