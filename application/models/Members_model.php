@@ -60,12 +60,21 @@ class Members_model extends CI_Model
 	/**
 	 * 业务员下的会员总数
 	 * @param int $member_id
+	 * @param array $param
 	 * @return int
 	 */
-	function userListTotalModel($member_id)
+	function userListTotalModel($member_id, $param = array())
 	{
+		$str = " and 1=1 ";
+		if($param)
+		{
+			foreach($param as $k=>$v)
+			{
+				$str .= " and " .$k ."='" . $v . "'";
+			}
+		}
 		$sql = "select count(*) as total from fu_user 
-				where user_member_id = '" . $member_id ."'";
+				where user_member_id = '" . $member_id ."'" . $str;
 		$row = $this->db->query($sql)->row_array();
 		return $row['total'];		
 	}
@@ -110,7 +119,7 @@ class Members_model extends CI_Model
 	 * $order_payment 订单支付状况
 	 * @return 总数
 	 */
-	function orderTotalNumberModel($param)
+	function orderTotalNumberModel($param = array())
 	{
 		$where = " where u.user_member_id = '". $param['user_member_id'] ."' ";
 		if(isset($param['order_payment']))
