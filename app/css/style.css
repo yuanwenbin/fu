@@ -109,3 +109,7 @@ height: 89px;line-height: 89px;text-align: center;}
 .membersUserList table tr{line-height:30px;}
 .membersUserList table tr td{border-top:1px solid #d8d8d8;}
 .topBg{height:75px;background:#d77a35;overflow:hidden;}
+/*分页展示*/
+.pages{width:100%;line-height:40px;text-align:center;}	
+.pages a{color:#333;border:1px solid #888;padding:0 5px;}
+.pages font{color:#ee0000;}
