@@ -84,3 +84,7 @@ hr{border:none;border-bottom:1px solid #d8d8d8;}
 .headerLineBackground font{color:#ff0000;}
 .membersUserList table tr{line-height:30px;}
 .membersUserList table tr td{border-top:1px solid #d8d8d8;}
+/*分页展示*/
+.pages{width:100%;line-height:40px;text-align:center;}	
+.pages a{color:#333;border:1px solid #888;padding:0 5px;}
+.pages font{color:#ee0000;}
