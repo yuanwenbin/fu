@@ -8,6 +8,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>统计中心</title>
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+	.pages{width:100%;line-height:40px;text-align:center;}	
+	.pages a{color:#333;border:1px solid #888;padding:0 5px;}
+	.pages font{color:#ee0000;}
+	</style>
 </head>
 <body class="roomList">
 <div class="topBg">
@@ -17,7 +22,6 @@
 <h3 class="headerLineBackground">
 业务员&nbsp;<font><?php echo $name; ?></font>&nbsp;登记用户列表
 </h3>
-
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<?php if(!$userList) { ?>
 	<tr><td align="center">没有相关数据</td></tr>
@@ -48,6 +52,38 @@
 	</tr>
 	<?php } } ?>
 </table>
+<!--  bof 页码  -->
+<p class="pages">
+总记录数：<?php echo $total; ?>&nbsp;&nbsp;总页码：<?php echo $totalPage;?>&nbsp;&nbsp;页码列表：
+<?php 
+if($page > 1) { 
+	$fromPage = $page - 5;
+	
+	for($i = $fromPage; $i < $page;$i++) { 
+		if($i < 1)
+		{
+			continue;
+		}
+?>
+	<a href="/Members/userList?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+<?php } }
+	$toPage = $page + 5;
+	for($ii=$page; $ii<=$toPage;$ii++)
+	{
+		if($ii > $totalPage)
+		{
+			break;
+		}
+?>
+<?php if($ii == $page) {?>
+<font><?php echo $ii; ?></font>&nbsp;
+<?php }else {?>
+<a href="/Members/userList?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<?php  
+	} }
+ ?>
+</p>
+<!--  eof 页码  -->
 <p class="backBtnMember"><a href="/Members/index">返回统计中心</a>
 &nbsp;&nbsp;
 <a href="/Index/menus">菜单中心</a></p>

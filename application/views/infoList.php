@@ -33,28 +33,31 @@
 	</tr>
 	<tr>
 		<td width="20%" align="right">订单已支付总数：&nbsp;</td>
-		<td width="20%" align="left"><?php echo ($orderAllCount - $orderNotPayCount);?></td>
+		<td width="20%" align="left"><?php echo number_format(($orderAllCount - $orderNotPayCount),2);?></td>
 	</tr>
 
 	<tr>
 		<td width="20%" align="right">订单未支付总数：&nbsp;</td>
-		<td width="20%" align="left"><?php echo $orderNotPayCount;?></td>
+		<td width="20%" align="left"><?php echo number_format($orderNotPayCount,2);?></td>
 	</tr>
 
 	<tr>
 		<td width="20%" align="right">订单总金额数：&nbsp;</td>
 		<td width="20%" align="left">
-		<?php echo number_format($orderAllCountMoney,2);?></td>
+		<?php echo number_format($orderAllCountMoney,2); //echo $orderAllCountMoney; // echo number_format($orderAllCountMoney,2);?></td>
 	</tr>
 
 	<tr>
 		<td width="20%" align="right">订单已支付金额数：&nbsp;</td>
-		<td width="20%" align="left"><?php echo number_format($orderAllCountMoney - $orderNotPayCountMoney);?></td>
+		<td width="20%" align="left">
+		<?php echo number_format(($orderAllCountMoney - $orderNotPayCountMoney),2);
+		// number_format($orderAllCountMoney - $orderNotPayCountMoney);?>
+		<?php //echo ($orderAllCountMoney - $orderNotPayCountMoney);// number_format($orderAllCountMoney - $orderNotPayCountMoney);?></td>
 	</tr>
 
 	<tr>
 		<td width="20%" align="right">订单未支付金额数：&nbsp;</td>
-		<td width="20%" align="left"><?php echo number_format($orderNotPayCountMoney);?></td>
+		<td width="20%" align="left"><?php echo $orderNotPayCountMoney;// number_format($orderNotPayCountMoney);?></td>
 	</tr>
 	<tr>
 		<td width="20%" align="right"><a href="/Members/userList">登记用户列表</a>&nbsp;&nbsp;</td>

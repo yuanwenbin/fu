@@ -69,6 +69,38 @@
 	</tr>
 	<?php } } ?>
 </table>
+<!--  bof 页码  -->
+<p class="pages">
+总记录数：<?php echo $total;?>&nbsp;&nbsp; 总页码：<?php echo $totalPage; ?>&nbsp;&nbsp; 页码列表：  
+<?php 
+if($page > 1) { 
+	$fromPage = $page - 5;
+	
+	for($i = $fromPage; $i < $page;$i++) { 
+		if($i < 1)
+		{
+			continue;
+		}
+?>
+	<a href="/Members/orderList?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+<?php } }
+	$toPage = $page + 5;
+	for($ii=$page; $ii<=$toPage;$ii++)
+	{
+		if($ii > $totalPage)
+		{
+			break;
+		}
+?>
+<?php if($ii == $page) {?>
+<font><?php echo $ii; ?></font>&nbsp;
+<?php }else {?>
+<a href="/Members/orderList?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<?php } 
+	 }
+ ?>
+</p>
+<!--  eof 页码  -->
 <p class="backBtnMember"><a href="/Members/index">返回统计中心</a>
 &nbsp;&nbsp;
 <a href="/Index/menus">菜单中心</a></p>
