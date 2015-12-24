@@ -44,7 +44,7 @@
 		<?php echo $v['order_location_id'] ? $v['order_location_id'] : '无'; ?>
 		</td>
 		<td widtd="8%" align="center">
-		<?php echo $v['order_payment'] ? '是' : '无'; ?>
+		<?php echo $v['order_payment'] ? '是' : '否'; ?>
 		</td>
 		<td widtd="25%" align="center">
 		<?php if(!$v['user_type']) { ?>

@@ -21,9 +21,9 @@
 
 #priceContent{position:fixed;z-index:9999;display:block;height:100px;width:255px;border:1px solid #444;background:#fff;overflow-y:auto;}
 .priceContent{margin:30px 0 0 15px;}
-.priceContent select{border:1px solid #444;padding:3px;}
+.priceContent select{border:1px solid #444;padding:3px;font-family:'Microsoft YaHei','微软雅黑','宋体','黑体',Verdana, Geneva, sans-serif;}
 .priceContent select option{height:24px;line-height:24px;}
-
+.priceContent input{font-family:'Microsoft YaHei','微软雅黑','宋体','黑体',Verdana, Geneva, sans-serif;}
 
 
 .myDiv{width:100%;height:100%;position:fixed;background:#000; background-color:rgba(0,,0,0.5);
