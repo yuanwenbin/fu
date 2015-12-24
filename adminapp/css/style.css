@@ -13,6 +13,8 @@ html{}
 .clearBoth{clear:both;padding:0;margin:0;}
 
 
+
+.menuList li ul{display:none;}
 input,button,select,textarea{outline:none}
 .loginBox form input{border:none;height:43px;line-height:40px;}
 .loginInput{margin-left:150px;margin-top:14px;width:295px;}
@@ -71,7 +73,7 @@ hr{border:none;border-bottom:1px solid #d8d8d8;}
 .orderListDetails a{text-decoration:underline;color:#008800;}
 
 /*业务员统计中心*/
-.members{}
+.members{font-size:14px;}
 .headerLineBackground{text-align:center;line-height:30px;margin-top:10px;}
 .headerLineBackground font{color:#ff0000;}
 .members table tr{line-height:30px;}
