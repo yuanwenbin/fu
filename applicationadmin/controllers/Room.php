@@ -106,6 +106,7 @@ class Room extends CI_Controller {
 			{
 				$view['endPage'] = $totalPage;
 			}	
+			$view['total'] = $roomTotal;
 			$view['page'] = $page;	
 			$view['totalPage'] = $totalPage;
 			$view['roomTotal'] = $roomTotal;
@@ -231,7 +232,8 @@ class Room extends CI_Controller {
 			if($page < $totalPage)
 			{
 				$view['endPage'] = $totalPage;
-			}	
+			}
+			$view['total'] = $roomTotal;	
 			$view['page'] = $page;	
 			$view['totalPage'] = $totalPage;
 			$view['roomTotal'] = $roomTotal;
@@ -545,9 +547,11 @@ class Room extends CI_Controller {
 			$view['endPage'] = $totalPage;
 			$view['nextPage'] = $page+1;
 		}
+		
 		$param['page'] = $page;
 		$param['pageSize'] = PAGESIZEPOS;
 		$result = $this->Room_model->roomPosListSearch($param);
+		$view['total'] = $roomLocationTotal; 
 		$view['page'] = $page;
 		$view['pageTotal'] = $totalPage;
 		$view['roomList'] = $roomList;

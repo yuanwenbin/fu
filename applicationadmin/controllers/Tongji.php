@@ -98,7 +98,7 @@ class Tongji extends CI_Controller {
         // print_r($list);
 	    // 房间列表
 	    $roomList = $this->Tongji_model->tongRoomList();
-	 	
+	 	$view['total'] = $posCount;
 	    $view['roomList'] = $roomList; // 房间列表
 	    $view['posIng'] = $totalNumber[0]; // 正在出售中
 	    $view['room_list_count'] = $roomCount; // 总房间数
