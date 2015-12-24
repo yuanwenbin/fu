@@ -37,7 +37,7 @@
 		<br class="clearBoth" />
 		<div class="userMemberinfos">
 		当前登陆用户：<?php echo $_SESSION['member_username'];?>&nbsp;&nbsp;
-		<a href="/Index/logout">重新登陆？</a>
+		<a href="/Index/logout">切换账号？</a>
 		</div>
 	</div>
 	
