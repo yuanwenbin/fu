@@ -98,7 +98,7 @@ if($page > 1) {
 </p>
 <!--  eof 页码  -->
 <p class="backBtnMember">
-<a href="/Memberteam/MemberteamUserList?id=<?php echo $memberInfos['member_id']; ?>">用户列表</a>
+<a href="/Memberteam/MemberteamUserList?id=<?php echo $memberInfos['member_id']; ?>">登记用户列表</a>
 </p>
 </div>
 

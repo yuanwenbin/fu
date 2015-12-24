@@ -9,13 +9,14 @@
 	<title>系统登陆后台菜单</title>
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/js/menu.js"></script>
 </head>
 <body class="adminMenu">
 
 <ul class="menuList">
 	<?php if(hasPerssion($_SESSION['role'],'room')) { ?>
 	<li>
-		<h2>房间/牌位管理中心</h3>
+		<h2><a href="javascript:void(0);">房间/牌位管理中心</a></h2>
 		<ul>
 		<?php if(hasPerssion($_SESSION['role'],'roomList')) { ?>
 			<li><a href="/Room/roomList" target="mainFrame">房间列表</a></li>
@@ -35,7 +36,7 @@
 	<?php } ?>
 	<?php if(hasPerssion($_SESSION['role'],'orderList')) { ?>
 	<li>
-		<h2>订单管理中心</h2>
+		<h2><a href="javascript:void(0);">订单管理中心</a></h2>
 		<ul>
 			<li><a href="/Order/orderList" target="mainFrame">订单列表</a></li>
 		</ul>
@@ -43,7 +44,7 @@
 	<?php } ?>
 	<?php if(hasPerssion($_SESSION['role'],'article')) { ?>
 	<li>
-		<h2>文章管理中心</h2>
+		<h2><a href="javascript:void(0);">文章管理中心</a></h2>
 		<ul>
 			<?php if(hasPerssion($_SESSION['role'],'addArticle')) { ?>
 			<li><a href="/Article/addArticle" target="mainFrame">发表文章</a></li>
@@ -62,7 +63,7 @@
 	<?php } ?>
 	<?php if(hasPerssion($_SESSION['role'],'member')) { ?>
 	<li>
-		<h2>登录记录中心</h2>
+		<h2><a href="javascript:void(0);">登录记录中心</a></h2>
 		<ul>
 			<li><a href="/Member/index" target="mainFrame">登录列表</a></li>
 			<li><a href="/Member/memberSearch" target="mainFrame">登录查询</a></li>
@@ -71,7 +72,7 @@
 	 <?php } ?>
 	 <?php if(hasPerssion($_SESSION['role'],'all')) { ?>
 	<li>
-		<h2>管理员中心</h2>
+		<h2><a href="javascript:void(0);">管理员中心</a></h2>
 		<ul>
 		    <li><a href="/User/userList" target="mainFrame">管理员列表</a></li>
 			<li><a href="/User/userAdd" target="mainFrame">增加管理员</a></li>
@@ -80,7 +81,7 @@
 	<?php } ?>
 	<?php if(hasPerssion($_SESSION['role'],'tongji')) { ?>
 	<li>
-		<h2>统计中心</h2>
+		<h2><a href="javascript:void(0);">统计中心</a></h2>
 		<ul>
 			<?php if(hasPerssion($_SESSION['role'],'tongjiList')) { ?>
 		    <li><a href="/Tongji/tongjiList" target="mainFrame">统计状况</a></li>
@@ -94,7 +95,7 @@
 	
 	<?php if(hasPerssion($_SESSION['role'],'links')) { ?>
 	<li>
-		<h2>友情链接</h2>
+		<h2><a href="javascript:void(0);">友情链接</a></h2>
 		<ul>
 
 		    <li><a href="/Links/linkList" target="mainFrame">友情链接</a></li>
@@ -105,7 +106,7 @@
 	
 	<?php if(hasPerssion($_SESSION['role'],'copyright')) { ?>
 	<li>
-		<h2>版权信息</h2>
+		<h2><a href="javascript:void(0);">版权信息</a></h2>
 		<ul>
 
 		    <li><a href="/Copyright/copyrightInfo" target="mainFrame">版权信息</a></li>
@@ -116,7 +117,7 @@
 	
 	<?php if(hasPerssion($_SESSION['role'],'curlture')) { ?>
 	<li>
-		<h2>道教文化</h2>
+		<h2><a href="javascript:void(0);">道教文化</a></h2>
 		<ul>
 
 		    <li><a href="/Curlture/curlture" target="mainFrame">道教文化</a></li>
@@ -127,7 +128,7 @@
 	
 	<?php if(hasPerssion($_SESSION['role'],'aboutus')) { ?>
 	<li>
-		<h2>版权信息</h2>
+		<h2><a href="javascript:void(0);">版权信息</a></h2>
 		<ul>
 
 		    <li><a href="/Aboutus/aboutUsInfo" target="mainFrame">关于我们</a></li>
@@ -139,7 +140,7 @@
 
 	<?php if(hasPerssion($_SESSION['role'],'orderList')) { ?>
 	<li>
-		<h2>订单管理中心</h2>
+		<h2><a href="javascript:void(0);">订单管理中心</a></h2>
 		<ul>
 			<li><a href="/Order/orderList" target="mainFrame">订单列表</a></li>
 		</ul>
@@ -148,7 +149,7 @@
 	
 	<?php if(hasPerssion($_SESSION['role'],'password')) { ?>
 	<li>
-		<h2>密码管理</h2>
+		<h2><a href="javascript:void(0);">密码管理</a></h2>
 		<ul>
 			<?php if(hasPerssion($_SESSION['role'],'passwordCheckForRand')) { ?>
 			<li><a href="/Password/passwordCheckForRand" target="mainFrame">查看随机密码</a></li>
@@ -168,7 +169,7 @@
 	
 	<?php if(hasPerssion($_SESSION['role'],'price')) { ?>
 	<li>
-		<h2>价格分类管理</h2>
+		<h2><a href="javascript:void(0);">价格分类管理</a></h2>
 		<ul>
 			<?php if(hasPerssion($_SESSION['role'],'priceList')) { ?>
 			<li><a href="/Price/priceList" target="mainFrame">价格查看</a></li>
@@ -182,7 +183,7 @@
 	
 	<?php if(hasPerssion($_SESSION['role'],'memberteam')) { ?>
 	<li>
-		<h2>业务员管理</h2>
+		<h2><a href="javascript:void(0);">业务员管理</a></h2>
 		<ul>
 			<?php if(hasPerssion($_SESSION['role'],'memberteamList')) { ?>
 			<li><a href="/Memberteam/memberteamList" target="mainFrame">分组查看</a></li>

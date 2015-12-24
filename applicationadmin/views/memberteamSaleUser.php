@@ -34,7 +34,7 @@
 	</tr>
 </table>
 <p class="backBtnMember">
-<a href="/Memberteam/MemberteamUserList?id=<?php echo $memberInfos['member_id']; ?>">用户列表</a>
+<a href="/Memberteam/MemberteamUserList?id=<?php echo $memberInfos['member_id']; ?>">登记用户列表</a>
 &nbsp;&nbsp;
 <a href="/Memberteam/MemberteamOrderList?id=<?php echo $memberInfos['member_id']; ?>">订单列表</a></p>
 </div>
