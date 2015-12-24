@@ -23,10 +23,10 @@
 	<!-- bof selectPrice -->
 	<?php // print_r($priceList); PRINT_R($maxPrice);?>
 	<div class="selectPriceBox">
-	价格选择：&nbsp;<select name="selectPriceBox">
+	类型切换：&nbsp;<select name="selectPriceBox">
 	<?php foreach($priceList as $kv) {?>
 	<option value="<?php echo $kv['price_min'] . ',' . $kv['price_max']; ?>" <?php if($maxPrice == $kv['price_max']) echo 'selected';?>>
-	<?php echo $kv['price_min'] . ' - ' . $kv['price_max']; ?></option>
+	<?php echo $kv['price_alias']; ?></option>
 	<?php } ?>
 	</select>
 	</div>
