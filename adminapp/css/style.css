@@ -22,7 +22,7 @@ input,button,select,textarea{outline:none}
 .loginInput3{margin-left:50px;margin-top:14px;}
 .adminTop{border:1px solid #aaa;line-height:46px;background:#fcfcfc;font-size:16px;}
 .adminMenu{border-right:1px solid #888;padding:10px;font-size:12px;line-height:22px;background:#f8f8f8;}
-.menuList li h2{margin-top:10px;font-size:16px;font-weight:normal;background:url(../images/ico.png) no-repeat;height:30px;line-height:30px;padding-left:35px;}
+.menuList li h2{margin-top:10px;font-size:16px;font-weight:bold;background:url(../images/ico.png) no-repeat;height:30px;line-height:30px;padding-left:35px;}
 .menuList ul{padding-left:50px;font-size:14px;}
 .menuList ul li{line-height:26px;}
 
