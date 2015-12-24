@@ -110,6 +110,7 @@ class Price extends CI_Controller {
 	    }
 		$param['price_min'] = addslashes($_POST['minPrice']);
 		$param['price_max'] = addslashes($_POST['maxPrice']);
+		$param['price_alias'] = addslashes($_POST['price_alias']);
 		$param['price_create'] = time();
 		$param['price_user'] = $this->session->admin_user;
 		$param['price_user_id'] = $this->session->userId;
@@ -123,6 +124,10 @@ class Price extends CI_Controller {
 			exit('最小价格不能大于最大价格!');
 		}
 		
+		if($param['price_alias']== '')
+		{
+			exit('价格名称不能为空!');
+		}		
 		$res = $this->Price_model->priceAddDealModel($param);
 		 if($res)
 		 {
@@ -196,6 +201,7 @@ class Price extends CI_Controller {
 		}	
 		$price_min = addslashes($this->input->get_post('minPrice'));
 		$price_max = addslashes($this->input->get_post('maxPrice'));
+		$price_alias = addslashes($this->input->get_post('price_alias'));
 		if($price_min == '' || $price_max == '')
 		{
 			exit('最小价格和最大价格不能为空!');
@@ -204,10 +210,14 @@ class Price extends CI_Controller {
 		{
 			exit('最小价格不能大于最大价格!');
 		}
+		if($price_alias == '')
+		{
+			exit('价格名称不能为空!');
+		}
 		$param = array();
 		$param['price_min'] = $price_min;
 		$param['price_max'] = $price_max;
-		$param['price_max'] = $price_max;
+		$param['price_alias'] = $price_alias;
 		
 		$param['price_create'] = time();
 		$param['price_user'] = $this->session->admin_user;
