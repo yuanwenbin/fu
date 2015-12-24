@@ -52,19 +52,41 @@
 		<td colspan="4"><hr/></td>
 	</tr>
 	<?php } ?>	
-	<tr>
-	<td colspan="10" align="center">
-	总记录数：<?php echo $total; ?>&nbsp;&nbsp;页码：<?php echo $page;?>/<?php echo $totalPage;?>&nbsp;&nbsp;
-	<?php if(isset($indexPage) && $indexPage) {?>
-	<a href="/Article/listArticle?page=1">首页</a>&nbsp;<a href="/Article/listArticle?page=<?php echo $page-1;?>">上一页</a>&nbsp;
-	<?php } ?>
-	
-	<?php if(isset($endPage) && $endPage) {?>
-	<a href="/Article/listArticle?page=<?php echo $page+1;?>">下一页</a>&nbsp;<a href="/Article/listArticle?page=<?php echo $totalPage;?>">末页</a>&nbsp;
-	<?php } ?>	
-	</td>
-	</tr>		
+		
 </table>
+
+<!--  bof 页码  -->
+<p class="pages">
+总记录数：<?php echo $total;?>&nbsp;&nbsp; 总页码：<?php echo $totalPage; ?>&nbsp;&nbsp; 页码列表：  
+<?php 
+if($page > 1) { 
+	$fromPage = $page - 5;
+	
+	for($i = $fromPage; $i < $page;$i++) { 
+		if($i < 1)
+		{
+			continue;
+		}
+?>
+	<a href="/Article/listArticle?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+<?php } }
+	$toPage = $page + 5;
+	for($ii=$page; $ii<=$toPage;$ii++)
+	{
+		if($ii > $totalPage)
+		{
+			break;
+		}
+?>
+<?php if($ii == $page) {?>
+<font><?php echo $ii; ?></font>&nbsp;
+<?php }else {?>
+<a href="/Article/listArticle?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<?php } 
+	 }
+ ?>
+</p>
+<!--  eof 页码  -->
 </div>
 
 <script type="text/javascript">

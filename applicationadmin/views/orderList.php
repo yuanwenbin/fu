@@ -10,6 +10,9 @@
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
      <link type="text/css" href="/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+     <style type="text/css">
+	.pages{width:95%;}
+	</style>
     <script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="/js/jquery-ui-1.8.17.custom.min.js"></script>
 	<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
@@ -158,31 +161,48 @@ foreach($result['resultList'] as $k=>$v){
 
 </table>
 <?php } ?>
-<br /><br />
-<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-	<td align="center">
-	总记录：<?php echo $result['totalNumber'];?>&nbsp;&nbsp;
-	页码：<?php echo $result['page'];?>/<?php echo $result['totalPage'];?>&nbsp;&nbsp;
-	<?php 
+
+
+<!--  bof 页码  -->
+<?php 
 	$datetime = '';
 	$datetimes = '';
 	$datetime = isset($result['datetime']) && $result['datetime'] ? date('Y-m-d H:i:s', $result['datetime']) : '';
 	$datetimes = isset($result['datetimes']) && $result['datetimes'] ? date('Y-m-d H:i:s', $result['datetimes']) : '';
 	$preUrl="/Order/orderList?order_room_id=".$result['order_room_id']."&order_location_type=".$result['order_location_type'];
 	$preUrl .= "&order_payment=".$result['order_payment']."&bodyId=".$result['bodyId']."&datetime=".$datetime."&datetimes=".$datetimes;
-	if($result['page'] > 1) {?>
-	<a href="<?php echo $preUrl;?>&page=1">首页</a>&nbsp;
-	<a href="<?php echo $preUrl;?>&page=<?php echo $result['page']-1;?>">上一页</a>&nbsp;
-	<?php } ?>	
+?>
+<p class="pages">
+总记录数：<?php echo $result['totalNumber'];?>&nbsp;&nbsp; 总页码：<?php echo $result['page'];?>/<?php echo $result['totalPage'];?>&nbsp;&nbsp; 页码列表：  
+<?php 
+if($result['page'] > 1) { 
+	$fromPage = $result['page'] - 5;
 	
-	<?php if($result['page'] < $result['totalPage']) {?>
-	<a href="<?php echo $preUrl;?>&page=<?php echo $result['page']+1;?>">下一页</a>&nbsp;
-	<a href="<?php echo $preUrl;?>&page=<?php echo $result['totalPage'];?>">末页</a>&nbsp;
-	<?php } ?>	
-	</td>
-	</tr>
-</table>
+	for($i = $fromPage; $i < $result['page'];$i++) { 
+		if($i < 1)
+		{
+			continue;
+		}
+?>
+	<a href="<?php echo $preUrl;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+<?php } }
+	$toPage = $result['page'] + 5;
+	for($ii=$result['page']; $ii<=$toPage;$ii++)
+	{
+		if($ii > $result['totalPage'])
+		{
+			break;
+		}
+?>
+<?php if($ii == $result['page']) {?>
+<font><?php echo $ii; ?></font>&nbsp;
+<?php }else {?>
+<a href="<?php echo $preUrl;?>&page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<?php } 
+	 }
+ ?>
+</p>
+<!--  eof 页码  -->
 </div>
 
 <!--  eof infos -->

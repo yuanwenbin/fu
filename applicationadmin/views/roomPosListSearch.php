@@ -8,6 +8,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台-默认展示信息</title>
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+	.pages{width:95%;}
+	</style>
 </head>
 <body class="defaultInfos searchListPos">
 <div class="container">
@@ -130,21 +133,40 @@ if(isset($roomList) && $roomList)
 		<td colspan="10"><hr/></td>
 	</tr>
 	<?php } ?>	
-	<tr>
-	<td colspan="10" align="center">
-	总记录：<?php echo $roomLocationTotal;?>&nbsp;&nbsp;页码：<?php echo $page;?>/<?php echo $pageTotal;?>&nbsp;&nbsp;
-	<?php if(isset($indexPage) && $indexPage) {?>
-	<a href="/Room/roomPosListSearch?roomId=<?php echo $room_id; ?>&positionType=<?php echo $type;?>&status=<?php echo $status;?>&page=1">首页</a>&nbsp;
-	<a href="/Room/roomPosListSearch?roomId=<?php echo $room_id; ?>&positionType=<?php echo $type;?>&status=<?php echo $status;?>&page=<?php echo $page-1;?>">上一页</a>&nbsp;
-	<?php } ?>	
-	
-	<?php if(isset($endPage) && $endPage) {?>
-	<a href="/Room/roomPosListSearch?roomId=<?php echo $room_id; ?>&positionType=<?php echo $type;?>&status=<?php echo $status;?>&page=<?php echo $page+1;?>">下一页</a>&nbsp;
-	<a href="/Room/roomPosListSearch?roomId=<?php echo $room_id; ?>&positionType=<?php echo $type;?>&status=<?php echo $status;?>&page=<?php echo $pageTotal;?>">末页</a>&nbsp;
-	<?php } ?>	
-	</td>
-	</tr>	
 </table>
+
+<!--  bof 页码  -->
+<p class="pages">
+总记录数：<?php echo $total;?>&nbsp;&nbsp; 总页码：<?php echo $pageTotal; ?>&nbsp;&nbsp; 页码列表：  
+<?php 
+if($page > 1) { 
+	$fromPage = $page - 5;
+	
+	for($i = $fromPage; $i < $page;$i++) { 
+		if($i < 1)
+		{
+			continue;
+		}
+?>
+	<a href="/Room/roomPosListSearch?roomId=<?php echo $room_id; ?>&positionType=<?php echo $type;?>&status=<?php echo $status;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+<?php } }
+	$toPage = $page + 5;
+	for($ii=$page; $ii<=$toPage;$ii++)
+	{
+		if($ii > $pageTotal)
+		{
+			break;
+		}
+?>
+<?php if($ii == $page) {?>
+<font><?php echo $ii; ?></font>&nbsp;
+<?php }else {?>
+<a href="/Room/roomPosListSearch?roomId=<?php echo $room_id; ?>&positionType=<?php echo $type;?>&status=<?php echo $status;?>&page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<?php } 
+	 }
+ ?>
+</p>
+<!--  eof 页码  -->
 </div>
 <!--  eof infos -->
 </div>

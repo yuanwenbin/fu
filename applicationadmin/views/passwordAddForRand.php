@@ -17,7 +17,7 @@
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
 		<td>
-		&nbsp;&nbsp;<input  type="text" name="randPassword" value="" />
+		&nbsp;&nbsp;随机密码：<input  type="text" name="randPassword" value="" />
 		</td>
 	</tr>
 		<tr>

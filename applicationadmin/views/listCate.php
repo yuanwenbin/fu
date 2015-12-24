@@ -17,7 +17,7 @@ if(!$cate_name) { ?>
 	暂时无相关房间，<a href="/Article/listCate">点击增加文章分类</a>
 <?php }else {
 ?>
-<table border="0" cellspacing="5" cellpadding="5" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
 		<th  width="10%" align="center">注册时间</th>
 		<th width="27%" align="center">文章分类名称</th>
