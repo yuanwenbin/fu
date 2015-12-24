@@ -65,7 +65,7 @@ class Members extends CI_Controller {
 	    	$page = 1;
 	    }
 	    
-	    // 会员列表
+	    // 会员列表,登记的，没有下过订单的
 	    $userList = $this->Members_model->userListRegisterModel($this->session->member_id, $page, $pageSize);
 	    $view['userList'] = $userList;
 	    $view['name'] = $this->session->member_username;
