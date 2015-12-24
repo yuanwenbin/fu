@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>统计中心</title>
+	<title>组长-统计中心</title>
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
@@ -15,7 +15,7 @@
 </div>
 <div class="roomListInfos members">
 <h3 class="headerLineBackground">
-业务员&nbsp;<font><?php echo $_SESSION['member_username']; ?></font>&nbsp;统计中心
+组长-业务员&nbsp;<font><?php echo $_SESSION['member_username']; ?></font>&nbsp;统计中心
 </h3>
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
