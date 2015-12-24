@@ -54,7 +54,7 @@ height: 89px;line-height: 89px;text-align: center;}
 .areaTop .nowChoice a{text-decoration:underline;color:#999;}
 .areaTop a{color:#ff0000;font-size:12px;}
 
-.tags{width:910px;margin:0px auto 60px auto;}
+.tags{width:910px;margin:0px auto 60px auto;font-family:'Microsoft YaHei','微软雅黑','宋体','黑体',Verdana, Geneva, sans-serif;}
 .tags ul li{float:left;margin-left:9px;margin-top:6px;}
 
 .myNoTag{background:url(../images/myNoTags.png) no-repeat;width:118px;height:32px;margin-left:220px;}
@@ -93,7 +93,7 @@ height: 89px;line-height: 89px;text-align: center;}
     font-weight: bold;
     margin-left: 198px;
     margin-top: 15px;}
-
+.selectPriceBox select{font-family:'Microsoft YaHei','微软雅黑','宋体','黑体',Verdana, Geneva, sans-serif;}
 /*统计中心*/
 .members{width:600px;margin:0 auto;font-size:14px;}
 .headerLineBackground{text-align:center;line-height:30px;margin-top:40px;}
