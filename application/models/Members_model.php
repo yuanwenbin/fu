@@ -65,7 +65,7 @@ class Members_model extends CI_Model
 	 */
 	function userListTotalModel($member_id, $param = array())
 	{
-		$str = " and 1=1 ";
+		$str = "";
 		if($param)
 		{
 			foreach($param as $k=>$v)
