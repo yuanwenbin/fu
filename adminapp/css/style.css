@@ -26,19 +26,20 @@ input,button,select,textarea{outline:none}
 .menuList ul{padding-left:50px;font-size:14px;}
 .menuList ul li{line-height:26px;}
 
-.defaultInfos{padding:10px;background:#fff;}
+.defaultInfos{padding:10px 0px 10px 0px;background:#fff;}
 .divInfos1{margin-top:10px;line-height:26px;}
 .divInfosSearch{}
 .headerLineBackground1{background:#e5e4dc;}
 
 .roomOpen{ line-height:26px;background:#fff;}
 .roomOpen label{font-weight:bold;}
-.roomOpen h3{font-size: 16px;}
+.roomOpen h3{font-size: 16px;text-align:center;}
 .roomList{line-height:30px;background:#fff;width:98%;}
 .roomListInfos th{background:#e5e4dc;line-height:30px;}
 .listRoomColumns{}
+.roomListInfos h3{text-align:center;}
 .roomListPage{width:100%;text-align:center;padding-top:20px;}
-.roomInfosDiv{padding-left:1%; }
+.roomInfosDiv h3{text-align:center;} 
 .searchListPos{line-height:26px;}
 
 .article_title{width:250px;}
@@ -74,7 +75,7 @@ hr{border:none;border-bottom:1px solid #d8d8d8;}
 
 /*业务员统计中心*/
 .members{font-size:14px;}
-.headerLineBackground{text-align:center;line-height:30px;margin-top:10px;}
+.headerLineBackground{text-align:center;line-height:30px;}
 .headerLineBackground font{color:#ff0000;}
 .members table tr{line-height:30px;}
 .members table tr td{border-top:1px solid #d8d8d8;}
@@ -82,7 +83,7 @@ hr{border:none;border-bottom:1px solid #d8d8d8;}
 
 /*业务员拉的会员列表*/
 .membersUserList{width:1000px;margin:0 auto;font-size:14px;}
-.headerLineBackground{text-align:center;line-height:30px;margin-top:15px;}
+.headerLineBackground{text-align:center;line-height:30px;}
 .headerLineBackground font{color:#ff0000;}
 .membersUserList table tr{line-height:30px;}
 .membersUserList table tr td{border-top:1px solid #d8d8d8;}
