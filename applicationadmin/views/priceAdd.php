@@ -21,6 +21,7 @@
 		<td>
 		&nbsp;&nbsp;开始价格:&nbsp;<input  type="text" name="minPrice" value="" />&nbsp;&nbsp;
 		&nbsp;&nbsp;结束价格:&nbsp;<input  type="text" name="maxPrice" value="" />&nbsp;&nbsp;
+		&nbsp;&nbsp;价格名称:&nbsp;<input  type="text" name="price_alias" value="" />&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" value="提交" />
 		</td>
 	</tr>
@@ -31,8 +32,9 @@
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
 		<th width="30%" align="center">价格分类</th>
-		<th width="30%" align="center">时间</th>
-		<th width="20%" align="center">管理员</th>
+		<th width="17%" align="center">价格名称</th>
+		<th width="18%" align="center">时间</th>
+		<th width="15%" align="center">管理员</th>
 		<th width="18%" align="center">操作</th>
 	</tr>
 	<?php 
@@ -42,24 +44,27 @@
 		<td width="30%" align="center">
 		<?php echo $val['price_min'] .' - ' . $val['price_max']; ?>
 		</td>
-		<td width="30%" align="center">
+		<td width="17%" align="center">
+		<?php echo $val['price_alias']; ?>
+		</td>		
+		<td width="18%" align="center">
 		<?php echo date('Y-m-d H:i:s', $val['price_create']); ?>
 		</td>
-		<td width="20%" align="center">
+		<td width="15%" align="center">
 		<?php echo $val['price_user']; ?>
 		</td>
 		<td width="18%" align="center">
 		<?php if(hasPerssion($_SESSION['role'],'priceDel')) { ?>
-		<a href="/Price/priceDel?id=<?php echo $val['id']; ?>" target="mainFrame">删除</a>&nbsp;&nbsp;
+		<a href="/Price/priceDel?id=<?php echo $val['id']; ?>">删除</a>&nbsp;&nbsp;
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'priceUpdate')) { ?>
-			<a href="/Price/priceUpdate?id=<?php echo $val['id']; ?>" target="mainFrame">编辑</a>&nbsp;&nbsp;
+			<a href="/Price/priceUpdate?id=<?php echo $val['id']; ?>">编辑</a>&nbsp;&nbsp;
 			<?php } ?>			
 		
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4"><hr/></td>
+		<td colspan="5"><hr/></td>
 	</tr>
 	<?php } ?>
 </table>
@@ -71,6 +76,7 @@ $(document).ready(function(){
 	$("input[name='submit']").click(function(){
 		var minPrice = $("input[name='minPrice']").val();
 		var maxPrice = $("input[name='maxPrice']").val();
+		var price_alias = $("input[name='price_alias']").val();
 		if(minPrice == '')
 		{
 			alert("请输入开始价格");
@@ -79,7 +85,7 @@ $(document).ready(function(){
 
 		if(maxPrice == '')
 		{
-			alert("请输入结束价格:");
+			alert("请输入结束价格");
 			return false;
 		}
 		if(parseFloat(minPrice) >= parseFloat(maxPrice))
@@ -87,6 +93,12 @@ $(document).ready(function(){
 			alert("开始价格不能大于结束价格");
 			return false;
 		}
+
+		if(price_alias == '')
+		{
+			alert("请输入价格别名");
+			return false;
+		}		
 		return true;	
 	});
 

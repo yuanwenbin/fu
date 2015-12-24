@@ -24,6 +24,8 @@
 		<input  type="text" name="minPrice" value="<?php echo $pricePerList['price_min']; ?>" />&nbsp;&nbsp;
 		&nbsp;&nbsp;结束价格:&nbsp;
 		<input  type="text" name="maxPrice" value="<?php echo $pricePerList['price_max']; ?>" />&nbsp;&nbsp;
+		&nbsp;&nbsp;价格名称:&nbsp;
+		<input  type="text" name="price_alias" value="<?php echo $pricePerList['price_alias']; ?>" />&nbsp;&nbsp;		
 		&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" value="提交" />
 		</td>
 	</tr>
@@ -34,8 +36,9 @@
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
 		<th width="30%" align="center">价格分类</th>
-		<th width="30%" align="center">时间</th>
-		<th width="20%" align="center">管理员</th>
+		<th width="17%" align="center">价格名称</th>
+		<th width="18%" align="center">时间</th>
+		<th width="15%" align="center">管理员</th>
 		<th width="18%" align="center">操作</th>
 	</tr>
 	<?php 
@@ -45,18 +48,21 @@
 		<td width="30%" align="center">
 		<?php echo $val['price_min'] .' - ' . $val['price_max']; ?>
 		</td>
-		<td width="30%" align="center">
+		<td width="17%" align="center">
+		<?php echo $val['price_alias']; ?>
+		</td>		
+		<td width="18%" align="center">
 		<?php echo date('Y-m-d H:i:s', $val['price_create']); ?>
 		</td>
-		<td width="20%" align="center">
+		<td width="15%" align="center">
 		<?php echo $val['price_user']; ?>
 		</td>
 		<td width="18%" align="center">
 		<?php if(hasPerssion($_SESSION['role'],'priceDel')) { ?>
-		<a href="/Price/priceDel?id=<?php echo $val['id']; ?>" target="mainFrame">删除</a>&nbsp;&nbsp;
+		<a href="/Price/priceDel?id=<?php echo $val['id']; ?>">删除</a>&nbsp;&nbsp;
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'priceUpdate')) { ?>
-			<a href="/Price/priceUpdate?id=<?php echo $val['id']; ?>" target="mainFrame">编辑</a>&nbsp;&nbsp;
+			<a href="/Price/priceUpdate?id=<?php echo $val['id']; ?>">编辑</a>&nbsp;&nbsp;
 			<?php } ?>			
 		
 		</td>
