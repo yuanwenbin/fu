@@ -517,12 +517,8 @@ class Memberteam extends CI_Controller {
 	    }
 	    $pageSize = 10;
 	    // 会员总数
-	    $total = $this->Memberteam_model->queryCountModel('fu_user', array('user_member_id'=>$id));
+	    $total = $this->Memberteam_model->queryCountModel('fu_user', array('user_member_id'=>$id,'user_location_id'=>'0'));
 		$totalPage = ceil($total/$pageSize);
-		if($page > $totalPage)
-		{
-			$page = $totalPage;
-		}
 		$view['page'] = $page;
 		$view['totalPage'] = $totalPage;
 		$view['total'] = $total;
@@ -564,11 +560,6 @@ class Memberteam extends CI_Controller {
 	    $view['page'] = $page;
 	    $totalPage = ceil($orderListCount/$pageSize);
 	    $view['totalPage'] = $totalPage;
-	    
-	    if($page > $totalPage)
-	    {
-	    	$page = $totalPage;
-	    }
 	    // 订单列表
 	    $orderList = $this->Memberteam_model->MemberteamOrderListModel($id, $order_payment,$page,$pageSize);
 	    $view['memberOrderList'] = $orderList;
@@ -666,4 +657,111 @@ class Memberteam extends CI_Controller {
 	    $view['orderNotPayCountMoney'] = number_format($orderNotPayCountMoney,2);
 	    $this->load->view('memberteamInfos', $view);   	    
 	}
+	
+	/**
+	 * 组长及业务员登记用户列表
+	 */
+	function memberTeamRegisterUser()
+	{
+		if(!hasPerssion($_SESSION['role'], 'memberteamInfos')){
+			exit('无权限,请点击左栏目操作');
+		}
+		$id = intval(trim($this->input->get_post('id')));
+		if(!$id || $id < 1)
+		{
+			exit('非法操作');
+		}
+		$pageSize = 10;
+		$page = intval($this->input->get_post('page'));
+		if($page < 1)
+		{
+			$page = 1;
+		}
+		// 业务员 id 列表
+		$paramMemberUser = array('member_team_id'=>$id);
+		$members = $this->Memberteam_model->searchInfos('fu_member',$paramMemberUser);
+		// 组长信息
+		$memberInfos = $this->Memberteam_model->searchInfos('fu_member',array('member_id'=>$id));
+
+		if(!$members)
+		{
+			exit('没有相关数据！');
+		}
+		$member_ids = " (";
+		foreach($members as $k=>$v)
+		{
+			$member_ids .= "'" . $v['member_id'] . "',";
+		}
+		$member_ids = substr($member_ids,0,-1) . ")";
+		$where = " user_location_id = '0' and user_member_id in " . $member_ids . " order by user_id desc ";
+		// 登记用户总数
+		$userCount = $this->Memberteam_model->queryCountInModel('fu_user',$member_ids,'user_member_id', array('user_location_id' => '0'));
+		$totalPage = ceil($userCount/$pageSize);
+		
+		// 登记用户列表
+		$userNotOrder = $this->Memberteam_model->queryTotalListModel('fu_user',$where,$page,$pageSize);
+		$view['id'] = $id;
+		$view['total'] = $userCount;
+		$view['page'] = $page;
+		$view['totalPage'] = $totalPage;
+		$view['memberInfos'] = $memberInfos[0];
+		$view['userList'] = $userNotOrder;
+		
+		$this->load->view('memberTeamRegisterUser',$view);		
+	}
+	
+	/**
+	 * 组长及业务员订单列表
+	 */
+	function memberTeamOrder()
+	{
+		if(!hasPerssion($_SESSION['role'], 'memberteamInfos')){
+			exit('无权限,请点击左栏目操作');
+		}
+		$id = intval(trim($this->input->get_post('id')));
+		if(!$id || $id < 1)
+		{
+			exit('非法操作');
+		}
+		// 组长信息
+		$memberInfos = $this->Memberteam_model->getMemberTeam($id);		
+		// 当前页
+		$page = intval($this->input->get_post('page'));
+		if($page < 1)
+		{
+			$page = 1;
+		}
+		$pageSize = 10;
+		// 业务员 id 列表
+		$paramMemberUser = array('member_team_id'=>$id);
+		$members = $this->Memberteam_model->searchInfos('fu_member',$paramMemberUser);
+		if(!$members)	
+		{
+			exit('无相关数据!');
+		}
+		$member_ids = " (";
+
+		foreach($members as $k=>$v)
+		{
+			$member_ids .= "'" . $v['member_id'] . "',";
+		}
+		// 业务员编号
+		$member_ids = substr($member_ids,0,-1) . ")"; // ('1','3','4')
+		$where = " in " . $member_ids;
+		$orderListTotal = $this->Memberteam_model->orderTeamListModel($where); // 总记录
+		$memberOrderList = 0;
+		$totalPage = ceil($orderListTotal/$pageSize);
+		
+		if($orderListTotal)
+		{
+			$memberOrderList = $this->Memberteam_model->orderTeamListModel($where,$page,$pageSize);
+		}
+		$view['id'] = $id;
+		$view['total'] = $orderListTotal;
+		$view['page'] = $page;
+		$view['totalPage'] = $totalPage;
+		$view['memberInfos'] = $memberInfos;
+		$view['memberOrderList'] = $memberOrderList;
+		$this->load->view('memberTeamOrder', $view);			
+	}	
 }
