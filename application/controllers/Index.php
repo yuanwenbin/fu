@@ -428,9 +428,14 @@ class Index extends CI_Controller {
 		$paramMemberUser = array('member_team_id'=>$this->session->member_teamid);
 		$members = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
 		$member_ids = " (";
-		foreach($members as $k=>$v)
+		if($members)
 		{
-			$member_ids .= "'" . $v['member_id'] . "',";
+			foreach($members as $k=>$v)
+			{
+				$member_ids .= "'" . $v['member_id'] . "',";
+			}
+		}else {
+			$member_ids .= "'-1',";
 		}
 		$member_ids = substr($member_ids,0,-1) . ")";
 		$where = " user_location_id = '0' and user_member_id in " . $member_ids . " order by user_id desc ";
@@ -478,9 +483,14 @@ class Index extends CI_Controller {
 		$paramMemberUser = array('member_team_id'=>$this->session->member_teamid);
 		$members = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
 		$member_ids = " (";
-		foreach($members as $k=>$v)
+		if($members)
 		{
-			$member_ids .= "'" . $v['member_id'] . "',";
+			foreach($members as $k=>$v)
+			{
+				$member_ids .= "'" . $v['member_id'] . "',";
+			}
+		}else {
+			$member_ids .= "'-1',";
 		}
 		// 业务员编号
 		$member_ids = substr($member_ids,0,-1) . ")"; // ('1','3','4')
