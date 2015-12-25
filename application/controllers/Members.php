@@ -96,10 +96,7 @@ class Members extends CI_Controller {
 	    $orderListTotal = $this->Members_model->orderTotalNumberModel($param);	    
 	    // 总页码
 	    $totalPage = ceil($orderListTotal/$pageSize);	    
-	    if($page > $totalPage) 
-	    {
-	    	$page = $totalPage;
-	    }   
+  
 	    $orderList = $this->Members_model->orderListModel($this->session->member_id, $order_payment,$page,$pageSize);
 	    $view['memberOrderList'] = $orderList;
 	    $view['name'] = $this->session->member_username;
@@ -110,6 +107,7 @@ class Members extends CI_Controller {
 	    $view['totalPage'] = $totalPage;
 	    $this->load->view('memberOrderList', $view);  
 	}
+	
 
 
 }

@@ -300,20 +300,28 @@ class Index extends CI_Controller {
 	    $view['userCount'] =  $memberCount;
 	    // 旗下业务员的用户总数
 	    $paramMemberUser['member_team_id'] = $this->session->member_id;
-	    $memberUserList = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
-
+	    
+	    // $memberUserList = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
+	    
 	    $memberUserCount = 0;
 	    $ids = '';
-	    if($memberUserList)
+	    
+	    if($memberCount)
 	    {
-	        $ids .= "(";
-	        foreach ($memberUserList as $kk=>$vv)
-	        {
-	            $ids .= "'" . $vv['member_id']."',";
-	        }
-	        $ids = substr($ids,0,-1) . ")";
-	        $memberUserCount = $this->Index_model->queryCountInModel('fu_user',$ids,'user_team_id');
+	    	$memberUserList = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
+	    
+		    if($memberUserList)
+		    {
+		        $ids .= "(";
+		        foreach ($memberUserList as $kk=>$vv)
+		        {
+		            $ids .= "'" . $vv['member_id']."',";
+		        }
+		        $ids = substr($ids,0,-1) . ")";
+		        $memberUserCount = $this->Index_model->queryCountInModel('fu_user',$ids,'user_team_id');
+		    }
 	    }
+	    
 	    
 	    $view['memberUserCount'] =  $memberUserCount;
 	     
@@ -324,8 +332,35 @@ class Index extends CI_Controller {
 	    $orderNotPayCountMoney = 0.00;
 	    if($memberUserCount)
 	    {
-	         
+	        // 组长旗下业务员的用户列表 
 	        $memberForUserList = $this->Index_model->queryCountInListModel('fu_user',$ids,'user_team_id');
+	        // bof 
+	        if($memberForUserList)
+	        {
+	        	$idss = "(";
+	        	foreach($memberForUserList as $k=>$v)
+	        	{
+	        		$idss .= "'".$v['body_id'] ."',";
+	        	}
+	        	// 组长旗下业务员的用户body_id值
+	        	$idss = substr($idss,0,-1) . ")";
+
+        		$idStr = substr($idss,0,-1) . ")";
+        		$orderAllCount = $this->Index_model->queryCountInModel('fu_order_info',$idStr,'order_user');
+        		//总金额
+        		$orderAllCountMoney = $this->Index_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price');
+        
+        		$orderNotPayCount = $this->Index_model->queryCountInModel('fu_order_info',$idStr,'order_user',array('order_payment'=>1));
+        		// 末支付金额
+        		$orderNotPayCountMoney = $this->Index_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price',array('order_payment'=>1));
+	        
+	        }	        
+	        
+	        
+	        
+	        // eof 
+	        
+	        /* 旧的，重复了
 	        if($memberForUserList)
 	        {
 	            $idss = "(";
@@ -333,6 +368,7 @@ class Index extends CI_Controller {
 	            {
 	                $idss .= "'".$v['user_id'] ."',";
 	            }
+	            // 组长旗下业务员的用户user_id值
 	            $idss = substr($idss,0,-1) . ")";
 	            $userList = $this->Index_model->queryCountInListModel('fu_user',$idss,'user_id');
 	            if($userList)
@@ -352,12 +388,116 @@ class Index extends CI_Controller {
 	                $orderNotPayCountMoney = $this->Index_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price',array('order_payment'=>1));
 	            }
 	        }
+	        */
 	    }
 	    $view['orderAllCount'] = $orderAllCount;
 	    $view['orderNotPayCount'] = $orderNotPayCount;
 	    $view['orderAllCountMoney'] = $orderAllCountMoney;
 	    $view['orderNotPayCountMoney'] = $orderNotPayCountMoney;
 	    $this->load->view('infoList', $view);	    	    	    
+	}
+	
+	
+	/**
+	 * 组长及旗下的用户登记列表
+	 */
+	function indexUserListTeam()
+	{
+		// 判断是否有业务员登陆了
+		if(!$this->session->member_id)
+		{
+			header("Location:/Index/member");
+			exit;
+		}
+		// 判断是否是组长
+		if(!$this->session->member_teamid)
+		{
+			header("Location:/Index/member");
+			exit;
+		}
+		
+		// 当前页
+		$page = intval($this->input->get_post('page'));
+		if($page < 1)
+		{
+			$page = 1;
+		}
+		$pageSize = 10;
+		
+		// 业务员 id 列表
+		$paramMemberUser = array('member_team_id'=>$this->session->member_teamid);
+		$members = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
+		$member_ids = " (";
+		foreach($members as $k=>$v)
+		{
+			$member_ids .= "'" . $v['member_id'] . "',";
+		}
+		$member_ids = substr($member_ids,0,-1) . ")";
+		$where = " user_location_id = '0' and user_member_id in " . $member_ids . " order by user_id desc ";
+		// 登记用户总数
+		$userCount = $this->Index_model->queryCountInModel('fu_user',$member_ids,'user_member_id', array('user_location_id' => '0')); 
+		$totalPage = ceil($userCount/$pageSize);
+		// 登记用户列表
+		$userNotOrder = $this->Index_model->queryTotalListModel('fu_user',$where,$page,$pageSize); 
+		
+		
+		$view['total'] = $userCount;
+		$view['page'] = $page;
+		$view['totalPage'] = $totalPage;
+		$view['records'] = $userNotOrder;
+		$view['userList'] = $userNotOrder;
+		$this->load->view('indexUserListTeam',$view);
+	}
+
+	/**
+	 * 组长及旗下业务员和其业务员的订单
+	 */
+	function orderListTeam()
+	{
+		// 判断是否有业务员登陆了
+		if(!$this->session->member_id)
+		{
+			header("Location:/Index/member");
+			exit;
+		}
+		// 判断是否是组长
+		if(!$this->session->member_teamid)
+		{
+			header("Location:/Index/member");
+			exit;
+		}	
+		// 当前页
+		$page = intval($this->input->get_post('page'));
+		if($page < 1)
+		{
+			$page = 1;
+		}
+		$pageSize = 10;
+	
+		// 业务员 id 列表
+		$paramMemberUser = array('member_team_id'=>$this->session->member_teamid);
+		$members = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
+		$member_ids = " (";
+		foreach($members as $k=>$v)
+		{
+			$member_ids .= "'" . $v['member_id'] . "',";
+		}
+		// 业务员编号
+		$member_ids = substr($member_ids,0,-1) . ")"; // ('1','3','4')
+		$where = " in " . $member_ids;
+		$orderListTotal = $this->Index_model->orderTeamListModel($where); // 总记录
+		$memberOrderList = 0;
+		$totalPage = ceil($orderListTotal/$pageSize);
+
+		if($orderListTotal)
+		{
+			$memberOrderList = $this->Index_model->orderTeamListModel($where,$page,$pageSize);
+		}
+		$view['total'] = $orderListTotal;
+		$view['page'] = $page;
+		$view['totalPage'] = $totalPage;
+		$view['memberOrderList'] = $memberOrderList;		
+		$this->load->view('orderListTeam', $view);
 	}
 		
 	/*
