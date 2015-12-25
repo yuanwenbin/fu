@@ -186,7 +186,7 @@ class Memberteam_model extends CI_Model
         $sql = "select *  from fu_user as fu_user
 		        left join fu_order_info as fu_order_info
 		        on fu_user.body_id = fu_order_info.order_user
-		        where fu_user.user_member_id = '" . $member_id . "' order by fu_user.user_id desc" . $limit;
+		        where fu_user.user_member_id = '" . $member_id . "' and fu_user.user_location_id = '0' order by fu_user.user_id desc" . $limit;
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -237,8 +237,7 @@ class Memberteam_model extends CI_Model
 			$where = " and oi.order_payment = '".$order_payment."' ";
 		}
 
-		$sql = "select count(*) as total from fu_order_info as oi join fu_location_list ll
-						on oi.order_location_id = ll.localtion_id
+		$sql = "select count(*) as total from fu_order_info as oi 
 						join fu_user as u on oi.order_user = u.body_id
 						where  u.user_member_id = '".$member_id."' " . $where . " order by oi.order_id desc ";
 		$result = $this->db->query($sql);
@@ -316,6 +315,56 @@ class Memberteam_model extends CI_Model
         $rowResult = $result->row();
         return $rowResult->total;        
     }
+    
+    /**
+     * 查询组长及旗下的订单列表
+     */
+    function orderTeamListModel($where,$page='',$pageSize='')
+    {
+    	// 分分页显示
+    	if($page && $pageSize)
+    	{
+    		$startNum = ($page - 1) * $pageSize;
+    		$sql = "select * from fu_order_info as fu_order_info  join fu_user as fu_user  on fu_user.body_id = fu_order_info.order_user
+					where fu_user.user_member_id " . $where . " limit " . $startNum . "," . $pageSize;
+    		$query = $this->db->query($sql);
+    		if ($query->num_rows() > 0) {
+    			return $query->result_array();
+    		} else {
+    			return '';
+    		}
+    	}
+    	// 统计总计
+    	$sql = "select count(*) as total from fu_order_info as fu_order_info  join fu_user as fu_user  on fu_user.body_id = fu_order_info.order_user
+					where fu_user.user_member_id " . $where;
+    	$result = $this->db->query($sql);
+    	$rowResult = $result->row();
+    	return $rowResult->total;
+    }    
+    
+    /**
+     * 查询数据
+     * @param string $table
+     * @param string $where
+     * @param int $page
+     * @param int $pageSize
+     */
+    function queryTotalListModel($table,$where,$page='',$pageSize = '')
+    {
+    	if($page && $pageSize)
+    	{
+    		$startNum = ($page - 1) * $pageSize;
+    		$sql = "select * from " . $table . " where " . $where . " limit " . $startNum . ", " . $pageSize;
+    	}else {
+    		$sql = "select * from " . $table . " where " . $where;
+    	}
+    	$query = $this->db->query($sql);
+    	if ($query->num_rows() > 0) {
+    		return $query->result_array();
+    	} else {
+    		return '';
+    	}
+    }    
     
     /**
      * 查询 in 条件的数据总和
