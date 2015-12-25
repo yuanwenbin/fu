@@ -18,26 +18,26 @@
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
-		<th width="20%" align="center">分组名</th>
-		<th width="20%" align="center">增加管理员</th>
+		<th width="15%" align="center">分组名</th>
+		<th width="15%" align="center">增加管理员</th>
 		<th width="15%" align="center">增加时间</th>
-		<th width="45%" align="center">操作</th>
+		<th width="55%" align="center">操作</th>
 	</tr>
 	<?php
 	if(isset($result) && ($result)) {
 	foreach($result as $key=>$val){
 	?>
 	<tr>
-		<td width="20%" align="center">
+		<td width="15%" align="center">
 		<?php echo $val['team_name']; ?>
 		</td>
-		<td width="20%" align="center">
+		<td width="15%" align="center">
 		<?php echo $val['team_user_name']; ?>
 		</td>
 		<td width="15%" align="center">
 		<?php echo date('Y-m-d H:i:s', $val['team_create']); ?>
 		</td>
-		<td width="45%" align="center">
+		<td width="55%" align="center">
 		<?php if(hasPerssion($_SESSION['role'],'memberteamAdd')) { ?>
 		<a href="/Memberteam/memberteamAdd">分组增加</a>&nbsp;&nbsp;
 		<?php } ?>
@@ -48,7 +48,9 @@
 		<a href="/Memberteam/memberteamUpdate?id=<?php echo $val['id'];?>">分组编辑</a>
 		<?php } ?>	
 		<?php if(hasPerssion($_SESSION['role'],'memberteamInfos')) { ?>
-		<a href="/Memberteam/memberteamInfos?id=<?php echo $val['id'];?>">查看信息</a>
+		<a href="/Memberteam/memberteamInfos?id=<?php echo $val['id'];?>">统计信息</a>
+		<a href="/Memberteam/memberTeamRegisterUser?id=<?php echo $val['id'];?>">登记用户统计</a>
+		<a href="/Memberteam/memberTeamOrder?id=<?php echo $val['id'];?>">订单统计</a>
 		<?php } ?>			
 
 		</td>
