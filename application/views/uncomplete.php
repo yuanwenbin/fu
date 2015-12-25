@@ -119,7 +119,7 @@ $(document).ready(function(){
 	$('.hasNo').click(function(){
 		if(confirm("此页面是您已经选号信息，如果要重新登陆，点击确定"))
 		{
-			window.document.location.href="/";	
+			window.document.location.href="/Index/menus";	
 		}
 	});
 

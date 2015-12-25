@@ -32,13 +32,13 @@
 		<td width="20%" align="left"><?php echo $orderAllCount;?></td>
 	</tr>
 	<tr>
-		<td width="20%" align="right">订单已支付总数：&nbsp;</td>
-		<td width="20%" align="left"><?php echo number_format(($orderAllCount - $orderNotPayCount),2);?></td>
+		<td width="20%" align="right">订单已支付数量总数：&nbsp;</td>
+		<td width="20%" align="left"><?php echo ($orderAllCount - $orderNotPayCount);?></td>
 	</tr>
 
 	<tr>
-		<td width="20%" align="right">订单未支付总数：&nbsp;</td>
-		<td width="20%" align="left"><?php echo number_format($orderNotPayCount,2);?></td>
+		<td width="20%" align="right">订单未支付数量总数：&nbsp;</td>
+		<td width="20%" align="left"><?php echo $orderNotPayCount;?></td>
 	</tr>
 
 	<tr>
@@ -52,7 +52,7 @@
 		<td width="20%" align="left">
 		<?php echo number_format(($orderAllCountMoney - $orderNotPayCountMoney),2);
 		// number_format($orderAllCountMoney - $orderNotPayCountMoney);?>
-		<?php //echo ($orderAllCountMoney - $orderNotPayCountMoney);// number_format($orderAllCountMoney - $orderNotPayCountMoney);?></td>
+		</td>
 	</tr>
 
 	<tr>
@@ -60,8 +60,8 @@
 		<td width="20%" align="left"><?php echo $orderNotPayCountMoney;// number_format($orderNotPayCountMoney);?></td>
 	</tr>
 	<tr>
-		<td width="20%" align="right"><a href="/Members/userList">登记用户列表</a>&nbsp;&nbsp;</td>
-		<td width="20%" align="left">&nbsp;&nbsp;<a href="/Members/orderList">查看订单列表</a>
+		<td width="20%" align="right"><a href="/Index/indexUserListTeam">本组登记用户列表</a>&nbsp;&nbsp;</td>
+		<td width="20%" align="left">&nbsp;&nbsp;<a href="/Index/orderListTeam">本组订单列表</a>
 		&nbsp;&nbsp;
 		<a href="/Index/menus">菜单中心</a>
 		</td>
