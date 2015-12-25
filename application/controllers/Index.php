@@ -102,7 +102,7 @@ class Index extends CI_Controller {
 	{
 		if($this->session->member_id)
 		{
-			header("Location:/Index/index");
+			header("Location:/Index/menus");
 			exit;
 		}
 		// 显示登陆框	
