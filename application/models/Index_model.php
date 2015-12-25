@@ -206,4 +206,54 @@ class Index_model extends CI_Model
 	    $rowResult = $result->row();
 	    return $rowResult->total;
 	}	
+	
+	/**
+	 * 查询数据
+	 * @param string $table
+	 * @param string $where
+	 * @param int $page
+	 * @param int $pageSize
+	 */
+	function queryTotalListModel($table,$where,$page='',$pageSize = '')
+	{
+		if($page && $pageSize)
+		{
+			$startNum = ($page - 1) * $pageSize;
+			$sql = "select * from " . $table . " where " . $where . " limit " . $startNum . ", " . $pageSize;
+		}else {
+			$sql = "select * from " . $table . " where " . $where;
+		}
+		$query = $this->db->query($sql);
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		} else {
+			return '';
+		}		
+	}
+	
+	/**
+	 * 查询组长及旗下的订单列表
+	 */
+	function orderTeamListModel($where,$page='',$pageSize='')
+	{
+		// 分分页显示
+		if($page && $pageSize)
+		{
+			$startNum = ($page - 1) * $pageSize;
+			$sql = "select * from fu_order_info as fu_order_info  join fu_user as fu_user  on fu_user.body_id = fu_order_info.order_user
+					where fu_user.user_member_id " . $where . " limit " . $startNum . "," . $pageSize;
+			$query = $this->db->query($sql);
+			if ($query->num_rows() > 0) {
+				return $query->result_array();
+			} else {
+				return '';
+			}
+		}
+		// 统计总计
+		$sql = "select count(*) as total from fu_order_info as fu_order_info  join fu_user as fu_user  on fu_user.body_id = fu_order_info.order_user
+					where fu_user.user_member_id " . $where;
+		$result = $this->db->query($sql);
+		$rowResult = $result->row();
+		return $rowResult->total;		
+	}
 }
