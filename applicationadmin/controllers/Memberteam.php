@@ -645,9 +645,9 @@ class Memberteam extends CI_Controller {
 	                //总金额
 	                $orderAllCountMoney = $this->Memberteam_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price');
 	                
-	                $orderNotPayCount = $this->Memberteam_model->queryCountInModel('fu_order_info',$idStr,'order_user',array('order_payment'=>1));
+	                $orderNotPayCount = $this->Memberteam_model->queryCountInModel('fu_order_info',$idStr,'order_user',array('order_payment'=>0));
 	                // 末支付金额
-	                $orderNotPayCountMoney = $this->Memberteam_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price',array('order_payment'=>1));
+	                $orderNotPayCountMoney = $this->Memberteam_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price',array('order_payment'=>0));
 	            }
 	        }
 	    }
