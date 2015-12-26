@@ -350,9 +350,9 @@ class Index extends CI_Controller {
         		//总金额
         		$orderAllCountMoney = $this->Index_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price');
         
-        		$orderNotPayCount = $this->Index_model->queryCountInModel('fu_order_info',$idStr,'order_user',array('order_payment'=>1));
+        		$orderNotPayCount = $this->Index_model->queryCountInModel('fu_order_info',$idStr,'order_user',array('order_payment'=>0));
         		// 末支付金额
-        		$orderNotPayCountMoney = $this->Index_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price',array('order_payment'=>1));
+        		$orderNotPayCountMoney = $this->Index_model->queryCountInMoneyModel('fu_order_info',$idStr,'order_user','order_price',array('order_payment'=>0));
 	        
 	        }	        
 	        
