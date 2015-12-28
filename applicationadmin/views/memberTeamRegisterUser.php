@@ -42,6 +42,7 @@
 		 ?>
 		</td>
 	</tr>
+	<tr><td colspan="4"><hr /></td></tr>
 	<?php } } ?>
 </table>
 <!--  bof 页码  -->
