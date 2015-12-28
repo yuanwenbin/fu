@@ -81,7 +81,7 @@ $(document).ready(function(){
 				return false;
 			}else
 			{
-				window.location.href="/Index/index";
+				window.location.href="/Index/menus";
 				return true;
 			}
 		},'json');

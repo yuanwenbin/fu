@@ -30,7 +30,7 @@
 		<a href="/Index/infoList" class="myBack">管理后台</a>
 		<?php }else { ?>
 		
-        &nbsp;
+        <a href="javascript:void(0);" class="noPower">管理后台</a>
 		
 		<?php  }?>
 		</div>
@@ -44,5 +44,12 @@
 
 	
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".noPower").click(function(){
+		alert("您是业务员，没有权限");
+	});
+});
+</script>
 </body>
 </html>
