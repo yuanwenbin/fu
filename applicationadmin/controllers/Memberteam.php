@@ -199,9 +199,9 @@ class Memberteam extends CI_Controller {
     	}
 			$view['memberteamUpdate'] = $memberTeam;
     	// 业务员列表
-			$this->load->model('Member_model');
-			$memberLists = $this->Member_model->searchInfos('fu_member',array('member_flag'=>1));
-			$view['memberLists'] = $memberLists;
+		$this->load->model('Member_model');
+		$memberLists = $this->Member_model->searchInfos('fu_member',array('member_team_id'=>$id,'member_flag'=>1));
+		$view['memberLists'] = $memberLists;
 	
     	$this->load->view('memberteamUpdate', $view);
 	}
