@@ -82,7 +82,7 @@ hr{border:none;border-bottom:1px solid #d8d8d8;}
 .backBtnMember{text-align:center;line-height:40px;}
 
 /*业务员拉的会员列表*/
-.membersUserList{width:1000px;margin:0 auto;font-size:14px;}
+.membersUserList{width:100%;margin:0 auto;font-size:14px;}
 .headerLineBackground{text-align:center;line-height:30px;}
 .headerLineBackground font{color:#ff0000;}
 .membersUserList table tr{line-height:30px;}
