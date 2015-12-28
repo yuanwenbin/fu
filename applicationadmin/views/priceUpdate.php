@@ -68,7 +68,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4"><hr/></td>
+		<td colspan="5"><hr/></td>
 	</tr>
 	<?php } ?>
 </table>

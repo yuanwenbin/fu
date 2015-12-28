@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php echo $memberInfos['member_username']; ?>-统计中心</title>
-	<link href="/css/style.css?v=100" rel="stylesheet" type="text/css" />
+	<link href="/css/style.css?v=201512281041" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomListInfos membersUserList">
@@ -18,6 +18,7 @@
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<?php if(!$userList) { ?>
 	<tr><td align="center">没有相关数据</td></tr>
+	<tr><td><hr /></td></tr>
 	<?php }else{ ?>
 	<tr>
 		<th width="18%" align="center">身份证号码</th>
@@ -63,6 +64,7 @@
 		<?php } ?>
 		</td>
 	</tr>
+	<tr><td colspan="7"><hr /></td></tr>
 	<?php } } ?>
 </table>
 <!--  bof 页码  -->

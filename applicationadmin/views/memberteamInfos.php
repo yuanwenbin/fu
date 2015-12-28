@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/css/style.css?v=201512281041" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomOpen">
 <div class="container">
@@ -23,47 +23,67 @@
 	</tr>
 
 	<tr>
+		<td colspan="2"><hr /></td>
+	</tr>
+
+	<tr>
 		<td width="20%" align="right"><label>旗下业务员总数：</label></td>
 		<td><?php echo $userCount;?></td>
 	</tr>
-
+	<tr>
+		<td colspan="2"><hr /></td>
+	</tr>
 	<tr>
 		<td width="20%" align="right"><label>旗下业务员的用户总数：</label></td>
 		<td><?php echo $memberUserCount;?></td>
 	</tr>
-
+	<tr>
+		<td colspan="2"><hr /></td>
+	</tr>
 	<tr>
 		<td width="20%" align="right"><label>订单总数：</label></td>
 		<td><?php echo $orderAllCount;?></td>
 	</tr>
-
+	<tr>
+		<td colspan="2"><hr /></td>
+	</tr>
 	<tr>
 		<td width="20%" align="right"><label>订单已支付数：</label></td>
 		<td><?php echo ($orderAllCount - $orderNotPayCount);?></td>
 	</tr>
-
+	<tr>
+		<td colspan="2"><hr /></td>
+	</tr>
 	<tr>
 		<td width="20%" align="right"><label>订单未支付数：</label></td>
 		<td><?php echo $orderNotPayCount;?></td>
 	</tr>
-
+	<tr>
+		<td colspan="2"><hr /></td>
+	</tr>
 	<tr>
 		<td width="20%" align="right"><label>订单总金额：</label></td>
 		<td><?php echo $orderAllCountMoney;?></td>
 	</tr>
-
+	<tr>
+		<td colspan="2"><hr /></td>
+	</tr>
 	<tr>
 		<td width="20%" align="right"><label>订单已支付金额：</label></td>
 		<td>
 		<?php echo number_format(($orderAllCountMoney - $orderNotPayCountMoney), 2);?>
 		</td>
 	</tr>
-
+	<tr>
+		<td colspan="2"><hr /></td>
+	</tr>
 	<tr>
 		<td width="20%" align="right"><label>订单未支付金额：</label></td>
 		<td><?php echo $orderNotPayCountMoney;?></td>
 	</tr>
-
+	<tr>
+		<td colspan="2"><hr /></td>
+	</tr>
 	<tr>
 		<td width="20%" align="right"><label>&nbsp;</td>
 		<td><a href="javascript:history.go(-1);">点击返回</a></td>
