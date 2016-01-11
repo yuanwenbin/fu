@@ -293,6 +293,15 @@ class Choice_model extends CI_Model
     	$result = $this->db->query($sql);
     	return $result->result_array();    	
     }
-
+    
+    /**
+     * 查询房间号
+     */
+    function checkRoomModel()
+    {
+    	$sql = "select * from fu_room_list where room_flag = 1 order by room_id desc";
+    	$result = $this->db->query($sql);
+    	return $result->result_array();
+    }
 
 }

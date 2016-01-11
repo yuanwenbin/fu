@@ -53,9 +53,9 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 	<?php // print_r($priceList); PRINT_R($maxPrice);?>
 	<div class="selectPriceBox">
 	类型切换：&nbsp;<select name="selectPriceBox">
-	<?php foreach($priceList as $kv) {?>
-	<option value="<?php echo $kv['price_min'] . ',' . $kv['price_max']; ?>" <?php if($maxPrice == $kv['price_max']) echo 'selected';?>>
-	<?php echo $kv['price_alias']; ?></option>
+	<?php foreach($roomList as $kv) {?>
+	<option value="<?php echo $kv['room_id']; ?>" <?php //  if($room_id == $kv['room_id']) echo 'selected';?>>
+	<?php echo $kv['room_alias']; ?></option>
 	<?php } ?>
 	</select>
 	</div>
@@ -116,8 +116,8 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 	<div class="priceContent">
 	<form onSubmit="javascript:return false;">
 	<label>类型：</label><select name="price">
-	<?php foreach($priceList as $vv) {?>
-	<option value="<?php echo $vv['price_min'] . ',' . $vv['price_max'];?>"><?php echo $vv['price_alias'];?></option>
+	<?php foreach($roomList as $vv) {?>
+	<option value="<?php echo $vv['room_id'];?>"><?php echo $vv['room_alias']; ?></option>
 	<?php } ?>
 	</select>&nbsp;&nbsp;
 	<input type="submit" name="submitPrice" value="提交" />

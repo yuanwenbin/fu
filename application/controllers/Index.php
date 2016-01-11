@@ -47,6 +47,7 @@ class Index extends CI_Controller {
 				'maxPrice'=>'',
 				'count'=>0,
 				'randThird'=>0,
+				'room_id'=>0,
 		);
 		foreach($data as $k=>$v)
 		{

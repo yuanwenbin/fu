@@ -341,9 +341,9 @@ class Choice extends CI_Controller {
 	}
 	*/	
 	/**
-	 * 随机选号展示
+	 * 随机选号展示,以价格为准
 	 */
-	function byRand()
+	function byRand_bak()
 	{	
 	   // 是否已经合法跳转
 	   $status = $this->orderStatus();
@@ -381,12 +381,61 @@ class Choice extends CI_Controller {
 	   			$view['maxPrice'] = -1;
 	   		}
 	   		$view['priceList'] = $this->checkPrice();
+	   		
 	   		$this->load->view('byRand',$view); 
 	   }else {
 	   		header("Location:/Index/index");
 	   		exit;
 	   }
 	}
+	
+	/**
+	 * 随机选号展示,以房间号为准
+	 */
+	function byRand()
+	{
+		// 是否已经合法跳转
+		$status = $this->orderStatus();
+		if($status && $status < 3)
+		{
+			$userInfo = $this->Choice_model->searchUser('fu_user', array('body_id'=>$this->session->body_id));
+			// 判断选择是否有过期的
+			if($userInfo['user_selected_date'] < (time()-DATEHEADLINE))
+			{
+				$param['user_selected'] = 0;
+				$param['user_selected_date'] = 0;
+				$where = array('body_id'=>$this->session->body_id, 'user_type'=>0);
+				$this->Choice_model->changTable('fu_user', $param, $where);
+				$userInfo['user_selected'] = 0;
+				$userInfo['user_selected_date'] = 0;
+				$userInfo['user_type'] = 0;
+			}
+			$view['userInfo'] = $userInfo;
+			// 高端定位是否验证
+			if($this->session->highFlag)
+			{
+				$view['highFlag'] = 1;
+			}else {
+				$view['highFlag'] = 0;
+			}
+			// 价格归档是否选择
+			if($this->session->price)
+			{
+				//设置过
+				$view['price'] = 1;
+			}else {
+				// 没有设置过
+				$view['price'] = 0;
+				$view['maxPrice'] = -1;
+			}
+			$view['roomList'] = $this->checkRoom();
+	
+			$this->load->view('byRand',$view);
+		}else {
+			header("Location:/Index/index");
+			exit;
+		}
+	}	
 	/**
 	 * 随机选号处理
 	 */
@@ -1112,6 +1161,17 @@ class Choice extends CI_Controller {
 		$res = $this->Choice_model->checkPriceModel();
 		return $res;
 	}
+	
+	/**
+	 * 查询房间归档
+	 */
+	private  function checkRoom()
+	{
+		$res = $this->Choice_model->checkRoomModel();
+		return $res;
+	}
+	
+		
 	
 	/**
 	 * 价格选择
