@@ -49,7 +49,7 @@ class Room extends CI_Controller {
 	{
 	    if(!hasPerssion($_SESSION['role'], 'roomOpen')){
 	       exit('无权限,请点击左栏目操作');
-	    }	    
+	    }	   
 		$userId = $this->session->userId;
 		$roomNumber = intval($this->input->post_get('number'));
 		$openFlag = intval($this->input->post_get('openFlag'));
@@ -57,13 +57,98 @@ class Room extends CI_Controller {
 		$alias = addslashes($this->input->post_get('alias'));
 		$description = addslashes($this->input->post_get('description'));
 		$datetime = time();
+		/*
 		if($roomNumber <= 0 || $openFlag < 0)
 		{
 			header("Location:/Index/index");
+		} */
+		// 区域名称
+		$location_area = $this->input->post_get('location_area');
+
+		//牌位前缀
+		$location_prefix = $this->input->post_get('location_prefix');
+
+		// 牌位开始编码
+		$location_code = $this->input->post_get('location_code');
+		
+		// 对应的牌位数量
+		$location_numbers = $this->input->post_get('location_numbers');
+		
+		// 价格
+		$price = $this->input->post_get('price');
+		
+		// 对区域信息分别作判断
+		if(count($location_area) != count($location_prefix) || count($location_area) != count($location_code) || count($location_area) != count($location_numbers) || count($price) != count($location_area))
+		{
+			echo '区域信息不对应 ';
+			echo "<a href='/Room/roomOpen'>点击返回</a>";
+			exit;
 		}
+		// 判断是否为空
+		$isEqual = 1;
+		foreach($location_area as $k=>$v)
+		{
+			if(!$v)
+			{
+				$isEqual = 0; 
+				break;
+			}else {
+				$location_area[$k] = addslashes($v);
+			}
+		}	
+		if($isEqual)	
+		{
+			foreach($location_prefix as $k=>$v)
+			{
+				if(!$v)
+				{
+					$isEqual = 0;
+					break;
+				}else {
+					$location_prefix[$k] = addslashes($v);
+				}
+			}			
+		}
+		
+		if($isEqual)
+		{
+			foreach($location_code as $k => $v)
+			{
+				if(!$v)
+				{
+					$isEqual = 0;
+					break;
+				}else {
+					$location_code[$k] = addslashes($v);
+				}
+			}				
+		}
+
+		if($isEqual)
+		{
+			foreach($location_numbers as $k => $v)
+			{
+				if(!$v)
+				{
+					$isEqual = 0;
+					break;
+				}else {
+					$location_numbers[$k] = addslashes($v);
+				}
+			}				
+		}
+		
+		if(!$isEqual)
+		{
+			echo '区域信息没有填写完整 ';
+			echo "<a href='/Room/roomOpen'>点击返回</a>";
+			exit;			
+		}
+		
 		$roomId = $this->Room_model->roomOpenAdd($userId,$roomNumber,$openFlag,$datetime,$alias,$description);
 		//增加牌位
-		$this->Room_model->roomOpenPosition($roomId,$roomNumber,$price,$openFlag);
+		// $this->Room_model->roomOpenPosition($roomId,$roomNumber,$price,$openFlag);
+		$this->Room_model->roomOpenPosition($roomId,$openFlag,$location_area,$location_prefix,$location_code,$location_numbers,$price);
 		$this->load->view('success');
 	}
 	
@@ -355,6 +440,9 @@ class Room extends CI_Controller {
 		$location_type = $this->input->post_get('location_type');
 		$location_alias = addslashes($this->input->post_get('location_alias'));
 		$location_details = addslashes($this->input->post_get('location_details'));
+		
+		$location_area = addslashes($this->input->post_get('location_area'));
+		$location_prefix = addslashes($this->input->post_get('location_prefix'));
 		// 
 		// $location_number = intval($this->input->post_get('location_number'));
 		// $location_ispayment = intval($this->input->post_get('location_ispayment'));
@@ -415,7 +503,7 @@ class Room extends CI_Controller {
 			$filePic = fileUpload($_FILES['location_pic_new']);
 		}
 		// $result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_number,$location_ispayment,$location_paytime);
-		$result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic);
+		$result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_area,$location_prefix);
 		if($result)
 		{
 			$this->load->view('success');
@@ -557,6 +645,7 @@ class Room extends CI_Controller {
 		$view['roomList'] = $roomList;
 		$view['result'] = $result;
 		$view['roomLocationTotal'] = $roomLocationTotal;
+		
 		$this->load->view('roomPosListSearch',$view);
 	}	
 	/**

@@ -117,6 +117,8 @@ class Room_model extends CI_Model
 	 * @param float $price 价格
 	 * @param int $location_isshow 是否显示
 	 */
+	// ($roomId,$openFlag,$location_area,$location_prefix,$location_code,$location_numbers,$price);
+	/*
 	function roomOpenPosition($roomId,$roomNumber,$price,$location_isshow)
 	{
 		$roomNum = '';
@@ -129,7 +131,35 @@ class Room_model extends CI_Model
 		$sql .= $roomNum;
 		$this->db->query($sql);
 	}
-	
+	*/
+	/**
+	 * 
+	 * @param int $roomId 房间号
+	 * @param int $openFlag 是否显示
+	 * @param array $location_area 区域名称 
+	 * @param array $location_prefix 区域前缀
+	 * @param array $location_code 开始代码
+	 * @param array $location_numbers 开始数量
+	 * @param array $price 开始价格
+	 */
+	function roomOpenPosition($roomId,$openFlag,$location_area,$location_prefix,$location_code,$location_numbers,$price)
+	{
+		$roomNum = "";
+		$sql = "insert into fu_location_list(location_room_id,location_price,location_isshow,location_area,location_prefix,location_code) values ";
+		for($i=0; $i<count($location_area); $i++)
+		{
+			$numbers = $location_numbers[$i];
+			$start_code = $location_code[$i];
+			for($j=0;$j<$location_numbers[$i]; $j++)
+			{
+				$roomNum .= "('" .$roomId . "','".$price[$i]."', '".$openFlag."','".$location_area[$i]."','".$location_prefix[$i]."','".$start_code."'),";
+				$start_code++;
+			}
+		}
+		$roomNum = substr($roomNum,0,-1);
+		$sql .= $roomNum;
+		$this->db->query($sql);		
+	}
 	/**
 	 * @deprecated 房间相关信息
 	 * @param int $roomId 房间号码
@@ -198,7 +228,7 @@ class Room_model extends CI_Model
 	 * @param string $location_details 描述
 	 * @param string $filePic 图片名
 	 */
-	function posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic)
+	function posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_area,$location_prefix)
 	{
 		/*
 		$sql = "update fu_location_list set location_price = " . $location_price .",location_type = " . $location_type .
@@ -217,7 +247,8 @@ class Room_model extends CI_Model
 		return $this->db->affected_rows();
 		*/
 		$sql = "update fu_location_list set location_price = " . $location_price .",location_type = " . $location_type .
-		",location_alias = '" . $location_alias . "',location_details = '".$location_details . "'";
+		",location_alias = '" . $location_alias . "',location_details = '".$location_details . "'," .
+		"location_area = '" . $location_area . "', location_prefix = '" . $location_prefix . "'";
 		if($filePic)
 		{
 			$sql .= ",location_pic = '".$filePic."'";

@@ -56,15 +56,17 @@ if(isset($roomList) && $roomList)
 <table border="0" cellpadding="0" cellspacing="0" width="100%">	
 	<tr class='headerLineBackground1'>
 		<th width="10%" align="center">操作</th>
+		<th width="8%" align="center">区域名</th>
+		<th width="8%" align="center">房间前缀</th>
+		<th width="5%" align="center">编码</th>
 		<th width="5%" align="center">房间号</th>
 		<th width="5%" align="center">牌位号</th>
 		<th width="10%" align="center">牌位名称</th>
 		<th width="5%" align="center">牌位价格</th>
-		<th width="10%" align="center">牌位类型</th>
+		<th width="15%" align="center">牌位类型</th>
 		<th width="5%" align="center">销售状态</th>
 		<th width="10%" align="center">牌位失效时间</th>
-		<th width="17%" align="center">牌位图片</th>
-		<th width="15%" align="center">牌位描述</th>
+		<th width="13%" align="center">牌位图片</th>
 	</tr>
 	<?php foreach($result as $k=>$v) {?>
 	<tr <?php //echo ($k%2) ? "class='headerLineBackground1'" : '';?>>
@@ -78,6 +80,9 @@ if(isset($roomList) && $roomList)
 		<a href="/Room/delPos?id=<?php echo $v['localtion_id']; ?>" onclick="return sureDel();">删除</a>
 		<?php } ?>
 		</td>
+		<td widtd="8%" align="center"><?php echo $v['location_area']; ?></td>
+		<td widtd="8%" align="center"><?php echo $v['location_prefix']; ?></td>
+		<td widtd="5%" align="center"><?php echo $v['location_code']; ?></td>
 		<td widtd="5%" align="center"><?php echo $v['location_room_id']; ?></td>
 		<td widtd="5%" align="center"><?php echo $v['localtion_id']; ?></td>
 		<td widtd="10%" align="center">
@@ -89,7 +94,7 @@ if(isset($roomList) && $roomList)
 		?>	
 		</td>
 		<td widtd="5%" align="center"><?php echo $v['location_price']; ?></td>
-		<td widtd="10%" align="center"><?php echo $v['location_type'] ? '高端定制' : '随机/生辰八字'; ?></td>
+		<td widtd="15%" align="center"><?php echo $v['location_type'] ? '高端定制' : '随机/生辰八字'; ?></td>
 		<td widtd="5%" align="center"><?php echo $v['location_number']==2 ? '未售' : ($v['location_number'] == 1 ? '出售中' : '已售'); ?></td>
 		<td widtd="10%" align="center">
 		<?php 
@@ -108,7 +113,7 @@ if(isset($roomList) && $roomList)
 		}
 		?>
 		</td>
-		<td widtd="17%" align="center">
+		<td widtd="13%" align="center">
 		<?php 
 		if($v['location_pic'])
 		{
@@ -117,20 +122,10 @@ if(isset($roomList) && $roomList)
 			echo '无';
 		}
 		?>
-		</td>
-		<td widtd="15%" align="center">
-		<?php 
-		if($v['location_details'])
-		{
-			echo mb_substr($v['location_details'],0,10,'utf-8');
-		}else {
-			echo '无';
-		}
-		?>		
 		</td>	
 	</tr>
 	<tr>
-		<td colspan="10"><hr/></td>
+		<td colspan="12"><hr/></td>
 	</tr>
 	<?php } ?>	
 </table>

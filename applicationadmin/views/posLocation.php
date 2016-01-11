@@ -69,6 +69,21 @@
 	</tr>
 	
 	<tr>
+		<td width="20%" align="right">区域名称：</td>
+		<td>
+		<input type="text" name="location_area" value="<?php echo $result['location_area'];?>" />
+		</td>		
+	</tr>	
+	
+	<tr>
+		<td width="20%" align="right">牌位前缀：</td>
+		<td>
+		<input type="text" name="location_prefix" value="<?php echo $result['location_prefix'];?>" />
+		</td>		
+	</tr>	
+		
+	
+	<tr>
 		<td width="20%" align="right">牌位销售状态：</td>
 		<td>
 		<?php if($result['location_number'] == 2) {?>

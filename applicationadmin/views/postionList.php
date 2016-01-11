@@ -15,6 +15,8 @@
 <table border="0" cellpadding="0" cellspacing="0" width="98%">	
 	<tr>
 		<th width="10%" align="center">操作</th>
+		<th width="8%" align="center">牌位区名</th>
+		<th width="8%" align="center">牌位前缀</th>
 		<th width="5%" align="center">房间号</th>
 		<th width="5%" align="center">牌位号</th>
 		<th width="10%" align="center">牌位名称</th>
@@ -22,8 +24,8 @@
 		<th width="10%" align="center">牌位类型</th>
 		<th width="5%" align="center">销售状态</th>
 		<th width="10%" align="center">牌位失效时间</th>
-		<th width="17%" align="center">牌位图片</th>
-		<th width="15%" align="center">牌位描述</th>
+		<th width="5%" align="center">牌位图片</th>
+		<th width="11%" align="center">牌位描述</th>
 	</tr>
 	<?php foreach($result as $k=>$v) {?>
 	<tr <?php // echo ($k%2) ? "class='headerLineBackground'" : '';?>>
@@ -41,6 +43,8 @@
 		<a href="/Room/delPos?id=<?php echo $v['localtion_id']; ?>" onclick="return sureDel();">删除</a>
 		<?php } } ?>
 		</td>
+		<td widtd="8%" align="center"><?php echo $v['location_area']; ?></td>
+		<td widtd="8%" align="center"><?php echo $v['location_prefix']; ?></td>
 		<td widtd="5%" align="center"><?php echo $v['location_room_id']; ?></td>
 		<td widtd="5%" align="center"><?php echo $v['localtion_id']; ?></td>
 		<td widtd="10%" align="center">
@@ -66,7 +70,7 @@
 		}
 		?>
 		</td>
-		<td widtd="17%" align="center">
+		<td widtd="5%" align="center">
 		<?php 
 		if($v['location_pic'])
 		{
@@ -76,7 +80,7 @@
 		}
 		?>
 		</td>
-		<td widtd="15%" align="center">
+		<td widtd="11%" align="center">
 		<?php 
 		if($v['location_details'])
 		{
@@ -88,7 +92,7 @@
 		</td>	
 	</tr>
 	<tr>
-		<td colspan="10"><hr /></td>
+		<td colspan="12"><hr /></td>
 	</tr>
 	<?php } ?>	
 		
