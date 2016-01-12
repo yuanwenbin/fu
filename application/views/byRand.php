@@ -52,11 +52,15 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 	<!-- bof selectPrice -->
 	<?php // print_r($priceList); PRINT_R($maxPrice);?>
 	<div class="selectPriceBox">
-	类型切换：&nbsp;<select name="selectPriceBox">
+	类型切换：&nbsp;
+	<?php if($roomList) { ?>
+	<select name="selectPriceBox">
 	<?php foreach($roomList as $kv) {?>
-	<option value="<?php echo $kv['room_id']; ?>" <?php //  if($room_id == $kv['room_id']) echo 'selected';?>>
+	<option value="<?php echo $kv['room_id']; ?>" <?php   if($room_id == $kv['room_id']) echo 'selected';?>>
 	<?php echo $kv['room_alias']; ?></option>
-	<?php } ?>
+	<?php }}else { ?>
+	没有相关的数据，请联系理员
+	<?php }?>
 	</select>
 	</div>
 	<!-- eof selecPrice  -->
@@ -110,7 +114,7 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 <!-- eof container -->
 
 <!-- bof 价格档次选择  -->
-<?php if(!$price) { ?>
+<?php if(!$room_id) { ?>
 <div id="priceContent">
 	
 	<div class="priceContent">
@@ -289,7 +293,6 @@ $(document).ready(function(){
 			lottery.stop();
 
 			$.post('/Choice/byRandDo',{r:Math.random()},function(data){
-
 				if(data.error)
 				{
 					//window.location.href="/Index/index";
@@ -298,14 +301,13 @@ $(document).ready(function(){
 					return false;
 				}
 				$("#randnotice").attr({'data-attr':data.count});
-
 				if(data.count == 1 )
 				{
 					$('.cancelBtn').html("<img src=\"/images/qxcx.jpg\" />");
 				    $('.sureBtn').html("<a href=\"/Choice/byRandSubmit\"><img src=\"/images/qdxh.jpg\" /></a>");
 				    //显示号码
 				    // $('#lottery ul li.active').html(data.msg);
-				    $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg);
+				    $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg.location_area+data.msg.location_prefix+data.msg.location_code);
 					return false;
 				}else if(data.count == 2)
 				{
@@ -313,7 +315,7 @@ $(document).ready(function(){
 				    $('.sureBtn').html("<a href=\"/Choice/byRandSubmit\"><img src=\"/images/qdxh.jpg\" /></a>");
 				    //显示号码
 				    // $('#lottery ul li.active').html(data.msg);
-				    $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg);
+				    $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg.location_area+data.msg.location_prefix+data.msg.location_code);
 									
 					if(parseInt(data.randThird) == 0)
 					{
@@ -444,9 +446,9 @@ $(document).ready(function(){
 // 价格归档
 $(document).ready(function(){
 	// 如果没有设置 0－没有,1-设置过
-	var price = "<?php echo $price; ?>";
+	var room_id = "<?php echo $room_id; ?>";
 	$("#priceNotice").html("");
-	if(price == 0)
+	if(room_id == 0 || !room_id)
 	{
 		var  windowHeight=$(window).height(); 
 		var  windowWidth=$(window).width(); 
@@ -457,9 +459,9 @@ $(document).ready(function(){
 		$("#priceContent").show();
 		$("input[name='submitPrice']").click(function(data){
 			$("#priceNotice").html("");
-			var url = "/Choice/selectPrice";
+			var url = "/Choice/selectRoom";
 			var price = $("select[name='price']").val();
-			var param = {price:price};
+			var param = {price:price,type:0};
 			$.post(url,param,function(data){
 				if(data.error)
 				{
@@ -477,12 +479,16 @@ $(document).ready(function(){
 	// 可以重新选择价格
 	$("select[name='selectPriceBox']").change(function(){
 		var selectPrice = $(this).val();
-		var url = "/Choice/selectPrice";
-		var param = {price:selectPrice};
+		var url = "/Choice/selectRoom";
+		var param = {price:selectPrice,type:0};
 	
 		$.post(url,param,function(data){
 			if(!data.error)
 			{
+				window.location.href="/Choice/byRand";
+			}else
+			{
+				alert(data.msg+",请重新切换或联系管理员!");
 				window.location.href="/Choice/byRand";
 			}	
 		},'json');		

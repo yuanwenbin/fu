@@ -4,7 +4,7 @@ class Choice_model extends CI_Model
     /**
      * 随机选号
      */
-    function byRandModel($minPrice = '',$maxPrice = '')
+    function byRandModel_bak($minPrice = '',$maxPrice = '')
     {
         $data = array();
         $where = " and ";
@@ -28,6 +28,33 @@ class Choice_model extends CI_Model
         
         return $resIdArr;
     }
+    
+    /**
+     * 随机选号
+     */
+    function byRandModel($room_id=0)
+    {
+    	$data = array();
+    	if(!$room_id)
+    	{
+    		return $data;
+    	}
+    	$where = " and location_room_id = " . $room_id;
+
+    	$sql = "select localtion_id,location_area,location_prefix,location_code
+    			from fu_location_list 
+    			where location_type = 0 and location_number = 2 
+    			and location_isshow = 1 " . $where;
+    
+    	$res = $this->db->query($sql);
+    	if(!$res)
+    	{
+    		return $data;
+    	}
+    	$resIdArr = $res->result_array();
+    
+    	return $resIdArr;
+    }    
     
     /**
      * 修改用户状态
@@ -297,9 +324,20 @@ class Choice_model extends CI_Model
     /**
      * 查询房间号
      */
-    function checkRoomModel()
+    function checkRoomModel($room_type=0,$room_id = 0)
     {
-    	$sql = "select * from fu_room_list where room_flag = 1 order by room_id desc";
+    	$and = " and r.room_type = 0 ";
+    	if($room_type)
+    	{
+    		$and = " and r.room_type = 1 ";
+    	}
+    	if($room_id)
+    	{
+    		$and .= " and r.room_id = " . $room_id;
+    	}
+    	$sql = "select DISTINCT r.* from fu_room_list as r  join fu_location_list as l 
+    			on  l.location_room_id = r.room_id
+				and r.room_flag=1 and l.location_number = 2 " . $and;
     	$result = $this->db->query($sql);
     	return $result->result_array();
     }

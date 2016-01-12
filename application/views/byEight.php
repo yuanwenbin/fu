@@ -77,11 +77,15 @@ $(function() {
 	<!-- bof selectPrice -->
 	<?php // print_r($priceList); PRINT_R($maxPrice);?>
 	<div class="selectPriceBox">
-	类型切换：&nbsp;<select name="selectPriceBox">
-	<?php foreach($priceList as $kv) {?>
-	<option value="<?php echo $kv['price_min'] . ',' . $kv['price_max']; ?>" <?php if($maxPrice == $kv['price_max']) echo 'selected';?>>
-	<?php echo $kv['price_alias']; ?></option>
-	<?php } ?>
+	类型切换：&nbsp;
+	<?php if($roomList) { ?>
+	<select name="selectPriceBox">
+	<?php foreach($roomList as $kv) {?>
+	<option value="<?php echo $kv['room_id']; ?>" <?php   if($room_id == $kv['room_id']) echo 'selected';?>>
+	<?php echo $kv['room_alias']; ?></option>
+	<?php }}else { ?>
+	没有相关的数据，请联系理员
+	<?php }?>
 	</select>
 	</div>
 	<!-- eof selecPrice  -->	
@@ -212,11 +216,15 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$("select[name='selectPriceBox']").change(function(){
 		var selectPrice = $(this).val();
-		var url = "/Choice/selectPrice";
-		var param = {price:selectPrice};
+		var url = "/Choice/selectRoom";
+		var param = {price:selectPrice,type:0};
 		$.post(url,param,function(data){
 			if(!data.error)
 			{
+				window.location.href="/Choice/byEight";
+			}else
+			{
+				alert(data.msg+",请重新切换或联系管理员!");
 				window.location.href="/Choice/byEight";
 			}	
 		},'json');		
