@@ -191,7 +191,7 @@ class Choice_model extends CI_Model
      * @param string $fields 字段列表
      * @return array 多条记录
      */
-    function searchMultiFields($table,$param,$fields = '*', $price = '')
+    function searchMultiFields_bak($table,$param,$fields = '*', $price = '')
     {
         $where = " ";
         foreach($param as $k=>$v)
@@ -214,7 +214,32 @@ class Choice_model extends CI_Model
         }
     }    
 
- 
+    /**
+     * 查看单表,部分字段
+     * @param unknown $table
+     * @param unknown $param
+     * @param string $fields 字段列表
+     * @return array 多条记录
+     */
+    function searchMultiFields($table,$param,$fields = '*')
+    {
+        $where = " ";
+        foreach($param as $k=>$v)
+        {
+            $where .= " " . $k . " = '" . $v . "' and";
+        }
+    
+        $where = substr($where, 0, -4);
+
+        $sql = "select * from ".$table." where " . $where;
+        $res = $this->db->query($sql);
+        if($res)
+        {
+            return $res->result_array();
+        }else {
+            return '';
+        }
+    }
     
     function searchUncompleteOrder($table,$where)
     {
