@@ -804,7 +804,7 @@ class Choice extends CI_Controller {
 		}
 		// 接收处理
 		// 产生随机数	
-		$randNo = $this->Choice_model->byRandModel();
+		$randNo = $this->Choice_model->byRandModel($this->session->room_id);
 		if(!$randNo)
 		{
 		    $data = array('error'=>1, 'msg'=>'没有相关号码了，请联系管理员！');
@@ -918,7 +918,8 @@ class Choice extends CI_Controller {
         //从此开始书写高端内容
         // 查询高端定制座位
         // 房间是否开启
-        $roomList = $this->roomList('fu_room_list', array('room_flag'=>1));
+        $roomList = $this->roomList('fu_room_list', array('room_flag'=>1,'room_type'=>1));
+       
         if($roomList)
         {
         	$roomIds = array();
@@ -936,15 +937,17 @@ class Choice extends CI_Controller {
         	{
         		$roomId = $roomIds[0];
         	}
+        	
         	$tableName = "fu_location_list";
         	$param = array('location_type'=>1, 'location_room_id'=>$roomId);
         	// $res = $this->Choice_model->searchMulti($tableName,$param);searchMultiFields
         	$fields = " localtion_id,location_number ";
-        	$price = array('minPrice' =>$this->session->minPrice, 'maxPrice' =>$this->session->maxPrice);
-        	$res = $this->Choice_model->searchMultiFields($tableName,$param,$fields,$price);
+        	// $price = array('minPrice' =>$this->session->minPrice, 'maxPrice' =>$this->session->maxPrice);
+        	$res = $this->Choice_model->searchMultiFields($tableName,$param,$fields);
         	$view['roomList'] = $roomIds;
         	$view['roomId'] = $roomId;
         	$view['result'] = $res; 
+        	
         	/*
         	// 价格归档是否选择
         	if($this->session->price)
@@ -968,7 +971,7 @@ class Choice extends CI_Controller {
         		// 没有设置过
         		$view['room_id'] = 0;
         	}
-        	$view['roomList'] = $this->checkRoom();        	
+        	// $view['roomList'] = $this->checkRoom(1);        	
         	$this->load->view('byHigh', $view);        	
         }else {
         	// 没有相关房间
