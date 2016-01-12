@@ -58,6 +58,16 @@
 		</select>
 		</td>
 	</tr>
+	
+	<tr>
+		<td width="20%" align="right"><label>房间类型：</label></td>
+		<td>
+		<select name="room_type">
+			<option value="0" selected>随机/生辰八字</option>
+			<option value="1">高端定制</option>
+		</select>
+		</td>
+	</tr>	
 
 	<tr>
 		<td width="20%" align="right"><label>房间别名：</label></td>

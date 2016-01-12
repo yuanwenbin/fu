@@ -46,6 +46,21 @@
 	</tr>
 	
 	<tr>
+		<td width="20%" align="right">房间类型：</td>
+		<td>
+		<select name="room_type">
+		<?php if($roomInfos['room_type']) {?>
+		<option value="1" selected>高端定制</option>
+		<option value="0">生辰八字/随机</option>
+		<?php }else {?>
+		<option value="0" selected>生辰八字/随机</option>	
+		<option value="1">高端定制</option>
+		<?php } ?>
+		</select>
+		</td>		
+	</tr>	
+	
+	<tr>
 		<td width="20%" align="right">房间描述：</td>
 		<td>
 		<textarea rows="5" cols="60" name="room_description"><?php echo $roomInfos['room_description'];?></textarea>

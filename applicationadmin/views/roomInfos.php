@@ -35,9 +35,9 @@
 	</tr>
 	
 	<tr>
-		<td width="20%" align="right">房间牌位是否已满：</td>
+		<td width="20%" align="right">房间类型：</td>
 		<td>
-		<?php echo $roomInfos['room_full'] ? '是' : '否';?>
+		<?php echo $roomInfos['room_type'] ? '高端定制' : '随机/生辰八字';?>
 		</td>		
 	</tr>	
 	

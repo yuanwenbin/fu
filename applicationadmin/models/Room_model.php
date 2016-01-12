@@ -26,10 +26,10 @@ class Room_model extends CI_Model
 	 * @param int $alias 设置房间别名
 	 * @param int $description 设置房间描述
 	 */
-	function roomOpenAdd($userId,$number,$flag,$datetime,$alias,$description)
+	function roomOpenAdd($userId,$number,$flag,$datetime,$alias,$description,$type)
 	{
-		$sql = "insert into fu_room_list(room_number,room_flag,user_id,room_time,room_alias,room_description) values
-				(".$number.", ".$flag.", ".$userId.", ".$datetime.",'".$alias."', '".$description."')";
+		$sql = "insert into fu_room_list(room_number,room_flag,user_id,room_time,room_alias,room_description,room_type) values
+				(".$number.", ".$flag.", ".$userId.", ".$datetime.",'".$alias."', '".$description."','".$type."')";
 		$this->db->query($sql);
 		return $this->roomMax();
 	}
@@ -142,17 +142,17 @@ class Room_model extends CI_Model
 	 * @param array $location_numbers 开始数量
 	 * @param array $price 开始价格
 	 */
-	function roomOpenPosition($roomId,$openFlag,$location_area,$location_prefix,$location_code,$location_numbers,$price)
+	function roomOpenPosition($roomId,$openFlag,$location_area,$location_prefix,$location_code,$location_numbers,$price,$type)
 	{
 		$roomNum = "";
-		$sql = "insert into fu_location_list(location_room_id,location_price,location_isshow,location_area,location_prefix,location_code) values ";
+		$sql = "insert into fu_location_list(location_room_id,location_price,location_isshow,location_area,location_prefix,location_code,location_type) values ";
 		for($i=0; $i<count($location_area); $i++)
 		{
 			$numbers = $location_numbers[$i];
 			$start_code = $location_code[$i];
 			for($j=0;$j<$location_numbers[$i]; $j++)
 			{
-				$roomNum .= "('" .$roomId . "','".$price[$i]."', '".$openFlag."','".$location_area[$i]."','".$location_prefix[$i]."','".$start_code."'),";
+				$roomNum .= "('" .$roomId . "','".$price[$i]."', '".$openFlag."','".$location_area[$i]."','".$location_prefix[$i]."','".$start_code."','".$type."'),";
 				$start_code++;
 			}
 		}
@@ -200,10 +200,10 @@ class Room_model extends CI_Model
 	 * @param string $room_description 房间描述
 	 * @param int $room_flag 是否开启
 	 */
-	function updateRoomDeal($roomId,$room_alias,$room_description,$room_flag)
+	function updateRoomDeal($roomId,$room_alias,$room_description,$room_flag, $room_type)
 	{
 		$sql = "update fu_room_list set room_alias = '".$room_alias."', room_description = '".$room_description."',
-				room_flag = " . $room_flag . " where room_id = " . $roomId;
+				room_flag = " . $room_flag . ",room_type = " . $room_type . " where room_id = " . $roomId;
 		$this->db->query($sql);
 		return $this->db->affected_rows();
 	}

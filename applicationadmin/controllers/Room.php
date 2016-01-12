@@ -55,6 +55,7 @@ class Room extends CI_Controller {
 		$openFlag = intval($this->input->post_get('openFlag'));
 		$price = $this->input->post_get('price');
 		$alias = addslashes($this->input->post_get('alias'));
+		$type = intval($this->input->post_get('room_type'));
 		$description = addslashes($this->input->post_get('description'));
 		$datetime = time();
 		/*
@@ -145,10 +146,10 @@ class Room extends CI_Controller {
 			exit;			
 		}
 		
-		$roomId = $this->Room_model->roomOpenAdd($userId,$roomNumber,$openFlag,$datetime,$alias,$description);
+		$roomId = $this->Room_model->roomOpenAdd($userId,$roomNumber,$openFlag,$datetime,$alias,$description,$type);
 		//增加牌位
 		// $this->Room_model->roomOpenPosition($roomId,$roomNumber,$price,$openFlag);
-		$this->Room_model->roomOpenPosition($roomId,$openFlag,$location_area,$location_prefix,$location_code,$location_numbers,$price);
+		$this->Room_model->roomOpenPosition($roomId,$openFlag,$location_area,$location_prefix,$location_code,$location_numbers,$price,$type);
 		$this->load->view('success');
 	}
 	
@@ -264,16 +265,21 @@ class Room extends CI_Controller {
 	    }	    
 		$roomId = intval($this->input->post_get('room_id'));
 		$room_flag = intval($this->input->post_get('room_flag'));
+		$room_type = intval($this->input->post_get('room_type'));
 		if(!$roomId || $roomId < 1)
 		{
 			exit('出错了，暂时没有相关数据！');
 		}
+		if(!in_array($room_type,array(0,1)))
+		{
+			exit('出错了，房间类型不对！');
+		}
 		$room_alias = addslashes($this->input->post_get('room_alias'));
 		$room_description = addslashes($this->input->post_get('room_description'));
 		
-		$result = $this->Room_model->updateRoomDeal($roomId,$room_alias,$room_description,$room_flag);
+		$result = $this->Room_model->updateRoomDeal($roomId,$room_alias,$room_description,$room_flag,$room_type);
 		// 同时修改牌位
-		$resPos = $this->Room_model->updateTable('fu_location_list',array('location_isshow'=>$room_flag), array('location_room_id'=>$roomId));
+		$resPos = $this->Room_model->updateTable('fu_location_list',array('location_isshow'=>$room_flag,'location_type'=>$room_type), array('location_room_id'=>$roomId));
 		if($result)
 		{
 			$this->load->view('success');
