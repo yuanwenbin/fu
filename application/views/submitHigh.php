@@ -32,9 +32,12 @@
 				<?php 
 				if($result['posInfos']['location_alias'])
 				{
-					echo '('. $result['posInfos']['location_alias'] .')' . "&nbsp;";
+					echo $result['posInfos']['location_alias']. "&nbsp;";
 				}
-				echo $result['posInfos']['localtion_id'];?>
+				echo $result['posInfos']['location_area'];
+				echo $result['posInfos']['location_prefix'];
+				echo $result['posInfos']['location_code'];
+				echo '('.$result['posInfos']['localtion_id'].')';?>
 				</font></td>
 			</tr>
 

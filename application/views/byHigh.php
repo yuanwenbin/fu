@@ -22,15 +22,11 @@
 	<br class="clearBoth" />
 	<!-- bof selectPrice -->
 	<?php // print_r($priceList); PRINT_R($maxPrice);?>
-	<div class="selectPriceBox">
-	类型切换：&nbsp;<select name="selectPriceBox">
-	<?php foreach($priceList as $kv) {?>
-	<option value="<?php echo $kv['price_min'] . ',' . $kv['price_max']; ?>" <?php if($maxPrice == $kv['price_max']) echo 'selected';?>>
-	<?php echo $kv['price_alias']; ?></option>
-	<?php } ?>
-	</select>
-	</div>
-	<!-- eof selecPrice  -->	
+	  
+	<div class="selectPriceBox"> 
+    &nbsp;
+	</div> 
+	<!-- eof selecPrice  -->		
 	</div>
 	<!-- eof 11 -->
 
@@ -56,11 +52,17 @@
 	<div class="areaTop">
 	<ul>
 		<?php if($roomList) {
-				foreach($roomList as $k=>$v) { ?>
-		<li  <?php if($roomId == $v){ echo 'class="nowChoice"';} ?>>
-		<a href="/Choice/byHigh?roomId=<?php echo $v; ?>">
+				foreach($roomList as $k=>$v) { 
+				    if($roomId == $v) {
+				    ?>
+		<li class="nowChoice">
+		<a href="javascript:void(0);">
 		<?php echo $v; ?>区域</a></li>
-		<?php }}else{ ?>
+		<?php }else{?>
+		<li>
+		<a href="/Choice/byHigh?roomId=<?php echo $v; ?>">
+		<?php echo $v; ?>区域</a></li>		
+		<?php }}}else{ ?>
 		<li>暂无数据</li>	
 		<?php } ?>
 	</ul>
