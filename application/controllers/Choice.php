@@ -111,7 +111,7 @@ class Choice extends CI_Controller {
 			 		        'is_choice'=>3
 			 		);
 			 		$this->session->set_userdata($data);			 			
-			 		$result['result'] = $view;    
+			 		$result['result'] = $view;  
 			 		$this->load->view('complete', $result);			 		
 			 	}else {
 			 		// 订单有效时间
@@ -183,7 +183,7 @@ class Choice extends CI_Controller {
 			 			        'is_choice'=>2
 			 			);
 			 			$this->session->set_userdata($data);
-			 			$result['result'] = $view;  
+			 			$result['result'] = $view; 
 			 			$this->load->view('uncomplete', $result);
 			 					 			
 			 		}			 					 		

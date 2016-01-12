@@ -34,6 +34,9 @@
 				<td><img src="/images/no.png" /></td>
 				<td>&nbsp;&nbsp;<span>
 				<?php echo $result['posInfo']['location_alias'];?>
+				<?php echo $result['posInfo']['location_area'];?>
+				<?php echo $result['posInfo']['location_prefix'];?>
+				<?php echo $result['posInfo']['location_code'];?>
 				(<?php echo $result['orderInfo']['order_location_id'];?>)</span></td>
 			</tr>
 		</table>
