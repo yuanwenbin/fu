@@ -291,6 +291,16 @@ class Room_model extends CI_Model
 	}
 	
 	/**
+	 * 获取房间信息
+	 */
+	function roomPosListDetails()
+	{
+		$sql = "select * from fu_room_list";
+		$res = $this->db->query($sql);
+		return $res->result_array();
+	}	
+	
+	/**
 	 * 
 	 * @param array $param 条件查询
 	 */
