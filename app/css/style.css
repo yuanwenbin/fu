@@ -49,8 +49,8 @@ height: 89px;line-height: 89px;text-align: center;}
 .bodyGd{background:#fff url(../images/hight.png) center 0 no-repeat;width:1200px;margin:0 auto;}
 .flagTags{text-align:center;margin-top:110px;}
 
-.areaTop{width:925px;margin:0 auto 0 auto;}
-.areaTop ul li{float:left;width:60px;height:30px;line-height:30px;text-align:center;margin-left:5px;margin-right:5px;margin-top:5px;}
+.areaTop{width:895px;margin:0 auto 0 auto;}
+.areaTop ul li{float:left;height:30px;line-height:30px;text-align:center;margin-left:5px;margin-right:5px;margin-top:5px;}
 .areaTop .nowChoice a{text-decoration:underline;color:#999;}
 .areaTop a{color:#ff0000;font-size:12px;}
 
