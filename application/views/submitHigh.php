@@ -34,9 +34,17 @@
 				{
 					echo $result['posInfos']['location_alias']. "&nbsp;";
 				}
-				echo $result['posInfos']['location_area'];
-				echo $result['posInfos']['location_prefix'];
-				echo $result['posInfos']['location_code'];
+				echo $result['posInfos']['location_area'] ? $result['posInfos']['location_area'] : '';
+				echo $result['posInfos']['location_prefix'] ? $result['posInfos']['location_prefix'] : '';
+				if($result['posInfos']['location_code'])
+				{
+					if(strlen($result['posInfos']['location_code']) == 1)
+					{
+						echo '0'.$result['posInfos']['location_code'];
+					}else {
+						echo $result['posInfos']['location_code'];
+					}
+				}
 				echo '('.$result['posInfos']['localtion_id'].')';?>
 				</font></td>
 			</tr>

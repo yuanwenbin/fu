@@ -34,9 +34,8 @@
 	<div class="tagAbout">
 		<ul>
 			<li class="myNoTag">&nbsp;</li>
-			<li class="quyuTag"><font><?php echo $roomId; ?>区域</font></li>
+			<li class="quyuTag"><font><?php echo $roomInfos[$roomId]; ?>(<?php echo $roomId; ?>)</font></li>
 			<li class="fuweiTag"></li>
-			<li class="priceTag"></li>
 			<li class="myNoTagBtn"><a href=""><img src="/images/ckxq.png" /></a></li>
 		</ul>
 		<br class="clearBoth" />
@@ -57,11 +56,11 @@
 				    ?>
 		<li class="nowChoice">
 		<a href="javascript:void(0);">
-		<?php echo $v; ?>区域</a></li>
+		<?php echo $roomInfos[$v]; ?>(<?php echo $v; ?>)</a></li>
 		<?php }else{?>
 		<li>
 		<a href="/Choice/byHigh?roomId=<?php echo $v; ?>">
-		<?php echo $v; ?>区域</a></li>		
+		<?php echo $roomInfos[$v]; ?>(<?php echo $v; ?>)</a></li>		
 		<?php }}}else{ ?>
 		<li>暂无数据</li>	
 		<?php } ?>
@@ -133,8 +132,7 @@ $(document).ready(function(){
 				return false;
 			}else
 			{
-				$('.fuweiTag').html("<font>"+data.position+"</font>");
-				$('.priceTag').html("<font>"+data.price+"</font>");
+				$('.fuweiTag').html("<font>"+data.location_alias+data.location_area+data.location_prefix+data.location_code+"("+data.position+")"+"</font>");
 				if(data.sale >1)
 				{
 					$('.myNoTagBtn a').attr({href:"/Choice/locationDetail?id="+data.position});
