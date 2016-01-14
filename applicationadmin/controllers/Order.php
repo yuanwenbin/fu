@@ -115,6 +115,17 @@ class Order extends CI_Controller {
 	        $page = 0;
 	        $totalPage = 0;
 	    }
+	    
+	    if($resultList)
+	    {
+	        foreach ($resultList as $k=>$vv)
+	        {
+	            $roomInfos = $this->Order_model->posInfosModel('fu_room_list',array('room_id'=>$vv['order_room_id']));
+	            $locationInfos = $this->Order_model->posInfosModel('fu_location_list',array('localtion_id'=>$vv['order_location_id']));
+	            $resultList[$k]['roomInfos'] = $roomInfos[0];
+	            $resultList[$k]['locationInfos'] = $locationInfos[0];
+	        }
+	    }
 	    $view['result']['totalNumber'] = $totalNumber;
 
 	    $view['result']['page'] = $page;
@@ -174,7 +185,7 @@ class Order extends CI_Controller {
 	    $stime[12] = '亥时(21:00-22:59)';
 	    $view['result']['stime'] =  $stime;
 	    $view['username'] = $this->session->userdata('admin_user');
-	    
+	   
 	    $this->load->view('posInfos', $view);
 	}
 	
