@@ -46,7 +46,7 @@ input,button,select,textarea{outline:none}
 .tongJiTop{background:#ffffcc;padding-left:10px;}
 .numberColor{color:#ff6600;font-weight:bold;}
 .tongjiArea{width:100%;}
-.tongjiArea ul li{float:left;width:4%;text-align:center;height:30px;border:1px solid #aaa;font-size:16px;font-weight:bold;}
+.tongjiArea ul li{float:left;text-align:center;height:30px;border:1px solid #aaa;font-size:16px;font-weight:bold;margin:5px;padding-left:5px;padding-right:5px;}
 .tongjiArea{padding-top:20px;}
 .statusArea_0,.statusArea_0 a{color:#ff0000;}
 .statusArea_1,.statusArea_1 a{color:#fe9900;}
