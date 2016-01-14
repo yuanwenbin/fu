@@ -307,7 +307,15 @@ $(document).ready(function(){
 				    $('.sureBtn').html("<a href=\"/Choice/byRandSubmit\"><img src=\"/images/qdxh.jpg\" /></a>");
 				    //显示号码
 				    // $('#lottery ul li.active').html(data.msg);
-				    $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg.location_area+data.msg.location_prefix+data.msg.location_code);
+				    var code = "";
+				    if(data.msg.location_code && data.msg.location_code.length == 1)
+				    {
+				    	code = '0'+data.msg.location_code;
+				    }else
+				    {
+				    	code = data.msg.location_code;
+				    }
+				    $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg.location_area+data.msg.location_prefix+code);
 					return false;
 				}else if(data.count == 2)
 				{
@@ -318,7 +326,7 @@ $(document).ready(function(){
 				    if(data.msg != "先验证")
 				    {
 					    var code = "";
-					    if(data.msg.location_code.length == 1)
+					    if(data.msg.location_code.length && data.msg.location_code.length == 1)
 					    {
 					    	code = '0'+data.msg.location_code;
 					    }else
