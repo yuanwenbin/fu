@@ -19,7 +19,7 @@
 
 #priceNotice{text-align:center;color:#ff0000;line-height:28px;}
 
-#priceContent{position:fixed;z-index:9999;display:block;height:100px;width:255px;border:1px solid #444;background:#fff;overflow-y:auto;}
+#priceContent{position:fixed;z-index:9999;display:block;height:100px;width:300px;border:1px solid #444;background:#fff;overflow-y:auto;}
 .priceContent{margin:30px 0 0 15px;}
 .priceContent select{border:1px solid #444;padding:3px;font-family:'Microsoft YaHei','微软雅黑','宋体','黑体',Verdana, Geneva, sans-serif;}
 .priceContent select option{height:24px;line-height:24px;}
@@ -317,7 +317,15 @@ $(document).ready(function(){
 				    // $('#lottery ul li.active').html(data.msg);
 				    if(data.msg != "先验证")
 				    {
-				    	$('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg.location_area+data.msg.location_prefix+data.msg.location_code);
+					    var code = "";
+					    if(data.msg.location_code.length == 1)
+					    {
+					    	code = '0'+data.msg.location_code;
+					    }else
+					    {
+					    	code = data.msg.location_code;
+					    }
+				    	$('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg.location_area+data.msg.location_prefix+code);
 				    }else
 				    {
 				    	$('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg);
@@ -458,7 +466,7 @@ $(document).ready(function(){
 		var  windowHeight=$(window).height(); 
 		var  windowWidth=$(window).width(); 
 		var tops = (windowHeight - 100)/2;
-		var widths = (windowWidth - 255)/2;
+		var widths = (windowWidth - 300)/2;
 		$("#myDiv").addClass('myDiv');
 		$("#priceContent").css({top:tops,left:widths});
 		$("#priceContent").show();

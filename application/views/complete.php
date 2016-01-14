@@ -36,6 +36,7 @@
 				<?php echo $result['posInfo']['location_alias'];?>
 				<?php echo $result['posInfo']['location_area'];?>
 				<?php echo $result['posInfo']['location_prefix'];?>
+				<?php echo strlen($result['posInfo']['location_code']) == 1 ? '0':'';?>
 				<?php echo $result['posInfo']['location_code'];?>
 				(<?php echo $result['orderInfo']['order_location_id'];?>)</span></td>
 			</tr>
