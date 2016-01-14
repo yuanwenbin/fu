@@ -41,11 +41,11 @@
 	<div class="tongJiSearch">
 	    <form action="/Tongji/tongjiList" method="get"> 
 	    <?php if(isset($roomList) && $roomList) {?>
-	    &nbsp;&nbsp;房间号:
+	    &nbsp;&nbsp;房间:
 	    <select name="roomList">
 	    <option value=""></option> 
 	    <?php foreach($roomList as $v){?>
-	    <option value="<?php echo $v['room_id']; ?>" <?php if($v['room_id'] == $order_room_id) echo 'selected';?>><?php echo $v['room_id']; ?></option>
+	    <option value="<?php echo $v['room_id']; ?>" <?php if($v['room_id'] == $order_room_id) echo 'selected';?>><?php echo $v['room_alias']."&nbsp;".'('.$v['room_id'].')'; ?></option>
 	    <?php }?>
 	    	
 	    </select> 

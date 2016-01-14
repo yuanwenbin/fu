@@ -119,7 +119,9 @@ foreach($result['resultList'] as $k=>$v){
 	<td width="12%" align="center"><?php echo $v['order_user']; ?></td>
 	<td width="8%" align="center"><?php echo $v['order_room_id']; ?></td>
 	<td width="16%" align="center">
-	<?php echo $v['roomInfos']['room_alias'].'-'.$v['locationInfos']['location_area'].$v['locationInfos']['location_prefix'].$v['locationInfos']['location_code'].'('.$v['order_location_id'].')'; ?>
+	<?php echo $v['roomInfos']['room_alias'].'-'.$v['locationInfos']['location_area'].$v['locationInfos']['location_prefix']; ?>
+	<?php echo strlen($v['locationInfos']['location_code']) == 1 ? '0'.$v['locationInfos']['location_code'] : $v['locationInfos']['location_code']; ?>
+	<?php echo '('.$v['order_location_id'].')'; ?>
 	</td>
 	<td width="10%" align="center">
 	<?php if($v['order_location_type']==1){

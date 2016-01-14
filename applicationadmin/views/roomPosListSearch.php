@@ -19,7 +19,7 @@
 <!-- bof one -->
 <div class="divInfosSearch">
 <form method="get" action="/Room/roomPosListSearch">
-查询房间号:
+查询房间:
 <select name="roomId">
 <option value="all" <?php if(!$room_id){echo "selected";}?>>全部</option>
 <?php 
@@ -27,7 +27,7 @@ if(isset($roomList) && $roomList)
 {
     foreach($roomList as $v){
 ?>
-<option value="<?php echo $v['room_id'];?>" <?php if($room_id == $v['room_id']){echo "selected";}?>><?php echo $v['room_id'];?></option>
+<option value="<?php echo $v['room_id'];?>" <?php if($room_id == $v['room_id']){echo "selected";}?>><?php echo $v['room_alias'];?>&nbsp;(<?php echo $v['room_id'];?>)</option>
 <?php } } ?>
 </select>
 &nbsp;
