@@ -919,13 +919,14 @@ class Choice extends CI_Controller {
         // 查询高端定制座位
         // 房间是否开启
         $roomList = $this->roomList('fu_room_list', array('room_flag'=>1,'room_type'=>1));
-       
         if($roomList)
         {
         	$roomIds = array();
+        	$roomInfos = array();
         	foreach($roomList as $v)
         	{
         		$roomIds[] = $v['room_id'];
+        		$roomInfos[$v['room_id']] = $v['room_alias'];
         	}
         	$roomId = $this->input->get_post('roomId');
         	if(!$roomId)
@@ -946,8 +947,8 @@ class Choice extends CI_Controller {
         	$res = $this->Choice_model->searchMultiFields($tableName,$param,$fields);
         	$view['roomList'] = $roomIds;
         	$view['roomId'] = $roomId;
+        	$view['roomInfos'] = $roomInfos;
         	$view['result'] = $res; 
-        	
         	/*
         	// 价格归档是否选择
         	if($this->session->price)
@@ -971,7 +972,8 @@ class Choice extends CI_Controller {
         		// 没有设置过
         		$view['room_id'] = 0;
         	}
-        	// $view['roomList'] = $this->checkRoom(1);        	
+        	// $view['roomList'] = $this->checkRoom(1);   
+        	     	
         	$this->load->view('byHigh', $view);        	
         }else {
         	// 没有相关房间
@@ -1126,6 +1128,14 @@ class Choice extends CI_Controller {
 	    $data['price'] = $locationInfos['location_price']; 
 	    // 出售状态 
 	    $data['sale'] = $locationInfos['location_number'];
+	    $data['location_alias'] = $locationInfos['location_alias'] ? $locationInfos['location_alias'] : '';
+	    $data['location_area'] = $locationInfos['location_area'] ? $locationInfos['location_area'] : '';
+	    $data['location_prefix'] = $locationInfos['location_prefix'] ? $locationInfos['location_prefix'] : '';
+	    $data['location_code'] = strlen($locationInfos['location_code']) == 1 ? '0'.$locationInfos['location_code'] : $locationInfos['location_code'];
+	    if(!$data['location_code'])
+	    {
+	    	$data['location_code'] = '';
+	    }
 	    die(json_encode($data));
 	}
 	
