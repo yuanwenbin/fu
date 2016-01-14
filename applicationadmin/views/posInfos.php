@@ -15,9 +15,9 @@
 <h3 class="headerLineBackground">订单详情</h3>
 <table border="0" cellpadding="5" cellspacing="5" width="90%">	
 	<tr>
-		<td width="20%" align="right">房间号：</td>
+		<td width="20%" align="right">房间号信息：</td>
 		<td>
-		<?php echo $result['orderInfo']['order_room_id'];?>
+		<?php echo $result['posInfo']['location_area'] .$result['posInfo']['location_prefix'].$result['posInfo']['location_code'] . '('.$result['orderInfo']['order_room_id'].')';?>
 		</td>		
 	</tr>
 	

@@ -100,15 +100,15 @@ if($result['order_payment'] == 'all'){
 <?php } else { ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
-	<th width="15%" align="center">用户名</th>
+	<th width="12%" align="center">用户名</th>
 	<th width="8%" align="center">房间号</th>
-	<th width="8%" align="center">牌位号</th>
+	<th width="20%" align="center">牌位号信息</th>
 	<th width="10%" align="center">牌位类型</th>
-	<th width="15%" align="center">下单时间</th>
+	<th width="12%" align="center">下单时间</th>
 	<th width="10%" align="center">金额</th>
 	<th width="8%" align="center">是否支付</th>
 	<th width="8%" align="center">订单来源</th>
-	<th width="10%" align="center">操作</th>
+	<th width="5%" align="center">操作</th>
 	<th width="7%" align="center">操作员</th>
 
 </tr>
@@ -116,9 +116,11 @@ if($result['order_payment'] == 'all'){
 foreach($result['resultList'] as $k=>$v){
 ?>
 <tr>
-	<td width="15%" align="center"><?php echo $v['order_user']; ?></td>
+	<td width="12%" align="center"><?php echo $v['order_user']; ?></td>
 	<td width="8%" align="center"><?php echo $v['order_room_id']; ?></td>
-	<td width="8%" align="center"><?php echo $v['order_location_id']; ?></td>
+	<td width="16%" align="center">
+	<?php echo $v['roomInfos']['room_alias'].'-'.$v['locationInfos']['location_area'].$v['locationInfos']['location_prefix'].$v['locationInfos']['location_code'].'('.$v['order_location_id'].')'; ?>
+	</td>
 	<td width="10%" align="center">
 	<?php if($v['order_location_type']==1){
 		echo '高端定制';
@@ -129,7 +131,7 @@ foreach($result['resultList'] as $k=>$v){
 	} 
 	?>
 	 </td>
-	<td width="15%" align="center"><?php echo date('Y-m-d H:i:s', $v['order_datetime']); ?></td>
+	<td width="12%" align="center"><?php echo date('Y-m-d H:i:s', $v['order_datetime']); ?></td>
 	<td width="10%" align="center"><?php echo $v['order_price']; ?></td>
 	<td width="8%" align="center">
 	<?php
@@ -145,7 +147,7 @@ foreach($result['resultList'] as $k=>$v){
 	<td width="8%" align="center">
 	<?php echo $v['source'] ? $source[$v['source']] :'管理员：' .$username; ?> 
 	</td>
-	<td width="10%" align="center" class="orderListDetails">
+	<td width="5%" align="center" class="orderListDetails">
 	<a href="/Order/posInfos?id=<?php echo $v['order_id']; ?>">
 	查看
 	</a>

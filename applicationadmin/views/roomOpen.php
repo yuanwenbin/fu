@@ -18,15 +18,17 @@
 <div class="container">
 <h3>开设房间、牌位中心</h3>
 <form method="post" action="/Room/RoomOpenAdd">
+<input type="hidden" name="number" value="100" />
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
 	<tr>
 		<td width="20%" align="right"><label>新开设的房间号：</label></td>
 		<td><?php echo $roomId; ?></td>
 	</tr>
+	<!--  
 	<tr>
 		<td width="20%" align="right"><label>牌位数：</label></td>
 		<td><input type="number" name="number" value="" />&nbsp;(可为任意数字)</td>
-	</tr>
+	</tr> -->
 
 </table>
 	<!-- bof box -->
