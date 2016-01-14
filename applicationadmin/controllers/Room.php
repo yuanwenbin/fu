@@ -550,11 +550,12 @@ class Room extends CI_Controller {
 	    if(!hasPerssion($_SESSION['role'], 'postionList')){
 	        exit('无权限,请点击左栏目操作');
 	    }	    
-		$roomList = $this->Room_model->roomPosList();
+		//$roomList = $this->Room_model->roomPosList();
+		//$roomList = '';
 		$view['room_id'] = 'all';
 		$view['type'] = 'all';
 		$view['status'] = 'all';
-		$view['roomList'] = $roomList;
+		// $view['roomList'] = $roomList;
 		$this->roomPosListSearch();
 	    //$this->load->view('roomPosList',$view);
 	}
