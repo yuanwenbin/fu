@@ -47,9 +47,9 @@ class Choice_model extends CI_Model
     			and location_isshow = 1 " . $where;
     
     	$res = $this->db->query($sql);
-    	if(!$res)
+    	if($res->num_rows() < 1)
     	{
-    		return $data;
+    		return array();
     	}
     	$resIdArr = $res->result_array();
     
@@ -351,10 +351,10 @@ class Choice_model extends CI_Model
      */
     function checkRoomModel($room_type=0,$room_id = 0)
     {
-    	$and = " and r.room_type = 0 ";
+    	$and = " and r.room_type = 0 and l.location_type = 0 ";
     	if($room_type)
     	{
-    		$and = " and r.room_type = 1 ";
+    		$and = " and r.room_type = 1 and l.location_type = 1 ";
     	}
     	if($room_id)
     	{
