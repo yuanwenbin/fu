@@ -495,6 +495,7 @@ class Choice extends CI_Controller {
 	       		$randThird = $this->session->randThird;
 	       		if(!$randThird)
 	       		{
+	       			$data['infos'] = $this->session->infos;
 	       			$data['msg'] = '先验证';
 	       			$data['error'] = 0;
 	       			die(json_encode($data));
@@ -504,9 +505,9 @@ class Choice extends CI_Controller {
        		$this->Choice_model->changTable('fu_user', array('user_selected'=>$userInfo['user_selected']+1), array('body_id'=>$this->session->body_id));
        		$data['count'] = $userInfo['user_selected']+1;
        }
-
+		
        $randNo = $this->Choice_model->byRandModel($this->session->room_id);
-   
+   	
        if(!$randNo)
        {
            die(json_encode($data));
@@ -521,6 +522,9 @@ class Choice extends CI_Controller {
        $data['error'] = 0;
        // $data['msg'] = $randNo[$arrIndex]['localtion_id'];
        $data['msg'] = $randNo[$arrIndex];
+       // 保存状态
+       $param['infos'] = $data['msg'];
+       $this->session->set_userdata($param);
        // 修改数据库用户表状态
        $changeParams['user_selected'] = $data['count'];
        $changeParams['user_selected_date'] =time();	
