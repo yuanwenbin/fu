@@ -56,10 +56,8 @@ if(isset($roomList) && $roomList)
 <table border="0" cellpadding="0" cellspacing="0" width="100%">	
 	<tr class='headerLineBackground1'>
 		<th width="10%" align="center">操作</th>
-		<th width="8%" align="center">区域名</th>
-		<th width="8%" align="center">房间前缀</th>
-		<th width="5%" align="center">编码</th>
-		<th width="5%" align="center">房间号</th>
+		<th width="15%" align="center">区域信息</th>
+		<th width="11%" align="center">房间号</th>
 		<th width="5%" align="center">牌位号</th>
 		<th width="10%" align="center">牌位名称</th>
 		<th width="5%" align="center">牌位价格</th>
@@ -80,10 +78,8 @@ if(isset($roomList) && $roomList)
 		<a href="/Room/delPos?id=<?php echo $v['localtion_id']; ?>" onclick="return sureDel();">删除</a>
 		<?php } ?>
 		</td>
-		<td widtd="8%" align="center"><?php echo $v['location_area']; ?></td>
-		<td widtd="8%" align="center"><?php echo $v['location_prefix']; ?></td>
-		<td widtd="5%" align="center"><?php echo $v['location_code']; ?></td>
-		<td widtd="5%" align="center"><?php echo $v['location_room_id']; ?></td>
+		<td widtd="15%" align="center"><?php echo $v['location_area']; ?><?php echo $v['location_prefix']; ?><?php echo strlen($v['location_code']) == 1 ? '0'.$v['location_code'] : $v['location_code']; ?></td>
+		<td widtd="11%" align="center"><?php echo $roomList[$v['location_room_id']]['room_alias'] . '('.$v['location_room_id'] . ')'; ?></td>
 		<td widtd="5%" align="center"><?php echo $v['localtion_id']; ?></td>
 		<td widtd="10%" align="center">
 		<?php 
@@ -125,7 +121,7 @@ if(isset($roomList) && $roomList)
 		</td>	
 	</tr>
 	<tr>
-		<td colspan="12"><hr/></td>
+		<td colspan="10"><hr/></td>
 	</tr>
 	<?php } ?>	
 </table>
