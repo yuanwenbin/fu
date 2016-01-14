@@ -336,7 +336,18 @@ $(document).ready(function(){
 				    	$('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg.location_area+data.msg.location_prefix+code);
 				    }else
 				    {
-				    	$('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg);
+					    var code = "";
+					    if(data.infos.location_code && data.infos.location_code.length == 1)
+					    {
+					    	code = '0'+data.infos.location_code;
+					    }else
+					    {
+					    	code = data.infos.location_code;
+					    }	
+					    // alert("请先验证");	
+					    $('.cancelBtn').trigger("click");
+					    $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.infos.location_area+data.infos.location_prefix+code);			    
+				    	// $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg);
 				    }				
 					if(parseInt(data.randThird) == 0)
 					{
