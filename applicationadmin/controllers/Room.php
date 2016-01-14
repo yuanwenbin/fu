@@ -607,8 +607,17 @@ class Room extends CI_Controller {
 			}
 		}
 		// 房间列表
-		$roomList = $this->Room_model->roomPosList();
-		$view['roomList'] = $roomList;	
+		// $roomList = $this->Room_model->roomPosList();
+		$roomList = $this->Room_model->roomPosListDetails();
+		$roomArr = array();
+		if($roomList)
+		{
+			foreach($roomList as $k=>$v)
+			{
+				$roomArr[$v['room_id']] = $v;
+			}
+		}
+		$view['roomList'] = $roomArr;	
 		// 获取牌位总数目
 		$roomLocationTotal = $this->Room_model->roomLocationTotal($param);
 		if(!$roomLocationTotal)
@@ -648,10 +657,8 @@ class Room extends CI_Controller {
 		$view['total'] = $roomLocationTotal; 
 		$view['page'] = $page;
 		$view['pageTotal'] = $totalPage;
-		$view['roomList'] = $roomList;
 		$view['result'] = $result;
 		$view['roomLocationTotal'] = $roomLocationTotal;
-		
 		$this->load->view('roomPosListSearch',$view);
 	}	
 	/**
