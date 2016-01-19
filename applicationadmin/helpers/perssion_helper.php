@@ -156,6 +156,12 @@ function perssion()
 	    'memberteamUpdateUser'=>'业务员编辑',
 	    'memberteamSaleUser'=>'业务员业绩',
 	);	
+	
+	// 关于我们
+	$per['webset'] = array(
+			'websetSystem'=>'选号系统开启状态',
+			'websetCopy'=>'官网开启状态',
+	);	
 	return $per;
 }
 /*

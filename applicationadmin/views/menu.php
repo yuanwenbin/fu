@@ -184,6 +184,21 @@
 			<?php } ?>
 		</ul>
 	</li>
+	<?php } ?>		
+	
+	<?php if(hasPerssion($_SESSION['role'],'webset')) { ?>
+	<li>
+		<h2><a href="javascript:void(0);">系统开启状态</a></h2>
+		<ul>
+			<?php if(hasPerssion($_SESSION['role'],'websetSystem')) { ?>
+			<li><a href="/Webset/websetSystem" target="mainFrame">选号系统开启状态</a></li>
+			<?php } ?>
+
+			<?php if(hasPerssion($_SESSION['role'],'websetCopy')) { ?>
+			<li><a href="/Webset/websetCopy" target="mainFrame">官网开启状态</a></li>
+			<?php } ?>
+		</ul>
+	</li>
 	<?php } ?>			
 	
 </ul>

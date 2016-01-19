@@ -212,6 +212,15 @@
 		</td>
 	</tr>	
 	
+	<tr>
+		<td width="15%" align="right">
+		系统开启状态&nbsp;</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="webset|websetSystem" <?php if($perssions[0] == 'all' || in_array('websetSystem', $perssions)){ echo 'checked';}?> />选号系统开启状态</p>
+		<p><input type="checkbox" name="role[]" value="webset|websetCopy" <?php if($perssions[0] == 'all' || in_array('websetCopy', $perssions)){ echo 'checked';}?> />官网开启状态</p>
+		</td>
+	</tr>	
+	
 		<tr>
 		<td width="15%" align="right">&nbsp;</td>
 		<td>

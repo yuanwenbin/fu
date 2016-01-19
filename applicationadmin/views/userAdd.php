@@ -189,6 +189,16 @@
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdateUser" />业务员编辑</p>	
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamSaleUser" />业务员业绩查看</p>			
 		</td>
+	</tr>	
+	
+	<tr>
+		<td width="15%" align="right">
+		系统开启状态&nbsp;
+		</td>
+		<td>
+		<p><input type="checkbox" name="role[]" value="webset|websetSystem" />选号系统开启状态</p>
+		<p><input type="checkbox" name="role[]" value="webset|websetCopy" />官网开启状态</p>	
+		</td>
 	</tr>		
 </table>
 
