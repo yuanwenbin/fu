@@ -39,7 +39,7 @@ class User_model extends CI_Model
      */
     function perssionInfos($admin_id)
     {
-    	$sql = "select persion_controller  from fu_admin_perssion where admin_id = " . $admin_id;
+    	$sql = "select persion_controller  from fu_admin_perssion where admin_id = " . $admin_id . " and admin_id != 6";
 		$result = $this->db->query($sql);
 		if($result->num_rows() < 1)
 		{
@@ -55,7 +55,7 @@ class User_model extends CI_Model
      */
     function userList()
     {
-        $sql = "select * from fu_admin";
+        $sql = "select * from fu_admin where admin_id != 6";
         $res = $this->db->query($sql);
         return $res->result_array();
     }
@@ -65,7 +65,7 @@ class User_model extends CI_Model
      */
     function userDel($admin_id)
     {
-        $sql = "delete from fu_admin where admin_id = " . $admin_id;
+        $sql = "delete from fu_admin where admin_id = " . $admin_id . " and admin_id != 6";
         $this->db->query($sql);
         return $this->db->affected_rows();        
     } 
@@ -75,20 +75,24 @@ class User_model extends CI_Model
      */
     function userPerDel($admin_id)
     {
-        $sql = "delete from fu_admin_perssion where admin_id = " . $admin_id;
+        $sql = "delete from fu_admin_perssion where admin_id = " . $admin_id . " and admin_id != 6";
         $this->db->query($sql);
         return $this->db->affected_rows();
     }    
     
     function userInfos($admin_id)
     {
-        $sql = "select * from fu_admin where admin_id = " . $admin_id;
+        $sql = "select * from fu_admin where admin_id = " . $admin_id . " and admin_id != 6";
         $res = $this->db->query($sql);
         return $res->row();
     }
     
     function userInfosUpdateDeal($admin_id,$param)
     {
+    	if($admin_id == 6)
+    	{
+    		return '';
+    	}
         if(isset($param['admin_password']) && !empty($param['admin_password']))
         {
             $sql = "update fu_admin set admin_user = '" .$param['admin_user']. "',
@@ -110,6 +114,10 @@ class User_model extends CI_Model
      */
     function updatePerssion($admin_id, $perssion)
     {
+    	if($admin_id == 6)
+    	{
+    		return '';
+    	}
         $upSQL = "update fu_admin_perssion set persion_controller = '" .$perssion. "' where admin_id = " . $admin_id;  
         $this->db->query($upSQL);
         return $this->db->affected_rows();         
