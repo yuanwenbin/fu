@@ -1,0 +1,1 @@
+"E:\wamp\bin\php\php5.5.12\php.exe" -f "E:\wamp\www\fu\crond\crond-for-win.php"
