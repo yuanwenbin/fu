@@ -228,7 +228,7 @@ class Room_model extends CI_Model
 	 * @param string $location_details 描述
 	 * @param string $filePic 图片名
 	 */
-	function posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_area,$location_prefix)
+	function posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_area,$location_prefix,$location_code)
 	{
 		/*
 		$sql = "update fu_location_list set location_price = " . $location_price .",location_type = " . $location_type .
@@ -248,7 +248,7 @@ class Room_model extends CI_Model
 		*/
 		$sql = "update fu_location_list set location_price = " . $location_price .",location_type = " . $location_type .
 		",location_alias = '" . $location_alias . "',location_details = '".$location_details . "'," .
-		"location_area = '" . $location_area . "', location_prefix = '" . $location_prefix . "'";
+		"location_area = '" . $location_area . "', location_prefix = '" . $location_prefix . "',location_code = '" . $location_code . "'";
 		if($filePic)
 		{
 			$sql .= ",location_pic = '".$filePic."'";
