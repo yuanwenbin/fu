@@ -81,7 +81,13 @@
 		<input type="text" name="location_prefix" value="<?php echo $result['location_prefix'];?>" />
 		</td>		
 	</tr>	
-		
+
+	<tr>
+		<td width="20%" align="right">牌位编码(别名)：</td>
+		<td>
+		<input type="text" name="location_code" value="<?php echo $result['location_code'];?>" />
+		</td>		
+	</tr>	
 	
 	<tr>
 		<td width="20%" align="right">牌位销售状态：</td>
