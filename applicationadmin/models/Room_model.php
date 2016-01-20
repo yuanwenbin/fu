@@ -260,13 +260,20 @@ class Room_model extends CI_Model
 	}
 	
 	/**
-	 * 更新用户表和订单表
-	 * @param int $id 牌位号
+	 * 房间信息统计
+	 * 
 	 */
-	function updateUserOrder($id)
+	function roomTongJiModel()
 	{
 		// 更新用户表
-		$sqlUser = "update fu_user set ";
+		$sql = "SELECT location_room_id,count(*) as total FROM `fu_location_list` 
+				GROUP BY location_room_id order by location_room_id asc";
+		$result = $this->db->query($sql);
+		if($result->num_rows() <= 0)
+		{
+			return '';
+		}
+		return $result->result_array(); 
 	}
 	
 	/**
