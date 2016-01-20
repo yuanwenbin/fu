@@ -197,6 +197,17 @@ class Room extends CI_Controller {
 			$view['totalPage'] = $totalPage;
 			$view['roomTotal'] = $roomTotal;
 		}
+		$posTotalArr = array();
+		$posTotal= $this->Room_model->roomTongJiModel();
+		if($posTotal)
+		{
+			foreach($posTotal as $ptotal)
+			{
+				$posTotalArr[$ptotal['location_room_id']] = $ptotal['total'];
+			}
+			
+		}
+		$view['posTotal'] = $posTotalArr;
 		$this->load->view('roomList', $view);
 	}
 	
