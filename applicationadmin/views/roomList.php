@@ -32,7 +32,7 @@ if(!$roomList) { ?>
 	<tr <?php echo ($key % 2) ? 'class="listRoomColumns"' : '';?>class="fuck">
 		<td width="10%" align="center"><?php echo $val['room_id'];?></td>
 		<td width="20%" align="center"><?php echo $val['room_alias'];?></td>
-		<td  width="10%" align="center"><?php echo $val['room_number'];?></td>
+		<td  width="10%" align="center"><?php echo $posTotal[$val['room_id']];?></td>
 		<td  width="15%" align="center"><?php echo $val['room_flag'] == 1 ? '是' : '否';?></td>
 		<td  width="18%" align="center"><?php echo date('Y-m-d H:i:s',$val['room_time']);?></td>
 		<td  width="25%" align="center">
