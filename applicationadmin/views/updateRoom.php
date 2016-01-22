@@ -23,12 +23,6 @@
 		</td>		
 	</tr>
 	
-	<tr>
-		<td width="20%" align="right">房间牌位数：</td>
-		<td>
-		<?php echo $roomInfos['room_number'];?>&nbsp;(不可更改)
-		</td>		
-	</tr>
 		
 	<tr>
 		<td width="20%" align="right">房间是否开放：</td>

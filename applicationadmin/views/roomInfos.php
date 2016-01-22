@@ -27,12 +27,6 @@
 		</td>		
 	</tr>
 	
-	<tr>
-		<td width="20%" align="right">房间牌位数：</td>
-		<td>
-		<?php echo $roomInfos['room_number'];?>
-		</td>		
-	</tr>
 	
 	<tr>
 		<td width="20%" align="right">房间类型：</td>
