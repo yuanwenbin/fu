@@ -92,14 +92,24 @@
 	<tr>
 		<td width="20%" align="right">牌位销售状态：</td>
 		<td>
+		<?php if($result['location_status'] || $result['location_number'] == 2) {?>
+		<select name="location_number">
+		<option value="2" <?php if($result['location_number'] == 2) echo 'selected';?>>未出售</option>
+		<option value="1" <?php if($result['location_number'] == 1) echo 'selected';?>>出售中</option>
+        <option value="0"  <?php if(!$result['location_number']) echo 'selected';?>>已出售</option>
+		</select>
+		<input type="hidden" name="location_status" value="1" />
+		 <?php }else{?>
 		<?php if($result['location_number'] == 2) {?>
 		未出售
 	<?php }elseif($result['location_number'] == 1) {?>
 		出售中
 	<?php }else{ ?>
 	已出售
-<?php } ?>
-
+<?php } ?> 
+        <input type="hidden" name="location_number" value="<?php echo $result['location_number'];?>" />
+        <input type="hidden" name="location_status" value="0" />
+        <?php } ?>
 		</td>		
 	</tr>	
 	

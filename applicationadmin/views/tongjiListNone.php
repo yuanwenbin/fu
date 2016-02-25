@@ -85,6 +85,7 @@
 		<li class="statusArea_<?php  echo $v['location_number'];?>">
 		<a href="/Room/posLocation?id=<?php echo $v['localtion_id'];?>">
 		<?php echo $v['location_area']; ?><?php echo $v['location_prefix']; ?><?php echo strlen($v['location_code']) == 1 ? '0'.$v['location_code'] : $v['location_code']; ?>(<?php echo $v['localtion_id']; ?>)
+		<?php if($v['location_status']) echo '*';?>
 		</a></li>
 		<?php } ?>
 	</ul>
