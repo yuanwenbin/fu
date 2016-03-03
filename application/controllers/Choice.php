@@ -876,7 +876,7 @@ class Choice extends CI_Controller {
 	 * 高端定制
 	 */
 	function byHigh()
-	{
+	{  
 	    // 是否已经登陆
 	    $status = $this->orderStatus();
 	    //末登陆,有订单
@@ -898,7 +898,7 @@ class Choice extends CI_Controller {
 	        exit;
 	    }	
 	    */
-
+	    
 	    // 有完成订单
 	    $completeParam = array('order_user'=>$this->session->body_id, 'order_payment'=>1);
 	    $orderComplete = $this->orderComplete('fu_order_info', $completeParam);
@@ -913,7 +913,7 @@ class Choice extends CI_Controller {
 	    $uncompleteParam = " order_user = '" . $this->session->body_id ."' and order_payment =0 and order_datetime > " . (time()-DATEHEADLINE);
 	   
 	    $orderUncomplete = $this->orderUncomplete('fu_order_info', $uncompleteParam);
-	
+	    
 	    if($orderUncomplete)
 	    {
 	        header("Location:/Choice/index");
@@ -923,8 +923,9 @@ class Choice extends CI_Controller {
         // 查询高端定制座位
         // 房间是否开启
         $roomList = $this->roomList('fu_room_list', array('room_flag'=>1,'room_type'=>1));
+        
         if($roomList)
-        {
+        {   
         	$roomIds = array();
         	$roomInfos = array();
         	foreach($roomList as $v)
@@ -981,7 +982,7 @@ class Choice extends CI_Controller {
         	$this->load->view('byHigh', $view);        	
         }else {
         	// 没有相关房间
-        	$this->load->view('error');
+             $this->load->view('errorNone');
         }
 
     
