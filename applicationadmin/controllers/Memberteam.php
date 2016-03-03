@@ -202,7 +202,7 @@ class Memberteam extends CI_Controller {
 		$this->load->model('Member_model');
 		$memberLists = $this->Member_model->searchInfos('fu_member',array('member_team_id'=>$id,'member_flag'=>1));
 		$view['memberLists'] = $memberLists;
-	
+
     	$this->load->view('memberteamUpdate', $view);
 	}
 	
@@ -586,15 +586,16 @@ class Memberteam extends CI_Controller {
 	    // 该业务员信息
 	    $param['member_teamid'] = $id;
 	    $memberteamInfos = $this->Memberteam_model->memberteamQueryModel('fu_member',$param);
+
 	    if(!$memberteamInfos)
 	    {
-	        exit('该业务员不存在');
+	        exit('该组组长业务员不存在,请先编辑此组，增加组长，再进行操作');
 	    }
 	    $view['memberteamInfos'] =  $memberteamInfos; 
 	    // 业务员总数
-	    $paramMember['member_team_id'] = $memberteamInfos[0]['member_teamid'];
+	    $paramMember['member_team_id'] = $id;
 	    $memberCount = $this->Memberteam_model->queryCountModel('fu_member',$paramMember);
-		    
+	
 	    $view['userCount'] =  $memberCount;
 	    // 旗下业务员的用户总数
 	    $paramMemberUser['member_team_id'] = $memberteamInfos[0]['member_team_id'];
@@ -622,7 +623,7 @@ class Memberteam extends CI_Controller {
 	    $orderNotPayCountMoney = 0.00;
 	    if($memberUserCount)
 	    {
-	        
+	        // 组长下的业务员列表
 	        $memberForUserList = $this->Memberteam_model->queryCountInListModel('fu_user',$ids,'user_team_id');
 	        if($memberForUserList)
 	        {
@@ -680,9 +681,9 @@ class Memberteam extends CI_Controller {
 		// 业务员 id 列表
 		$paramMemberUser = array('member_team_id'=>$id);
 		$members = $this->Memberteam_model->searchInfos('fu_member',$paramMemberUser);
+		
 		// 组长信息
-		$memberInfos = $this->Memberteam_model->searchInfos('fu_member',array('member_id'=>$id));
-
+		$memberInfos = $this->Memberteam_model->searchInfos('fu_member',array('member_teamid'=>$id));
 		if(!$members)
 		{
 			exit('没有相关数据！');
@@ -703,8 +704,8 @@ class Memberteam extends CI_Controller {
 		$view['id'] = $id;
 		$view['total'] = $userCount;
 		$view['page'] = $page;
-		$view['totalPage'] = $totalPage;
-		$view['memberInfos'] = $memberInfos[0];
+		$view['totalPage'] = $totalPage;  
+		$view['memberInfos'] = isset($memberInfos[0]) && $memberInfos[0] ? $memberInfos[0] : 0;
 		$view['userList'] = $userNotOrder;
 		
 		$this->load->view('memberTeamRegisterUser',$view);		
@@ -724,7 +725,11 @@ class Memberteam extends CI_Controller {
 			exit('非法操作');
 		}
 		// 组长信息
-		$memberInfos = $this->Memberteam_model->getMemberTeam($id);		
+		$memberInfos = $this->Memberteam_model->getMemberTeamInfo($id);		
+		if(!$memberInfos)
+		{
+		    exit("此组没有组长，请先编辑此组，增加组长,再操作");
+		}
 		// 当前页
 		$page = intval($this->input->get_post('page'));
 		if($page < 1)
