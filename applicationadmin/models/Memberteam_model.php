@@ -53,7 +53,8 @@ class Memberteam_model extends CI_Model
 			}
 			$where = substr($where,0,-4);
 		}
-		$sql = "select * from " . $tableName.$where;
+		$sql = "select * from " . $tableName.$where; 
+
 		$result = $this->db->query($sql);
 		if($result->num_rows() < 1)
 		{
@@ -168,6 +169,23 @@ class Memberteam_model extends CI_Model
       }
       
     }
+    
+    /**
+     * 获取业务员组长信息
+     * @param unknown $member_id
+     */
+    function getMemberTeamInfo($member_id)
+    {
+        $sql = "select * from fu_member where member_teamid = '".$member_id."' limit 1";
+        $result = $this->db->query($sql);
+        if($result->num_rows() > 0)
+        {
+            return  $result->row_array();
+        }else {
+            return '';
+        }
+    
+    }    
     /**
      * 查询业务员的会员列表
      * @param string $member_id 业务员id
@@ -220,7 +238,7 @@ class Memberteam_model extends CI_Model
 						on oi.order_location_id = ll.localtion_id
 						join fu_user as u on oi.order_user = u.body_id
 						where  u.user_member_id = '".$member_id."' " . $where . " order by oi.order_id desc " . $limit;
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql); 
         if ($query->num_rows() > 0) {
             return $query->result_array();
         } else {
@@ -311,6 +329,7 @@ class Memberteam_model extends CI_Model
             $whereStr = " where " . $ins . " in " . $where;
         }
         $sql = "select count(*) as total from " . $tableName . $whereStr;
+
         $result = $this->db->query($sql);
         $rowResult = $result->row();
         return $rowResult->total;        
@@ -402,6 +421,7 @@ class Memberteam_model extends CI_Model
     {
         $whereStr = " where " . $ins . " in " . $where;
         $sql = "select * from " . $tableName . $whereStr;
+ 
         $query = $this->db->query($sql);
     	if ($query->num_rows() > 0) {
     		return $query->result_array();
