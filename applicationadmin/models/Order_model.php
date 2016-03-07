@@ -156,10 +156,88 @@ class Order_model extends CI_Model
     	{
     		return '';
     	}
-    	return 1;
+    	return 1;	
+    }
+    
+    /**
+     * 查询表
+     * @param unknown $tableName
+     * @param unknown $param
+     */
+    function searchInfos($tableName, $param = '')
+    {
+    	$where = " where 1 = 1 ";
+    	if($param)
+    	{
+    		foreach($param as $kk=>$vv)
+    		{
+    			$where .= " and " . $kk . " = '" .$vv . "'";
+    		}
+    	}
+    	$sql = "select * from " . $tableName . $where;
+    	$query = $this->db->query($sql);
+    
+    	if ($query->num_rows() > 0) {
+    		return $query->result_array();
+    	} else {
+    		return '';
+    	}
+    }
+	
+    /**
+     * 自助下单处理
+     * @param unknown $fu_location_list
+     * @param unknown $fu_order_info
+     * @param unknown $fu_user
+     */
+    function multiUpdateInsert($fu_location_list,$fu_order_info,$fu_user)
+    {
+    	// 牌位修改
+    	$localtion_id = $fu_location_list['localtion_id'];
+    	unset($fu_location_list['localtion_id']);
+    	$fu_location_list_str = '';
+    	foreach($fu_location_list as $kv => $val)
+    	{
+    		$fu_location_list_str .= $kv . "='" . $val . "',";
+    	}
+    	$fu_location_list_str = substr($fu_location_list_str,0,-1);
+    	$sql_location_list_sql = "update fu_location_list set " . $fu_location_list_str . " where localtion_id = " . $localtion_id;
     	
+    	// 订单处理
+    	$keys = "";
+    	$vals = "";
+    	foreach($fu_order_info as $kkvv => $vval)
+    	{
+    		$keys .= $kkvv . ",";
+    		$vals .= "'" . $vval . "',";
+    	}
+
+    	$keys = substr($keys, 0,-1);
+    	$vals = substr($vals, 0,-1);
+    	$fu_order_info_sql = "INSERT INTO fu_order_info (".$keys.") VALUES (" . $vals . ")";    	
+    	// 用户处理    	
+    	$keys = "";
+    	$vals = "";
+    	foreach($fu_user as $kkvv => $vval)
+    	{
+    		$keys .= $kkvv . ",";
+    		$vals .= "'" . $vval . "',";
+    	}
+    	$keys = substr($keys, 0,-1);
+    	$vals = substr($vals, 0,-1);
+    	$fu_user_sql = "INSERT INTO fu_user (".$keys.") VALUES (" . $vals . ")";    	
     	
+    	$this->db->trans_start();
+    	$this->db->query($sql_location_list_sql); // 牌位处理
+    	$this->db->query($fu_order_info_sql); // 订单处理
+    	$this->db->query($fu_user_sql); // 用户处理
+    	$this->db->trans_complete();
     	
-    	
+    	if ($this->db->trans_status() === FALSE)
+    	{
+    		return false;
+    	}else {
+    		return true;
+    	}   	
     }
 }
