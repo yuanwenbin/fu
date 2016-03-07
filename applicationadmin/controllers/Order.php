@@ -341,7 +341,13 @@ class Order extends CI_Controller {
 						'user_telphone'=>$user_telphone,
 						'user_phone'=>$user_phone
 		);
-		
+		// 生辰八字用户
+		if($order_location_type == 2)
+		{
+			$fu_user['user_name'] = $user_name;
+			$fu_user['user_birthday'] = $user_birthday;
+			$fu_user['user_time'] = $stime;
+		}
 		$res = $this->Order_model->multiUpdateInsert($fu_location_list,$fu_order_info,$fu_user);
 		if($res)
 		{
