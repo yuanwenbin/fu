@@ -46,7 +46,7 @@
 			电话号码：<input type="text" name="user_telphone" value="" /><br />
 			用户称呼：<input type="text" name="user_phone" value="" /><br />
 			用户姓名：<input type="text" name="user_name" value="" />(对生辰八字来说,别的类型用户不填)<br />
-			用户生日：<input type="text" name="user_birthday" value="" />(对生辰八字来说,别的类型用户不填)<br />
+			用户生日：<input type="text" name="user_birthday" value="" />(对生辰八字来说,别的类型用户不填,格式如: 2015-01-01)<br />
 			出生时辰：
 			<select name="stime" class="user_time">
 			<option value="子时(23:00-00:59)">子时(23:00-00:59)</option>
