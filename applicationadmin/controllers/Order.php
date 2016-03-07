@@ -207,5 +207,153 @@ class Order extends CI_Controller {
 		$this->Order_model->posInfosDealModel($param);
 		return true;
 	}
+	
+	/**
+	 * 自助下单
+	 */
+	function orderSelf()
+	{
+		
+		$this->load->model('Memberteam_model');
+		$memberList = $this->Memberteam_model->memberteamQueryModel('fu_member',array('member_flag'=>1));
+		$view = array();
+		$view['memberList'] = $memberList;
+		$this->load->view('orderSelf',$view);
+	}
+	
+	/**
+	 * 自助下单处理
+	 */
+	function orderSelfAdd()
+	{
+		$localtion_id = intval($this->input->get_post('localtion_id'));
+		$body_id = $this->input->get_post('body_id');
+		$member_id = intval($this->input->get_post('member_id'));
+		
+		$location_number = intval($this->input->get_post('location_number'));
+		$user_name = $this->input->get_post('user_name');
+		$user_birthday = $this->input->get_post('user_birthday');
+		$stime = $this->input->get_post('stime');
+		$order_location_type = intval($this->input->get_post('order_location_type'));
+		$createTime = time();
+		
+		$user_telphone = $this->input->get_post('user_telphone');
+		$user_phone = $this->input->get_post('user_phone');
+		
+		$data = array();
+		$data['error'] = true;
+		if(!$localtion_id)
+		{
+			$data['msg'] = '信息有误，请输入牌位号码'; 
+			echo json_encode($data);
+			exit;
+		}
+		// 身份证号码
+		if(!$body_id || (strlen($body_id) != 15 && strlen($body_id) != 18))
+		{
+			$data['msg'] = '信息有误，身份份证有误码';
+			die(json_encode($data));
+		}
+		// 检查牌位号码
+		$this->load->model('Order_model');
+		$location_res = $this->Order_model->searchInfos("fu_location_list", array('localtion_id'=>$localtion_id));
+		if(!$location_res)
+		{
+			$data['msg'] = "信息有误，不存在该牌位";
+			die(json_encode($data));
+		}
+		$locationInfo = $location_res[0];
+		if(!$locationInfo['location_number'])
+		{
+			$data['msg'] = "信息有误，该牌位已有人订了,请换别的牌位号";
+			die(json_encode($data));			
+		}
+		if($locationInfo['location_status'])
+		{
+			$data['msg'] = "信息有误，该牌位是自己刷单的";
+			die(json_encode($data));
+		}
+		// 类型    0-随机,1-高端定制式
+		$location_type = $locationInfo['location_type'];
+		if($location_type == 1 && $order_location_type != 1)
+		{
+			$data["msg"] = '信息有误，该牌位是高端定制，但订单定位非高端定位';
+			die(json_encode($data));
+		}
+		
+		if(!$location_type && $order_location_type == 1)
+		{
+			$data['msg'] = '信息有误，该牌位是随机/生辰八字，但订单定位高端定位';
+			die(json_encode($data));			
+		}
+		
+		if($order_location_type == 2)
+		{
+			if(!$user_name || !$user_birthday || !$stime)
+			{
+				$data['msg'] = '信息有误，你的定位是生辰八字，请填写正确的姓名，生日，时辰';
+				die(json_encode($data));				
+			}
+		}
+		
+		if(!$user_telphone)
+		{
+			$data['msg'] = '信息有误，客户电话号码不能为空';
+			die(json_encode($data));
+		}
+		// 更新牌位
+		$fu_location_list = array('localtion_id'=>$localtion_id, 'location_date'=>$createTime,'location_number'=>$location_number);
+		
+		// 插入订单
+		$fu_order_info = array('order_user'=>$body_id,
+								'order_room_id'=>$locationInfo['location_room_id'],
+								'order_location_id'=>$localtion_id,
+								'order_location_type'=>$order_location_type,
+								'order_datetime'=>$createTime
+								);
+		// 插入用户
+		$memberInfo = $this->Order_model->searchInfos("fu_member", array('member_id'=>$member_id));
+		if(!$memberInfo)
+		{
+			$data["msg"] = '信息有误，此业务员还没有分组';
+			die(json_encode($data));			
+		}
+		if($order_location_type == 2)
+		{
+			$user_type = 1;
+		}elseif($order_location_type == 1)
+		{
+			$user_type = 2;
+		}else {
+			$user_type = 0;
+		}
+		$fu_user = array('body_id'=>$body_id,
+						 'user_location_id'=>$localtion_id,	
+						'user_type'=>$user_type,
+						'user_selected'=>2,
+						'user_selected_date'=>$createTime,
+						'user_datetime'=>$createTime,
+						'user_name'=>'',
+						'user_birthday'=>'',
+						'user_time'=>'',
+						'user_member_id'=>$member_id,
+						'user_team_id'=>$memberInfo[0]['member_team_id'],
+						'user_telphone'=>$user_telphone,
+						'user_phone'=>$user_phone
+		);
+		
+		$res = $this->Order_model->multiUpdateInsert($fu_location_list,$fu_order_info,$fu_user);
+		if($res)
+		{
+			$data['error'] = false;
+			$data['msg'] = '操作成功';
+			die(json_encode($data));
+		}else {
+			$data['msg'] = '操作失败，请稍后再试';
+			die(json_encode($data));
+		}
+		
+		
+	}
 
 }
