@@ -73,6 +73,7 @@ class Member_model extends CI_Model
 		}
 		$sql = "select * from " . $tableName . $where;
 		$query = $this->db->query($sql);
+
 		if ($query->num_rows() > 0) {
 			return $query->result_array();
 		} else {
