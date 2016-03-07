@@ -295,13 +295,13 @@ class Index extends CI_Controller {
 	    }
 	    // 书写统计中心
 	    // 业务员总数
-	    $paramMember['member_team_id'] = $this->session->member_id;
+	    $paramMember['member_team_id'] = $this->session->member_team_id;
 	    $memberCount = $this->Index_model->queryCountModel('fu_member',$paramMember);
-	    
+ 
 	    $view['userCount'] =  $memberCount;
 	    // 旗下业务员的用户总数
-	    $paramMemberUser['member_team_id'] = $this->session->member_id;
-	    
+	    // $paramMemberUser['member_team_id'] = $this->session->member_id;
+	    $paramMemberUser['member_team_id'] = $this->session->member_team_id;
 	    // $memberUserList = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
 	    
 	    $memberUserCount = 0;
@@ -319,7 +319,8 @@ class Index extends CI_Controller {
 		            $ids .= "'" . $vv['member_id']."',";
 		        }
 		        $ids = substr($ids,0,-1) . ")";
-		        $memberUserCount = $this->Index_model->queryCountInModel('fu_user',$ids,'user_team_id');
+		        // $memberUserCount = $this->Index_model->queryCountInModel('fu_user',$ids,'user_team_id');
+		        $memberUserCount = $this->Index_model->queryCountInModel('fu_user',$ids,'user_member_id');
 		    }
 	    }
 	    
@@ -334,7 +335,8 @@ class Index extends CI_Controller {
 	    if($memberUserCount)
 	    {
 	        // 组长旗下业务员的用户列表 
-	        $memberForUserList = $this->Index_model->queryCountInListModel('fu_user',$ids,'user_team_id');
+	        // $memberForUserList = $this->Index_model->queryCountInListModel('fu_user',$ids,'user_team_id');
+	        $memberForUserList = $this->Index_model->queryCountInListModel('fu_user',$ids,'user_member_id');
 	        // bof 
 	        if($memberForUserList)
 	        {
