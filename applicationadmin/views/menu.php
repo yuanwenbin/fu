@@ -39,6 +39,7 @@
 		<h2><a href="javascript:void(0);">订单管理中心</a></h2>
 		<ul>
 			<li><a href="/Order/orderList" target="mainFrame">订单列表</a></li>
+			<li><a href="/Order/orderSelf" target="mainFrame">自助下单</a></li>
 		</ul>
 	</li>
 	<?php } ?>
