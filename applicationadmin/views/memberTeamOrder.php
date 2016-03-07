@@ -100,7 +100,7 @@ if($page > 1) {
 </p>
 <!--  eof 页码  -->
 <p class="backBtnMember">
-<a href="/Memberteam/memberTeamRegisterUser?id=<?php echo $memberInfos['member_id']; ?>">组长用及旗下业务员的登记用户列表</a>
+<a href="/Memberteam/memberTeamRegisterUser?id=<?php echo $id; ?>">组长用及旗下业务员的登记用户列表</a>
 </p>
 </div>
 
