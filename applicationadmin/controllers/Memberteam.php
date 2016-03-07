@@ -595,11 +595,12 @@ class Memberteam extends CI_Controller {
 	    // 业务员总数
 	    $paramMember['member_team_id'] = $id;
 	    $memberCount = $this->Memberteam_model->queryCountModel('fu_member',$paramMember);
-	
+
 	    $view['userCount'] =  $memberCount;
 	    // 旗下业务员的用户总数
-	    $paramMemberUser['member_team_id'] = $memberteamInfos[0]['member_team_id'];
-	    $memberUserList = $this->Memberteam_model->searchInfos('fu_member',$paramMemberUser);
+	    // $paramMemberUser['member_team_id'] = $memberteamInfos[0]['member_team_id'];
+	    // $memberUserList = $this->Memberteam_model->searchInfos('fu_member',$paramMemberUser);
+	    $memberUserList = $this->Memberteam_model->searchInfos('fu_member',$paramMember);
 
 	    $memberUserCount = 0;
 	    $ids = '';
@@ -611,7 +612,8 @@ class Memberteam extends CI_Controller {
 	            $ids .= "'" . $vv['member_id']."',";
 	        }
 	        $ids = substr($ids,0,-1) . ")";
-	        $memberUserCount = $this->Memberteam_model->queryCountInModel('fu_user',$ids,'user_team_id');        
+	        // $memberUserCount = $this->Memberteam_model->queryCountInModel('fu_user',$ids,'user_team_id'); 
+	        $memberUserCount = $this->Memberteam_model->queryCountInModel('fu_user',$ids,'user_member_id');
 	    }	
 
 	    $view['memberUserCount'] =  $memberUserCount;
@@ -624,7 +626,8 @@ class Memberteam extends CI_Controller {
 	    if($memberUserCount)
 	    {
 	        // 组长下的业务员列表
-	        $memberForUserList = $this->Memberteam_model->queryCountInListModel('fu_user',$ids,'user_team_id');
+	       // $memberForUserList = $this->Memberteam_model->queryCountInListModel('fu_user',$ids,'user_team_id');
+	        $memberForUserList = $this->Memberteam_model->queryCountInListModel('fu_user',$ids,'user_member_id');
 	        if($memberForUserList)
 	        {
 	            $idss = "(";
