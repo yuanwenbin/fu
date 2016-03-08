@@ -226,7 +226,22 @@ class Order extends CI_Controller {
 	 */
 	function orderSelfAdd()
 	{
-		$localtion_id = intval($this->input->get_post('localtion_id'));
+		$localtion_value = trim($this->input->get_post('localtion_id'));
+		$data = array();
+		$data['error'] = true;
+		if(is_int($localtion_value))
+		{
+			$localtion_id = intval($localtion_value);
+		}else {
+			$location_row_info = $this->Order_model->checkNoForCode($localtion_value);
+			if(!$location_row_info)
+			{
+				$data['msg'] = '不存在该牌位编号';
+				die(json_encode($data));
+			}
+			$localtion_id = $location_row_info['localtion_id'];
+		}
+
 		$body_id = $this->input->get_post('body_id');
 		$member_id = intval($this->input->get_post('member_id'));
 		
@@ -240,8 +255,7 @@ class Order extends CI_Controller {
 		$user_telphone = $this->input->get_post('user_telphone');
 		$user_phone = $this->input->get_post('user_phone');
 		
-		$data = array();
-		$data['error'] = true;
+
 		if(!$localtion_id)
 		{
 			$data['msg'] = '信息有误，请输入牌位号码'; 
