@@ -24,7 +24,7 @@
 		<tr>
 			<td width="20%" align="right"><label>牌位信息：</label></td>
 			<td>
-			牌位号码：<input type="text" name="localtion_id" value="" />&nbsp;(如:123)<br />
+			牌位号码：<input type="text" name="localtion_id" value="" />&nbsp;(如:123 或  D区1-01)<br />
 			出售状态：
 				<select name="location_number">
 					<option value="1" selected>出售中</option>
