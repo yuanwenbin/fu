@@ -27,113 +27,155 @@ class Order extends CI_Controller {
 	    if(!hasPerssion($_SESSION['role'], 'orderList')){
 	        exit('点击左栏目操作');
 	    }
-	    
-	    $view = array();
-	    $param = array();
-	    $page = intval($this->input->get_post('page'));
-	    if(!$page)
+	    // bof 牌位编号
+	    $location_info = trim($this->input->get_post('location_info'));
+	    if($location_info)
 	    {
-	        $page = 1;
-	    }
-	    // 房间号
-	    $order_room_id = $this->input->get_post('order_room_id');
-	    if(!$order_room_id)
-	    {
-	        $view['result']['order_room_id'] = '';
-	    }else
-	    {
-	        $param['order_room_id'] = addslashes($order_room_id);
-	        $view['result']['order_room_id'] = addslashes($order_room_id);
-	    }
-	    // 牌位类型   
-	    $order_location_type = $this->input->get_post('order_location_type');
-	   if(is_null($order_location_type) || $order_location_type == 'all')
-	   {
-	       $view['result']['order_location_type'] = 'all';
-	   }elseif($order_location_type>0) {
-	       $param['order_location_type'] = intval($order_location_type);
-	       $view['result']['order_location_type'] = intval($order_location_type);
-	   }else {
-	       $param['order_location_type'] = intval($order_location_type);
-	       $view['result']['order_location_type'] = '0';	       
-	   }
-
-	    // 支付状态
-	    $order_payment = $this->input->get_post('order_payment');
-        if(is_null($order_payment) || $order_payment == 'all')
-        {
-            $view['result']['order_payment']='all';
-        }elseif(intval($order_payment) == 1) {
-            $param['order_payment'] = intval($order_payment);
-            $view['result']['order_payment'] = intval($order_payment);
-        }else {
-            $param['order_payment'] = intval($order_payment);
-            $view['result']['order_payment'] = '0';
-        }
-	    
-	    //开始时间
-	    $datetime = addslashes($this->input->get_post('datetime'));
-        if($datetime)
-        {
-            $param['order_datetime']=strtotime(addslashes($datetime));
-            $view['result']['datetime'] = strtotime(addslashes($datetime)); 
-        }else {
-            $view['result']['datetime'] = '';
-        }
-	    // 截止时间
-	    $datetimes = $this->input->get_post('datetimes');
+	    	// 非数字
+    		if(!is_numeric($location_info))
+    		{	
+    			$resLocation = $this->Order_model->checkNoForCode($location_info);
+    			if(!$resLocation)
+    			{
+    				// 再次判断
+    				$length = strlen($location_info);
+    				$str = substr($location_info,0,-2);
+    				$str .= substr($location_info,-1,1);
+    				$locationListInfo = $this->Order_model->checkNoForCode($str);
+    				if(!$locationListInfo)
+    				{
+    					echo "没有相关数据，&nbsp;<a href='/Order/orderList'>点击返回</a>";
+    					exit;
+    				}
+    				$resLocation = $this->Order_model->posInfosModel('fu_order_info', array('order_location_id'=>$locationListInfo['localtion_id']));
+    			}
+    		}else {
+    			$resLocation = $this->Order_model->posInfosModel('fu_order_info', array('order_location_id'=>$location_info));
+    		}
+    		if(!$resLocation)
+    		{
+    			echo "没有相关数据，&nbsp;<a href='/Order/orderList'>点击返回</a>";exit;
+    		}
+    		$view = array();
+    		$locationId = $resLocation[0]['order_location_id']; 
+    		$location_list = $this->Order_model->searchInfos('fu_location_list', array('localtion_id'=>$locationId));
+			$view['resultList'] = $resLocation[0];
+			foreach($location_list[0] as $kk=>$vv)
+			{
+				$view['resultList'][$kk] = $vv;
+			}
+			$room_list = $this->Order_model->searchInfos('fu_room_list', array('room_id'=>$location_list[0]['location_room_id']));
+			$view['resultList']['room_alias'] = $room_list[0]['room_alias'];
+			$this->load->view('orderListForNo', $view);
+	    //  eof 牌位编号
+	    }else{
+		    $view = array();
+		    $param = array();
+		    $page = intval($this->input->get_post('page'));
+		    if(!$page)
+		    {
+		        $page = 1;
+		    }
+		    // 房间号
+		    $order_room_id = $this->input->get_post('order_room_id');
+		    if(!$order_room_id)
+		    {
+		        $view['result']['order_room_id'] = '';
+		    }else
+		    {
+		        $param['order_room_id'] = addslashes($order_room_id);
+		        $view['result']['order_room_id'] = addslashes($order_room_id);
+		    }
+		    // 牌位类型   
+		    $order_location_type = $this->input->get_post('order_location_type');
+		   if(is_null($order_location_type) || $order_location_type == 'all')
+		   {
+		       $view['result']['order_location_type'] = 'all';
+		   }elseif($order_location_type>0) {
+		       $param['order_location_type'] = intval($order_location_type);
+		       $view['result']['order_location_type'] = intval($order_location_type);
+		   }else {
+		       $param['order_location_type'] = intval($order_location_type);
+		       $view['result']['order_location_type'] = '0';	       
+		   }
 	
-	    if($datetimes)
-	    {
-	        $param['order_datetimes']=strtotime(addslashes($datetimes));
-	        $view['result']['datetimes'] = strtotime(addslashes($datetimes));
-	    }else {
-	        $view['result']['datetimes'] = '';
-	    }
-	   
-	    // 身份号码
-	    $bodyId = $this->input->get_post('bodyId');
-	    if($bodyId)
-	    {
-	        $view['result']['bodyId'] = trim(strip_tags($bodyId));
-	        $param['order_user'] = trim(strip_tags($bodyId));
-	    }else {
-	        $view['result']['bodyId'] = '';
-	    }
-	    $resultList = array();
-        // 总数
-	    $totalNumber = $this->Order_model->orderTotal($param);
-	    if($totalNumber)
-	    {
-	      $totalPage = ceil($totalNumber/PAGESIZE); 
-	      if($page > $totalPage) 
-	      {
-	          $page = $totalPage;
-	      }
-	      $resultList = $this->Order_model->orderList($param, $page,PAGESIZE);
-	    }else {
-	        $page = 0;
-	        $totalPage = 0;
-	    }
-	    
-	    if($resultList)
-	    {
-	        foreach ($resultList as $k=>$vv)
+		    // 支付状态
+		    $order_payment = $this->input->get_post('order_payment');
+	        if(is_null($order_payment) || $order_payment == 'all')
 	        {
-	            $roomInfos = $this->Order_model->posInfosModel('fu_room_list',array('room_id'=>$vv['order_room_id']));
-	            $locationInfos = $this->Order_model->posInfosModel('fu_location_list',array('localtion_id'=>$vv['order_location_id']));
-	            $resultList[$k]['roomInfos'] = $roomInfos[0];
-	            $resultList[$k]['locationInfos'] = $locationInfos[0];
+	            $view['result']['order_payment']='all';
+	        }elseif(intval($order_payment) == 1) {
+	            $param['order_payment'] = intval($order_payment);
+	            $view['result']['order_payment'] = intval($order_payment);
+	        }else {
+	            $param['order_payment'] = intval($order_payment);
+	            $view['result']['order_payment'] = '0';
 	        }
+		    
+		    //开始时间
+		    $datetime = addslashes($this->input->get_post('datetime'));
+	        if($datetime)
+	        {
+	            $param['order_datetime']=strtotime(addslashes($datetime));
+	            $view['result']['datetime'] = strtotime(addslashes($datetime)); 
+	        }else {
+	            $view['result']['datetime'] = '';
+	        }
+		    // 截止时间
+		    $datetimes = $this->input->get_post('datetimes');
+		
+		    if($datetimes)
+		    {
+		        $param['order_datetimes']=strtotime(addslashes($datetimes));
+		        $view['result']['datetimes'] = strtotime(addslashes($datetimes));
+		    }else {
+		        $view['result']['datetimes'] = '';
+		    }
+		   
+		    // 身份号码
+		    $bodyId = $this->input->get_post('bodyId');
+		    if($bodyId)
+		    {
+		        $view['result']['bodyId'] = trim(strip_tags($bodyId));
+		        $param['order_user'] = trim(strip_tags($bodyId));
+		    }else {
+		        $view['result']['bodyId'] = '';
+		    }
+		    $resultList = array();
+	        // 总数
+		    $totalNumber = $this->Order_model->orderTotal($param);
+		    if($totalNumber)
+		    {
+		      $totalPage = ceil($totalNumber/PAGESIZE); 
+		      if($page > $totalPage) 
+		      {
+		          $page = $totalPage;
+		      }
+		      $resultList = $this->Order_model->orderList($param, $page,PAGESIZE);
+		    }else {
+		        $page = 0;
+		        $totalPage = 0;
+		    }
+		    
+		    if($resultList)
+		    {
+		        foreach ($resultList as $k=>$vv)
+		        {
+		            $roomInfos = $this->Order_model->posInfosModel('fu_room_list',array('room_id'=>$vv['order_room_id']));
+		            $locationInfos = $this->Order_model->posInfosModel('fu_location_list',array('localtion_id'=>$vv['order_location_id']));
+		            $resultList[$k]['roomInfos'] = $roomInfos[0];
+		            $resultList[$k]['locationInfos'] = $locationInfos[0];
+		        }
+		    }
+		    $view['result']['totalNumber'] = $totalNumber;
+	
+		    $view['result']['page'] = $page;
+		    $view['result']['totalPage'] = $totalPage;
+	        $view['result']['resultList'] = $resultList; 
+	        $view['source'] = $this->source;
+	        $view['username'] = $this->session->userdata('admin_user');
+		    $this->load->view('orderList',$view);
 	    }
-	    $view['result']['totalNumber'] = $totalNumber;
-
-	    $view['result']['page'] = $page;
-	    $view['result']['totalPage'] = $totalPage;
-        $view['result']['resultList'] = $resultList; 
-        $view['source'] = $this->source;
-        $view['username'] = $this->session->userdata('admin_user');
-	    $this->load->view('orderList',$view);
 	}
 
 	/**
