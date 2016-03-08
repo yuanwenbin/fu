@@ -51,6 +51,8 @@
 	    </select> 
 	    <?php } ?>
 	    &nbsp;&nbsp;
+	    牌位编号：<input type="text" name="location_info" value="" />
+	    &nbsp;&nbsp;
 	    开始时间:  
 	    <input type="text" name="datetime" class="ui_timepicker" value="<?php echo isset($startTime) && !empty($startTime) ? date('Y-m-d H:i:s',$startTime) : '';?>" />
 	        &nbsp;
