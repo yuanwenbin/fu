@@ -240,4 +240,16 @@ class Order_model extends CI_Model
     		return true;
     	}   	
     }
+    
+    function checkNoForCode($val)
+    {
+    	$sql = "select * from fu_location_list where concat(location_area,location_prefix,location_code) = '".$val."'";
+    	$query = $this->db->query($sql);
+    	
+    	if ($query->num_rows() > 0) {
+    		return $query->row_array();
+    	} else {
+    		return '';
+    	}
+    }
 }
