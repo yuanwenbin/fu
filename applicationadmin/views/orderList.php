@@ -42,6 +42,9 @@
 <!-- bof one -->
 <div class="divInfos1 searchListPos">
 <form method="get" action="/Order/orderList">
+&nbsp;
+牌位编号：<input type="text" name="location_info" value="">
+&nbsp;
 房间号:
 <input name="order_room_id" type="number" style="width:60px;" value="<?php echo $result['order_room_id'];?>" />
 &nbsp;
