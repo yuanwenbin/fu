@@ -576,8 +576,39 @@ class Room extends CI_Controller {
 	               $location_id = $res[0]['order_location_id'];
 	               header("location:/Room/posLocation?id=" .$location_id);
 	           }else {
-	               exit('没有相关数据');
+	               echo "没有相关数据，&nbsp;<a href='/Room/roomPosList'>点击返回</a>";exit;
 	           }
+	        }elseif($type == 4)
+	        {
+	            // 不是数字
+	            if(!is_numeric($searchTxt))
+	            {
+	                $resLocation = $this->Order_model->checkNoForCode($searchTxt);
+	                if(!$resLocation)
+	                {
+	                    // 再次判断
+	                    $length = strlen($searchTxt);
+	                    $str = substr($searchTxt,0,-2);
+	                    $str .= substr($searchTxt,-1,1);
+	                    $locationListInfo = $this->Order_model->checkNoForCode($str);
+	                    if(!$locationListInfo)
+	                    {
+	                        echo "没有相关数据，&nbsp;<a href='/Order/orderList'>点击返回</a>";
+	                        exit;
+	                    }
+	                    header("location:/Room/posLocation?id=" .$locationListInfo['localtion_id']);
+	                }
+	            }else {
+	                // 是数字
+	                $searchTxt = intval($searchTxt);
+	                $res = $this->Order_model->searchInfos('fu_location_list',array('localtion_id'=>$searchTxt));
+	                if(!$res)
+	                {
+	                    echo "没有相关数据，&nbsp;<a href='/Room/roomPosList'>点击返回</a>";exit;
+	                }else {
+	                    header("location:/Room/posLocation?id=" .$searchTxt);
+	                }
+	            }
 	        }else
 	        {
 	            if($type == 2)
@@ -594,7 +625,7 @@ class Room extends CI_Controller {
 	                $user_location_id = $res[0]['user_location_id'];
 	                if(!$user_location_id)
 	                {
-	                    exit('没有相关数据');
+	                     echo "没有相关数据，&nbsp;<a href='/Room/roomPosList'>点击返回</a>";exit;
 	                }
 	                header("location:/Room/posLocation?id=" .$user_location_id);
 	               }else {
@@ -607,7 +638,7 @@ class Room extends CI_Controller {
 	               }
 	                
 	            }else {
-	                exit('没有相关数据');
+	                 echo "没有相关数据，&nbsp;<a href='/Room/roomPosList'>点击返回</a>";exit;
 	            }
 	        }
 	        
