@@ -408,6 +408,21 @@ class Room extends CI_Controller {
 		}
 
 		$view['result'] = $result;
+		$view['status'] = $result['location_status'];
+		$view['sale'] = $result['location_number'];
+		$userInfo = array();
+		$orderInfo = array();
+		if(!$result['location_status'])
+		{
+		    $this->load->model('Order_model');
+		    $rr = $this->Order_model->searchInfos('fu_order_info', array('order_location_id'=>$result['localtion_id']));
+		    $orderInfo = $rr[0];
+		    $userBody = $orderInfo['order_user'];
+		    $rrr = $this->Order_model->searchInfos('fu_user', array('body_id'=>$userBody));
+		    $userInfo = $rrr[0];
+		}
+		$view['orderInfo'] = $orderInfo;
+		$view['userInfo'] = $userInfo;
 		$view['front_domain'] = FRONT_DOMAIN;
 		$this->load->view('posLocation', $view);
 	}
@@ -547,7 +562,56 @@ class Room extends CI_Controller {
 			$param['location_room_id'] = $room_id;
 			$view['room_id'] = $room_id;
 		}
-	
+	    // 按条件选
+	    $type =  intval($this->input->get_post('type')); 
+	    $searchTxt =  $this->input->get_post('searchTxt');
+	    if($type && $searchTxt)
+	    {
+	        $this->load->model('Order_model');
+	        if($type == 1)
+	        {
+	           $res = $this->Order_model->searchInfos('fu_order_info',array('order_user'=>$searchTxt));
+	           if($res)
+	           {
+	               $location_id = $res[0]['order_location_id'];
+	               header("location:/Room/posLocation?id=" .$location_id);
+	           }else {
+	               exit('没有相关数据');
+	           }
+	        }else
+	        {
+	            if($type == 2)
+	            {
+	               $res = $this->Order_model->searchInfos('fu_user',array('user_telphone'=>$searchTxt));
+	            }else{
+	                $res = $this->Order_model->searchInfos('fu_user',array('user_phone'=>$searchTxt));
+	            }
+	            
+	            if($res)
+	            {
+	               if(count($res) == 1)
+	               {
+	                $user_location_id = $res[0]['user_location_id'];
+	                if(!$user_location_id)
+	                {
+	                    exit('没有相关数据');
+	                }
+	                header("location:/Room/posLocation?id=" .$user_location_id);
+	               }else {
+	                   echo '选择要查看的' . "<br />";
+	                   foreach($res as $kk=>$vv)
+	                   {
+	                       echo "<a href='/Room/posLocation?id=".$vv['user_location_id']."'>".$vv['body_id']."</a><br />"; 
+	                   }
+	                   exit;
+	               }
+	                
+	            }else {
+	                exit('没有相关数据');
+	            }
+	        }
+	        
+	    }
 		// 牌位类型
 		$positionType = $this->input->get_post('positionType');
 		if(!$positionType)
