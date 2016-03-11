@@ -156,6 +156,26 @@
 		
 		</td>		
 	</tr>
+	<?php if(!$status && $sale < 2) {?>
+	<tr>
+		<td width="20%" align="right">用户身份证号：</td>
+		<td>
+		<?php echo $userInfo['body_id']; ?>
+		</td>		
+	</tr>
+	<tr>
+		<td width="20%" align="right">联系电话：</td>
+		<td>
+		<?php echo $userInfo['user_telphone']; ?>
+		</td>		
+	</tr>
+	<tr>
+		<td width="20%" align="right">所有人：</td>
+		<td>
+		<?php echo $userInfo['user_phone']; ?>
+		</td>		
+	</tr>			
+	<?php } ?>
 	<tr>
 		<td width="20%" align="right">&nbsp;</td>
 		<td>
