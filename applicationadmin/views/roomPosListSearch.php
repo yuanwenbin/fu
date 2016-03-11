@@ -51,6 +51,7 @@ if(isset($roomList) && $roomList)
 <option value="1" >身份证号</option>
 <option value="2" >电话号码</option>
 <option value="3" >姓名</option>
+<option value="4" >牌位编号</option>
 </select>
 &nbsp;
 <input name="searchTxt" value="" />
