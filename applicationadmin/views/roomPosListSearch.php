@@ -46,6 +46,15 @@ if(isset($roomList) && $roomList)
 <option value="3" <?php if($status == 3){echo 'selected';}?>>已出售</option>
 </select>
 &nbsp;
+搜索类型：
+<select name="type">
+<option value="1" >身份证号</option>
+<option value="2" >电话号码</option>
+<option value="3" >姓名</option>
+</select>
+&nbsp;
+<input name="searchTxt" value="" />
+&nbsp;
 <input type="submit" name="submit" value="查询" />
 </form>
 </div>
