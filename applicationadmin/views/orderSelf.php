@@ -20,7 +20,7 @@
 <form method="post" action="">
 	<!-- bof box -->
 	<div class="location_area_div">
-		<table width="100%" border="0" cellpadding="5" cellspacing="0">
+		<table width="100%" border="0" cellpadding="5" cellspacing="0">		
 		<tr>
 			<td width="20%" align="right"><label>牌位信息：</label></td>
 			<td>
@@ -29,6 +29,13 @@
 				<select name="location_number">
 					<option value="1" selected>出售中</option>
 					<option value="0">已出售</option>
+				</select><br />
+				房间选择：
+				<select name="room_no">
+					<option value="0">--所有--</option>
+					<?php foreach($roomList as $kk=>$vv) { ?>
+					<option value="<?php echo $vv['room_id'];?>"><?php echo $vv['room_alias']. '(' . $vv['room_id'] . ')'; ?></option>
+					<?php } ?>
 				</select>
 			</td>
 		</tr>
@@ -144,6 +151,9 @@ $(document).ready(function(){
 		var user_telphone = $("input[name='user_telphone']").val();
 		// 称呼
 		var user_phone = $("input[name='user_phone']").val();
+		// 房间id
+		var room_no = $("select[name='room_no']").val();	
+
 		if(user_telphone=='')
 		{
 			alert("用户手机号码不能为空");
@@ -151,9 +161,9 @@ $(document).ready(function(){
 		}
 
 		var url = "/Order/orderSelfAdd";
-		var param = {localtion_id:localtion_id,body_id:body_id,location_number:location_number,user_name:user_name,user_birthday:user_birthday,stime:stime,order_location_type:order_location_type,member_id:member_id,user_telphone:user_telphone,user_phone:user_phone};
+		var param = {localtion_id:localtion_id,body_id:body_id,location_number:location_number,user_name:user_name,user_birthday:user_birthday,stime:stime,order_location_type:order_location_type,member_id:member_id,user_telphone:user_telphone,user_phone:user_phone,room_no:room_no};
 		$.post(url,param,function(data){
-			alert(data.msg);
+			alert(data.msg);	
 			if(data.error)
 			{
 				return false;
