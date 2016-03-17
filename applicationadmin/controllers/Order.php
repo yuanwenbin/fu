@@ -258,8 +258,10 @@ class Order extends CI_Controller {
 		
 		$this->load->model('Memberteam_model');
 		$memberList = $this->Memberteam_model->memberteamQueryModel('fu_member',array('member_flag'=>1));
+		$roomList = $this->Memberteam_model->memberteamQueryModel('fu_room_list',array('room_flag'=>1));
 		$view = array();
 		$view['memberList'] = $memberList;
+		$view['roomList'] = $roomList;
 		$this->load->view('orderSelf',$view);
 	}
 	
@@ -269,19 +271,20 @@ class Order extends CI_Controller {
 	function orderSelfAdd()
 	{
 		$localtion_value = trim($this->input->get_post('localtion_id'));
+		$room_no = intval(trim($this->input->get_post('room_no')));
 		$data = array();
 		$data['error'] = true;
-		if(is_int($localtion_value))
+		if(is_numeric($localtion_value))
 		{
 			$localtion_id = intval($localtion_value);
 		}else {
-			$location_row_info = $this->Order_model->checkNoForCode($localtion_value);
+			$location_row_info = $this->Order_model->checkNoForCode($localtion_value,$room_no);
 			if(!$location_row_info)
 			{
 				$data['msg'] = '不存在该牌位编号';
 				die(json_encode($data));
 			}
-			$localtion_id = $location_row_info['localtion_id'];
+			$localtion_id = $location_row_info['localtion_id'];	
 		}
 
 		$body_id = $this->input->get_post('body_id');
