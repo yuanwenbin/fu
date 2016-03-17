@@ -241,11 +241,21 @@ class Order_model extends CI_Model
     	}   	
     }
     
-    function checkNoForCode($val)
+    /**
+     * 
+     * @param unknown $val
+     * @param string $roomId 讯问号
+     * @return string
+     */
+    function checkNoForCode($val, $roomId=0)
     {
-    	$sql = "select * from fu_location_list where concat(location_area,location_prefix,location_code) = '".$val."'";
+    	if($roomId > 0)
+    	{
+    		$sql = "select * from fu_location_list where concat(location_area,location_prefix,location_code) = '".$val."' and location_room_id = " . $roomId;
+    	}else {
+    		$sql = "select * from fu_location_list where concat(location_area,location_prefix,location_code) = '".$val."'";
+    	}
     	$query = $this->db->query($sql);
-    	
     	if ($query->num_rows() > 0) {
     		return $query->row_array();
     	} else {
