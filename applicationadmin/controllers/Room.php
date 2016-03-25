@@ -406,20 +406,20 @@ class Room extends CI_Controller {
 			echo "<a href=\"javascript:history.go(-1)\">点击返回</a>";
 			exit;			
 		}
-		
+
 		$view['result'] = $result;
 		$view['status'] = $result['location_status'];
 		$view['sale'] = $result['location_number'];
 		$userInfo = array();
 		$orderInfo = array();	
-		if($result['location_status'] > 0) 
+		if($result['location_status'] == 0) 
 		{
 		    $this->load->model('Order_model');
 		    $rr = $this->Order_model->searchInfos('fu_order_info', array('order_location_id'=>$result['localtion_id']));
-		    $orderInfo = $rr[0];
-		    $userBody = $orderInfo['order_user'];
+		    $orderInfo = isset($rr[0]) && ($rr[0]) ? $rr[0] : '';
+		    $userBody = isset($orderInfo['order_user']) && $orderInfo['order_user'] ? $orderInfo['order_user'] : '';
 		    $rrr = $this->Order_model->searchInfos('fu_user', array('body_id'=>$userBody));
-		    $userInfo = $rrr[0];
+		    $userInfo = isset($rrr[0]) && ($rrr[0]) ? $rrr[0] : '';
 		}
 		$view['orderInfo'] = $orderInfo;
 		$view['userInfo'] = $userInfo;
