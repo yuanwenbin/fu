@@ -412,7 +412,7 @@ class Room extends CI_Controller {
 		$view['sale'] = $result['location_number'];
 		$userInfo = array();
 		$orderInfo = array();	
-		if($result['location_status'] == 0) 
+		if($result['location_status'] < 2) 
 		{
 		    $this->load->model('Order_model');
 		    $rr = $this->Order_model->searchInfos('fu_order_info', array('order_location_id'=>$result['localtion_id']));
@@ -422,7 +422,7 @@ class Room extends CI_Controller {
 		    $userInfo = isset($rrr[0]) && ($rrr[0]) ? $rrr[0] : '';
 		}
 		$view['orderInfo'] = $orderInfo;
-		$view['userInfo'] = $userInfo;
+		$view['userInfo'] = $userInfo;   
 		$view['front_domain'] = FRONT_DOMAIN;
 		$this->load->view('posLocation', $view);
 	}
@@ -462,6 +462,10 @@ class Room extends CI_Controller {
 	        exit('无权限,请点击左栏目操作');
 	    }	    
 		$localtion_id = $this->input->post_get('localtion_id');
+		$user_id = $this->input->post_get('user_id');
+		$user_telphone = $this->input->post_get('user_telphone');
+		$param['user_id'] = $user_id;
+		$param['user_telphone'] = $user_telphone;
 		if(!$localtion_id)
 		{
 			echo '出错了！';
@@ -494,7 +498,7 @@ class Room extends CI_Controller {
 			$filePic = fileUpload($_FILES['location_pic_new']);
 		}
 		// $result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_number,$location_ispayment,$location_paytime);
-		$result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_area,$location_prefix,$location_code,$location_number,$location_status);
+		$result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_area,$location_prefix,$location_code,$location_number,$location_status,$param);
 		if($result)
 		{
 			$this->load->view('success');
