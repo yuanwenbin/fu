@@ -37,6 +37,7 @@
 <h3 class="headerLineBackground">牌位相关,房间号:<?php echo $result['location_room_id'];?>,牌位号:<?php echo $result['localtion_id'];?></h3>
 <form action="/Room/posLocationDeal" method="post" enctype="multipart/form-data">
 <input type="hidden" name="localtion_id" value="<?php echo $result['localtion_id'];?>"  />
+<input type="hidden" name="user_id" value="<?php echo isset($userInfo['user_id']) ? $userInfo['user_id'] : '';?>"  />
 <table border="0" cellpadding="5" cellspacing="5" width="100%">	
 
 	<tr>
@@ -166,13 +167,13 @@
 	<tr>
 		<td width="20%" align="right">联系电话：</td>
 		<td>
-		<?php echo $userInfo['user_telphone']; ?>
+		<input type="text" name="user_telphone" value="<?php echo $userInfo['user_telphone']; ?>" />
 		</td>		
 	</tr>
 	<tr>
-		<td width="20%" align="right">所有人：</td>
+		<td width="20%" align="right">所有人称呼：</td>
 		<td>
-		<?php echo $userInfo['user_phone']; ?>
+		<?php echo isset($userInfo['user_phone']) && $userInfo['user_phone'] ? $userInfo['user_phone'] : ''; ?>
 		</td>		
 	</tr>			
 	<?php } ?>
