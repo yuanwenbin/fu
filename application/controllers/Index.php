@@ -203,17 +203,19 @@ class Index extends CI_Controller {
 			die(json_encode($data));
 		}	
 		$body_id = strip_addslashe(trim($this->input->get_post('body_id')));
-		$user_telphone = strip_addslashe(trim($this->input->get_post('user_telphone')));
-		$user_phone = strip_addslashe(trim($this->input->get_post('user_phone')));;
+		$body_id = $body_id ? $body_id : '888888888888888';
+		$user_telphone = strip_addslashe(trim($this->input->get_post('user_telphone'))); // 手机
+		$user_phone = strip_addslashe(trim($this->input->get_post('user_phone'))); // 称呼
 		// 身份证号码
-		if(!$body_id || (strlen($body_id) != 15 && strlen($body_id) != 18))
+		/*
+		if(!$body_id || (strlen($body_id) != 15 || strlen($body_id) != 18))
 		{
-			$data['msg'] = '身份份证有误码';
+			$data['msg'] = '身份份证有误码00';
 			die(json_encode($data));
-		}
+		} */
 		if(!$user_telphone || (strlen($user_telphone) != 11))
 		{
-			$data['msg'] = '身份份证有误码';
+			$data['msg'] = '手机号码误码';
 			die(json_encode($data));
 		}
 		// 手机验证
@@ -225,6 +227,7 @@ class Index extends CI_Controller {
 		}	
 			
 		//$match = '/(^\d{14}$)|(^\d{17}](\d|X|x)$)/';
+	  
 		$match = '/^\d{14}(\d|X|x)$/';
 		$match_2 = '/^\d{17}(\d|X|x)$/';
 		if(!preg_match($match, $body_id) && !preg_match($match_2, $body_id))
@@ -232,7 +235,7 @@ class Index extends CI_Controller {
 			$data['msg'] = '身份份证有误码';
 			die(json_encode($data));
 		}
-		$body_id = addslashes($body_id);
+		$body_id = addslashes($body_id); 
 		$user_telphone = addslashes($user_telphone);
 		$user_phone = $user_phone ? addslashes($user_phone) : '0';
 		// 先判断用户是否已经登记过
