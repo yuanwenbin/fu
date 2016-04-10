@@ -88,6 +88,43 @@ class Index extends CI_Controller {
 		{
 			header("Location:/Index/index");
 		}
+		// 判断是否购买过，如果没有购买，则判断是不是超过了登记的次数和时间限制
+		$orderInfo = $this->Index_model->searchInfos('fu_order_info',array('order_user'=>$bodyId));
+		if(!$orderInfo)
+		{
+		    //判断是否超过登陆次数和时间限制
+		    $regInfo = $this->Index_model->searchInfos('fu_user',array('body_id'=>$bodyId));
+		    if($regInfo)
+		    {
+		      $userInfo = $regInfo[0];
+		      if($userInfo['user_regtimes'] > 5)
+		      {
+		          $flag = $userInfo['user_datetime'] + $userInfo['user_dateline'] - time();
+		          if($flag <= 0)
+		          {
+		              // 已经是用户了
+		              echo "<!DOCTYPE html>";
+		              echo "<html>";
+		              echo "<head>";
+		              echo "<meta charset=\"utf-8\">";
+		              echo "<title>出错了</title>";
+		              
+		              echo "</head>";
+		              echo "<body>";
+		              
+		              echo "<div>";
+		             echo " 登记次数和时间受到限制，请联系管理员解冻<br />";
+		              echo "<a href=\"/Index/menus\">点击返回菜单</a>";
+		              echo "</div>";
+		              echo "</body>";
+		              echo "</html>";
+		              exit;
+		          }
+		      }
+		    }
+		}
+	
+
 		$param['body_id'] = $bodyId;
 		$this->session->set_userdata($param);
 		// 设置 cookie
@@ -203,9 +240,16 @@ class Index extends CI_Controller {
 			die(json_encode($data));
 		}	
 		$body_id = strip_addslashe(trim($this->input->get_post('body_id')));
-		$body_id = $body_id ? $body_id : '888888888888888';
+		$body_id = $body_id ? $body_id : 0;
 		$user_telphone = strip_addslashe(trim($this->input->get_post('user_telphone'))); // 手机
 		$user_phone = strip_addslashe(trim($this->input->get_post('user_phone'))); // 称呼
+		$user_dateline = intval($this->input->get_post('user_dateline'));
+		if($user_dateline==1)
+		{
+		    $user_dateline = 3600 * 24;
+		}else {
+		    $user_dateline = 3600 * 24 * 10;
+		}
 		// 身份证号码
 		/*
 		if(!$body_id || (strlen($body_id) != 15 || strlen($body_id) != 18))
@@ -227,27 +271,51 @@ class Index extends CI_Controller {
 		}	
 			
 		//$match = '/(^\d{14}$)|(^\d{17}](\d|X|x)$)/';
-	  
-		$match = '/^\d{14}(\d|X|x)$/';
-		$match_2 = '/^\d{17}(\d|X|x)$/';
-		if(!preg_match($match, $body_id) && !preg_match($match_2, $body_id))
-		{
-			$data['msg'] = '身份份证有误码';
-			die(json_encode($data));
-		}
+	    if($body_id)
+	    {
+    		$match = '/^\d{14}(\d|X|x)$/';
+    		$match_2 = '/^\d{17}(\d|X|x)$/';
+    		if(!preg_match($match, $body_id) && !preg_match($match_2, $body_id))
+    		{
+    			$data['msg'] = '身份份证有误码';
+    			die(json_encode($data));
+    		}
+	    }
 		$body_id = addslashes($body_id); 
 		$user_telphone = addslashes($user_telphone);
 		$user_phone = $user_phone ? addslashes($user_phone) : '0';
 		// 先判断用户是否已经登记过
-		$status = $this->Index_model->userCheck($body_id);
+		// $status = $this->Index_model->userCheck($body_id);
+		$resUser = $this->Index_model->userCheckReg($body_id,$user_phone);
 		// 存在的，则更新手机号，电话号码
-		if($status)
+		if($resUser)
 		{
+		    //判断是否多于五次并过期了
+		    if($resUser['user_regtimes'] >= 5)
+		    {
+		        $allTime = $resUser['user_datetime'] + $resUser['user_dateline']; // 总有效时间
+		        if($allTime < time())
+		        {
+		            $data['msg'] = '你的登记次数和有效时间已经达到了限制的次数了，请联系管理员处理';
+		            die(json_encode($data));
+		        }
+		        
+		    }
 			$paramUpdate = array();
 			$where = array();
 			$paramUpdate['user_telphone'] = $user_telphone;
-			$paramUpdate['user_phone'] = $user_phone;
-			$where['body_id'] = $body_id;
+			$paramUpdate['user_regtimes'] = ($resUser['user_regtimes']+1) >=6 ? 6 : ($resUser['user_regtimes']+1);
+			$paramUpdate['user_datetime'] = time(); 
+			$paramUpdate['user_dateline'] = $user_dateline; // 有效登记时间
+			if($user_phone)
+			{
+			 $paramUpdate['user_phone'] = $user_phone;
+			}
+			if($body_id)
+			{
+			    $paramUpdate['body_id'] = $body_id;			    
+			}
+			$where['user_id'] = $resUser['user_id'];
 			$res = $this->Index_model->userUpdate('fu_user',$paramUpdate,$where);
 			if($res)
 			{
@@ -268,6 +336,7 @@ class Index extends CI_Controller {
 		$param['user_member_id'] = $this->session->member_id; 
 		$param['user_type'] = -1;
 		$param['user_datetime'] = time();
+		$param['user_dateline'] = $user_dateline;
 		$res = $this->Index_model->bodyInsert($param);
 		if($res)
 		{

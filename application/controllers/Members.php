@@ -107,7 +107,101 @@ class Members extends CI_Controller {
 	    $view['totalPage'] = $totalPage;
 	    $this->load->view('memberOrderList', $view);  
 	}
-	
+	/**
+	 * 查询功能
+	 */
+	function check()
+	{
+	    // 判断业务员是否登陆了
+	    $this->isLoginMember();	
+	    $view = array();
+	    $data = array();
+	    $param = array('user_member_id'=>$this->session->member_id);
+	    $type = $this->input->get_post('type');
+	    $name = addslashes($this->input->get_post('name'));
+	    $arr = array('user_telphone','user_phone','body_id');
+	    if(in_array($type, $arr) && $name)
+	    {
+	        if($name)
+	        {
+	            $param[$type] = $name;
+	            $res = $this->Members_model->search('fu_user',$param);
+	            if($res)
+	            {
+	                foreach($res as $k=>$v)
+	                {
+	                    $data[$k] = $v;
+	                    $data[$k]['order'] = '';
+	                    $data[$k]['member'] = '';
+	                    // 用户body_id
+	                    $body_id = $v['body_id'];
+	                    if($body_id)
+	                    {
+	                        $orderInfo = $this->Members_model->search('fu_order_info',array('order_user'=>$body_id));
+	                        if($orderInfo)
+	                        {
+	                            $data[$k]['order'] = $orderInfo[0];
+	                        }
+	                    }
+	                    // 业务员id
+	                    $member_id = $v['user_member_id'];
+	                    if($member_id)
+	                    {
+	                        $memberInfo = $this->Members_model->search('fu_member',array('member_id'=>$member_id));
+	                        $data[$k]['member'] = $memberInfo[0];;
+	                    }
+	                }
 
+	            }
+	        }
+	    }
+	    
+	    $view['type'] = $type;
+	    $view['name'] = $name;
+	    $view['res'] = $data;
+	    $this->load->view('check', $view);
+	}
+	
+    function addDateline()
+    {
+        $data['error'] = true;
+        if(!$this->session->member_id){
+            $data['msg'] = '请先登陆';
+            die(json_encode($data));
+        }
+        $userId = intval($this->input->get_post('user_id'));
+        if(!$userId || $userId < 0)
+        {
+            $data['msg'] = '非法操作';
+            die(json_encode($data));
+        }
+        $param = array('user_id'=>$userId,'user_member_id'=>$this->session->member_id);
+        $res = $this->Members_model->search('fu_user',$param);
+        if(!$res)
+        {
+            $data['msg'] = '该用户不存在';
+            die(json_encode($data));            
+        }
+        $userInfo = $res[0];
+        if($userInfo['user_addtime'])
+        {
+            $data['msg'] = '该用户已经登记过报备时间了';
+            die(json_encode($data));
+        }
+        $param = array();
+        $where = array();
+        $where = array('user_id'=>$userId);
+        $param = array("user_datetime"=>time(),'user_addtime'=>1,'user_dateline'=>3600*24*10);
+        $flag = $this->Members_model->updateUserInfo('fu_user',$param,$where);
+        if($flag===false)
+        {
+            $data['msg'] = '增加报备时间失败';
+            die(json_encode($data));
+        }
+        $data['error'] = false;
+        $data['msg'] = '增加报备时间成功';
+        $data['id'] = $userId;
+        die(json_encode($data));        
+    }
 
 }
