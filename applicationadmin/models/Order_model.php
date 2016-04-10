@@ -262,4 +262,32 @@ class Order_model extends CI_Model
     		return '';
     	}
     }
+    
+    function delOrder($order_id)
+    {
+        $res = $this->searchInfos('fu_order_info', array('order_id'=>$order_id));
+        $body_id = $res[0]['order_user'];
+        $location_id = $res[0]['order_location_id'];
+        $this->db->trans_start();
+        $sql = "delete from fu_order_info where order_id = " . $res[0]['order_id'];
+        $sqlUpdate = "update fu_location_list set location_number = 2,location_date=0,location_paytime=0,
+                        location_ispayment=0,location_status=0 where localtion_id = " . $location_id;
+        $sqlUpdateUser = "update fu_user set user_location_id = 0,user_type = -1,
+                          user_selected=0,user_selected_date=0,user_datetime = '" . time(). "',
+                          user_dateline = 86400,user_regtimes = 1 where body_id = '" .$body_id."'";  
+        $this->db->query($sql);
+        $this->db->query($sqlUpdate);
+        $this->db->query($sqlUpdateUser);
+        $this->db->trans_complete();
+        
+        if ($this->db->trans_status() === FALSE)
+        {
+            $this->db->trans_rollback();
+            return false;
+        }else {
+            $this->db->trans_commit();
+            return true;
+        }
+        
+    }
 }

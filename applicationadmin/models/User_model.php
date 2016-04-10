@@ -122,4 +122,22 @@ class User_model extends CI_Model
         $this->db->query($upSQL);
         return $this->db->affected_rows();         
     }
+    
+    function updateInfos($tableName,$param, $where)
+    {
+        $whereStr = " where 1 = 1 ";
+        foreach($where as $kk => $vv)
+        {
+            $whereStr .= " and " . $kk . " = '" . $vv . "'";
+        }
+        $updateStr = " set ";
+        foreach($param as $key => $val)
+        {
+            $updateStr .= $key . " = '" .$val."',";
+        }
+        $updateStr = substr($updateStr,0,-1);
+        $sql = "update " . $tableName . $updateStr . $whereStr;
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
 }
