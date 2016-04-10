@@ -103,25 +103,25 @@ if($result['order_payment'] == 'all'){
 <?php } else { ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
-	<th width="12%" align="center">用户名</th>
+	<th width="15%" align="center">用户名</th>
 	<th width="8%" align="center">房间号</th>
 	<th width="20%" align="center">牌位号信息</th>
 	<th width="10%" align="center">牌位类型</th>
 	<th width="12%" align="center">下单时间</th>
-	<th width="10%" align="center">金额</th>
+	<!--  <th width="10%" align="center">金额</th> -->
 	<th width="8%" align="center">是否支付</th>
 	<th width="8%" align="center">订单来源</th>
-	<th width="5%" align="center">操作</th>
-	<th width="7%" align="center">操作员</th>
+	<th width="10%" align="center">操作</th>
+	<th width="9%" align="center">操作员</th>
 
 </tr>
 <?php
 foreach($result['resultList'] as $k=>$v){
 ?>
 <tr>
-	<td width="12%" align="center"><?php echo $v['order_user']; ?></td>
+	<td width="15%" align="center"><?php echo $v['order_user']; ?></td>
 	<td width="8%" align="center"><?php echo $v['order_room_id']; ?></td>
-	<td width="16%" align="center">
+	<td width="20%" align="center">
 	<?php echo $v['roomInfos']['room_alias'].'-'.$v['locationInfos']['location_area'].$v['locationInfos']['location_prefix']; ?>
 	<?php echo strlen($v['locationInfos']['location_code']) == 1 ? '0'.$v['locationInfos']['location_code'] : $v['locationInfos']['location_code']; ?>
 	<?php echo '('.$v['order_location_id'].')'; ?>
@@ -137,7 +137,7 @@ foreach($result['resultList'] as $k=>$v){
 	?>
 	 </td>
 	<td width="12%" align="center"><?php echo date('Y-m-d H:i:s', $v['order_datetime']); ?></td>
-	<td width="10%" align="center"><?php echo $v['order_price']; ?></td>
+	<!--  <td width="10%" align="center"><?php // echo $v['order_price']; ?></td> -->
 	<td width="8%" align="center">
 	<?php
 	if($v['order_payment'])
@@ -152,15 +152,16 @@ foreach($result['resultList'] as $k=>$v){
 	<td width="8%" align="center">
 	<?php echo $v['source'] ? $source[$v['source']] :'管理员：' .$username; ?> 
 	</td>
-	<td width="5%" align="center" class="orderListDetails">
+	<td width="10%" align="center" class="orderListDetails">
 	<a href="/Order/posInfos?id=<?php echo $v['order_id']; ?>">
 	查看
-	</a>
+	</a>&nbsp;&nbsp;
+	<a data-attr="<?php echo $v['order_id']; ?>" class="del" href="javascript:void(0);">删除</a>
 	</td>
-	<td width="7%" align="center"><?php echo $v['order_admin']; ?></td>
+	<td width="9%" align="center"><?php echo $v['order_admin']; ?></td>
 </tr>
 	<tr>
-		<td colspan="10"><hr/></td>
+		<td colspan="9"><hr/></td>
 	</tr>
 <?php } ?>
 
@@ -214,6 +215,21 @@ if($result['page'] > 1) {
 
 <!--  eof infos -->
 </div>
-
+<script>
+$(document).ready(function(){
+    $(".del").click(function(){
+        var order_id = $(this).attr('data-attr');
+        var order_url = "/Order/delOrder";
+        var param = {order_id:order_id};
+        if(confirm("你确定要删除该订单吗？删除后不可恢复"))
+        {
+            $.post(order_url,param,function(data){
+               alert(data.msg);
+               window.location.href="/Order/orderList"; 
+             },'json');
+        }
+    });
+})
+</script>
 </body>
 </html>

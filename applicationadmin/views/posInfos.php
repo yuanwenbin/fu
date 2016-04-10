@@ -13,6 +13,8 @@
 <body class="roomList">
 <div class="roomInfosDiv container">
 <h3 class="headerLineBackground">订单详情</h3>
+<form method="post" action="/Order/userInfoDeal">
+<input type="hidden" name="user_id" value="<?php echo $result['userInfo']['user_id'];?>" />
 <table border="0" cellpadding="5" cellspacing="5" width="90%">	
 	<tr>
 		<td width="20%" align="right">房间号信息：</td>
@@ -128,14 +130,29 @@
 		<?php echo $result['posInfo']['location_details'];?>
 		</td>		
 	</tr>
+	
+	<tr>
+		<td width="20%" align="right">修改用户名：</td>
+		<td>
+		<input type="text" name="user_phone" value="<?php echo $result['userInfo']['user_phone'];?>" />
+		</td>		
+	</tr>
+	
+	<tr>
+		<td width="20%" align="right">修改手机号码：</td>
+		<td>
+		<input type="text" name="user_telphone" value="<?php echo $result['userInfo']['user_telphone'];?>" />
+		</td>		
+	</tr>		
 
 		<tr>
-		<td width="20%" align="right">&nbsp;</td>
+		<td width="20%" align="right"><input type="submit" name="submit" value="提交修改" />&nbsp;&nbsp;</td>
 		<td>
 		<a href="javascript:history.go(-1);">点击返回</a>
 		</td>		
 	</tr>			
 </table>
+</form>
 </div>
 
 <script type="text/javascript">
@@ -149,6 +166,16 @@ $(document).ready(function(){
 		$.post(url,param,function(data){
 			window.document.location.href="/Order/posInfos?id="+id;
 		});
+	});
+
+	$("input[name='submit'").click(function(){
+		 if(confirm("确定修改吗?"))
+		 {
+			return true;    
+		 }else
+		 {
+			return false;
+		 }
 	});
 	
 });
