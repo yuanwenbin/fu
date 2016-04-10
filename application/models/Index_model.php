@@ -72,6 +72,35 @@ class Index_model extends CI_Model
 	}
 	
 	/**
+	 * 检查是否登记过
+	 * @param string $bodyId
+	 * @param string $phone
+	 */
+	function userCheckReg($bodyId=0,$phone=0)
+	{
+	    if($bodyId)
+	    {
+    	    $sql = "select * from fu_user where body_id = '".$bodyId."' limit 1";
+    	    $res = $this->db->query($sql);
+    	    if($res->num_rows() < 1)
+    	    {
+    	        return false;
+    	    }
+    	    return $res->row_array();
+	    }
+	    if($phone)
+	    {
+	        $sql = "select * from fu_user where user_telphone = '".$phone."' limit 1";
+	        $res = $this->db->query($sql);
+	        if($res->num_rows() < 1)
+	        {
+	            return false;
+	        }
+	        return $res->row_array();
+	    }	    
+	}	
+	
+	/**
 	 * 更新用户信息
 	 * @param unknown $tableName
 	 * @param unknown $param

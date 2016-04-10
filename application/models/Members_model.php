@@ -153,6 +153,45 @@ class Members_model extends CI_Model
 		return $row['total'];		
 
 	}
+	/**
+	 * 
+	 * @param unknown $tableName
+	 * @param unknown $param
+	 */
+	function search($tableName, $param)
+	{
+	    $where = " where 1=1 ";
+	    foreach($param as $kk=>$vv)
+	    {
+	        $where .= " and " . $kk . "='" . $vv . "'";
+	    }
+	    $sql = "select * from " . $tableName . $where;
+	    $query = $this->db->query($sql);
+	    if ($query->num_rows() > 0) {
+	        return $query->result_array();
+	    } else {
+	        return '';
+	    }
+	}
+	
+	function updateUserInfo($tableName,$param, $where)
+	{
+	    $sql = "update " . $tableName . " set ";
+	    $updateStr = "";
+	    $whereStr = " where 1 = 1 ";
+	    foreach($param as $key=>$v)
+	    {
+	        $updateStr .= $key . "='" . $v . "',";
+	    }
+	    $updateStr = substr($updateStr, 0,-1);
+	    foreach($where as $kk=>$vv)
+	    {
+	        $whereStr .= " and " . $kk . " = '" . $vv  . "'";
+	    }
+	    $sqlStr = $sql . $updateStr . $whereStr;
+	    $this->db->query($sqlStr);
+	    return $this->db->affected_rows();
+	}
 
 
 
