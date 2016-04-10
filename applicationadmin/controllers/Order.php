@@ -227,7 +227,6 @@ class Order extends CI_Controller {
 	    $stime[12] = '亥时(21:00-22:59)';
 	    $view['result']['stime'] =  $stime;
 	    $view['username'] = $this->session->userdata('admin_user');
-	   
 	    $this->load->view('posInfos', $view);
 	}
 	
@@ -270,6 +269,9 @@ class Order extends CI_Controller {
 	 */
 	function orderSelfAdd()
 	{
+	    if(!hasPerssion($_SESSION['role'], 'orderList')){
+	        exit('点击左栏目操作');
+	    }	    
 		$localtion_value = trim($this->input->get_post('localtion_id'));
 		$room_no = intval(trim($this->input->get_post('room_no')));
 		$data = array();
@@ -419,6 +421,57 @@ class Order extends CI_Controller {
 		}
 		
 		
+	}
+	
+	function userInfoDeal()
+	{
+	    if(!hasPerssion($_SESSION['role'], 'orderList')){
+	        exit('点击左栏目操作');
+	    }
+	    $this->load->model('User_model');
+	    $user_id = intval($this->input->get_post('user_id'));
+	    $user_phone = $this->input->get_post('user_phone');
+	    $user_telphone = $this->input->get_post('user_telphone');
+	    $param = array('user_phone'=>$user_phone, 'user_telphone'=>$user_telphone);
+	    $where = array('user_id'=>$user_id);
+	    $res = $this->User_model->updateInfos('fu_user',$param, $where);
+	    if($res===false)
+	    {
+	        $this->load->view('failure');
+	    }else {
+	        $this->load->view('success');
+	    }
+	}
+	
+	function delOrder()
+	{
+	    $data['error'] = true;
+	    if(!hasPerssion($_SESSION['role'], 'orderList')){
+	        $data['msg'] = '你没有权限';
+	        die(json_encode($data));
+	    }
+	    $order_id = intval($this->input->get_post('order_id'));
+	    if($order_id <= 0)
+	    {
+	        $data['msg'] = '非法操作';
+	        die(json_encode($data));
+	    }
+	    $res = $this->Order_model->searchInfos('fu_order_info', array('order_id'=>$order_id));
+	    if(!$res)
+	    {
+	        $data['msg'] = '该订单不存在';
+	        die(json_encode($data));
+	    }
+	    $result = $this->Order_model->delOrder($order_id);
+	    if($result)
+	    {
+	        $data['error'] = false;
+	        $data['msg'] = '删除成功';
+	        die(json_encode($data));
+	    }else {
+	        $data['msg'] = '删除失败';
+	        die(json_encode($data));
+	    }
 	}
 
 }
