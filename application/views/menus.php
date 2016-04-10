@@ -23,9 +23,14 @@
 		<div class="menusTopRight"><a href="/Index/register">来访登记</a></div>
 		<br class="clearBoth" />
 	</div>
-	<div  class="menusBottom">
+	
+	<div class="menusTop">
 		<div  class="menusBottomLeft"><a href="/Members/index">统计中心</a></div>
-		<div class="menusBottomRight">
+		<div class="menusTopRight"><a href="/Members/check">查询功能</a></div>
+		<br class="clearBoth" />
+	</div>	
+	<div  class="menusBottom">
+		<div class="menusBottomLeft">
 		<?php if($_SESSION['member_teamid']) { ?>
 		<a href="/Index/infoList" class="myBack">管理后台</a>
 		<?php }else { ?>

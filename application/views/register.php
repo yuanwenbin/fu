@@ -30,6 +30,15 @@
 			<td  height="28"><input type="text" name="user_phone" value="" /></td>
 		</tr>
 		<tr>
+			<td width="140" align="right"  height="28">有效登记时间&nbsp;</td>
+			<td>
+			<select name="user_dateline">
+			 <option value="1">24小时</option>
+			 <option value="2">10天</option>
+			</select>
+			</td>
+		</tr>		
+		<tr>
 			<td width="140" align="right"  height="28">&nbsp;</td>
 			<td height="28">&nbsp;
 			<input type="reset" name="reset" value="重置" />&nbsp;&nbsp;
