@@ -16,7 +16,7 @@ class Room extends CI_Controller {
 	{
 	    if(!($this->session->userId) || ($this->session->userId) <= 0)
 	    {
-	        header("Location:/Index/login");
+	        header("Location:".URL_APP_C."/Index/login");
 	    }
 	    return true;
 	}
@@ -82,7 +82,7 @@ class Room extends CI_Controller {
 		if(count($location_area) != count($location_prefix) || count($location_area) != count($location_code) || count($location_area) != count($location_numbers) || count($price) != count($location_area))
 		{
 			echo '区域信息不对应 ';
-			echo "<a href='/Room/roomOpen'>点击返回</a>";
+			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击返回</a>";
 			exit;
 		}
 		// 判断是否为空
@@ -142,7 +142,7 @@ class Room extends CI_Controller {
 		if(!$isEqual)
 		{
 			echo '区域信息没有填写完整 ';
-			echo "<a href='/Room/roomOpen'>点击返回</a>";
+			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击返回</a>";
 			exit;			
 		}
 		
@@ -166,7 +166,7 @@ class Room extends CI_Controller {
 		if(!$roomTotal)
 		{
 			echo '暂时没有相关房间,请先开设房间';
-			echo "<a href='/Room/roomOpen'>点击开设房间</a>";
+			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击开设房间</a>";
 			exit;
 		}
 		$totalPage = ceil($roomTotal/PAGESIZE);
@@ -309,7 +309,7 @@ class Room extends CI_Controller {
 		if(!$roomTotal)
 		{
 			echo '暂时没有相关房间,请先开设房间';
-			echo "<a href='/Room/roomOpen'>点击开设房间</a>";
+			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击开设房间</a>";
 			exit;
 		}
 		$totalPage = ceil($roomTotal/PAGESIZE);
@@ -353,7 +353,7 @@ class Room extends CI_Controller {
 		if(!$total)
 		{
 			echo '该房间暂时没有牌位，请删除该房间，然后';
-			echo "<a href='/Room/roomOpen'>点击开设房间</a>";
+			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击开设房间</a>";
 			exit;			
 		}
 		$page = $this->input->post_get('page');
@@ -578,9 +578,9 @@ class Room extends CI_Controller {
 	           if($res)
 	           {
 	               $location_id = $res[0]['order_location_id'];
-	               header("location:/Room/posLocation?id=" .$location_id);
+	               header("location:".URL_APP_C."/Room/posLocation?id=" .$location_id);
 	           }else {
-	               echo "没有相关数据，&nbsp;<a href='/Room/roomPosList'>点击返回</a>";exit;
+	               echo "没有相关数据，&nbsp;<a href='".URL_APP_C."/Room/roomPosList'>点击返回</a>";exit;
 	           }
 	        }elseif($type == 4)
 	        {
@@ -597,10 +597,10 @@ class Room extends CI_Controller {
 	                    $locationListInfo = $this->Order_model->checkNoForCode($str);
 	                    if(!$locationListInfo)
 	                    {
-	                        echo "没有相关数据，&nbsp;<a href='/Order/orderList'>点击返回</a>";
+	                        echo "没有相关数据，&nbsp;<a href='".URL_APP_C."/Order/orderList'>点击返回</a>";
 	                        exit;
 	                    }
-	                    header("location:/Room/posLocation?id=" .$locationListInfo['localtion_id']);
+	                    header("location:".URL_APP_C."/Room/posLocation?id=" .$locationListInfo['localtion_id']);
 	                }
 	            }else {
 	                // 是数字
@@ -608,9 +608,9 @@ class Room extends CI_Controller {
 	                $res = $this->Order_model->searchInfos('fu_location_list',array('localtion_id'=>$searchTxt));
 	                if(!$res)
 	                {
-	                    echo "没有相关数据，&nbsp;<a href='/Room/roomPosList'>点击返回</a>";exit;
+	                    echo "没有相关数据，&nbsp;<a href='".URL_APP_C."/Room/roomPosList'>点击返回</a>";exit;
 	                }else {
-	                    header("location:/Room/posLocation?id=" .$searchTxt);
+	                    header("location:".URL_APP_C."/Room/posLocation?id=" .$searchTxt);
 	                }
 	            }
 	        }else
@@ -629,20 +629,20 @@ class Room extends CI_Controller {
 	                $user_location_id = $res[0]['user_location_id'];
 	                if(!$user_location_id)
 	                {
-	                     echo "没有相关数据，&nbsp;<a href='/Room/roomPosList'>点击返回</a>";exit;
+	                     echo "没有相关数据，&nbsp;<a href='".URL_APP_C."/Room/roomPosList'>点击返回</a>";exit;
 	                }
-	                header("location:/Room/posLocation?id=" .$user_location_id);
+	                header("location:".URL_APP_C."/Room/posLocation?id=" .$user_location_id);
 	               }else {
 	                   echo '选择要查看的' . "<br />";
 	                   foreach($res as $kk=>$vv)
 	                   {
-	                       echo "<a href='/Room/posLocation?id=".$vv['user_location_id']."'>".$vv['body_id']."</a><br />"; 
+	                       echo "<a href='".URL_APP_C."/Room/posLocation?id=".$vv['user_location_id']."'>".$vv['body_id']."</a><br />"; 
 	                   }
 	                   exit;
 	               }
 	                
 	            }else {
-	                 echo "没有相关数据，&nbsp;<a href='/Room/roomPosList'>点击返回</a>";exit;
+	                 echo "没有相关数据，&nbsp;<a href='".URL_APP_C."/Room/roomPosList'>点击返回</a>";exit;
 	            }
 	        }
 	        

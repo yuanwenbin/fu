@@ -16,7 +16,7 @@ class Price extends CI_Controller {
 	{
 	    if(!($this->session->userId) || ($this->session->userId) <= 0)
 	    {
-	        header("Location:/Index/login");
+	        header("Location:".URL_APP_C."/Index/login");
 	    } 
 	    return true;
 	}
@@ -55,7 +55,7 @@ class Price extends CI_Controller {
 				echo "请联系管理员设置 价格分档";
 			}else
 			{
-				echo "<a href='/Price/priceAdd'>增加价格分档</a>";
+				echo "<a href='".URL_APP_C."/Price/priceAdd'>增加价格分档</a>";
 			}
 			exit;
 		}

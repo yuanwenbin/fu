@@ -14,7 +14,7 @@ class Index extends CI_Controller {
 	{
 	    if(!($this->session->userId) || ($this->session->userId) <= 0)
 	    {
-	        header("Location:/Index/login");
+	        header("Location:" . URL_APP_C ."/Index/login");
 	    }
 	    return true;
 	}
@@ -26,7 +26,7 @@ class Index extends CI_Controller {
 	{
 		if(($this->session->userId) && ($this->session->userId) > 0)
 		{
-			header("Location:/Index/index");
+			header("Location:" . URL_APP_C ."/Index/index");
 		}
 		$cookieUsername = get_cookie(COOKIE_USER);
 		$cookiePassword = get_cookie(COOKIE_PASSWORD);
@@ -50,7 +50,7 @@ class Index extends CI_Controller {
 		        $passwordSec = authcode($password,'ENCODE');
 		        set_cookie(COOKIE_USER, $usernameSec, COOKIE_EXPIRE,COOKIE_DOMAIN,COOKIE_PATH);
 		        set_cookie(COOKIE_PASSWORD, $passwordSec, COOKIE_EXPIRE,COOKIE_DOMAIN,COOKIE_PATH);
-		        header("Location:/Index/index");
+		        header("Location:" . URL_APP_C ."/Index/index");
 			}
 		}
 		
@@ -64,23 +64,23 @@ class Index extends CI_Controller {
     {
     	if(($this->session->userId) && ($this->session->userId) > 0)
     	{
-    		header("Location:/Index/index");
+    		header("Location:" . URL_APP_C ."/Index/index");
     	}    	
         $username = $this->input->post_get('username');
         $password = $this->input->post_get('password');
         if($username == '' || $password == '')
         {
-            header("Location:/Index/login");
+            header("Location:" . URL_APP_C ."/Index/login");
         }
         if(strlen($username) < 5 || strlen($username) > 30 || strlen($password) < 5 || strlen($password) > 30)
         {
-            header("Location:/Index/login");
+            header("Location:" . URL_APP_C ."/Index/login");
         }
         $this->load->model('Login_model');
         $res = $this->Login_model->loginCheck($username, $password);
         if(!$res)
         {
-            header("Location:/Index/login");
+            header("Location:" . URL_APP_C ."/Index/login");
         }
         // 设置session等
         $data = array(
@@ -93,7 +93,7 @@ class Index extends CI_Controller {
         $passwordSec = authcode($password,'ENCODE');
         set_cookie(COOKIE_USER, $usernameSec, COOKIE_EXPIRE,COOKIE_DOMAIN,COOKIE_PATH);
         set_cookie(COOKIE_PASSWORD, $passwordSec, COOKIE_EXPIRE,COOKIE_DOMAIN,COOKIE_PATH);
-        header("Location:/Index/index");
+        header("Location:" . URL_APP_C ."/Index/index");
     }
     /**
      * 成功登陆后首页
@@ -128,7 +128,7 @@ class Index extends CI_Controller {
     	$this->session->unset_userdata($arr);
 		delete_cookie(COOKIE_USER,COOKIE_DOMAIN,COOKIE_PATH);
 		delete_cookie(COOKIE_PASSWORD,COOKIE_DOMAIN,COOKIE_PATH);
-    	header("Location:/Index/login");
+    	header("Location:" . URL_APP_C ."/Index/login");
     }
     
     /**

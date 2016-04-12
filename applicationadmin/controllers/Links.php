@@ -16,7 +16,7 @@ class Links extends CI_Controller {
 	{
 	    if(!($this->session->userId) || ($this->session->userId) <= 0)
 	    {
-	        header("Location:/Index/login");
+	        header("Location:".URL_APP_C."/Index/login");
 	    }
 	    return true;
 	}
@@ -33,7 +33,7 @@ class Links extends CI_Controller {
 		if(!$linkList)
 		{
 			echo '暂时没有相关内容,';
-			echo '<a href="/Links/addLinks">点击添加</a>';
+			echo '<a href="'.URL_APP_C.'"/Links/addLinks">点击添加</a>';
 		}else {
 			$view = array();
 			$view['result'] = $linkList;

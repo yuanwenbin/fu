@@ -17,7 +17,7 @@ class Member extends CI_Controller {
 	{
 	    if(!($this->session->userId) || ($this->session->userId) <= 0)
 	    {
-	        header("Location:/Index/login");
+	        header("Location:".URL_APP_C."/Index/login");
 	    }
 	    return true;
 	}

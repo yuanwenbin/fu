@@ -16,7 +16,7 @@ class Tongji extends CI_Controller {
 	{
 	    if(!($this->session->userId) || ($this->session->userId) <= 0)
 	    {
-	        header("Location:/Index/login");
+	        header("Location:".URL_APP_C."/Index/login");
 	    }
 	    return true;
 	}
@@ -55,7 +55,7 @@ class Tongji extends CI_Controller {
 			}
 			if(!$resLocation)
 			{
-				echo "没有相关数据，&nbsp;<a href='/Tongji/tongjiList'>点击返回</a>";
+				echo "没有相关数据，&nbsp;<a href='".URL_APP_C."/Tongji/tongjiList'>点击返回</a>";
 				exit;
 			}
 			$view = array();

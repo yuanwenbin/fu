@@ -16,7 +16,7 @@ class Password extends CI_Controller {
 	{
 	    if(!($this->session->userId) || ($this->session->userId) <= 0)
 	    {
-	        header("Location:/Index/login");
+	        header("Location:".URL_APP_C."/Index/login");
 	    } 
 	    return true;
 	}
@@ -39,7 +39,7 @@ class Password extends CI_Controller {
 	        echo "请联系管理员设置 随机密码";
 				}else
 				{
-					 echo "<a href='/Password/passwordAddForRand'>设置随机密码</a>";
+					 echo "<a href='".URL_APP_C."/Password/passwordAddForRand'>设置随机密码</a>";
 				}
 				exit;
 			}
@@ -67,7 +67,7 @@ class Password extends CI_Controller {
 	        echo "请联系管理员设置 高端密码";
 				}else
 				{
-					 echo "<a href='/Password/passwordAddForHigh'>设置高端密码</a>";
+					 echo "<a href='".URL_APP_C."/Password/passwordAddForHigh'>设置高端密码</a>";
 				}
 				exit;
 			}

@@ -16,7 +16,7 @@ class Copyright extends CI_Controller {
 	{
 	    if(!($this->session->userId) || ($this->session->userId) <= 0)
 	    {
-	        header("Location:/Index/login");
+	        header("Location:".URL_APP_C."/Index/login");
 	    }
 	    return true;
 	}
@@ -34,7 +34,7 @@ class Copyright extends CI_Controller {
 		if(!$res)
 		{
 			echo '暂时无内容,';
-			echo '<a href="/Copyright/addCopyRight">点击添加内容</a>';
+			echo '<a href="'.URL_APP_C.'"/Copyright/addCopyRight">点击添加内容</a>';
 			exit;
 		}else {
 			$view = array();

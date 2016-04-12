@@ -16,7 +16,7 @@ class Memberteam extends CI_Controller {
 	{
 	    if(!($this->session->userId) || ($this->session->userId) <= 0)
 	    {
-	        header("Location:/Index/login");
+	        header("Location:".URL_APP_C."/Index/login");
 	    }
 	    return true;
 	}
@@ -35,7 +35,7 @@ class Memberteam extends CI_Controller {
 			echo '暂时没有相关内容';
 			if(hasPerssion($_SESSION['role'], 'memberteamAdd'))
 			{
-				echo '<a href="/Memberteam/memberteamAdd">点击添加业务员分组</a>';
+				echo '<a href="'.URL_APP_C.'"/Memberteam/memberteamAdd">点击添加业务员分组</a>';
 			}
 		}else {
 			$view = array();
@@ -146,7 +146,7 @@ class Memberteam extends CI_Controller {
 			echo '暂时没有相关内容';
 			if(hasPerssion($_SESSION['role'], 'memberteamAdd'))
 			{
-				echo '<a href="/Memberteam/memberteamAdd">点击添加业务员分组</a>';
+				echo '<a href="'.URL_APP_C.'"/Memberteam/memberteamAdd">点击添加业务员分组</a>';
 			}
 		}else {
 			$view = array();
@@ -288,7 +288,7 @@ class Memberteam extends CI_Controller {
 			if(!hasPerssion($_SESSION['role'], 'memberteamAddUser')){
 				exit('请联系管理员');
 			}
-			echo "&nbsp;点击<a href=\"/Memberteam/memberteamAddUser\">添加</a>";
+			echo "&nbsp;点击<a href=\"".URL_APP_C."/Memberteam/memberteamAddUser\">添加</a>";
 			exit();
 		}
 		$view['total'] = $totalRecords;
@@ -315,7 +315,7 @@ class Memberteam extends CI_Controller {
 				exit("，请先联系管理员添加业务员分组!");
 			}else
 			{
-				echo "<a href=\"/Memberteam/memberteamAdd\">添加业务员分组</a>";
+				echo "<a href=\"".URL_APP_C."/Memberteam/memberteamAdd\">添加业务员分组</a>";
 				exit();
 			}
 		}
