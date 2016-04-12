@@ -98,4 +98,14 @@ define('PAGESIZEFORTONGJI', 50);
 // 搜索牌位分页大小 
 define('PAGESIZEPOS',10);
 // 前台域名
-define('FRONT_DOMAIN', 'http://www.ci.com'); 
+//define('FRONT_DOMAIN', 'http://www.ci.com'); 
+define('FRONT_DOMAIN', 'http://192.168.1.13/fu/app'); 
+//url-for
+define("URL_APP", "http://192.168.1.13/fu/adminapp");
+/**
+ <?php echo URL_APP;?>
+ */
+define("URL_APP_C", "http://192.168.1.13/fu/adminapp/index.php");
+/**
+  <?php echo URL_APP_C;?>
+ */
