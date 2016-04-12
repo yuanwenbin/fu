@@ -28,7 +28,7 @@ class Index extends CI_Controller {
 		// 判断是否有业务员登陆了
 		if(!$this->session->member_id)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}
 
@@ -70,7 +70,7 @@ class Index extends CI_Controller {
 		// 判断是否有业务员登陆了
 		if(!$this->session->member_id)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}
 		// 身份证号码
@@ -78,7 +78,7 @@ class Index extends CI_Controller {
 		
 		if(!$bodyId || (strlen($bodyId) != 15 && strlen($bodyId) != 18))
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 		}
 		
 		//$match = '/(^\d{14}$)|(^\d{17}](\d|X|x)$)/';
@@ -86,7 +86,7 @@ class Index extends CI_Controller {
 		$match_2 = '/^\d{17}(\d|X|x)$/';
 		if(!preg_match($match, $bodyId) && !preg_match($match_2, $bodyId))
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 		}
 		// 判断是否购买过，如果没有购买，则判断是不是超过了登记的次数和时间限制
 		$orderInfo = $this->Index_model->searchInfos('fu_order_info',array('order_user'=>$bodyId));
@@ -130,7 +130,7 @@ class Index extends CI_Controller {
 		// 设置 cookie
 		$bodyIdEncode = authcode($bodyId,'ENCODE');
 		set_cookie(COOKIE_CUSTOMER_BODYID_FRONT, $bodyIdEncode, COOKIE_EXPIRE_FRONT,COOKIE_DOMAIN_FRONT,COOKIE_PATH_FRONT);		
-		header("Location:/Choice/Index");
+		header("Location:". URL_APP_C ."/Choice/Index");
 	}
 	
 	/**
@@ -140,7 +140,7 @@ class Index extends CI_Controller {
 	{
 		if($this->session->member_id)
 		{
-			header("Location:/Index/menus");
+			header("Location:". URL_APP_C ."/Index/menus");
 			exit;
 		}
 		// 显示登陆框	
@@ -186,7 +186,7 @@ class Index extends CI_Controller {
 		// 判断是否有业务员登陆了
 		if(!$this->session->member_id)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}		
 		if(isset($_SESSION) && !empty($_SESSION))
@@ -197,7 +197,7 @@ class Index extends CI_Controller {
 			}
 		}
 		unset($_SESSION);
-		header("Location:/Index/index");
+		header("Location:". URL_APP_C ."/Index/index");
 	}
 	
 	function menus()
@@ -205,7 +205,7 @@ class Index extends CI_Controller {
 		// 判断是否有业务员登陆了
 		if(!$this->session->member_id)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}
 		// 业务员选择
@@ -220,7 +220,7 @@ class Index extends CI_Controller {
 		// 判断是否有业务员登陆了
 		if(!$this->session->member_id)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}
 		$this->load->view('register');	
@@ -356,13 +356,13 @@ class Index extends CI_Controller {
 	    // 判断是否有业务员登陆了
 	    if(!$this->session->member_id)
 	    {
-	        header("Location:/Index/member");
+	        header("Location:". URL_APP_C ."/Index/member");
 	        exit;
 	    }
 	    // 判断是否是组长
 	    if(!$this->session->member_teamid)
 	    {
-	        header("Location:/Index/member");
+	        header("Location:". URL_APP_C ."/Index/member");
 	        exit;
 	    }
 	    // 书写统计中心
@@ -481,13 +481,13 @@ class Index extends CI_Controller {
 		// 判断是否有业务员登陆了
 		if(!$this->session->member_id)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}
 		// 判断是否是组长
 		if(!$this->session->member_teamid)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}
 		
@@ -537,13 +537,13 @@ class Index extends CI_Controller {
 		// 判断是否有业务员登陆了
 		if(!$this->session->member_id)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}
 		// 判断是否是组长
 		if(!$this->session->member_teamid)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}	
 		// 当前页
@@ -593,7 +593,7 @@ class Index extends CI_Controller {
 		
 		if(!$bodyId || (strlen($bodyId) != 15 && strlen($bodyId) != 18))
 		{
-			header("location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 		}
 		
 		//$match = '/(^\d{14}$)|(^\d{17}](\d|X|x)$)/';
@@ -601,7 +601,7 @@ class Index extends CI_Controller {
 		$match_2 = '/^\d{17}(\d|X|x)$/';
 		if(!preg_match($match, $bodyId) && !preg_match($match_2, $bodyId))
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 		}
 	
 		// 用户信息
@@ -693,7 +693,7 @@ class Index extends CI_Controller {
 				        	'is_complete' => 0	
 				        );
 				        $this->session->set_userdata($data); 						
-						header("Location:/Choice/index");	
+						header("Location:". URL_APP_C ."/Choice/index");	
 						exit();					
 					}else {
 						//有订单，且没支付
@@ -742,7 +742,7 @@ class Index extends CI_Controller {
 				$paramUser = array('user_type'=>0,'user_selected'=>0, 'user_selected_date'=>0);
 				$whereUser = array('body_id'=>$bodyId);
 				$this->Choice_model->changTable('fu_user', $paramUser, $whereUser);	
-				header("Location:/Choice/index");		
+				header("Location:". URL_APP_C ."/Choice/index");		
 			}
 			
 		}else 
@@ -765,7 +765,7 @@ class Index extends CI_Controller {
 		        	'is_complete' => 0	
 		        );
 		        $this->session->set_userdata($data); 
-		        header("Location:/Choice/index");
+		        header("Location:". URL_APP_C ."/Choice/index");
 		        exit();
 			}
 		}
@@ -789,7 +789,7 @@ class Index extends CI_Controller {
 		$this->session->unset_userdata($arr);
 		delete_cookie(COOKIE_CUSTOMER_BODYID_FRONT,COOKIE_DOMAIN_FRONT,COOKIE_PATH_FRONT);
 		delete_cookie(COOKIE_CUSTOMER_ID,COOKIE_DOMAIN_FRONT,COOKIE_PATH_FRONT);
-		header("Location:/Index/index");		
+		header("Location:". URL_APP_C ."/Index/index");		
 	}
 	*/
 }

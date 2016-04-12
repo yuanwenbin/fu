@@ -13,13 +13,13 @@ class Choice extends CI_Controller {
 		// 判断是否有业务员登陆了
 		if(!$this->session->member_id)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}
 		// 判断是否登陆了		
 	    if(!$this->session->body_id)
 	    {
-	        header("Location:/Index/index");
+	        header("Location:". URL_APP_C ."/Index/index");
 	        exit;
 	    }	
 	}
@@ -155,7 +155,7 @@ class Choice extends CI_Controller {
 			 			        'is_choice'=>0
 			 			);
 			 			$this->session->set_userdata($data);
-			 			header("Location:/Choice/byRand");exit();
+			 			header("Location:". URL_APP_C ."/Choice/byRand");exit();
 			 			$this->load->view('newUser');
 			 				 			
 			 		}else {
@@ -208,7 +208,7 @@ class Choice extends CI_Controller {
 			             'is_choice'=>0
 			         );
 			         $this->session->set_userdata($data);
-			         header("Location:/Choice/byRand");exit();
+			         header("Location:". URL_APP_C ."/Choice/byRand");exit();
 			         $this->load->view('newUser');
 			     }else {
 			         // 修改用户状态,如果此用户超过两小时，则为全新用户
@@ -249,7 +249,7 @@ class Choice extends CI_Controller {
 			         }	 
 			         $whereUser = array('body_id'=>$this->session->body_id);
 			         $this->Choice_model->changTable('fu_user', $paramUser, $whereUser);
-			         header("Location:/Choice/byRand");exit();
+			         header("Location:". URL_APP_C ."/Choice/byRand");exit();
 			         $this->load->view('newUser');			                 
 			     }
 			 	/*
@@ -302,7 +302,7 @@ class Choice extends CI_Controller {
 				        'is_choice'=>0
 				);
 				$this->session->set_userdata($data);
-				header("Location:/Choice/byRand");exit();
+				header("Location:". URL_APP_C ."/Choice/byRand");exit();
 				$this->load->view('newUser');
 			}else {
 				exit('error!');
@@ -385,7 +385,7 @@ class Choice extends CI_Controller {
 	   		
 	   		$this->load->view('byRand',$view); 
 	   }else {
-	   		header("Location:/Index/index");
+	   		header("Location:". URL_APP_C ."/Index/index");
 	   		exit;
 	   }
 	}
@@ -443,7 +443,7 @@ class Choice extends CI_Controller {
 			$view['roomList'] = $this->checkRoom();
 			$this->load->view('byRand',$view);
 		}else {
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 			exit;
 		}
 	}	
@@ -556,13 +556,13 @@ class Choice extends CI_Controller {
 		*/
 		if(!$status)
 		{
-		    header("Location:/Index/index");
+		    header("Location:". URL_APP_C ."/Index/index");
 		    exit;
 		}		
 		//禁止非随机用户访问 
 		if($this->session->user_type)
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 			exit;
 		}
 		$customerId = $this->session->customerId;
@@ -572,7 +572,7 @@ class Choice extends CI_Controller {
 		// 没有相关用户时
 		if(!$res)
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 			exit;
 		}
 		
@@ -588,7 +588,7 @@ class Choice extends CI_Controller {
 			// 订单失效
 			if(!$orderInfo['order_status'] && $affectTime < 0)
 			{
-				header("Location:/Index/index");
+				header("Location:". URL_APP_C ."/Index/index");
 				exit;
 			}
 			$fieldsRoom = array('localtion_id'=>$orderInfo['order_location_id']);
@@ -606,7 +606,7 @@ class Choice extends CI_Controller {
 			$view['user_type'] = $user_type;
 			$view['tips'] = '你已经成功预订过了，请尽快付款';
 			$result['result'] = $view;
-			header("Location:/Choice/index");
+			header("Location:". URL_APP_C ."/Choice/index");
 			exit;
 			$this->load->view('success', $result);
 		}else {
@@ -615,7 +615,7 @@ class Choice extends CI_Controller {
 			// 没有牌位
 			if(!$room_result)
 			{
-				header("Location:/Index/index");
+				header("Location:". URL_APP_C ."/Index/index");
 				exit;
 			}
 	
@@ -641,13 +641,13 @@ class Choice extends CI_Controller {
 				$view['user_type'] = $user_type;
 				$view['tips'] = '成功预订，请尽快付款';
 				$result['result'] = $view;
-				header("Location:/Choice/index");
+				header("Location:". URL_APP_C ."/Choice/index");
 				exit;
 				// 此时提示成功，点击查看，即可返回 /Choice/index 
 				$this->load->view('success', $result);
 			}else
 			{
-			    header("Location:/Index/index");
+			    header("Location:". URL_APP_C ."/Index/index");
 			    exit;
 				$this->load->view('error');
 			}
@@ -688,12 +688,12 @@ class Choice extends CI_Controller {
 	    //末登陆
 	    if(!$status)
 	    {  
-	        header("Location:/Index/index");
+	        header("Location:". URL_APP_C ."/Index/index");
 	        exit;
 	    }
 	    if($status > 2)
 	    {
-	        header("Location:/Choice/index");
+	        header("Location:". URL_APP_C ."/Choice/index");
 	        exit;	        
 	    }
 	    // 有完成订单
@@ -702,7 +702,7 @@ class Choice extends CI_Controller {
 
 	    if($orderComplete)
 	    {
-	        header("Location:/Choice/index");
+	        header("Location:". URL_APP_C ."/Choice/index");
 	        exit;
 	    }  
 	    // 有末完成订单
@@ -712,7 +712,7 @@ class Choice extends CI_Controller {
 
  	    if($orderUncomplete)
 	    {
-	        header("Location:/Choice/index");
+	        header("Location:". URL_APP_C ."/Choice/index");
 	        exit;
 	    }
 	    //从此开始书写八字内容
@@ -864,7 +864,7 @@ class Choice extends CI_Controller {
 		//末登陆
 		if(!$status)
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 			exit;
 		}		
 		$res = $this->Choice_model->searchMulti($tableName,$param);
@@ -883,13 +883,13 @@ class Choice extends CI_Controller {
 	    //末登陆,有订单
 	    if(!$status)
 	    {
-	        header("Location:/Index/index");
+	        header("Location:". URL_APP_C ."/Index/index");
 	        exit;
 	    }
 	
 	    if(!($this->session->highFlag))
 	    {	
-	        header("Location:/Choice/byRand");
+	        header("Location:". URL_APP_C ."/Choice/byRand");
 	        exit;
 	    }
 	    /*
@@ -906,7 +906,7 @@ class Choice extends CI_Controller {
 	 
 	    if($orderComplete)
 	    {
-	        header("Location:/Choice/index");
+	        header("Location:". URL_APP_C ."/Choice/index");
 	        exit;
 	    }
 	   
@@ -917,7 +917,7 @@ class Choice extends CI_Controller {
 	    
 	    if($orderUncomplete)
 	    {
-	        header("Location:/Choice/index");
+	        header("Location:". URL_APP_C ."/Choice/index");
 	        exit;
 	    }	    
         //从此开始书写高端内容
@@ -999,21 +999,21 @@ class Choice extends CI_Controller {
 		//末登陆
 		if(!$status || $status > 2)
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 			exit;
 		}		
 		
 		$location_id = $this->input->get_post('id');
 		if(!$location_id || intval($location_id) < 1)
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 			exit;
 		}
 		$param = array('localtion_id'=>intval($location_id), 'location_type'=>1, 'location_isshow'=>1);
 		$posInfos = $this->Choice_model->searchUser('fu_location_list',$param);
 		if(!$posInfos)
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 			exit;
 		}
 		$roomInfos = $this->Choice_model->searchUser('fu_room_list',array('room_id'=>$posInfos['location_room_id']));
@@ -1033,7 +1033,7 @@ class Choice extends CI_Controller {
 		//末登陆
 		if(!$status)
 		{
-		    header("Location:/Index/index");
+		    header("Location:". URL_APP_C ."/Index/index");
 		    exit;
 		}		
 		/*
@@ -1046,7 +1046,7 @@ class Choice extends CI_Controller {
 		$locationId = $this->input->get_post('locationId');
 		if(!$locationId || intval($locationId) < 1)
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 			exit;
 		}	
 		// 是否是正常未出售
@@ -1055,7 +1055,7 @@ class Choice extends CI_Controller {
 		
 		if(!$posInfos)	
 		{
-			header("Location:/Index/index");
+			header("Location:". URL_APP_C ."/Index/index");
 			exit;
 		}
 		// 正常提交,并插入订单表和修改用户表,牌位表状态用及修改session状态
@@ -1094,7 +1094,7 @@ class Choice extends CI_Controller {
 		// 4.修改牌位表为出售中
 		$posParam = array('location_number'=>1, 'location_date'=>$stime);
 		$this->Choice_model->changTable('fu_location_list', $posParam, array('localtion_id'=>$posInfos['localtion_id']));
-		header("Location:/Choice/index");
+		header("Location:". URL_APP_C ."/Choice/index");
 		exit;
 		//$view['result'] = '成功提交订单';	
 		//$this->load->view('success', $view);

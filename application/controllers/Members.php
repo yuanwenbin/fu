@@ -14,7 +14,7 @@ class Members extends CI_Controller {
 	{
 		if(!$this->session->member_id)
 		{
-			header("Location:/Index/member");
+			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}
 		return true;
