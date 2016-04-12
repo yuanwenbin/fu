@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container roomListInfos">
@@ -31,7 +31,7 @@
 	<tr <?php // echo ($k%2) ? "class='headerLineBackground'" : '';?>>
 		<td widtd="10%" align="center">
 		<?php if(hasPerssion($_SESSION['role'], 'posLocation')){ ?>
-		<a href="/Room/posLocation?id=<?php echo $v['localtion_id']; ?>">编辑
+		<a href="<?php echo URL_APP_C;?>/Room/posLocation?id=<?php echo $v['localtion_id']; ?>">编辑
 		</a>
 		&nbsp;|
 		<?php } ?>
@@ -40,7 +40,7 @@
 		<?php if($v['location_number']!=2) { ?>
 		不可删除
 		<?php } else {?>
-		<a href="/Room/delPos?id=<?php echo $v['localtion_id']; ?>" onclick="return sureDel();">删除</a>
+		<a href="<?php echo URL_APP_C;?>/Room/delPos?id=<?php echo $v['localtion_id']; ?>" onclick="return sureDel();">删除</a>
 		<?php } } ?>
 		</td>
 		<td widtd="8%" align="center"><?php echo $v['location_area']; ?></td>
@@ -111,7 +111,7 @@ if($page > 1) {
 			continue;
 		}
 ?>
-	<a href="/Room/postionList?id=<?php echo $roomId; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+	<a href="<?php echo URL_APP_C;?>/Room/postionList?id=<?php echo $roomId; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
 <?php } }
 	$toPage = $page + 5;
 	for($ii=$page; $ii<=$toPage;$ii++)
@@ -124,7 +124,7 @@ if($page > 1) {
 <?php if($ii == $page) {?>
 <font><?php echo $ii; ?></font>&nbsp;
 <?php }else {?>
-<a href="/Room/postionList?id=<?php echo $roomId; ?>&page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<a href="<?php echo URL_APP_C;?>/Room/postionList?id=<?php echo $roomId; ?>&page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
 <?php } 
 	 }
  ?>

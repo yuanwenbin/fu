@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台-默认展示信息</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="defaultInfos">
 <h4>管理中心</h4>

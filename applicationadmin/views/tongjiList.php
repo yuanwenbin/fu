@@ -7,17 +7,17 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <link type="text/css" href="/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
-     <link type="text/css" href="/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="<?php echo URL_APP;?>/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+     <link type="text/css" href="<?php echo URL_APP;?>/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
      <style type="text/css">
 	select{min-width:80px;}	
 	.tongJiPage{width:90%; text-align:center;padding-top:20px;}
 	</style>
-    <script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui-1.8.17.custom.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
-    <script type="text/javascript" src="/js/jquery-ui-timepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-timepicker-zh-CN.js"></script>
     <script type="text/javascript">
    
     $(function () {
@@ -39,7 +39,7 @@
 <div class="roomListInfos">
 	<h3 class="headerLineBackground">房间牌位统计信息</h3>
 	<div class="tongJiSearch">
-	    <form action="/Tongji/tongjiList" method="get"> 
+	    <form action="<?php echo URL_APP_C;?>/Tongji/tongjiList" method="get"> 
 	    <?php if(isset($roomList) && $roomList) {?>
 	    &nbsp;&nbsp;房间号:
 	    <select name="roomList">
@@ -83,7 +83,7 @@
 		<ul>
 		<?php foreach($list as $v) { ?>
 		<li class="statusArea_<?php echo $v['order_payment'];?>">
-		<a href="/Room/posLocation?id=<?php echo $v['order_location_id'];?>">
+		<a href="<?php echo URL_APP_C;?>/Room/posLocation?id=<?php echo $v['order_location_id'];?>">
 		<?php echo $v['order_location_id']; ?>
 		</a></li>
 		<?php } ?>

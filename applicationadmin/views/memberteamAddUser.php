@@ -7,13 +7,13 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomOpen">
 <div class="container">
 <h3>增加业务员</h3>
-<form action="/Memberteam/memberteamAddUserDeal" method="post">
+<form action="<?php echo URL_APP_C;?>/Memberteam/memberteamAddUserDeal" method="post">
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
 	<tr>
 		<td width="20%" align="right"><label>业务员所在分组名：</label></td>
@@ -95,7 +95,7 @@ $(document).ready(function(){
 
 		if(member_password != member_password_s)
 		{
-			alert("丙次密码不同");
+			alert("两次密码不同");
 			return false;
 		}
 

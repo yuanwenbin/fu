@@ -7,8 +7,8 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php echo $memberteaminfos[0]['member_username'];?>-系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
@@ -88,7 +88,7 @@ $(document).ready(function(){
 			alert("请填写正确的资料");
 			return false;
 		}
-		var url = "/Memberteam/memberteamUpdateUserDeal";
+		var url = "<?php echo URL_APP_C;?>/Memberteam/memberteamUpdateUserDeal";
 		var param = {id:id,member_username:member_username,member_realname:member_realname,member_password:member_password,member_telphone:member_telphone,member_phone:member_phone,member_flag:member_flag};
 		$.post(url,param, function(data){
 			if(data.error)
@@ -96,7 +96,7 @@ $(document).ready(function(){
 				alert(data.msg);
 				return false;
 			}
-			window.location.href="/Memberteam/memberteamListUser";
+			window.location.href="<?php echo URL_APP_C;?>/Memberteam/memberteamListUser";
 		},'json');
 		return false;
 	});

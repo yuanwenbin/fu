@@ -7,14 +7,14 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <?php
 if(!$listArr)
 {
 	echo '没有相关内容 ';
-	echo "<a href='/Curlture/addCurlture'>点击添加</a>";
+	echo "<a href='" . URL_APP_C ."/Curlture/addCurlture'>点击添加</a>";
 	exit;
 }
 ?>
@@ -33,8 +33,8 @@ if(!$listArr)
 	?>
 	<tr>
 		<td width="20%" align="center">
-		<a href="/Curlture/addCurlture">增加</a>&nbsp;|&nbsp;
-		<a href="/Curlture/delCurlture?id=<?php echo $v['curlture_id']; ?>" onclick="javascript:return sureDel();">删除</a>
+		<a href="<?php echo URL_APP_C;?>/Curlture/addCurlture">增加</a>&nbsp;|&nbsp;
+		<a href="<?php echo URL_APP_C;?>/Curlture/delCurlture?id=<?php echo $v['curlture_id']; ?>" onclick="javascript:return sureDel();">删除</a>
 		</td>
 		<td width="70%" align="center"><?php echo $v['curlture_headline']; ?></td>
 		<td width="25%" align="center"><?php echo $curlture[$v['curlture_cate']]; ?></td>

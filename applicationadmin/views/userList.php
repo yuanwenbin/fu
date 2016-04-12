@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
@@ -31,9 +31,9 @@
 		<td  width="20%" align="center"><?php echo $val['admin_email'];?></td>
 		<td  width="20%" align="center"><?php echo date('Y-m-d H:i:s',$val['admin_datetime']);?></td>
 		<td  width="35%" align="center">
-		&nbsp;<a onclick="return sureDel();" href="/User/userDel?id=<?php echo $val['admin_id'];?>">删除</a>
-		&nbsp;<a href="/User/userInfos?id=<?php echo $val['admin_id'];?>">查看</a>
-		&nbsp;<a href="/User/userInfosUpdate?id=<?php echo $val['admin_id'];?>">编辑</a>
+		&nbsp;<a onclick="return sureDel();" href="<?php echo URL_APP_C;?>/User/userDel?id=<?php echo $val['admin_id'];?>">删除</a>
+		&nbsp;<a href="<?php echo URL_APP_C;?>/User/userInfos?id=<?php echo $val['admin_id'];?>">查看</a>
+		&nbsp;<a href="<?php echo URL_APP_C;?>/User/userInfosUpdate?id=<?php echo $val['admin_id'];?>">编辑</a>
 		</td>	
 	</tr>
 	<tr>

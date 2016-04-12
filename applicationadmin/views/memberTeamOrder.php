@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>组长-<?php echo $memberInfos['member_username']; ?>-统计中心</title>
-	<link href="/css/style.css?v=201512281041" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css?v=201512281041" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomListInfos membersUserList">
@@ -80,7 +80,7 @@ if($page > 1) {
 			continue;
 		}
 ?>
-	<a href="/Memberteam/memberTeamOrder?id=<?php echo $id; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+	<a href="<?php echo URL_APP_C;?>/Memberteam/memberTeamOrder?id=<?php echo $id; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
 <?php } }
 	$toPage = $page + 5;
 	for($ii=$page; $ii<=$toPage;$ii++)
@@ -93,14 +93,14 @@ if($page > 1) {
 <?php if($ii == $page) {?>
 <font><?php echo $ii; ?></font>&nbsp;
 <?php }else {?>
-<a href="/Memberteam/memberTeamOrder?id=<?php echo $id; ?>&page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<a href="<?php echo URL_APP_C;?>/Memberteam/memberTeamOrder?id=<?php echo $id; ?>&page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
 <?php } 
 	 }
  ?>
 </p>
 <!--  eof 页码  -->
 <p class="backBtnMember">
-<a href="/Memberteam/memberTeamRegisterUser?id=<?php echo $id; ?>">组长用及旗下业务员的登记用户列表</a>
+<a href="<?php echo URL_APP_C;?>/Memberteam/memberTeamRegisterUser?id=<?php echo $id; ?>">组长用及旗下业务员的登记用户列表</a>
 </p>
 </div>
 

@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
@@ -23,8 +23,8 @@
 	?>
 	<tr>
 		<td width="20%" align="center">
-		<a href="/Copyright/addCopyRight">增加版权</a>&nbsp;|&nbsp;
-		<a href="/Copyright/delCopyRight/<?php echo $val['copy_id']; ?>" onclick="return sureDel();">删除版权 </a>
+		<a href="<?php echo URL_APP_C;?>/Copyright/addCopyRight">增加版权</a>&nbsp;|&nbsp;
+		<a href="<?php echo URL_APP_C;?>/Copyright/delCopyRight/<?php echo $val['copy_id']; ?>" onclick="return sureDel();">删除版权 </a>
 		</td>
 		<td  width="75%" align="center">
 		

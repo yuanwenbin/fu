@@ -7,14 +7,14 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">文章分类信息</h3>
 <?php
 if(!$cate_name) { ?>
-	暂时无相关房间，<a href="/Article/listCate">点击增加文章分类</a>
+	暂时无相关房间，<a href="<?php echo URL_APP_C;?>/Article/listCate">点击增加文章分类</a>
 <?php }else {
 ?>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -48,11 +48,11 @@ if(!$cate_name) { ?>
 		<td  width="25%" align="center">
 		<?php 
 		if(hasPerssion($_SESSION['role'], 'delCate')){ ?>
-		&nbsp;<a onclick="return sureDel();" href="/Article/delCate?cate_id=<?php echo $val['cate_id'];?>">删除</a>
+		&nbsp;<a onclick="return sureDel();" href="<?php echo URL_APP_C;?>/Article/delCate?cate_id=<?php echo $val['cate_id'];?>">删除</a>
 		<?php } ?>
 		<?php 
 		if(hasPerssion($_SESSION['role'], 'updateCate')){ ?>
-		&nbsp;<a href="/Article/updateCate?cate_id=<?php echo $val['cate_id'];?>">编辑</a>
+		&nbsp;<a href="<?php echo URL_APP_C;?>/Article/updateCate?cate_id=<?php echo $val['cate_id'];?>">编辑</a>
 		<?php } ?>
 		</td>	
 	</tr>

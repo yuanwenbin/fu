@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
@@ -71,7 +71,7 @@
 		<tr>
 		<td width="20%" align="right">&nbsp;</td>
 		<td>
-		<a href="/Article/listArticleUpdate?id=<?php echo $result->article_id;?>">编辑</a>&nbsp;&nbsp;<a href="javascript:history.go(-1);">点击返回</a>
+		<a href="<?php echo URL_APP_C;?>/Article/listArticleUpdate?id=<?php echo $result->article_id;?>">编辑</a>&nbsp;&nbsp;<a href="javascript:history.go(-1);">点击返回</a>
 		</td>		
 	</tr>			
 </table>

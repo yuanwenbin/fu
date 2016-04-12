@@ -7,16 +7,16 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>订单查询-默认展示信息</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <link type="text/css" href="/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
-     <link type="text/css" href="/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="<?php echo URL_APP;?>/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+     <link type="text/css" href="<?php echo URL_APP;?>/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
      <style type="text/css">
 	.pages{width:95%;}
 	</style>
-    <script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui-1.8.17.custom.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
-    <script type="text/javascript" src="/js/jquery-ui-timepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-timepicker-zh-CN.js"></script>
     <script type="text/javascript">
    
     $(function () {
@@ -93,7 +93,7 @@
 	<?php  echo $resultList['source']; ?> 
 	</td>
 	<td width="10%" align="center" class="orderListDetails">
-	<a href="/Order/posInfos?id=<?php echo $resultList['order_id']; ?>">
+	<a href="<?php echo URL_APP_C;?>/Order/posInfos?id=<?php echo $resultList['order_id']; ?>">
 	查看
 	</a>&nbsp;&nbsp;
 	<a data-attr="<?php echo $v['order_id']; ?>" class="del" href="javascript:void(0);">删除</a>

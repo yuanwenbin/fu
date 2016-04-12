@@ -7,8 +7,8 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
@@ -89,7 +89,7 @@ $(document).ready(function(){
 	// 最小值
 	var minValue = $("input[name='min']").val();
 	// url
-	var url = "/Room/modifyInfo";	
+	var url = "<?php echo URL_APP_C;?>/Room/modifyInfo";	
 	// 类型提交
 	$("input[name='subType']").click(function(){
 		var start = $("input[name='start']").val();

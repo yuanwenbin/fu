@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
@@ -23,8 +23,8 @@
 	?>
 	<tr <?php echo ($key % 2) ? 'class="listRoomColumns"' : '';?>class="fuck">
 		<td width="20%" align="center">
-		<a href="/Links/addLinks">增加链接</a>&nbsp;|&nbsp;
-		<a href="/Links/delLinks/<?php echo $val['link_id']; ?>" onclick="return sureDel();">删除链接 </a>
+		<a href="<?php echo URL_APP_C;?>/Links/addLinks">增加链接</a>&nbsp;|&nbsp;
+		<a href="<?php echo URL_APP_C;?>/Links/delLinks/<?php echo $val['link_id']; ?>" onclick="return sureDel();">删除链接 </a>
 		</td>
 		<td  width="75%" align="center">
 		

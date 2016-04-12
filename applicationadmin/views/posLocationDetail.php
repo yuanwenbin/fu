@@ -7,12 +7,12 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
 <h3 class="headerLineBackground">牌位相关,房间号:<?php echo $result['location_room_id'];?>,牌位号:<?php echo $result['localtion_id'];?></h3>
-<form action="/Room/posLocationDeal" method="post" enctype="multipart/form-data">
+<form action="<?php echo URL_APP_C;?>/Room/posLocationDeal" method="post" enctype="multipart/form-data">
 <input type="hidden" name="localtion_id" value="<?php echo $result['localtion_id'];?>"  />
 <table border="0" cellpadding="5" cellspacing="5" width="100%">	
 

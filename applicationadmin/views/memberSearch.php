@@ -7,8 +7,8 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台-默认展示信息</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="defaultInfos">
 <div class="container">
@@ -16,7 +16,7 @@
 
 <!-- bof one -->
 <div class="divInfos1 searchListPos">
-<form method="get" action="/Member/memberSearch">
+<form method="get" action="<?php echo URL_APP_C;?>/Member/memberSearch">
 会员身份证号:
 <input type="text" name="bodyId" value="" />
 &nbsp;

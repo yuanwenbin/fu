@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php echo $memberInfos['member_username']; ?>-统计中心</title>
-	<link href="/css/style.css?v=000" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css?v=000" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomListInfos members">
@@ -34,9 +34,9 @@
 	</tr>
 </table>
 <p class="backBtnMember">
-<a href="/Memberteam/MemberteamUserList?id=<?php echo $memberInfos['member_id']; ?>">登记用户列表</a>
+<a href="<?php echo URL_APP_C;?>/Memberteam/MemberteamUserList?id=<?php echo $memberInfos['member_id']; ?>">登记用户列表</a>
 &nbsp;&nbsp;
-<a href="/Memberteam/MemberteamOrderList?id=<?php echo $memberInfos['member_id']; ?>">订单列表</a></p>
+<a href="<?php echo URL_APP_C;?>/Memberteam/MemberteamOrderList?id=<?php echo $memberInfos['member_id']; ?>">订单列表</a></p>
 </div>
 
 

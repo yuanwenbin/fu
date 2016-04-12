@@ -7,14 +7,14 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">房间 列表 信息</h3>
 <?php
 if(!$roomList) { ?>
-	暂时无相关房间，<a href="/Room/roomOpen">点击增加房间</a>
+	暂时无相关房间，<a href="<?php echo URL_APP_C;?>/Room/roomOpen">点击增加房间</a>
 <?php }else {
 ?>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -38,15 +38,15 @@ if(!$roomList) { ?>
 		<td  width="25%" align="center">
 		<?php 
 		if(hasPerssion($_SESSION['role'], 'delRoom')){ ?>
-		&nbsp;<a onclick="return sureDel();" href="/Room/delRoom?roomId=<?php echo $val['room_id'];?>">删除</a>
+		&nbsp;<a onclick="return sureDel();" href="<?php echo URL_APP_C;?>/Room/delRoom?roomId=<?php echo $val['room_id'];?>">删除</a>
 		<?php } ?>
 		<?php 
 		if(hasPerssion($_SESSION['role'], 'roomInfos')){ ?>
-		&nbsp;<a href="/Room/roomInfos?roomId=<?php echo $val['room_id'];?>">查看</a>
+		&nbsp;<a href="<?php echo URL_APP_C;?>/Room/roomInfos?roomId=<?php echo $val['room_id'];?>">查看</a>
 		<?php } ?>
 		<?php 
 		if(hasPerssion($_SESSION['role'], 'updateRoom')){ ?>
-		&nbsp;<a href="/Room/updateRoom?roomId=<?php echo $val['room_id'];?>">编辑</a>
+		&nbsp;<a href="<?php echo URL_APP_C;?>/Room/updateRoom?roomId=<?php echo $val['room_id'];?>">编辑</a>
 		<?php } ?>
 		</td>	
 	</tr>
@@ -71,7 +71,7 @@ if($page > 1) {
 			continue;
 		}
 ?>
-	<a href="/Room/roomList?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+	<a href="<?php echo URL_APP_C;?>/Room/roomList?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
 <?php } }
 	$toPage = $page + 5;
 	for($ii=$page; $ii<=$toPage;$ii++)
@@ -84,7 +84,7 @@ if($page > 1) {
 <?php if($ii == $page) {?>
 <font><?php echo $ii; ?></font>&nbsp;
 <?php }else {?>
-<a href="/Room/roomList?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<a href="<?php echo URL_APP_C;?>/Room/roomList?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
 <?php } 
 	 }
  ?>

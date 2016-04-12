@@ -7,15 +7,15 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">
 价格分档设置,最小价格为：<?php echo $minMaxPrice['minVal'];?>,
 最大价格为：<?php echo $minMaxPrice['maxVal'];?></h3>
-<form action="/Price/priceUpdateDeal" method="post">
+<form action="<?php echo URL_APP_C;?>/Price/priceUpdateDeal" method="post">
 <input type="hidden" name="id" value="<?php echo $pricePerList['id']; ?>" />
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
@@ -59,10 +59,10 @@
 		</td>
 		<td width="18%" align="center">
 		<?php if(hasPerssion($_SESSION['role'],'priceDel')) { ?>
-		<a href="/Price/priceDel?id=<?php echo $val['id']; ?>">删除</a>&nbsp;&nbsp;
+		<a href="<?php echo URL_APP_C;?>/Price/priceDel?id=<?php echo $val['id']; ?>">删除</a>&nbsp;&nbsp;
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'priceUpdate')) { ?>
-			<a href="/Price/priceUpdate?id=<?php echo $val['id']; ?>">编辑</a>&nbsp;&nbsp;
+			<a href="<?php echo URL_APP_C;?>/Price/priceUpdate?id=<?php echo $val['id']; ?>">编辑</a>&nbsp;&nbsp;
 			<?php } ?>			
 		
 		</td>

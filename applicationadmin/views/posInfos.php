@@ -7,13 +7,13 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>订单详情-系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
 <h3 class="headerLineBackground">订单详情</h3>
-<form method="post" action="/Order/userInfoDeal">
+<form method="post" action="<?php echo URL_APP_C;?>/Order/userInfoDeal">
 <input type="hidden" name="user_id" value="<?php echo $result['userInfo']['user_id'];?>" />
 <table border="0" cellpadding="5" cellspacing="5" width="90%">	
 	<tr>
@@ -161,10 +161,10 @@ $(document).ready(function(){
 		var order_payment = $("select[name='order_payment']").val();
 		var location_id = $("input[name='location_id']").val();
 		var id = $("input[name='id']").val();
-		var url = "/Order/posInfosDeal";
+		var url = "<?php echo URL_APP_C;?>/Order/posInfosDeal";
 		var param = {order_payment:order_payment,location_id:location_id,order_id:id};
 		$.post(url,param,function(data){
-			window.document.location.href="/Order/posInfos?id="+id;
+			window.document.location.href="<?php echo URL_APP_C;?>/Order/posInfos?id="+id;
 		});
 	});
 

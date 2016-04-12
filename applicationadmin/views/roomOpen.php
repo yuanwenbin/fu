@@ -7,17 +7,17 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 	<style>
 	.location_area_div{margin-top:10px;margin-bottom:10px;}
 
 	</style>
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomOpen">
 <div class="container">
 <h3>开设房间、牌位中心</h3>
-<form method="post" action="/Room/RoomOpenAdd">
+<form method="post" action="<?php echo URL_APP_C;?>/Room/RoomOpenAdd">
 <input type="hidden" name="number" value="100" />
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
 	<tr>

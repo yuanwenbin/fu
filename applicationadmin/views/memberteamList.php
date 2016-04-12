@@ -7,8 +7,8 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
@@ -39,18 +39,18 @@
 		</td>
 		<td width="55%" align="center">
 		<?php if(hasPerssion($_SESSION['role'],'memberteamAdd')) { ?>
-		<a href="/Memberteam/memberteamAdd">分组增加</a>&nbsp;&nbsp;
+		<a href="<?php echo URL_APP_C;?>/Memberteam/memberteamAdd">分组增加</a>&nbsp;&nbsp;
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'memberteamDel')) { ?>
-		<a class="delTeam" href="/Memberteam/memberteamDelDeal?id=<?php echo $val['id'];?>">删除</a>&nbsp;&nbsp;
+		<a class="delTeam" href="<?php echo URL_APP_C;?>/Memberteam/memberteamDelDeal?id=<?php echo $val['id'];?>">删除</a>&nbsp;&nbsp;
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'memberteamUpdate')) { ?>
-		<a href="/Memberteam/memberteamUpdate?id=<?php echo $val['id'];?>">分组编辑</a>
+		<a href="<?php echo URL_APP_C;?>/Memberteam/memberteamUpdate?id=<?php echo $val['id'];?>">分组编辑</a>
 		<?php } ?>	
 		<?php if(hasPerssion($_SESSION['role'],'memberteamInfos')) { ?>
-		<a href="/Memberteam/memberteamInfos?id=<?php echo $val['id'];?>">统计信息</a>
-		<a href="/Memberteam/memberTeamRegisterUser?id=<?php echo $val['id'];?>">登记用户统计</a>
-		<a href="/Memberteam/memberTeamOrder?id=<?php echo $val['id'];?>">订单统计</a>
+		<a href="<?php echo URL_APP_C;?>/Memberteam/memberteamInfos?id=<?php echo $val['id'];?>">统计信息</a>
+		<a href="<?php echo URL_APP_C;?>/Memberteam/memberTeamRegisterUser?id=<?php echo $val['id'];?>">登记用户统计</a>
+		<a href="<?php echo URL_APP_C;?>/Memberteam/memberTeamOrder?id=<?php echo $val['id'];?>">订单统计</a>
 		<?php } ?>			
 
 		</td>

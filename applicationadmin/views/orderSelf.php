@@ -7,12 +7,12 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统自动下单</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 	<style>
 	.location_area_div{margin-top:10px;margin-bottom:10px;}
 
 	</style>
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomOpen">
 <div class="container">
@@ -160,7 +160,7 @@ $(document).ready(function(){
 			return false;
 		}
 
-		var url = "/Order/orderSelfAdd";
+		var url = "<?php echo URL_APP_C;?>/Order/orderSelfAdd";
 		var param = {localtion_id:localtion_id,body_id:body_id,location_number:location_number,user_name:user_name,user_birthday:user_birthday,stime:stime,order_location_type:order_location_type,member_id:member_id,user_telphone:user_telphone,user_phone:user_phone,room_no:room_no};
 		$.post(url,param,function(data){
 			alert(data.msg);	
@@ -168,7 +168,7 @@ $(document).ready(function(){
 			{
 				return false;
 			}
-			window.location.href="/Order/orderSelf";
+			window.location.href="<?php echo URL_APP_C;?>/Order/orderSelf";
 		}, 'json');
 		return false;
 	});

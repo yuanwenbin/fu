@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
@@ -41,10 +41,10 @@
 		</td>
 		<td width="18%" align="center">
 		<?php if(hasPerssion($_SESSION['role'],'priceDel')) { ?>
-		<a href="/Price/priceDel?id=<?php echo $val['id']; ?>">删除</a>&nbsp;&nbsp;
+		<a href="<?php echo URL_APP_C;?>/Price/priceDel?id=<?php echo $val['id']; ?>">删除</a>&nbsp;&nbsp;
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'priceUpdate')) { ?>
-			<a href="/Price/priceUpdate?id=<?php echo $val['id']; ?>">编辑</a>&nbsp;&nbsp;
+			<a href="<?php echo URL_APP_C;?>/Price/priceUpdate?id=<?php echo $val['id']; ?>">编辑</a>&nbsp;&nbsp;
 			<?php } ?>			
 		
 		</td>

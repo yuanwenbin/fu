@@ -7,12 +7,12 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
 <h3 class="headerLineBackground">房间号:<?php echo $roomInfos['room_id'];?></h3>
-<form action="/Room/updateRoomDeal" method="post">
+<form action="<?php echo URL_APP_C;?>/Room/updateRoomDeal" method="post">
 <input type="hidden" name="room_id" value="<?php echo $roomInfos['room_id'];?>"  />
 <table border="0" cellpadding="5" cellspacing="5" width="90%">	
 

@@ -1,7 +1,7 @@
 <?php
 if(!$cate_name)
 {
-	echo "请先增加分类,<a href='/Article/addCate'>点击增加分类";
+	echo "请先增加分类,<a href='" .URL_APP_C ."/Article/addCate'>点击增加分类";
 	exit;
 }
 ?>
@@ -14,8 +14,8 @@ if(!$cate_name)
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 	
 		<style>
 			form {
@@ -25,9 +25,9 @@ if(!$cate_name)
 				display: block;
 			}
 		</style>
-		<link rel="stylesheet" href="/editor/themes/default/default.css" />
-		<script charset="utf-8" src="/editor/kindeditor-min.js"></script>
-		<script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
+		<link rel="stylesheet" href="<?php echo URL_APP;?>/editor/themes/default/default.css" />
+		<script charset="utf-8" src="<?php echo URL_APP;?>/editor/kindeditor-min.js"></script>
+		<script charset="utf-8" src="<?php echo URL_APP;?>/editor/lang/zh_CN.js"></script>
 		<script>
 			var editor;
 			KindEditor.ready(function(K) {
@@ -68,7 +68,7 @@ if(!$cate_name)
 <body class="roomOpen">
 <div class="container">
 <h3>增加文章</h3>
-<form method="post" action="/Article/addArticleDeal">
+<form method="post" action="<?php echo URL_APP_C;?>/Article/addArticleDeal">
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
 <tr>
 	<td width="15%" align="right">文章标题：</td>
@@ -140,7 +140,7 @@ if(!$cate_name)
 </tr>
 <tr>
 	<td width="15%" align="right">&nbsp;</td>
-	<td>&nbsp;&nbsp;<a href="/" target="_top">放弃返回</a>&nbsp;&nbsp;<input type="submit" name="submit" value="提交" /></td>
+	<td>&nbsp;&nbsp;<a href="<?php echo URL_APP_C;?>" target="_top">放弃返回</a>&nbsp;&nbsp;<input type="submit" name="submit" value="提交" /></td>
 </tr>
 </table>
 

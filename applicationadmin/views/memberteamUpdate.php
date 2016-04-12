@@ -7,8 +7,8 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php echo $memberteamUpdate[0]['team_name'];?>-系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
@@ -71,14 +71,14 @@ $(document).ready(function(){
 			return false;
 		}
 		var param = {id:id,team_name:team_name,member_teamid:member_teamid};
-		var url = "/Memberteam/memberteamUpdateDeal";
+		var url = "<?php echo URL_APP_C;?>/Memberteam/memberteamUpdateDeal";
 		$.post(url,param,function(data){
 			if(data.error)
 			{
 				alert(data.msg);
 			}else
 			{
-				window.location.href="/Memberteam/memberteamList";
+				window.location.href="<?php echo URL_APP_C;?>/Memberteam/memberteamList";
 				return true;
 			}
 		},'json');

@@ -7,17 +7,17 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <link type="text/css" href="/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
-     <link type="text/css" href="/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="<?php echo URL_APP;?>/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+     <link type="text/css" href="<?php echo URL_APP;?>/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
      <style type="text/css">
 	select{min-width:80px;}	
 	.tongJiPage{width:90%; text-align:center;padding-top:20px;}
 	</style>
-    <script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui-1.8.17.custom.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
-    <script type="text/javascript" src="/js/jquery-ui-timepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-timepicker-zh-CN.js"></script>
     <script type="text/javascript">
    
     $(function () {
@@ -39,7 +39,7 @@
 <div class="roomListInfos container">
 	<h3 class="headerLineBackground">房间牌位统计信息</h3>
 	<div class="tongJiSearch">
-	    <form action="/Tongji/tongjiList" method="get"> 
+	    <form action="<?php echo URL_APP_C;?>/Tongji/tongjiList" method="get"> 
 	    <?php if(isset($roomList) && $roomList) {?>
 	    &nbsp;&nbsp;房间:
 	    <select name="roomList">
@@ -85,7 +85,7 @@
 		<ul>
 		<?php foreach($list as $v) { ?>
 		<li class="statusArea_<?php  echo $v['location_number'];?>">
-		<a href="/Room/posLocation?id=<?php echo $v['localtion_id'];?>">
+		<a href="<?php echo URL_APP_C;?>/Room/posLocation?id=<?php echo $v['localtion_id'];?>">
 		<?php echo $v['location_area']; ?><?php echo $v['location_prefix']; ?><?php echo strlen($v['location_code']) == 1 ? '0'.$v['location_code'] : $v['location_code']; ?>(<?php echo $v['localtion_id']; ?>)
 		<?php if($v['location_status']) echo '*';?>
 		</a></li>
@@ -110,7 +110,7 @@ if($page > 1) {
 			continue;
 		}
 ?>
-	<a href="/Tongji/tongjiList?datetime=<?php echo isset($startTime) && !empty($startTime) ? date('Y-m-d H:i:s',$startTime) : '';?>&datetimes=<?php echo isset($endTime) && !empty($endTime) ? date('Y-m-d H:i:s',$endTime) : '';?>&page=<?php echo $i; ?>&roomList=<?php echo $order_room_id; ?>"><?php echo $i; ?></a>&nbsp;		
+	<a href="<?php echo URL_APP_C;?>/Tongji/tongjiList?datetime=<?php echo isset($startTime) && !empty($startTime) ? date('Y-m-d H:i:s',$startTime) : '';?>&datetimes=<?php echo isset($endTime) && !empty($endTime) ? date('Y-m-d H:i:s',$endTime) : '';?>&page=<?php echo $i; ?>&roomList=<?php echo $order_room_id; ?>"><?php echo $i; ?></a>&nbsp;		
 <?php } }
 	$toPage = $page + 5;
 	for($ii=$page; $ii<=$toPage;$ii++)
@@ -123,7 +123,7 @@ if($page > 1) {
 <?php if($ii == $page) {?>
 <font><?php echo $ii; ?></font>&nbsp;
 <?php }else {?>
-<a href="/Tongji/tongjiList?datetime=<?php echo isset($startTime) && !empty($startTime) ? date('Y-m-d H:i:s',$startTime) : '';?>&datetimes=<?php echo isset($endTime) && !empty($endTime) ? date('Y-m-d H:i:s',$endTime) : '';?>&page=<?php echo $ii; ?>&roomList=<?php echo $order_room_id; ?>"><?php echo $ii; ?></a>&nbsp;
+<a href="<?php echo URL_APP_C;?>/Tongji/tongjiList?datetime=<?php echo isset($startTime) && !empty($startTime) ? date('Y-m-d H:i:s',$startTime) : '';?>&datetimes=<?php echo isset($endTime) && !empty($endTime) ? date('Y-m-d H:i:s',$endTime) : '';?>&page=<?php echo $ii; ?>&roomList=<?php echo $order_room_id; ?>"><?php echo $ii; ?></a>&nbsp;
 <?php } 
 	 }
  ?>

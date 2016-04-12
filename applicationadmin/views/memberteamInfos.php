@@ -7,14 +7,14 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css?v=201512281041" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css?v=201512281041" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomOpen">
 <div class="container">
 <h3>
 <?php echo $memberteamInfos[0]['member_realname'] ? $memberteamInfos[0]['member_realname'] : $memberteamInfos[0]['member_username']; ?>
 -组长-业务员统计</h3>
-<form action="/Memberteam/memberteamAddUserDeal" method="post">
+<form action="<?php echo URL_APP_C;?>/Memberteam/memberteamAddUserDeal" method="post">
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
 
 	<tr>

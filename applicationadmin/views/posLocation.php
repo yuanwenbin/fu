@@ -7,13 +7,13 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <link type="text/css" href="/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
-     <link type="text/css" href="/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
-    <script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui-1.8.17.custom.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
-    <script type="text/javascript" src="/js/jquery-ui-timepicker-zh-CN.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="<?php echo URL_APP;?>/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+     <link type="text/css" href="<?php echo URL_APP;?>/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-timepicker-zh-CN.js"></script>
     <script type="text/javascript">
    
     $(function () {
@@ -35,7 +35,7 @@
 <body class="roomList">
 <div class="roomInfosDiv container">
 <h3 class="headerLineBackground">牌位相关,房间号:<?php echo $result['location_room_id'];?>,牌位号:<?php echo $result['localtion_id'];?></h3>
-<form action="/Room/posLocationDeal" method="post" enctype="multipart/form-data">
+<form action="<?php echo URL_APP_C;?>/Room/posLocationDeal" method="post" enctype="multipart/form-data">
 <input type="hidden" name="localtion_id" value="<?php echo $result['localtion_id'];?>"  />
 <input type="hidden" name="user_id" value="<?php echo isset($userInfo['user_id']) ? $userInfo['user_id'] : '';?>"  />
 <table border="0" cellpadding="5" cellspacing="5" width="100%">	

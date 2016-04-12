@@ -7,13 +7,13 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
 <?php
 if(!$roomList) { ?>
-	暂时无相关房间，<a href="/Room/roomOpen">点击增加房间</a>
+	暂时无相关房间，<a href="<?php echo URL_APP_C;?>/Room/roomOpen">点击增加房间</a>
 <?php }else {
 ?>
 <h3>请选择要编辑的房间牌位</h3>
@@ -28,9 +28,9 @@ if(!$roomList) { ?>
 	foreach($roomList as $key=>$val){
 	?>
 	<tr>
-		<td width="10%" align="center"><a href="/Room/postionList?id=<?php echo $val['room_id'];?>"><?php echo $val['room_id'];?></a></td>
-		<td  width="20%" align="center"><a href="/Room/postionList?id=<?php echo $val['room_id'];?>"><?php echo $val['room_alias'];?></a></td>
-		<td  width="65%" align="center"><a href="/Room/postionList?id=<?php echo $val['room_id'];?>"><?php echo $val['room_description'];?></a></td>
+		<td width="10%" align="center"><a href="<?php echo URL_APP_C;?>/Room/postionList?id=<?php echo $val['room_id'];?>"><?php echo $val['room_id'];?></a></td>
+		<td  width="20%" align="center"><a href="<?php echo URL_APP_C;?>/Room/postionList?id=<?php echo $val['room_id'];?>"><?php echo $val['room_alias'];?></a></td>
+		<td  width="65%" align="center"><a href="<?php echo URL_APP_C;?>/Room/postionList?id=<?php echo $val['room_id'];?>"><?php echo $val['room_description'];?></a></td>
 	
 	</tr>
 	<tr>
@@ -53,7 +53,7 @@ if($page > 1) {
 			continue;
 		}
 ?>
-	<a href="/Room/roomOpenPosition?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+	<a href="<?php echo URL_APP_C;?>/Room/roomOpenPosition?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
 <?php } }
 	$toPage = $page + 5;
 	for($ii=$page; $ii<=$toPage;$ii++)
@@ -66,7 +66,7 @@ if($page > 1) {
 <?php if($ii == $page) {?>
 <font><?php echo $ii; ?></font>&nbsp;
 <?php }else {?>
-<a href="/Room/roomOpenPosition?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<a href="<?php echo URL_APP_C;?>/Room/roomOpenPosition?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
 <?php } 
 	 }
  ?>

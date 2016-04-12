@@ -7,13 +7,13 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomOpen">
 <div class="container">
 <h3>增加管理员</h3>
-<form method="post" action="/User/userAddDeal">
+<form method="post" action="<?php echo URL_APP_C;?>/User/userAddDeal">
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
 <tr>
 	<td width="15%" align="right">登陆名：</td>
@@ -210,7 +210,7 @@
 </tr>
 <tr>
 	<td width="15%" align="right">&nbsp;</td>
-	<td>&nbsp;&nbsp;<a href="/" target="_top">放弃返回</a>&nbsp;&nbsp;<input type="submit" name="submit" value="增加" /></td>
+	<td>&nbsp;&nbsp;<a href="<?php echo URL_APP_C;?>" target="_top">放弃返回</a>&nbsp;&nbsp;<input type="submit" name="submit" value="增加" /></td>
 </tr>
 </table>
 

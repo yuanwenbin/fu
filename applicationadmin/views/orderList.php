@@ -7,16 +7,16 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台-默认展示信息</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <link type="text/css" href="/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
-     <link type="text/css" href="/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="<?php echo URL_APP;?>/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+     <link type="text/css" href="<?php echo URL_APP;?>/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
      <style type="text/css">
 	.pages{width:95%;}
 	</style>
-    <script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui-1.8.17.custom.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
-    <script type="text/javascript" src="/js/jquery-ui-timepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-ui-timepicker-zh-CN.js"></script>
     <script type="text/javascript">
    
     $(function () {
@@ -41,7 +41,7 @@
 
 <!-- bof one -->
 <div class="divInfos1 searchListPos">
-<form method="get" action="/Order/orderList">
+<form method="get" action="<?php echo URL_APP_C;?>/Order/orderList">
 &nbsp;
 牌位编号：<input type="text" name="location_info" value="">
 &nbsp;
@@ -153,7 +153,7 @@ foreach($result['resultList'] as $k=>$v){
 	<?php echo $v['source'] ? $source[$v['source']] :'管理员：' .$username; ?> 
 	</td>
 	<td width="10%" align="center" class="orderListDetails">
-	<a href="/Order/posInfos?id=<?php echo $v['order_id']; ?>">
+	<a href="<?php echo URL_APP_C;?>/Order/posInfos?id=<?php echo $v['order_id']; ?>">
 	查看
 	</a>&nbsp;&nbsp;
 	<a data-attr="<?php echo $v['order_id']; ?>" class="del" href="javascript:void(0);">删除</a>
@@ -177,7 +177,7 @@ foreach($result['resultList'] as $k=>$v){
 	$datetimes = '';
 	$datetime = isset($result['datetime']) && $result['datetime'] ? date('Y-m-d H:i:s', $result['datetime']) : '';
 	$datetimes = isset($result['datetimes']) && $result['datetimes'] ? date('Y-m-d H:i:s', $result['datetimes']) : '';
-	$preUrl="/Order/orderList?order_room_id=".$result['order_room_id']."&order_location_type=".$result['order_location_type'];
+	$preUrl="<?php echo URL_APP_C;?>/Order/orderList?order_room_id=".$result['order_room_id']."&order_location_type=".$result['order_location_type'];
 	$preUrl .= "&order_payment=".$result['order_payment']."&bodyId=".$result['bodyId']."&datetime=".$datetime."&datetimes=".$datetimes;
 ?>
 <p class="pages">
@@ -219,13 +219,13 @@ if($result['page'] > 1) {
 $(document).ready(function(){
     $(".del").click(function(){
         var order_id = $(this).attr('data-attr');
-        var order_url = "/Order/delOrder";
+        var order_url = "<?php echo URL_APP_C;?>/Order/delOrder";
         var param = {order_id:order_id};
         if(confirm("你确定要删除该订单吗？删除后不可恢复"))
         {
             $.post(order_url,param,function(data){
                alert(data.msg);
-               window.location.href="/Order/orderList"; 
+               window.location.href="<?php echo URL_APP_C;?>/Order/orderList"; 
              },'json');
         }
     });

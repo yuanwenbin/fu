@@ -7,12 +7,12 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
 <h3 class="headerLineBackground">会员 <?php echo $user->admin_user;?> 信息</h3>
-<form action="/User/userInfosUpdateDeal" method="post">
+<form action="<?php echo URL_APP_C;?>/User/userInfosUpdateDeal" method="post">
 <input type="hidden" name="admin_id" value="<?php echo $user->admin_id;?>" />
 <table border="1" cellpadding="0" cellspacing="0" width="90%">	
 	<tr>

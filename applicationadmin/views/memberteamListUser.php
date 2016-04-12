@@ -7,8 +7,8 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css?v=20151223" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css?v=20151223" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
@@ -51,16 +51,16 @@
 		</td>
 		<td width="20%" align="center">
 		<?php if(hasPerssion($_SESSION['role'],'memberteamAddUser')) { ?>
-		<a href="/Memberteam/memberteamAddUser">增加</a>&nbsp;
+		<a href="<?php echo URL_APP_C;?>/Memberteam/memberteamAddUser">增加</a>&nbsp;
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'memberteamDelUser')) { ?>
-		<a href="/Memberteam/memberteamDelUser?id=<?php echo $val['member_id'];?>" class="sureDel">删除</a>
+		<a href="<?php echo URL_APP_C;?>/Memberteam/memberteamDelUser?id=<?php echo $val['member_id'];?>" class="sureDel">删除</a>
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'memberteamSaleUser')) { ?>
-		<a  href="/Memberteam/memberteamSaleUser?id=<?php echo $val['member_id'];?>">业绩</a>
+		<a  href="<?php echo URL_APP_C;?>/Memberteam/memberteamSaleUser?id=<?php echo $val['member_id'];?>">业绩</a>
 		<?php } ?>
 		<?php if(hasPerssion($_SESSION['role'],'memberteamUpdateUser')) { ?>
-		<a href="/Memberteam/memberteamUpdateUser?id=<?php echo $val['member_id'];?>">编辑</a>
+		<a href="<?php echo URL_APP_C;?>/Memberteam/memberteamUpdateUser?id=<?php echo $val['member_id'];?>">编辑</a>
 		<?php } ?>
 		</td> 
 	</tr>
@@ -86,7 +86,7 @@ if($page > 1) {
 			continue;
 		}
 ?>
-	<a href="/Memberteam/memberteamListUser?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+	<a href="<?php echo URL_APP_C;?>/Memberteam/memberteamListUser?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
 <?php } }
 	$toPage = $page + 5;
 	for($ii=$page; $ii<=$toPage;$ii++)
@@ -99,7 +99,7 @@ if($page > 1) {
 <?php if($ii == $page) {?>
 <font><?php echo $ii; ?></font>&nbsp;
 <?php }else {?>
-<a href="/Memberteam/memberteamListUser?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<a href="<?php echo URL_APP_C;?>/Memberteam/memberteamListUser?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
 <?php } 
 	 }
  ?>

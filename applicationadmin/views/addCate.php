@@ -7,8 +7,8 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomOpen">
 <div class="container">
@@ -80,13 +80,13 @@ $(document).ready(function(){
 		var cate_parent = $("select[name='cate_parent']").val();
 		var cate_sort = $("input[name='cate_sort']").val();
 		var cate_show = $("select[name='cate_show']").val();
-		var url = "/Article/addCateDeal";
+		var url = "<?php echo URL_APP_C;?>/Article/addCateDeal";
 
 		var param = {cate_name:cate_name,cate_parent:cate_parent,cate_sort:cate_sort,cate_show:cate_show};
 		$.post(url,param,function(data){
 			alert(data.msg);
 			if(!data.error){
-			 window.document.location.href="/Article/addCate";
+			 window.document.location.href="<?php echo URL_APP_C;?>/Article/addCate";
 			}
 		}, 'json');
 		return false;

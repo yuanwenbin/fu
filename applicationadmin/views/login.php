@@ -7,13 +7,13 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body>
 <div class="loginBox">
 	&nbsp;
-	<form method="post" action="/Index/loginValidate">
+	<form method="post" action="<?php echo URL_APP_C;?>/Index/loginValidate">
 	<table border="0" cellpadding="5" cellspacing="5" class="loginTxt">
 	<tr>
 
@@ -26,7 +26,7 @@
 	<tr>
 
 		<td>
-			<input type="image" name="submit" src="../images/loginBtn.png" class="loginInput3" />
+			<input type="image" name="submit" src="<?php echo URL_APP;?>/images/loginBtn.png" class="loginInput3" />
 					
 		</td>
 	</tr>

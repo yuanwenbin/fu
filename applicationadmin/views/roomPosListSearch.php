@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台-默认展示信息</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 	.pages{width:95%;}
 	</style>
@@ -18,7 +18,7 @@
 
 <!-- bof one -->
 <div class="divInfosSearch">
-<form method="get" action="/Room/roomPosListSearch">
+<form method="get" action="<?php echo URL_APP_C;?>/Room/roomPosListSearch">
 查询房间:
 <select name="roomId">
 <option value="all" <?php if(!$room_id){echo "selected";}?>>全部</option>
@@ -79,13 +79,13 @@ if(isset($roomList) && $roomList)
 	<?php foreach($result as $k=>$v) {?>
 	<tr <?php //echo ($k%2) ? "class='headerLineBackground1'" : '';?>>
 		<td widtd="10%" align="center">
-		<a href="/Room/posLocation?id=<?php echo $v['localtion_id']; ?>">编辑
+		<a href="<?php echo URL_APP_C;?>/Room/posLocation?id=<?php echo $v['localtion_id']; ?>">编辑
 		</a>
 		&nbsp;|&nbsp;
 		<?php if($v['location_number']!=2) { ?>
 		不可删除
 		<?php } else {?>
-		<a href="/Room/delPos?id=<?php echo $v['localtion_id']; ?>" onclick="return sureDel();">删除</a>
+		<a href="<?php echo URL_APP_C;?>/Room/delPos?id=<?php echo $v['localtion_id']; ?>" onclick="return sureDel();">删除</a>
 		<?php } ?>
 		</td>
 		<td widtd="15%" align="center"><?php echo $v['location_area']; ?><?php echo $v['location_prefix']; ?><?php echo strlen($v['location_code']) == 1 ? '0'.$v['location_code'] : $v['location_code']; ?></td>
@@ -149,7 +149,7 @@ if($page > 1) {
 			continue;
 		}
 ?>
-	<a href="/Room/roomPosListSearch?roomId=<?php echo $room_id; ?>&positionType=<?php echo $type;?>&status=<?php echo $status;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+	<a href="<?php echo URL_APP_C;?>/Room/roomPosListSearch?roomId=<?php echo $room_id; ?>&positionType=<?php echo $type;?>&status=<?php echo $status;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
 <?php } }
 	$toPage = $page + 5;
 	for($ii=$page; $ii<=$toPage;$ii++)
@@ -162,7 +162,7 @@ if($page > 1) {
 <?php if($ii == $page) {?>
 <font><?php echo $ii; ?></font>&nbsp;
 <?php }else {?>
-<a href="/Room/roomPosListSearch?roomId=<?php echo $room_id; ?>&positionType=<?php echo $type;?>&status=<?php echo $status;?>&page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<a href="<?php echo URL_APP_C;?>/Room/roomPosListSearch?roomId=<?php echo $room_id; ?>&positionType=<?php echo $type;?>&status=<?php echo $status;?>&page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
 <?php } 
 	 }
  ?>
