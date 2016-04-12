@@ -15,7 +15,7 @@ echo "<pre>";
 print_r($result);
 echo "</pre>";
 ?>
-<a href="/Choice/byRandSubmit">提交</a>
+<a href="<?php echo URL_APP_C;?>/Choice/byRandSubmit">提交</a>
 </div>
 </body>
 </html>

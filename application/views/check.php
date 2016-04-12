@@ -7,8 +7,8 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>来访问登记查询</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 	<style type="text/css">
 	.pages{width:100%;line-height:40px;text-align:center;}	
 	.pages a{color:#333;border:1px solid #888;padding:0 5px;}
@@ -17,7 +17,7 @@
 </head>
 <body class="roomList">
 <div class="topBg">
-<img src="/images/title_background.png" />
+<img src="<?php echo URL_APP;?>/images/title_background.png" />
 </div>
 <div class="roomListInfos membersUserList">
 <div class="headerLineBackground">
@@ -168,9 +168,9 @@
 <!--  bof 页码  -->
 
 <!--  eof 页码  -->
-<p class="backBtnMember"><a href="/Members/index">返回统计中心</a>
+<p class="backBtnMember"><a href="<?php echo URL_APP_C;?>/Members/index">返回统计中心</a>
 &nbsp;&nbsp;
-<a href="/Index/menus">菜单中心</a></p>
+<a href="<?php echo URL_APP_C;?>/Index/menus">菜单中心</a></p>
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -185,7 +185,7 @@ $(document).ready(function(){
 
     $(".addDate").click(function(){
         var userId = $(this).attr('data-attr');
-        var url = "/Members/addDateline";
+        var url = "<?php echo URL_APP_C;?>/Members/addDateline";
         var param = {user_id:userId};
         $.post(url,param,function(data){
             alert(data.msg);

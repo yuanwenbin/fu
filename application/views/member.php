@@ -7,8 +7,8 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/member.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<link href="<?php echo URL_APP;?>/css/member.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body>
 <div class="loginBox">
@@ -26,7 +26,7 @@
 	<tr>
 
 		<td>
-			<input type="image" name="submit" src="../images/loginBtnMember.png" class="loginInput3" />
+			<input type="image" name="submit" src="<?php echo URL_APP;?>/images/loginBtnMember.png" class="loginInput3" />
 					
 		</td>
 	</tr>
@@ -43,7 +43,7 @@ $(document).ready(function(){
 			alert("账号和密码都不能为空!");
 			return false;
 		}
-		var url = "/Index/memberValidate";
+		var url = "<?php echo URL_APP_C;?>/Index/memberValidate";
 		var param = {username:username,password:password};
 		$.post(url,param,function(data){
 			if(data.error)
@@ -52,7 +52,7 @@ $(document).ready(function(){
 				return false;
 			}else
 			{
-				window.location.href="/Index/menus";
+				window.location.href= "<?php echo URL_APP_C; ?>/Index/menus";
 			}
 		},'json');
 		return false;	

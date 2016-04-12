@@ -5,8 +5,8 @@
 <title>生辰八字</title>
 <meta name="keywords" content="seo keyword" />
 <meta name="description" content="description" />
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<link href='/css/fullcalendar.css' rel='stylesheet' />
+<link type="text/css" rel="stylesheet" href="<?php echo URL_APP;?>/css/style.css">
+<link href="<?php echo URL_APP;?>/css/fullcalendar.css" rel='stylesheet' />
 <style type="text/css">
 .dib{display:inline-block;}
 .date-zone {position: relative;width:200px;border: 1px solid #ccc;}
@@ -25,10 +25,10 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 </style>
 <!--  <script type="text/javascript" src="/js/laydate.js"></script> -->
 
-<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 
-<script src='/js/jquery-ui.custom.min.js'></script>
-<script src='/js/fullcalendar.js'></script>
+<script src="<?php echo URL_APP;?>/js/jquery-ui.custom.min.js"></script>
+<script src="<?php echo URL_APP;?>/js/fullcalendar.js"></script>
 <script type="text/javascript">
 /** 当天信息初始化 **/
 $(function() {
@@ -64,14 +64,14 @@ $(function() {
 	<!-- bof 11 -->
 	<div class="sjTop">
 	<ul>
-	<li><a href="/Choice/byRand"><img src="/images/sjBtn.png" /></a></li>
-	<li><a href="javascript:void(0);"><img src="/images/bzBtnImg.png" /></a></li>
+	<li><a href="<?php echo URL_APP_C;?>/Choice/byRand"><img src="<?php echo URL_APP;?>/images/sjBtn.png" /></a></li>
+	<li><a href="javascript:void(0);"><img src="<?php echo URL_APP;?>/images/bzBtnImg.png" /></a></li>
 	<?php if($highFlag) {?>
-	<li><a href="/Choice/byHigh"><img src="/images/gdBtn.png" /></a></li>
+	<li><a href="<?php echo URL_APP_C;?>/Choice/byHigh"><img src="<?php echo URL_APP;?>/images/gdBtn.png" /></a></li>
 	<?php }else{?>
-	<li><a href="javascript:void(0);"  class="refuseDevilery"><img src="/images/gdBtn.png" /></a></li>
+	<li><a href="javascript:void(0);"  class="refuseDevilery"><img src="<?php echo URL_APP;?>/images/gdBtn.png" /></a></li>
 	<?php } ?>
-	<li><a href="javascript:void(0);" id="noChoice"><img src="/images/myNoBtn.png" /></a></li>
+	<li><a href="javascript:void(0);" id="noChoice"><img src="<?php echo URL_APP;?>/images/myNoBtn.png" /></a></li>
 	</ul>
 	<br class="clearBoth" />
 	<!-- bof selectPrice -->
@@ -96,12 +96,12 @@ $(function() {
 	<form id="bzForm">
 	<table>
 		<tr style="height:60px;">
-			<td width="120"><img src="/images/name.png" /></td>
+			<td width="120"><img src="<?php echo URL_APP;?>/images/name.png" /></td>
 			<td><input type="text" name="username" value="" /></td>
 		</tr>
 
 		<tr style="height:60px;">
-			<td width="120"><img src="/images/birthday.png" /></td>
+			<td width="120"><img src="<?php echo URL_APP;?>/images/birthday.png" /></td>
 				<td>
 				<div class="demo1"><!-- 
 		<input class="laydate-icon" id="demo" name="userbirth" value=""> -->
@@ -109,7 +109,7 @@ $(function() {
 	<div class="date-zone">
 		
 		<input type="text" class="date-inp" name="datetimes">
-		<span class="icon_date"><img src="/images/icon_date.png"></span>
+		<span class="icon_date"><img src="<?php echo URL_APP;?>/images/icon_date.png"></span>
 		<div class="calendarWrapper">
 		    <div id="calendar" class="dib"></div>
 		</div>
@@ -122,7 +122,7 @@ $(function() {
 		</tr>
 
 		<tr style="height:60px;">
-			<td width="120"><img src="/images/time.png" /></td>
+			<td width="120"><img src="<?php echo URL_APP;?>/images/time.png" /></td>
 			<td>
 			<select name="stime" class="stime">
 			<option value="子时(23:00-00:59)">子时(23:00-00:59)</option>
@@ -143,7 +143,7 @@ $(function() {
 
 		<tr style="height:108px;">
 			<td>&nbsp;</td>
-			<td><a href="javascript:void(0);" id="eightBtn"><img src="/images/ksxh.jpg" /></a></td>
+			<td><a href="javascript:void(0);" id="eightBtn"><img src="<?php echo URL_APP;?>/images/ksxh.jpg" /></a></td>
 		</tr>
 	</table>
 	</form>
@@ -199,10 +199,10 @@ $(document).ready(function(){
 		alert("请输入正确的姓名，生日，时辰，再选号");
 		return false;
 	}
-	$.post('/Choice/byEightDeal', {username:username,userbirth:userbirth,stime:stime}, function(data){
+	$.post("<?php echo URL_APP_C;?>/Choice/byEightDeal", {username:username,userbirth:userbirth,stime:stime}, function(data){
 		if(!data.error)
 		{
-			 window.document.location.href="/Choice/index";
+			 window.document.location.href="<?php echo URL_APP_C;?>/Choice/index";
 		}else
 		{
 			 alert(data.msg);
@@ -216,16 +216,16 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$("select[name='selectPriceBox']").change(function(){
 		var selectPrice = $(this).val();
-		var url = "/Choice/selectRoom";
+		var url = "<?php echo URL_APP_C;?>/Choice/selectRoom";
 		var param = {price:selectPrice,type:0};
 		$.post(url,param,function(data){
 			if(!data.error)
 			{
-				window.location.href="/Choice/byEight";
+				window.location.href="<?php echo URL_APP_C;?>/Choice/byEight";
 			}else
 			{
 				alert(data.msg+",请重新切换或联系管理员!");
-				window.location.href="/Choice/byEight";
+				window.location.href="<?php echo URL_APP_C;?>/Choice/byEight";
 			}	
 		},'json');		
 	});
@@ -327,7 +327,7 @@ $(document).ready(function(){
 			$("#notice").html("请输入密码");
 			return false;
 		}
-		var url = "/Choice/highCheckPass";
+		var url = "<?php echo URL_APP_C;?>/Choice/highCheckPass";
 		var param = {pass:pass};
 		$.post(url,param,function(data){
 			if(data.error)
@@ -335,7 +335,7 @@ $(document).ready(function(){
 				$("#notice").html(data.msg);
 			}else
 			{
-				window.location.href="/Choice/byHigh";
+				window.location.href="<?php echo URL_APP_C;?>/Choice/byHigh";
 				$("#myDiv").removeClass('myDiv');
 			}
 		},'json');

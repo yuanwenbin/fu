@@ -15,7 +15,7 @@ echo "<pre>";
 print_r($result);
 echo "</pre>";
 ?>
-<a href="/Choice/index">点击查看详情</a>
+<a href="<?php echo URL_APP_C; ?>/Choice/index">点击查看详情</a>
 </div>
 </body>
 </html>

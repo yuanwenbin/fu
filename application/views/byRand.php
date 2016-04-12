@@ -5,7 +5,7 @@
 <title>随机选号</title>
 <meta name="keywords" content="seo keyword" />
 <meta name="description" content="description" />
-<link type="text/css" rel="stylesheet" href="/css/style.css">
+<link type="text/css" rel="stylesheet" href="<?php echo URL_APP;?>/css/style.css">
 <style type="text/css">
 #refuseContent{position:fixed;z-index:9999;display:none;height:145px;width:280px;border:1px solid #444;background:#fff;overflow-y:auto;}
 .refuseContent{margin:15px;margin-top:35px;}
@@ -30,7 +30,7 @@
 filter:Alpha(opacity=50);-moz-opacity:0.5; 
 opacity:0.5;z-index:9999;margin-top:-187px;}
 </style>
-<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
 <body class="bodySj">
 <div id="myDiv"></div>
@@ -39,14 +39,14 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 	<!-- bof 11 -->
 	<div class="sjTop">
 	<ul>
-	<li><a href="javascript:void(0);"><img src="/images/sjBtnImg.png" /></a></li>
-	<li><a href="/Choice/byEight"><img src="/images/bzBtn.png" /></a></li>
+	<li><a href="javascript:void(0);"><img src="<?php echo URL_APP;?>/images/sjBtnImg.png" /></a></li>
+	<li><a href="<?php echo URL_APP_C;?>/Choice/byEight"><img src="<?php echo URL_APP;?>/images/bzBtn.png" /></a></li>
 	<?php if($highFlag) {?>
-	<li><a href="/Choice/byHigh"><img src="/images/gdBtn.png" /></a></li>
+	<li><a href="<?php echo URL_APP_C;?>/Choice/byHigh"><img src="<?php echo URL_APP;?>/images/gdBtn.png" /></a></li>
 	<?php }else{?>
-	<li><a href="javascript:void(0);"  class="refuseDevilery"><img src="/images/gdBtn.png" /></a></li>
+	<li><a href="javascript:void(0);"  class="refuseDevilery"><img src="<?php echo URL_APP;?>/images/gdBtn.png" /></a></li>
 	<?php } ?>
-	<li><a href="javascript:void(0);" id="noChoice"><img src="/images/myNoBtn.png" /></a></li>
+	<li><a href="javascript:void(0);" id="noChoice"><img src="<?php echo URL_APP;?>/images/myNoBtn.png" /></a></li>
 	</ul>
 	<br class="clearBoth" />
 	<!-- bof selectPrice -->
@@ -70,10 +70,10 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 	<!-- bof 22 -->
 	<div class="sjBanner" id="lottery">
 		<ul>
-			<li  class="lottery-unit lottery-unit-0"><img src="/images/ico.png" /></li>
-			<li  class="lottery-unit lottery-unit-1"><img src="/images/ico.png" /></li>
-			<li  class="lottery-unit lottery-unit-2"><img src="/images/ico.png" /></li>
-			<li class="lottery-unit lottery-unit-3"><img src="/images/ico.png" /></li>
+			<li  class="lottery-unit lottery-unit-0"><img src="<?php echo URL_APP;?>/images/ico.png" /></li>
+			<li  class="lottery-unit lottery-unit-1"><img src="<?php echo URL_APP;?>/images/ico.png" /></li>
+			<li  class="lottery-unit lottery-unit-2"><img src="<?php echo URL_APP;?>/images/ico.png" /></li>
+			<li class="lottery-unit lottery-unit-3"><img src="<?php echo URL_APP;?>/images/ico.png" /></li>
 		</ul>
 		<br class="clearBoth" />
 	</div>
@@ -81,15 +81,15 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 
 	<!-- bof 33 -->
 	<div class="sjChoiceBtn">
-	<a href="javascript:void(0);" class="startRand" id="startRand"><img src="/images/ksxh.jpg" /></a>
+	<a href="javascript:void(0);" class="startRand" id="startRand"><img src="<?php echo URL_APP;?>/images/ksxh.jpg" /></a>
 	
 	<?php if($userInfo['user_selected']) {?>
 	<a href="javascript:void(0);" class="cancelBtn" id="cancelBtn">
-	<img src="/images/qxcx.jpg" />
+	<img src="<?php echo URL_APP;?>/images/qxcx.jpg" />
 	</a>
 	<?php }else{?>
 	<a href="javascript:void(0);" class="cancelBtn" id="cancelBtn_1">
-	<img src="/images/qxcx_1.png" />
+	<img src="<?php echo URL_APP;?>/images/qxcx_1.png" />
 	</a>
 	<?php }?>
 	</div>
@@ -99,12 +99,12 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 	<div class="sureBtn">
 	
 	<?php if($userInfo['user_selected']) {?>
-	<a href="/Choice/byRandSubmit">
-	<img src="/images/qdxh.jpg" />
+	<a href="<?php echo URL_APP_C;?>/Choice/byRandSubmit">
+	<img src="<?php echo URL_APP;?>/images/qdxh.jpg" />
 	</a>
 	<?php }else{?>
 	<a href="javascript:void(0);">
-	<img src="/images/qdxh_1.png" />
+	<img src="<?php echo URL_APP;?>/images/qdxh_1.png" />
 	</a>
 	<?php }?>
 	
@@ -283,7 +283,7 @@ var click=false;
 $(document).ready(function(){
 	lottery.init('lottery');
     $(".startRand").click(function(){
-		$('#lottery ul li').removeClass('active').eq(0).html("<img src=\"/images/ico.png\">");
+		$('#lottery ul li').removeClass('active').eq(0).html("<img src=\"<?php echo URL_APP;?>/images/ico.png\">");
 		if (click) {
 			return false;
 		}else{
@@ -292,7 +292,7 @@ $(document).ready(function(){
 			click=true;
 			lottery.stop();
 
-			$.post('/Choice/byRandDo',{r:Math.random()},function(data){
+			$.post("<?php echo URL_APP_C;?>/Choice/byRandDo",{r:Math.random()},function(data){
 				if(data.error)
 				{
 					//window.location.href="/Index/index";
@@ -303,8 +303,8 @@ $(document).ready(function(){
 				$("#randnotice").attr({'data-attr':data.count});
 				if(data.count == 1 )
 				{
-					$('.cancelBtn').html("<img src=\"/images/qxcx.jpg\" />");
-				    $('.sureBtn').html("<a href=\"/Choice/byRandSubmit\"><img src=\"/images/qdxh.jpg\" /></a>");
+					$('.cancelBtn').html("<img src=\"<?php echo URL_APP;?>/images/qxcx.jpg\" />");
+				    $('.sureBtn').html("<a href=\"<?php echo URL_APP_C;?>/Choice/byRandSubmit\"><img src=\"<?php echo URL_APP;?>/images/qdxh.jpg\" /></a>");
 				    //显示号码
 				    // $('#lottery ul li.active').html(data.msg);
 				    var code = "";
@@ -319,8 +319,8 @@ $(document).ready(function(){
 					return false;
 				}else if(data.count == 2)
 				{
-					$('.cancelBtn').html("<img src=\"/images/qxcx.jpg\" />");
-				    $('.sureBtn').html("<a href=\"/Choice/byRandSubmit\"><img src=\"/images/qdxh.jpg\" /></a>");
+					$('.cancelBtn').html("<img src=\"<?php echo URL_APP;?>/images/qxcx.jpg\" />");
+				    $('.sureBtn').html("<a href=\"<?php echo URL_APP_C;?>/Choice/byRandSubmit\"><img src=\"<?php echo URL_APP;?>/images/qdxh.jpg\" /></a>");
 				    //显示号码
 				    // $('#lottery ul li.active').html(data.msg);
 				    if(data.msg != "先验证")
@@ -358,7 +358,7 @@ $(document).ready(function(){
 				{   
 					$('#lottery ul li').removeClass('active').eq(0).addClass('active').html("选号中...");
 					// $('#lottery ul li').removeClass('active').eq(0).addClass('active').html(data.msg);
-					window.location.href="/Choice/byRandSubmit";
+					window.location.href="<?php echo URL_APP_C;?>/Choice/byRandSubmit";
 					return true;
 				}				
 			}, 'json');
@@ -404,7 +404,7 @@ $(document).ready(function(){
         			$("#randnotice").html("请输入密码");
         			return false;
         		}
-        		 var url = "/Choice/randCheckPass";
+        		 var url = "<?php echo URL_APP_C;?>/Choice/randCheckPass";
         		var param = {pass:pass};
         		$.post(url,param,function(data){
         			if(data.error)
@@ -416,17 +416,17 @@ $(document).ready(function(){
                 		$("#randnotice").html("");
                 		$("#myDiv").removeClass('myDiv');
                 		//取消按钮
-                        $('#lottery ul li').removeClass('active').html("<img src=\"/images/ico.png\" />");
-                        $('#cancelBtn_1').html("<img src=\"/images/qxcx_1.png\" />");
-                        $('.sureBtn').html("<a href=\"javascript:void(0);\"><img src=\"/images/qdxh_1.png\" /></a>");
+                        $('#lottery ul li').removeClass('active').html("<img src=\"<?php echo URL_APP;?>/images/ico.png\" />");
+                        $('#cancelBtn_1').html("<img src=\"<?php echo URL_APP;?>/images/qxcx_1.png\" />");
+                        $('.sureBtn').html("<a href=\"javascript:void(0);\"><img src=\"<?php echo URL_APP;?>/images/qdxh_1.png\" /></a>");
         			}
         		},'json');
         	});
         	return false;
         }
-        $('#lottery ul li').removeClass('active').html("<img src=\"/images/ico.png\" />");
-        $(this).html("<img src=\"/images/qxcx_1.png\" />");
-        $('.sureBtn').html("<a href=\"javascript:void(0);\"><img src=\"/images/qdxh_1.png\" /></a>");
+        $('#lottery ul li').removeClass('active').html("<img src=\"<?php echo URL_APP;?>/images/ico.png\" />");
+        $(this).html("<img src=\"<?php echo URL_APP;?>/images/qxcx_1.png\" />");
+        $('.sureBtn').html("<a href=\"javascript:void(0);\"><img src=\"<?php echo URL_APP;?>/images/qdxh_1.png\" /></a>");
     });
 	
 });
@@ -460,7 +460,7 @@ $(document).ready(function(){
 			$("#notice").html("请输入密码");
 			return false;
 		}
-		var url = "/Choice/highCheckPass";
+		var url = "<?php echo URL_APP_C;?>/Choice/highCheckPass";
 		var param = {pass:pass};
 		$.post(url,param,function(data){
 			if(data.error)
@@ -468,7 +468,7 @@ $(document).ready(function(){
 				$("#notice").html(data.msg);
 			}else
 			{
-				window.location.href="/Choice/byHigh";
+				window.location.href="<?php echo URL_APP_C;?>/Choice/byHigh";
 				$("#myDiv").removeClass('myDiv');
 			}
 		},'json');
@@ -491,7 +491,7 @@ $(document).ready(function(){
 		$("#priceContent").show();
 		$("input[name='submitPrice']").click(function(data){
 			$("#priceNotice").html("");
-			var url = "/Choice/selectRoom";
+			var url = "<?php echo URL_APP_C;?>/Choice/selectRoom";
 			var price = $("select[name='price']").val();
 			var param = {price:price,type:0};
 			$.post(url,param,function(data){
@@ -500,7 +500,7 @@ $(document).ready(function(){
 					$("#priceNotice").html(data.msg);
 				}else
 				{
-					window.location.href="/Choice/byRand";
+					window.location.href="<?php echo URL_APP_C;?>/Choice/byRand";
 				}	
 			},'json');
 			
@@ -511,17 +511,17 @@ $(document).ready(function(){
 	// 可以重新选择价格
 	$("select[name='selectPriceBox']").change(function(){
 		var selectPrice = $(this).val();
-		var url = "/Choice/selectRoom";
+		var url = "<?php echo URL_APP_C;?>/Choice/selectRoom";
 		var param = {price:selectPrice,type:0};
 	
 		$.post(url,param,function(data){
 			if(!data.error)
 			{
-				window.location.href="/Choice/byRand";
+				window.location.href="<?php echo URL_APP_C;?>/Choice/byRand";
 			}else
 			{
 				alert(data.msg+",请重新切换或联系管理员!");
-				window.location.href="/Choice/byRand";
+				window.location.href="<?php echo URL_APP_C;?>/Choice/byRand";
 			}	
 		},'json');		
 	});

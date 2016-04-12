@@ -5,8 +5,8 @@
 <title>随</title>
 <meta name="keywords" content="seo keyword" />
 <meta name="description" content="description" />
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="<?php echo URL_APP;?>/css/style.css">
+<script src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
 <body class="bodySj">
 <!-- bof container-->
@@ -14,10 +14,10 @@
 	<!-- bof 11 -->
 	<div class="sjTop">
 	<ul>
-	<li><a href="/Choice/byRand"><img src="/images/sjBtnImg.png" /></a></li>
-	<li><a href=""><img src="/images/bzBtn.png" /></a></li>
-	<li><a href=""><img src="/images/gdBtn.png" /></a></li>
-	<li><a href=""><img src="/images/myNoBtn.png" /></a></li>
+	<li><a href="<?php echo URL_APP_C;?>/Choice/byRand"><img src="<?php echo URL_APP;?>/images/sjBtnImg.png" /></a></li>
+	<li><a href=""><img src="<?php echo URL_APP;?>/images/bzBtn.png" /></a></li>
+	<li><a href=""><img src="<?php echo URL_APP;?>/images/gdBtn.png" /></a></li>
+	<li><a href=""><img src="<?php echo URL_APP;?>/images/myNoBtn.png" /></a></li>
 	</ul>
 	<br class="clearBoth" />
 	</div>
@@ -26,10 +26,10 @@
 	<!-- bof 22 -->
 	<div class="sjBanner">
 		<ul>
-			<li><img src="/images/ico.png" /></li>
-			<li><img src="/images/ico.png" /></li>
-			<li><img src="/images/ico.png" /></li>
-			<li><img src="/images/ico.png" /></li>
+			<li><img src="<?php echo URL_APP;?>/images/ico.png" /></li>
+			<li><img src="<?php echo URL_APP;?>/images/ico.png" /></li>
+			<li><img src="<?php echo URL_APP;?>/images/ico.png" /></li>
+			<li><img src="<?php echo URL_APP;?>/images/ico.png" /></li>
 		</ul>
 		<br class="clearBoth" />
 	</div>
@@ -37,14 +37,14 @@
 
 	<!-- bof 33 -->
 	<div class="sjChoiceBtn">
-	<a href=""><img src="/images/ksxh.jpg" /></a>
-	<a href="" class="cancelBtn"><img src="/images/qxcx.jpg" /></a>
+	<a href=""><img src="<?php echo URL_APP;?>/images/ksxh.jpg" /></a>
+	<a href="" class="cancelBtn"><img src="<?php echo URL_APP;?>/images/qxcx.jpg" /></a>
 	</div>
 	<!-- eof 33 -->
 
 	<!-- bof 44 -->
 	<div class="sureBtn">
-	<a href=""><img src="/images/qdxh.jpg" /></a>
+	<a href=""><img src="<?php echo URL_APP;?>/images/qdxh.jpg" /></a>
 	</div>
 	<!-- eof 44 -->
 </div>

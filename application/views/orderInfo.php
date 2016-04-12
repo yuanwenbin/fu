@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div>
 <?php echo $tips; ?><br />
-<a href="/Index/index">点击返回登陆</a><br />
+<a href="<?php echo URL_APP_C; ?>/Index/index">点击返回登陆</a><br />
 
 <p>福位号码:<?php echo $order['order_location_id']; ?></p>
 <p>福位状态:成功购买</p>

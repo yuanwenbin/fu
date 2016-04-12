@@ -5,24 +5,24 @@
 <title>登陆页面</title>
 <meta name="keywords" content="seo keyword" />
 <meta name="description" content="description" />
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="<?php echo URL_APP;?>/css/style.css">
+<script src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
 <body class="bodyLogin">
 <div class="login">
-<form method="post" action="/Index/login">
+<form method="post" action="<?php echo URL_APP_C;?>/Index/login">
 	<table border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td align="center"><input type="text" name="bodyId" value="" class="bodyId" /></td>
 	</tr>
 	<tr>
 		<td align="center"><p class="loginTips">
-		<a href="/Index/logout">清空信息</a>&nbsp;&nbsp;
-		<a href="/Index/menus">菜单中心</a>
+		<a href="<?php echo URL_APP_C;?>/Index/logout">清空信息</a>&nbsp;&nbsp;
+		<a href="<?php echo URL_APP_C;?>/Index/menus">菜单中心</a>
 		</p></td>
 	</tr>
 	<tr>
-		<td  align="center"><input type="image" name="submit" src="/images/loginBtn.png" /></td>
+		<td  align="center"><input type="image" name="submit" src="<?php echo URL_APP;?>/images/loginBtn.png" /></td>
 	</tr>
 	
 	</table>

@@ -7,12 +7,12 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
-	<link href="/css/member.css" rel="stylesheet" type="text/css" />
-	<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+	<link href="<?php echo URL_APP;?>/css/member.css" rel="stylesheet" type="text/css" />
+	<script src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="topBg">
-<img src="/images/title_background.png" />
+<img src="<?php echo URL_APP;?>/images/title_background.png" />
 </div>
 <div class="register">
 	<form>
@@ -43,7 +43,7 @@
 			<td height="28">&nbsp;
 			<input type="reset" name="reset" value="重置" />&nbsp;&nbsp;
 			<input type="submit" name="submit" value="提交" />&nbsp;&nbsp;
-			<a href="/Index/menus">菜单中心</a>
+			<a href="<?php echo URL_APP_C;?>/Index/menus">菜单中心</a>
 			</td>
 		</tr>
 	</table>
@@ -82,7 +82,7 @@ $(document).ready(function(){
 			 alert('请输入有效的手机号码！'); 
 			 return false; 
 	 } 
-		var url = "/Index/registerDeal";
+		var url = "<?php echo URL_APP_C;?>/Index/registerDeal";
 		var param = {body_id:body_id,user_telphone:user_telphone,user_phone:user_phone};
 		$.post(url,param,function(data){
 			alert(data.msg);
@@ -91,7 +91,7 @@ $(document).ready(function(){
 				return false;
 			}else
 			{
-				window.location.href="/Index/menus";
+				window.location.href="<?php echo URL_APP_C;?>/Index/menus";
 				return true;
 			}
 		},'json');

@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div>
 出错了，你已经有预订的牌位了，有疑问联系管理员<br />
-<a href="/Index/index">点击返回登陆</a>
+<a href="<?php echo URL_APP_C;?>/Index/index">点击返回登陆</a>
 </div>
 </body>
 </html>

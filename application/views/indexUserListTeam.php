@@ -7,7 +7,7 @@
 	<meta name="renderer" content="webkit">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php echo $this->session->member_username; ?>-组长-统计中心</title>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 	.pages{width:100%;line-height:40px;text-align:center;}	
 	.pages a{color:#333;border:1px solid #888;padding:0 5px;}
@@ -16,7 +16,7 @@
 </head>
 <body class="roomList">
 <div class="topBg">
-<img src="/images/title_background.png" />
+<img src="<?php echo URL_APP;?>/images/title_background.png" />
 </div>
 <div class="roomListInfos membersUserList">
 <h3 class="headerLineBackground">
@@ -65,7 +65,7 @@ if($page > 1) {
 			continue;
 		}
 ?>
-	<a href="/Index/indexUserListTeam?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+	<a href="<?php echo URL_APP_C;?>/Index/indexUserListTeam?page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
 <?php } }
 	$toPage = $page + 5;
 	for($ii=$page; $ii<=$toPage;$ii++)
@@ -78,15 +78,15 @@ if($page > 1) {
 <?php if($ii == $page) {?>
 <font><?php echo $ii; ?></font>&nbsp;
 <?php }else {?>
-<a href="/Index/indexUserListTeam?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<a href="<?php echo URL_APP_C;?>/Index/indexUserListTeam?page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
 <?php  
 	} }
  ?>
 </p>
 <!--  eof 页码  -->
-<p class="backBtnMember"><a href="/Index/infoList">返回统计中心</a>
+<p class="backBtnMember"><a href="<?php echo URL_APP_C;?>/Index/infoList">返回统计中心</a>
 &nbsp;&nbsp;
-<a href="/Index/menus">菜单中心</a></p>
+<a href="<?php echo URL_APP_C;?>/Index/menus">菜单中心</a></p>
 </div>
 
 
