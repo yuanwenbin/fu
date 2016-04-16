@@ -263,6 +263,23 @@ class Order_model extends CI_Model
     	}
     }
     
+    function updateData($tableName,$param,$where)
+    {
+        $str = "";
+        $whereStr = " where 1=1 ";
+        foreach($param as $k=>$v)
+        {
+            $str .= $k . "='" . $v . "',";
+        }
+        $str = substr($str,0,-1);
+        foreach ($where as $kk=>$vv)
+        {
+            $whereStr .= " and " . $kk . " = " . $vv;
+        }
+        $sql = "update " . $tableName . " set " . $str . $whereStr;
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
     function delOrder($order_id)
     {
         $res = $this->searchInfos('fu_order_info', array('order_id'=>$order_id));
