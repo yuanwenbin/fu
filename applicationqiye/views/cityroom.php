@@ -7,9 +7,9 @@
 <meta name="Description" content="<?php //echo $details ? $details[0]['article_description'] : '';?>" />
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
-<link href="/css/style.css" rel="stylesheet" type="text/css" />
-<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-<script src="/js/js.js" type="text/javascript"></script>
+<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="<?php echo URL_APP;?>/js/js.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="container">
@@ -18,7 +18,7 @@
 
 		<!-- bof headerTop -->
 		<div class="headerTop">
-		<img src="/images/topbg.png" />
+		<img src="<?php echo URL_APP;?>/images/topbg.png" />
 		</div>
 		<!-- eof headerTop -->
 
@@ -27,7 +27,7 @@
 	  <div class="menuTopList">
 		<ul>
 		  <li class="menuTopList_0">
-		  <a href="/">首页</a></li>
+		  <a href="<?php echo URL_APP_C;?>">首页</a></li>
 		  <?php
 		  if($cate['cate']) {
 			foreach($cate['cate'] as $k=>$v)
@@ -35,7 +35,7 @@
 		        ?>
 			  <li>
 			  <?php if(!$v['sub']) {?>
-			  <a href="/Index/details/<?php echo $v['parent']['cate_id'];?>">
+			  <a href="<?php echo URL_APP_C;?>/Index/details/<?php echo $v['parent']['cate_id'];?>">
 			  <?php }else{?>
 			  <a href="javascript:void(0)">
 			  <?php } ?>
@@ -45,7 +45,7 @@
 				echo "<div class='subMenu'>";
 				foreach($v['sub'] as $kk=>$vv) { ?>
 				  
-				  <p><a href="/Index/listitem/<?php echo $vv['cate_id']; ?>"><?php echo $vv['cate_name']; ?></a></p>
+				  <p><a href="<?php echo URL_APP_C;?>/Index/listitem/<?php echo $vv['cate_id']; ?>"><?php echo $vv['cate_name']; ?></a></p>
 				  
 			 <?php } 
 				echo "</div>";
@@ -76,7 +76,7 @@
 			<div class="details_1 details_about_city">
 				<div class="details_1_top">
 					<div class="details_1_top_left">
-						<h3><img src="/images/headline.jpg" /></h3>
+						<h3><img src="<?php echo URL_APP;?>/images/headline.jpg" /></h3>
 						<div>
 						<p>第一次是在1956年由毛泽东等老一辈无产阶级革命家提出火化。如八宝山，国家领导人及社会名流逝世以后均以塔陵的形式供奉于殿堂内。</p>
 
@@ -87,14 +87,14 @@
 					</div>
 
 					<div class="details_1_top_right">
-					<img src="/images/city1.jpg" />
+					<img src="<?php echo URL_APP;?>/images/city1.jpg" />
 					</div>
 					<div class="clearBoth"></div>
 				</div>
 
 				<!-- bof -->
 				<div class="cityRoom_bg">
-					<img src="/images/ct02.png" />
+					<img src="<?php echo URL_APP;?>/images/ct02.png" />
 				</div>
 				<!-- eof -->
 
@@ -102,9 +102,9 @@
 				<div class="details_1_top">
 					<div class="details_1_bottom_left">
 						<ul>
-						<li><img src="/images/city2.jpg" /></li>
-						<li><img src="/images/city3.jpg" /></li>
-						<li><img src="/images/city4.jpg" /></li>
+						<li><img src="<?php echo URL_APP;?>/images/city2.jpg" /></li>
+						<li><img src="<?php echo URL_APP;?>/images/city3.jpg" /></li>
+						<li><img src="<?php echo URL_APP;?>/images/city4.jpg" /></li>
 						</ul>
 					</div>	
 

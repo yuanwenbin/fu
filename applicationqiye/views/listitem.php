@@ -7,9 +7,9 @@
 <meta name="Description" content="<?php //echo $details ? $details[0]['article_description'] : '';?>" />
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
-<link href="/css/style.css" rel="stylesheet" type="text/css" />
-<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-<script src="/js/js.js" type="text/javascript"></script>
+<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="<?php echo URL_APP;?>/js/js.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="container">
@@ -17,7 +17,7 @@
   <div class="header">
 	<!-- bof headerTop -->
 	<div class="headerTop">
-	<img src="/images/topbg.png" />
+	<img src="<?php echo URL_APP;?>/images/topbg.png" />
 	</div>
 	<!-- eof headerTop -->
 	<!-- bof menuTop -->
@@ -25,7 +25,7 @@
 	  <div class="menuTopList">
 		<ul>
 		  <li class="menuTopList_0">
-		  <a href="/">首页</a></li>
+		  <a href="<?php echo URL_APP_C;?>">首页</a></li>
 		  <?php   
 		  if($cate['cate']) {
 			foreach($cate['cate'] as $k=>$v)
@@ -33,7 +33,7 @@
 		        ?>
 			  <li>
 			  <?php if(!$v['sub']) {?>
-			  <a href="/Index/details/<?php echo $v['parent']['cate_id'];?>">
+			  <a href="<?php echo URL_APP_C;?>/Index/details/<?php echo $v['parent']['cate_id'];?>">
 			  <?php }else{?>
 			  <a href="javascript:void(0)">
 			  <?php } ?>
@@ -43,7 +43,7 @@
 				echo "<div class='subMenu'>";
 				foreach($v['sub'] as $kk=>$vv) { ?>
 				  
-				  <p><a href="/Index/listitem/<?php echo $vv['cate_id']; ?>"><?php echo $vv['cate_name']; ?></a></p>
+				  <p><a href="<?php echo URL_APP_C;?>/Index/listitem/<?php echo $vv['cate_id']; ?>"><?php echo $vv['cate_name']; ?></a></p>
 				  
 			 <?php } 
 				echo "</div>";
@@ -86,7 +86,7 @@
 			<?php
 			foreach($result['subCate'] as $k=>$v) { 
 			?>
-			<li <?php echo ($v['cate_id'] == $parent_id) ? "id='current'" :'';?>><a  href="/Index/listitem/<?php echo $v['cate_id'];?>"><?php echo $v['cate_name']; ?></a></li>
+			<li <?php echo ($v['cate_id'] == $parent_id) ? "id='current'" :'';?>><a  href="<?php echo URL_APP_C;?>/Index/listitem/<?php echo $v['cate_id'];?>"><?php echo $v['cate_name']; ?></a></li>
 			<?php } ?>
 			</ul>
 			</div>
@@ -104,7 +104,7 @@
 					}else {
 						foreach($result['listArticles'] as $kk=>$vv) { 
 						?>
-						<li><a href="/Index/listDetail/<?php echo $cateName->cate_id;?>/<?php echo $vv['article_id']; ?>"><?php echo $vv['article_title']; ?></a></li>
+						<li><a href="<?php echo URL_APP_C;?>/Index/listDetail/<?php echo $cateName->cate_id;?>/<?php echo $vv['article_id']; ?>"><?php echo $vv['article_title']; ?></a></li>
 					<?php } } ?>
 					</ul>
 				</div>
@@ -121,7 +121,7 @@
 				<?php
 					for($i=1; $i<=$result['totalPages'];$i++){
 				?>
-				<span><a href="/Index/listitem/<?php echo $parent_id; ?>/<?php echo $i;?>">
+				<span><a href="<?php echo URL_APP_C;?>/Index/listitem/<?php echo $parent_id; ?>/<?php echo $i;?>">
 				<?php echo $i; ?></a>
 				</span>&nbsp;&nbsp;
 				<?php } } ?>

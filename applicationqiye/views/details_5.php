@@ -7,14 +7,14 @@
 <meta name="Description" content="<?php //echo $details ? $details[0]['article_description'] : '';?>" />
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
-<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 		.apibaidumap{width: 600px;height: 372px;}
 		#allmap{width: 600px;height:372px;}
 		
 	</style>
-<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-<script src="/js/js.js" type="text/javascript"></script>
+<script src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="<?php echo URL_APP;?>/js/js.js" type="text/javascript"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LlUdQsksnGzZUvWPQRNpckxD"></script>
 </head>
 <body>
@@ -23,7 +23,7 @@
   <div class="header">
 	<!-- bof headerTop -->
 	<div class="headerTop">
-	<img src="/images/topbg.png" />
+	<img src="<?php echo URL_APP;?>/images/topbg.png" />
 	</div>
 	<!-- eof headerTop -->
 	<!-- bof menuTop -->
@@ -31,7 +31,7 @@
 	  <div class="menuTopList">
 		<ul>
 		  <li class="menuTopList_0">
-		  <a href="/">首页</a></li>
+		  <a href="<?php echo URL_APP_C;?>">首页</a></li>
 		  <?php   
 		  if($cate['cate']) {
 			foreach($cate['cate'] as $k=>$v)
@@ -39,7 +39,7 @@
 		        ?>
 			  <li>
 			  <?php if(!$v['sub']) {?>
-			  <a href="/Index/details/<?php echo $v['parent']['cate_id'];?>">
+			  <a href="<?php echo URL_APP_C;?>/Index/details/<?php echo $v['parent']['cate_id'];?>">
 			  <?php }else{?>
 			  <a href="javascript:void(0)">
 			  <?php } ?>
@@ -49,7 +49,7 @@
 				echo "<div class='subMenu'>";
 				foreach($v['sub'] as $kk=>$vv) { ?>
 				  
-				  <p><a href="/Index/listitem/<?php echo $vv['cate_id']; ?>"><?php echo $vv['cate_name']; ?></a></p>
+				  <p><a href="<?php echo URL_APP_C;?>/Index/listitem/<?php echo $vv['cate_id']; ?>"><?php echo $vv['cate_name']; ?></a></p>
 				  
 			 <?php } 
 				echo "</div>";
