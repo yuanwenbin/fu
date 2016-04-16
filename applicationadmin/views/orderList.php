@@ -110,9 +110,9 @@ if($result['order_payment'] == 'all'){
 	<th width="12%" align="center">下单时间</th>
 	<!--  <th width="10%" align="center">金额</th> -->
 	<th width="8%" align="center">是否支付</th>
-	<th width="8%" align="center">订单来源</th>
+	<th width="6%" align="center">订单来源</th>
 	<th width="10%" align="center">操作</th>
-	<th width="9%" align="center">操作员</th>
+	<th width="11%" align="center">到期时间</th>
 
 </tr>
 <?php
@@ -149,7 +149,7 @@ foreach($result['resultList'] as $k=>$v){
 	}
 	?>
 	</td>
-	<td width="8%" align="center">
+	<td width="6%" align="center">
 	<?php echo $v['source'] ? $source[$v['source']] :'管理员：' .$username; ?> 
 	</td>
 	<td width="10%" align="center" class="orderListDetails">
@@ -157,8 +157,17 @@ foreach($result['resultList'] as $k=>$v){
 	查看
 	</a>&nbsp;&nbsp;
 	<a data-attr="<?php echo $v['order_id']; ?>" class="del" href="javascript:void(0);">删除</a>
+	<?php if(!$v['order_payment']) {?>
+	<a href="<?php echo URL_APP_C;?>/Order/addDate?id=<?php echo $v['order_id']; ?>">报备</a>
+	<?php }?>
 	</td>
-	<td width="9%" align="center"><?php echo $v['order_admin']; ?></td>
+	<td width="11%" align="center">
+	<?php 
+    if(!$v['order_payment'])
+    {
+        echo date('Y-m-d H:i:s', $v['order_datetime']+$v['add_datetime']+7200);   
+    }
+	?></td>
 </tr>
 	<tr>
 		<td colspan="9"><hr/></td>
@@ -177,7 +186,7 @@ foreach($result['resultList'] as $k=>$v){
 	$datetimes = '';
 	$datetime = isset($result['datetime']) && $result['datetime'] ? date('Y-m-d H:i:s', $result['datetime']) : '';
 	$datetimes = isset($result['datetimes']) && $result['datetimes'] ? date('Y-m-d H:i:s', $result['datetimes']) : '';
-	$preUrl="<?php echo URL_APP_C;?>/Order/orderList?order_room_id=".$result['order_room_id']."&order_location_type=".$result['order_location_type'];
+	$preUrl="/Order/orderList?order_room_id=".$result['order_room_id']."&order_location_type=".$result['order_location_type'];
 	$preUrl .= "&order_payment=".$result['order_payment']."&bodyId=".$result['bodyId']."&datetime=".$datetime."&datetimes=".$datetimes;
 ?>
 <p class="pages">
@@ -192,7 +201,7 @@ if($result['page'] > 1) {
 			continue;
 		}
 ?>
-	<a href="<?php echo $preUrl;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
+	<a href="<?php echo URL_APP_C;?><?php echo $preUrl;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>&nbsp;		
 <?php } }
 	$toPage = $result['page'] + 5;
 	for($ii=$result['page']; $ii<=$toPage;$ii++)
@@ -205,7 +214,7 @@ if($result['page'] > 1) {
 <?php if($ii == $result['page']) {?>
 <font><?php echo $ii; ?></font>&nbsp;
 <?php }else {?>
-<a href="<?php echo $preUrl;?>&page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
+<a href="<?php echo URL_APP_C;?><?php echo $preUrl;?>&page=<?php echo $ii; ?>"><?php echo $ii; ?></a>&nbsp;
 <?php } 
 	 }
  ?>
