@@ -96,4 +96,13 @@ define('COOKIE_CUSTOMER_ID', 'font_klsfsjywrqirwywywqyr');
 // 牌位有效时间
 define('DATEHEADLINE', '7200');
 // 正常分页大小 
-define('PAGESIZE', 2);
+define('PAGESIZE', 10);
+//url-for
+define("URL_APP", "http://192.168.1.13/fu/qiye");
+/**
+ <?php echo URL_APP;?>
+ */
+define("URL_APP_C", "http://192.168.1.13/fu/qiye/index.php");
+/**
+  <?php echo URL_APP_C;?>
+ */
