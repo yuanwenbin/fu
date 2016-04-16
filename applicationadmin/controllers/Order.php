@@ -21,7 +21,65 @@ class Order extends CI_Controller {
 	    }
 	    return true;
 	}
-	
+	/**
+	 * 增加订单有效期
+	 */
+	function addDate()
+	{
+	    if(!hasPerssion($_SESSION['role'], 'orderList')){
+	        exit('点击左栏目操作');
+	    }	
+	    $order_id = intval($this->input->get_post('id'));  
+	    if(!$order_id)
+	    {
+	        exit('非法操作!');
+	    }
+	    $res = $this->Order_model->searchInfos('fu_order_info', array('order_id'=>$order_id));  
+	    if(!$res)
+	    {
+	        exit('没有相关数据');
+	    }
+	    $view = array();
+	    $view['res'] = $res[0];
+	    $this->load->view('addDate',$view);
+	}
+	/**
+	 *增加订单有效期处理
+	 */
+	function addDateDeal()
+	{
+		if(!hasPerssion($_SESSION['role'], 'orderList')){
+	        exit('点击左栏目操作');
+	    }	
+	    $order_id = intval($this->input->get_post('order_id'));  
+	    if(!$order_id)
+	    {
+	        exit('非法操作!');
+	    }
+	    $res = $this->Order_model->searchInfos('fu_order_info', array('order_id'=>$order_id));  
+	    if(!$res)
+	    {
+	        exit('没有相关数据');
+	    }
+	    $day = intval($this->input->get_post('addDate'));
+	    $order_id = intval($this->input->get_post('order_id'));
+	    if(!$day || $day < 0 || !$order_id)
+	    {
+	        $this->load->view('failure');
+	    }else {
+	        $day = $day * 3600*24;
+	      $res = $this->Order_model->updateData('fu_order_info',array('add_datetime'=>$day),array('order_id'=>$order_id));
+	      if($res)
+	      {
+	          $this->load->view('success');
+	      }else {
+	          $this->load->view('failure');
+	      }
+	    }
+	}
+	/**
+	 * 订单列表
+	 */
 	function orderList()
 	{  
 	    if(!hasPerssion($_SESSION['role'], 'orderList')){
