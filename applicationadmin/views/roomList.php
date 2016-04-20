@@ -11,16 +11,16 @@
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
-<h3 class="headerLineBackground">房间 列表 信息</h3>
+<h3 class="headerLineBackground">福位 列表 信息</h3>
 <?php
 if(!$roomList) { ?>
-	暂时无相关房间，<a href="<?php echo URL_APP_C;?>/Room/roomOpen">点击增加房间</a>
+	暂时无相关福位，<a href="<?php echo URL_APP_C;?>/Room/roomOpen">点击增加福位</a>
 <?php }else {
 ?>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
-		<th width="10%" align="center">房间号</th>
-		<th width="20%" align="center">房间别名</th>
+		<th width="10%" align="center">福位号</th>
+		<th width="20%" align="center">福位别名</th>
 		<th  width="10%" align="center">牌位数</th>
 		<th  width="15%" align="center">是否开放</th>
 		<th  width="18%" align="center">注册时间</th>
@@ -95,7 +95,7 @@ if($page > 1) {
 <script type="text/javascript">
 function sureDel()
 {
-	if(confirm("你确定要删除吗？房间和相关的牌位都会删除，请谨慎操作!"))
+	if(confirm("你确定要删除吗？福位和相关的牌位都会删除，请谨慎操作!"))
 	{
 		return true;
 	}

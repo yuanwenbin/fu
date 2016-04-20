@@ -17,28 +17,28 @@
 <input type="hidden" name="user_id" value="<?php echo $result['userInfo']['user_id'];?>" />
 <table border="0" cellpadding="5" cellspacing="5" width="90%">	
 	<tr>
-		<td width="20%" align="right">房间号信息：</td>
+		<td width="20%" align="right">福位号信息：</td>
 		<td>
 		<?php echo $result['posInfo']['location_area'] .$result['posInfo']['location_prefix'].$result['posInfo']['location_code'] . '('.$result['orderInfo']['order_room_id'].')';?>
 		</td>		
 	</tr>
 	
 	<tr>
-		<td width="20%" align="right">房间名称：</td>
+		<td width="20%" align="right">福位名称：</td>
 		<td>
 		<?php echo $result['roomInfo']['room_alias'];?>
 		</td>		
 	</tr>
 	
 	<tr>
-		<td width="20%" align="right">用户名：</td>
+		<td width="20%" align="right">用户名(身份证号)：</td>
 		<td>
 		<?php echo $result['orderInfo']['order_user'];?>
 		</td>		
 	</tr>
 	
 	<tr>
-		<td width="20%" align="right">是否支付：</td>
+		<td width="20%" align="right">是否捐赠：</td>
 		<td>
 		<?php echo $result['orderInfo']['order_payment'] ? '是' : '否';?>
 		</td>		
@@ -60,7 +60,7 @@
 		</td>		
 	</tr>	
 	<tr>
-		<td width="20%" align="right">下单时间：</td>
+		<td width="20%" align="right">捐赠时间：</td>
 		<td>
 		<?php echo date('Y-m-d H:i:s',$result['orderInfo']['order_datetime']);?>
 		</td>		
@@ -74,7 +74,7 @@
 	</tr>	
 
 	<tr>
-		<td width="20%" align="right">牌位价格：</td>
+		<td width="20%" align="right">牌位捐赠额：</td>
 		<td>
 		<?php echo $result['orderInfo']['order_price'];?>
 		</td>		
@@ -123,16 +123,16 @@
 		<?php echo $result['posInfo']['location_alias'];?>
 		</td>		
 	</tr>
-
+    <!--  
 	<tr>
 		<td width="20%" align="right">牌位描述：</td>
 		<td>
-		<?php echo $result['posInfo']['location_details'];?>
+		<?php //echo $result['posInfo']['location_details'];?>
 		</td>		
-	</tr>
+	</tr> -->
 	
 	<tr>
-		<td width="20%" align="right">修改用户名：</td>
+		<td width="20%" align="right">修改用户称呼：</td>
 		<td>
 		<input type="text" name="user_phone" value="<?php echo $result['userInfo']['user_phone'];?>" />
 		</td>		

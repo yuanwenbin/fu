@@ -13,7 +13,7 @@
 <body class="roomList">
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">
-业务员分组列表,可删除，删除会把相关业务员也删除
+义工分组列表,可删除，删除会把相关义工也删除
 </h3>
 
 <table border="0" cellspacing="0" cellpadding="0" width="98%">

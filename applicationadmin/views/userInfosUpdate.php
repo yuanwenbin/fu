@@ -8,6 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登陆后台</title>
 	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
@@ -56,8 +57,8 @@
 	<tr>
 		<td width="15%" align="right">以下是权限列表(不修改不理)：</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="all" <?php if($perssion =='all'){ echo 'checked';} ?> />
-		超级权限(如果不是超级用户，请取消选择)</p>
+		<p><input id="checkAll" type="checkbox" name="role[]" value="all" <?php if($perssion =='all'){ echo 'checked';} ?> />
+		超级权限(全选)</p>
 		</td>
 	</tr>
 	<?php
@@ -96,19 +97,20 @@
 		订单权限&nbsp;
 		</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="order|orderList" <?php if($perssions[0] == 'all' || in_array('orderList', $perssions)){ echo 'checked';}?> />查看订单列表</p>
+		<p><input type="checkbox" name="role[]" value="order|orderList" <?php if($perssions[0] == 'all' || in_array('orderList', $perssions)){ echo 'checked';}?> />查看捐赠列表</p>
 		<p><input type="checkbox" name="role[]" value="order|posInfosDeal" <?php if($perssions[0] == 'all' || in_array('posInfosDeal', $perssions)){ echo 'checked';}?> />订单修改</p>
+		<p><input type="checkbox" name="role[]" value="order|delOrder" <?php if($perssions[0] == 'all' || in_array('delOrder', $perssions)){ echo 'checked';}?> />订单删除</p>
 		</td>
 	</tr>
 
 	<tr>
 		<td width="15%" align="right">
-		房间牌位权限&nbsp;</td>
+		福位牌位权限&nbsp;</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="room|roomOpen" <?php if($perssions[0] == 'all' || in_array('roomOpen', $perssions)){ echo 'checked';}?> />房间牌位开设</p>
-		<p><input type="checkbox" name="role[]" value="room|roomList" <?php if($perssions[0] == 'all' || in_array('roomList', $perssions)){ echo 'checked';}?> />房间查看</p>
-		<p><input type="checkbox" name="role[]" value="room|updateRoom" <?php if($perssions[0] == 'all' || in_array('updateRoom', $perssions)){ echo 'checked';}?> />房间编辑</p>
-		<p><input type="checkbox" name="role[]" value="room|delRoom" <?php if($perssions[0] == 'all' || in_array('delRoom', $perssions)){ echo 'checked';}?>  />房间删除</p>
+		<p><input type="checkbox" name="role[]" value="room|roomOpen" <?php if($perssions[0] == 'all' || in_array('roomOpen', $perssions)){ echo 'checked';}?> />福位牌位开设</p>
+		<p><input type="checkbox" name="role[]" value="room|roomList" <?php if($perssions[0] == 'all' || in_array('roomList', $perssions)){ echo 'checked';}?> />福位查看</p>
+		<p><input type="checkbox" name="role[]" value="room|updateRoom" <?php if($perssions[0] == 'all' || in_array('updateRoom', $perssions)){ echo 'checked';}?> />福位编辑</p>
+		<p><input type="checkbox" name="role[]" value="room|delRoom" <?php if($perssions[0] == 'all' || in_array('delRoom', $perssions)){ echo 'checked';}?>  />福位删除</p>
 		<p><input type="checkbox" name="role[]" value="room|roomInfos" <?php if($perssions[0] == 'all' || in_array('roomInfos', $perssions)){ echo 'checked';}?> />牌位查看</p>
 		<p><input type="checkbox" name="role[]" value="room|postionList" <?php if($perssions[0] == 'all' || in_array('postionList', $perssions)){ echo 'checked';}?> />牌位列表</p>
 		<p><input type="checkbox" name="role[]" value="room|posLocation" <?php if($perssions[0] == 'all' || in_array('posLocation', $perssions)){ echo 'checked';}?> />牌位编辑</p>
@@ -122,16 +124,7 @@
 		统计权限&nbsp;</td>
 		<td>
 		<p><input type="checkbox" name="role[]" value="tongji|tongjiList" <?php if($perssions[0] == 'all' || in_array('tongjiList', $perssions)){ echo 'checked';}?> />查看统计</p>
-		<p><input type="checkbox" name="role[]" value="tongji|clearList" <?php if($perssions[0] == 'all' || in_array('clearList', $perssions)){ echo 'checked';}?> />清空无效订单</p>
-		</td>
-	</tr>
-
-
-	<tr>
-		<td width="15%" align="right">
-		统计权限&nbsp;</td>
-		<td>
-		<p><input type="checkbox" name="role[]" value="tongji|tongjiList" <?php if($perssions[0] == 'all' || in_array('tongjiList', $perssions)){ echo 'checked';}?> />查看统计</p>
+		<p><input type="checkbox" name="role[]" value="tongji|tongjiList" <?php if($perssions[0] == 'all' || in_array('exportOrder', $perssions)){ echo 'checked';}?> />导出订单</p>
 		<p><input type="checkbox" name="role[]" value="tongji|clearList" <?php if($perssions[0] == 'all' || in_array('clearList', $perssions)){ echo 'checked';}?> />清空无效订单</p>
 		</td>
 	</tr>
@@ -156,7 +149,7 @@
 		<td width="15%" align="right">
 		关于我们&nbsp;</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="aboutus|aboutUsInfo" <?php if($perssions[0] == 'all' || in_array('aboutUsInfo', $perssions)){ echo 'checked';}?> />版权信息</p>
+		<p><input type="checkbox" name="role[]" value="aboutus|aboutUsInfo" <?php if($perssions[0] == 'all' || in_array('aboutUsInfo', $perssions)){ echo 'checked';}?> />关于我们</p>
 		</td>
 	</tr>	
 	
@@ -183,19 +176,19 @@
 	
 	<tr>
 		<td width="15%" align="right">
-		价格分类权限&nbsp;
+		捐赠额分类权限&nbsp;
 		</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="price|priceList" <?php if($perssions[0] == 'all' || in_array('priceList', $perssions)){ echo 'checked';}?> />价格查看</p>
-		<p><input type="checkbox" name="role[]" value="price|priceAdd" <?php if($perssions[0] == 'all' || in_array('priceAdd', $perssions)){ echo 'checked';}?> />价格增加</p>
-		<p><input type="checkbox" name="role[]" value="price|priceDel" <?php if($perssions[0] == 'all' || in_array('priceDel', $perssions)){ echo 'checked';}?> />价格删除</p>
-		<p><input type="checkbox" name="role[]" value="price|priceUpdate" <?php if($perssions[0] == 'all' || in_array('priceUpdate', $perssions)){ echo 'checked';}?> />价格修改</p>		
+		<p><input type="checkbox" name="role[]" value="price|priceList" <?php if($perssions[0] == 'all' || in_array('priceList', $perssions)){ echo 'checked';}?> />捐赠额查看</p>
+		<p><input type="checkbox" name="role[]" value="price|priceAdd" <?php if($perssions[0] == 'all' || in_array('priceAdd', $perssions)){ echo 'checked';}?> />捐赠额增加</p>
+		<p><input type="checkbox" name="role[]" value="price|priceDel" <?php if($perssions[0] == 'all' || in_array('priceDel', $perssions)){ echo 'checked';}?> />捐赠额删除</p>
+		<p><input type="checkbox" name="role[]" value="price|priceUpdate" <?php if($perssions[0] == 'all' || in_array('priceUpdate', $perssions)){ echo 'checked';}?> />捐赠额修改</p>		
 		</td>
 	</tr>	
 	
 	<tr>
 		<td width="15%" align="right">
-		业务员管理&nbsp;
+		义工管理&nbsp;
 		</td>
 		<td>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamList" <?php if($perssions[0] == 'all' || in_array('memberteamList', $perssions)){ echo 'checked';}?> />分组查看</p>
@@ -204,11 +197,11 @@
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdate" <?php if($perssions[0] == 'all' || in_array('memberteamUpdate', $perssions)){ echo 'checked';}?> />分组编辑</p>	
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamInfos" <?php if($perssions[0] == 'all' || in_array('memberteamInfos', $perssions)){ echo 'checked';}?> />分组统计</p>
 		
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamListUser" <?php if($perssions[0] == 'all' || in_array('memberteamListUser', $perssions)){ echo 'checked';}?> />业务员列表</p>
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAddUser" <?php if($perssions[0] == 'all' || in_array('memberteamAddUser', $perssions)){ echo 'checked';}?> />业务员增加</p>
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamDelUser" <?php if($perssions[0] == 'all' || in_array('memberteamDelUser', $perssions)){ echo 'checked';}?> />业务员删除</p>
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdateUser" <?php if($perssions[0] == 'all' || in_array('memberteamUpdateUser', $perssions)){ echo 'checked';}?> />业务员编辑</p>	
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamSaleUser" <?php if($perssions[0] == 'all' || in_array('memberteamSaleUser', $perssions)){ echo 'checked';}?> />业务员业绩查看</p>			
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamListUser" <?php if($perssions[0] == 'all' || in_array('memberteamListUser', $perssions)){ echo 'checked';}?> />义工列表</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAddUser" <?php if($perssions[0] == 'all' || in_array('memberteamAddUser', $perssions)){ echo 'checked';}?> />义工增加</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamDelUser" <?php if($perssions[0] == 'all' || in_array('memberteamDelUser', $perssions)){ echo 'checked';}?> />义工删除</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdateUser" <?php if($perssions[0] == 'all' || in_array('memberteamUpdateUser', $perssions)){ echo 'checked';}?> />义工编辑</p>	
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamSaleUser" <?php if($perssions[0] == 'all' || in_array('memberteamSaleUser', $perssions)){ echo 'checked';}?> />义工业绩查看</p>			
 		</td>
 	</tr>	
 	
@@ -216,7 +209,7 @@
 		<td width="15%" align="right">
 		系统开启状态&nbsp;</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="webset|websetSystem" <?php if($perssions[0] == 'all' || in_array('websetSystem', $perssions)){ echo 'checked';}?> />选号系统开启状态</p>
+		<p><input type="checkbox" name="role[]" value="webset|websetSystem" <?php if($perssions[0] == 'all' || in_array('websetSystem', $perssions)){ echo 'checked';}?> />广结善缘开启状态</p>
 		<p><input type="checkbox" name="role[]" value="webset|websetCopy" <?php if($perssions[0] == 'all' || in_array('websetCopy', $perssions)){ echo 'checked';}?> />官网开启状态</p>
 		</td>
 	</tr>	
@@ -231,6 +224,45 @@
 </table>
 </form>
 </div>
-
+<script>
+$(document).ready(function(){
+	// 全选/反选择
+	$("#checkAll").click(function(){
+	    if($(this).attr("checked"))
+	    {
+	    	$("input[name='role[]']").attr("checked", true);  
+	    }else
+	    {
+	    	$("input[name='role[]']").attr("checked", false);
+	    }
+	});
+	$("input[name='submit']").click(function(){
+    	var roles = $("input[type='checkbox']");
+    	var flag = 0;
+    	var num = 0;
+    	for(var i=0; i<roles.length; i++)
+    	{
+    		if(roles[i].checked)
+    		{
+    			flag = 1;
+    			num++;
+    		}
+    	}
+    	if(!flag)
+    	{
+    		alert("你没有添加任何权限");
+    		return false;
+    	}
+    	if(num==roles.length)
+    	{
+    		$("#checkAll").attr("checked", true); 
+    	}else
+    	{
+    		$("#checkAll").attr("checked", false); 
+    	}
+    	return true;	
+	});
+});
+</script>
 </body>
 </html>

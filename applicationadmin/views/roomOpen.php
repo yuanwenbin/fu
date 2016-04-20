@@ -116,7 +116,7 @@ $(document).ready(function(){
 		html += "牌位前缀：<input type=\"text\" name=\"location_prefix[]\" value=\"\" />&nbsp;<br />";
 		html +=	"起始号码：<input type=\"text\" name=\"location_code[]\" value=\"\" />&nbsp;(即牌位开始号码)<br />";
 		html += "牌位数量：<input type=\"text\" name=\"location_numbers[]\" value=\"\" />&nbsp;<br />";
-		html += "定位价格：<input type=\"text\" name=\"price[]\" value=\"\" />&nbsp;&nbsp;"; 
+		html += "牌位捐赠额：<input type=\"text\" name=\"price[]\" value=\"\" />&nbsp;&nbsp;"; 
 		html += "<a class=\"location_area_del\" href=\"javascript:void(0)\">删除区位</a></td>";
 		html += "</tr><tr><td colspan=\"2\">&nbsp;</td></tr></table>";
 		$('.location_area_div').append(html);

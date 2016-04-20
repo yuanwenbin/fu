@@ -11,13 +11,13 @@
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
-<h3 class="headerLineBackground">房间号:<?php echo $roomInfos['room_id'];?></h3>
+<h3 class="headerLineBackground">福位号:<?php echo $roomInfos['room_id'];?></h3>
 <form action="<?php echo URL_APP_C;?>/Room/updateRoomDeal" method="post">
 <input type="hidden" name="room_id" value="<?php echo $roomInfos['room_id'];?>"  />
 <table border="0" cellpadding="5" cellspacing="5" width="90%">	
 
 	<tr>
-		<td width="20%" align="right">房间名称：</td>
+		<td width="20%" align="right">福位名称：</td>
 		<td>
 		<input type="text" name="room_alias" value="<?php echo $roomInfos['room_alias'];?>" />
 		</td>		
@@ -25,7 +25,7 @@
 	
 		
 	<tr>
-		<td width="20%" align="right">房间是否开放：</td>
+		<td width="20%" align="right">福位是否开放：</td>
 		<td>
 		<select name="room_flag">
 		<?php if($roomInfos['room_flag']) {?>
@@ -40,7 +40,7 @@
 	</tr>
 	
 	<tr>
-		<td width="20%" align="right">房间类型：</td>
+		<td width="20%" align="right">福位类型：</td>
 		<td>
 		<select name="room_type">
 		<?php if($roomInfos['room_type']) {?>
@@ -55,7 +55,7 @@
 	</tr>	
 	
 	<tr>
-		<td width="20%" align="right">房间描述：</td>
+		<td width="20%" align="right">福位描述：</td>
 		<td>
 		<textarea rows="5" cols="60" name="room_description"><?php echo $roomInfos['room_description'];?></textarea>
 		

@@ -13,7 +13,7 @@
 <body class="roomList">
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">
-业务员列表
+义工列表
 </h3>
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">

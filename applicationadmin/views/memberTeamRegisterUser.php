@@ -12,7 +12,7 @@
 <body class="roomList">
 <div class="roomListInfos membersUserList">
 <h3 class="headerLineBackground">
-组长-业务员&nbsp;<font><?php echo $memberInfos['member_username']; ?></font>&nbsp;登记用户列表
+组长-义工&nbsp;<font><?php echo $memberInfos['member_username']; ?></font>&nbsp;登记功德主列
 </h3>
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -79,7 +79,7 @@ if($page > 1) {
 <!--  eof 页码  -->
 
 <p class="backBtnMember">
-<a href="<?php echo URL_APP_C;?>/Memberteam/memberTeamOrder?id=<?php echo $id;?>">组长及旗下业务员订单列表</a></p>
+<a href="<?php echo URL_APP_C;?>/Memberteam/memberTeamOrder?id=<?php echo $id;?>">组长及旗下义工捐赠列表</a></p>
 </div>
 
 

@@ -34,14 +34,14 @@
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
-<h3 class="headerLineBackground">牌位相关,房间号:<?php echo $result['location_room_id'];?>,牌位号:<?php echo $result['localtion_id'];?></h3>
+<h3 class="headerLineBackground">牌位相关,福位号:<?php echo $result['location_room_id'];?>,牌位号:<?php echo $result['localtion_id'];?></h3>
 <form action="<?php echo URL_APP_C;?>/Room/posLocationDeal" method="post" enctype="multipart/form-data">
 <input type="hidden" name="localtion_id" value="<?php echo $result['localtion_id'];?>"  />
 <input type="hidden" name="user_id" value="<?php echo isset($userInfo['user_id']) ? $userInfo['user_id'] : '';?>"  />
 <table border="0" cellpadding="5" cellspacing="5" width="100%">	
 
 	<tr>
-		<td width="20%" align="right">牌位价格：</td>
+		<td width="20%" align="right">牌位捐赠额：</td>
 		<td>
 		<input type="text" name="location_price" value="<?php echo $result['location_price'];?>" />
 		</td>		
@@ -125,24 +125,24 @@
 
 		</td>		
 	</tr>	
-			
+	<!-- 	
 	<tr>
 		<td width="20%" align="right">牌位原图片：</td>
 		<td>
 		<?php 
-		if($result['location_pic']){?>
-		<img src="<?php echo $front_domain .'/'. $result['location_pic'];?>" width="40" height="40" />
-		<?php } ?>
+		// if($result['location_pic']){?>
+		<img src="<?php //echo $front_domain .'/'. $result['location_pic'];?>" width="40" height="40" />
+		<?php //  } ?>
 		</td>		
 	</tr>
-
+    -->	
 	<tr>
 		<td width="20%" align="right">牌位支付时间：</td>
 		<td>
 		<?php  echo $result['location_paytime'] ? date('Y-m-d H:i:s',$result['location_paytime']) : '无';?>
 		</td>		
 	</tr> 
-	
+	<!--  
 	<tr>
 		<td width="20%" align="right">牌位新图片：</td>
 		<td>
@@ -153,10 +153,10 @@
 	<tr>
 		<td width="20%" align="right">牌位描述：</td>
 		<td>
-		<textarea rows="5" cols="60" name="location_details"><?php echo $result['location_details'];?></textarea>
+		<textarea rows="5" cols="60" name="location_details"><?php // echo $result['location_details'];?></textarea>
 		
 		</td>		
-	</tr>
+	</tr> -->
 	<?php if(!$status && $sale < 2) {?>
 	<tr>
 		<td width="20%" align="right">用户身份证号：</td>

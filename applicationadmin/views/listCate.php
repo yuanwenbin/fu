@@ -14,7 +14,7 @@
 <h3 class="headerLineBackground">文章分类信息</h3>
 <?php
 if(!$cate_name) { ?>
-	暂时无相关房间，<a href="<?php echo URL_APP_C;?>/Article/listCate">点击增加文章分类</a>
+	暂时无相关福位，<a href="<?php echo URL_APP_C;?>/Article/listCate">点击增加文章分类</a>
 <?php }else {
 ?>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">

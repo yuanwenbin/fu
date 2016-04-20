@@ -12,7 +12,7 @@
 <body class="roomList">
 <div class="roomListInfos members">
 <h3 class="headerLineBackground">
-业务员&nbsp;<font><?php echo $memberInfos['member_username']; ?></font>&nbsp;统计中心
+义工&nbsp;<font><?php echo $memberInfos['member_username']; ?></font>&nbsp;统计中心
 </h3>
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -34,9 +34,9 @@
 	</tr>
 </table>
 <p class="backBtnMember">
-<a href="<?php echo URL_APP_C;?>/Memberteam/MemberteamUserList?id=<?php echo $memberInfos['member_id']; ?>">登记用户列表</a>
+<a href="<?php echo URL_APP_C;?>/Memberteam/MemberteamUserList?id=<?php echo $memberInfos['member_id']; ?>">登记功德主列</a>
 &nbsp;&nbsp;
-<a href="<?php echo URL_APP_C;?>/Memberteam/MemberteamOrderList?id=<?php echo $memberInfos['member_id']; ?>">订单列表</a></p>
+<a href="<?php echo URL_APP_C;?>/Memberteam/MemberteamOrderList?id=<?php echo $memberInfos['member_id']; ?>">捐赠列表</a></p>
 </div>
 
 

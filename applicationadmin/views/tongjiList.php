@@ -37,11 +37,11 @@
     </script>	
 <body class="roomList">
 <div class="roomListInfos">
-	<h3 class="headerLineBackground">房间牌位统计信息</h3>
+	<h3 class="headerLineBackground">福位牌位统计信息</h3>
 	<div class="tongJiSearch">
 	    <form action="<?php echo URL_APP_C;?>/Tongji/tongjiList" method="get"> 
 	    <?php if(isset($roomList) && $roomList) {?>
-	    &nbsp;&nbsp;房间号:
+	    &nbsp;&nbsp;福位号:
 	    <select name="roomList">
 	    <option value=""></option> 
 	    <?php foreach($roomList as $v){?>
@@ -64,7 +64,7 @@
 	<div class="tongJiTop">
 	<table width="100%" cellpadding="0" cellspacing="0">
 	    <tr>
-			<td width="18%" align="left">房间总数:&nbsp;<span class="numberColor"><?php echo $room_list_count['total']; ?></span></td>
+			<td width="18%" align="left">福位总数:&nbsp;<span class="numberColor"><?php echo $room_list_count['total']; ?></span></td>
 
 	    	<td width="18%" align="left">牌位总数:&nbsp;<span class="numberColor"><?php echo $posCount['total']; ?></span></td>
 	    	<td width="18%" align="left">未销售:&nbsp;<span class="numberColor">

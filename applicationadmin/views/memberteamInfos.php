@@ -13,12 +13,12 @@
 <div class="container">
 <h3>
 <?php echo $memberteamInfos[0]['member_realname'] ? $memberteamInfos[0]['member_realname'] : $memberteamInfos[0]['member_username']; ?>
--组长-业务员统计</h3>
+-组长-义工统计</h3>
 <form action="<?php echo URL_APP_C;?>/Memberteam/memberteamAddUserDeal" method="post">
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
 
 	<tr>
-		<td width="20%" align="right"><label>组长业务员电话号码：</label></td>
+		<td width="20%" align="right"><label>组长义工电话号码：</label></td>
 		<td><?php echo $memberteamInfos[0]['member_telphone'];?></td>
 	</tr>
 
@@ -27,14 +27,14 @@
 	</tr>
 
 	<tr>
-		<td width="20%" align="right"><label>旗下业务员总数：</label></td>
+		<td width="20%" align="right"><label>旗下义工总数：</label></td>
 		<td><?php echo $userCount;?></td>
 	</tr>
 	<tr>
 		<td colspan="2"><hr /></td>
 	</tr>
 	<tr>
-		<td width="20%" align="right"><label>旗下业务员的用户总数：</label></td>
+		<td width="20%" align="right"><label>旗下义工的用户总数：</label></td>
 		<td><?php echo $memberUserCount;?></td>
 	</tr>
 	<tr>

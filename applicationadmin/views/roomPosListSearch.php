@@ -14,12 +14,12 @@
 </head>
 <body class="defaultInfos searchListPos">
 <div class="container">
-<h2 class="headerLineBackground">房间牌位查询</h2>
+<h2 class="headerLineBackground">福位牌位查询</h2>
 
 <!-- bof one -->
 <div class="divInfosSearch">
 <form method="get" action="<?php echo URL_APP_C;?>/Room/roomPosListSearch">
-查询房间:
+查询福位:
 <select name="roomId">
 <option value="all" <?php if(!$room_id){echo "selected";}?>>全部</option>
 <?php 
@@ -67,10 +67,10 @@ if(isset($roomList) && $roomList)
 	<tr class='headerLineBackground1'>
 		<th width="10%" align="center">操作</th>
 		<th width="15%" align="center">区域信息</th>
-		<th width="11%" align="center">房间号</th>
+		<th width="11%" align="center">福位号</th>
 		<th width="5%" align="center">牌位号</th>
 		<th width="10%" align="center">牌位名称</th>
-		<th width="5%" align="center">牌位价格</th>
+		<th width="5%" align="center">牌位捐赠额</th>
 		<th width="15%" align="center">牌位类型</th>
 		<th width="5%" align="center">销售状态</th>
 		<th width="10%" align="center">牌位失效时间</th>

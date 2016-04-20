@@ -11,17 +11,17 @@
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
-<h3 class="headerLineBackground">房间 <?php echo $roomInfos['room_id'];?> 信息</h3>
+<h3 class="headerLineBackground">福位 <?php echo $roomInfos['room_id'];?> 信息</h3>
 <table border="0" cellpadding="5" cellspacing="5" width="90%">	
 	<tr>
-		<td width="20%" align="right">房间号：</td>
+		<td width="20%" align="right">福位号：</td>
 		<td>
 		<?php echo $roomInfos['room_id'];?>
 		</td>		
 	</tr>
 	
 	<tr>
-		<td width="20%" align="right">房间名称：</td>
+		<td width="20%" align="right">福位名称：</td>
 		<td>
 		<?php echo $roomInfos['room_alias'];?>
 		</td>		
@@ -29,28 +29,28 @@
 	
 	
 	<tr>
-		<td width="20%" align="right">房间类型：</td>
+		<td width="20%" align="right">福位类型：</td>
 		<td>
 		<?php echo $roomInfos['room_type'] ? '高端定制' : '随机/生辰八字';?>
 		</td>		
 	</tr>	
 	
 	<tr>
-		<td width="20%" align="right">房间开设时间：</td>
+		<td width="20%" align="right">福位开设时间：</td>
 		<td>
 		<?php echo date('Y-m-d H:i:s',$roomInfos['room_time']);?>
 		</td>		
 	</tr>	
 	
 	<tr>
-		<td width="20%" align="right">房间开设管理员：</td>
+		<td width="20%" align="right">福位开设管理员：</td>
 		<td>
 		<?php echo $userInfos['admin_user'];?>
 		</td>		
 	</tr>	
 	
 	<tr>
-		<td width="20%" align="right">房间描述：</td>
+		<td width="20%" align="right">福位描述：</td>
 		<td>
 		<?php echo $roomInfos['room_description'];?>
 		</td>		

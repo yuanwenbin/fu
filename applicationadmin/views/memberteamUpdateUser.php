@@ -12,48 +12,48 @@
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
-<h3>业务员修改:<?php echo $memberteaminfos[0]['member_username'];?></h3>
+<h3>义工修改:<?php echo $memberteaminfos[0]['member_username'];?></h3>
 <form>
 <input type="hidden" name="id" value="<?php echo $memberteaminfos[0]['member_id'];?>"  />
 <table border="0" cellpadding="5" cellspacing="5" width="90%">	
 
 	<tr>
-		<td width="20%" align="right">业务员用户名：</td>
+		<td width="20%" align="right">义工用户名：</td>
 		<td>
 		<input type="text" name="member_username" value="<?php echo $memberteaminfos[0]['member_username'];?>" />
 		</td>		
 	</tr>
 
 	<tr>
-		<td width="20%" align="right">业务员真名：</td>
+		<td width="20%" align="right">义工真名：</td>
 		<td>
 		<input type="text" name="member_realname" value="<?php echo $memberteaminfos[0]['member_realname'];?>" />
 		</td>		
 	</tr>
 
 	<tr>
-		<td width="20%" align="right">业务员密码：</td>
+		<td width="20%" align="right">义工密码：</td>
 		<td>
 		<input type="text" name="member_password" value="<?php echo $memberteaminfos[0]['member_password'];?>" />
 		</td>		
 	</tr>
 
 	<tr>
-		<td width="20%" align="right">业务员手机号码：</td>
+		<td width="20%" align="right">义工手机号码：</td>
 		<td>
 		<input type="text" name="member_telphone" value="<?php echo $memberteaminfos[0]['member_telphone'];?>" />
 		</td>		
 	</tr>
 
 	<tr>
-		<td width="20%" align="right">业务员电话号码</td>
+		<td width="20%" align="right">义工电话号码</td>
 		<td>
 		<input type="text" name="member_phone" value="<?php echo $memberteaminfos[0]['member_phone'];?>" />
 		</td>		
 	</tr>
 
 		<tr>
-		<td width="20%" align="right">业务员状态：</td>
+		<td width="20%" align="right">义工状态：</td>
 		<td>
 		<select name="member_flag">
 		<option value="1" <?php echo $memberteaminfos[0]['member_flag'] ? 'selected' : '';?>>开放</option>

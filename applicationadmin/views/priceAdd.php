@@ -13,26 +13,26 @@
 <body class="roomList">
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">
-价格分档设置,最小价格为：<?php echo $minMaxPrice['minVal'];?>,
-最大价格为：<?php echo $minMaxPrice['maxVal'];?></h3>
+捐赠额分档设置,最小捐赠额为：<?php echo $minMaxPrice['minVal'];?>,
+最大捐赠额为：<?php echo $minMaxPrice['maxVal'];?></h3>
 <form action="<?php echo URL_APP_C;?>/Price/priceAddDeal" method="post">
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
 		<td>
-		&nbsp;&nbsp;开始价格:&nbsp;<input  type="text" name="minPrice" value="" />&nbsp;&nbsp;
-		&nbsp;&nbsp;结束价格:&nbsp;<input  type="text" name="maxPrice" value="" />&nbsp;&nbsp;
-		&nbsp;&nbsp;价格名称:&nbsp;<input  type="text" name="price_alias" value="" />&nbsp;&nbsp;
+		&nbsp;&nbsp;开始捐赠额:&nbsp;<input  type="text" name="minPrice" value="" />&nbsp;&nbsp;
+		&nbsp;&nbsp;结束捐赠额:&nbsp;<input  type="text" name="maxPrice" value="" />&nbsp;&nbsp;
+		&nbsp;&nbsp;捐赠额名称:&nbsp;<input  type="text" name="price_alias" value="" />&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" value="提交" />
 		</td>
 	</tr>
 </table>
 </form>
 <?php if($hasList) { ?>
-<p>价格分档列表</p>
+<p>捐赠额分档列表</p>
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
-		<th width="30%" align="center">价格分类</th>
-		<th width="17%" align="center">价格名称</th>
+		<th width="30%" align="center">捐赠额分类</th>
+		<th width="17%" align="center">捐赠额名称</th>
 		<th width="18%" align="center">时间</th>
 		<th width="15%" align="center">管理员</th>
 		<th width="18%" align="center">操作</th>
@@ -79,24 +79,24 @@ $(document).ready(function(){
 		var price_alias = $("input[name='price_alias']").val();
 		if(minPrice == '')
 		{
-			alert("请输入开始价格");
+			alert("请输入开始捐赠额");
 			return false;
 		}
 
 		if(maxPrice == '')
 		{
-			alert("请输入结束价格");
+			alert("请输入结束捐赠额");
 			return false;
 		}
 		if(parseFloat(minPrice) >= parseFloat(maxPrice))
 		{
-			alert("开始价格不能大于结束价格");
+			alert("开始捐赠额不能大于结束捐赠额");
 			return false;
 		}
 
 		if(price_alias == '')
 		{
-			alert("请输入价格别名");
+			alert("请输入捐赠额别名");
 			return false;
 		}		
 		return true;	

@@ -13,15 +13,15 @@
 <div class="roomListInfos container">
 <?php
 if(!$roomList) { ?>
-	暂时无相关房间，<a href="<?php echo URL_APP_C;?>/Room/roomOpen">点击增加房间</a>
+	暂时无相关福位，<a href="<?php echo URL_APP_C;?>/Room/roomOpen">点击增加福位</a>
 <?php }else {
 ?>
-<h3>请选择要编辑的房间牌位</h3>
+<h3>请选择要编辑的福位牌位</h3>
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
-		<th width="10%" align="center">房间号</th>
-		<th  width="20%" align="center">房间名称</th>
-		<th  width="65%" align="center">房间描述</th>
+		<th width="10%" align="center">福位号</th>
+		<th  width="20%" align="center">福位名称</th>
+		<th  width="65%" align="center">福位描述</th>
 
 	</tr>
 	<?php 

@@ -16,17 +16,17 @@
 <ul class="menuList">
 	<?php if(hasPerssion($_SESSION['role'],'room')) { ?>
 	<li>
-		<h2><a href="javascript:void(0);">房间/牌位管理中心</a></h2>
+		<h2><a href="javascript:void(0);">福位/牌位管理中心</a></h2>
 		<ul>
 		<?php if(hasPerssion($_SESSION['role'],'roomList')) { ?>
-			<li><a href="<?php echo URL_APP_C;?>/Room/roomList" target="mainFrame">房间列表</a></li>
+			<li><a href="<?php echo URL_APP_C;?>/Room/roomList" target="mainFrame">福位列表</a></li>
 			<?php } ?>
 			<?php if(hasPerssion($_SESSION['role'],'roomOpen')) { ?>
-			<li><a href="<?php echo URL_APP_C;?>/Room/roomOpen" target="mainFrame">房间开设</a></li>
+			<li><a href="<?php echo URL_APP_C;?>/Room/roomOpen" target="mainFrame">福位开设</a></li>
 			<?php } ?>
 			<?php if(hasPerssion($_SESSION['role'],'roomInfos')) { ?>
-			<li><a href="<?php echo URL_APP_C;?>/Room/roomOpenPosition" target="mainFrame">房间牌位设置/修改</a></li>
-			<li><a href="<?php echo URL_APP_C;?>/Room/roomPosList" target="mainFrame">房间牌位查询</a></li>
+			<li><a href="<?php echo URL_APP_C;?>/Room/roomOpenPosition" target="mainFrame">福位牌位设置/修改</a></li>
+			<li><a href="<?php echo URL_APP_C;?>/Room/roomPosList" target="mainFrame">福位牌位查询</a></li>
 			<?php } ?>
 			<?php if(hasPerssion($_SESSION['role'],'mutilDeal')) { ?>
 			<li><a href="<?php echo URL_APP_C;?>/Room/roomPosMod" target="mainFrame">批量修改</a></li>
@@ -36,9 +36,9 @@
 	<?php } ?>
 	<?php if(hasPerssion($_SESSION['role'],'orderList')) { ?>
 	<li>
-		<h2><a href="javascript:void(0);">订单管理中心</a></h2>
+		<h2><a href="javascript:void(0);">捐赠管理中心</a></h2>
 		<ul>
-			<li><a href="<?php echo URL_APP_C;?>/Order/orderList" target="mainFrame">订单列表</a></li>
+			<li><a href="<?php echo URL_APP_C;?>/Order/orderList" target="mainFrame">捐赠列表</a></li>
 			<li><a href="<?php echo URL_APP_C;?>/Order/orderSelf" target="mainFrame">自助下单</a></li>
 		</ul>
 	</li>
@@ -87,9 +87,12 @@
 			<?php if(hasPerssion($_SESSION['role'],'tongjiList')) { ?>
 		    <li><a href="<?php echo URL_APP_C;?>/Tongji/tongjiList" target="mainFrame">统计状况</a></li>
 			<?php } ?>
+			<?php if(hasPerssion($_SESSION['role'],'exportOrder')) { ?>
+			<li><a href="<?php echo URL_APP_C;?>/Tongji/exportOrder" target="mainFrame">导出订单</a></li>
+			<?php } ?>
 			<?php if(hasPerssion($_SESSION['role'],'clearList')) { ?>
 			<li><a href="<?php echo URL_APP_C;?>/Tongji/clearList" target="mainFrame">清空数据</a></li>
-			<?php } ?>
+			<?php } ?>			
 		</ul>
 	</li>	
 	<?php } ?>
@@ -160,13 +163,13 @@
 	
 	<?php if(hasPerssion($_SESSION['role'],'price')) { ?>
 	<li>
-		<h2><a href="javascript:void(0);">价格分类管理</a></h2>
+		<h2><a href="javascript:void(0);">捐赠分类管理</a></h2>
 		<ul>
 			<?php if(hasPerssion($_SESSION['role'],'priceList')) { ?>
-			<li><a href="<?php echo URL_APP_C;?>/Price/priceList" target="mainFrame">价格查看</a></li>
+			<li><a href="<?php echo URL_APP_C;?>/Price/priceList" target="mainFrame">捐赠额查看</a></li>
 			<?php } ?>
 			<?php if(hasPerssion($_SESSION['role'],'priceAdd')) { ?>
-			<li><a href="<?php echo URL_APP_C;?>/Price/priceAdd" target="mainFrame">价格增加</a></li>
+			<li><a href="<?php echo URL_APP_C;?>/Price/priceAdd" target="mainFrame">捐赠额增加</a></li>
 			<?php } ?>			
 		</ul>
 	</li>
@@ -174,14 +177,14 @@
 	
 	<?php if(hasPerssion($_SESSION['role'],'memberteam')) { ?>
 	<li>
-		<h2><a href="javascript:void(0);">业务员管理</a></h2>
+		<h2><a href="javascript:void(0);">义工管理</a></h2>
 		<ul>
 			<?php if(hasPerssion($_SESSION['role'],'memberteamList')) { ?>
 			<li><a href="<?php echo URL_APP_C;?>/Memberteam/memberteamList" target="mainFrame">分组查看</a></li>
 			<?php } ?>
 
 			<?php if(hasPerssion($_SESSION['role'],'memberteamListUser')) { ?>
-			<li><a href="<?php echo URL_APP_C;?>/Memberteam/memberteamListUser" target="mainFrame">业务员列表</a></li>
+			<li><a href="<?php echo URL_APP_C;?>/Memberteam/memberteamListUser" target="mainFrame">义工列表</a></li>
 			<?php } ?>
 		</ul>
 	</li>
@@ -192,7 +195,7 @@
 		<h2><a href="javascript:void(0);">系统开启状态</a></h2>
 		<ul>
 			<?php if(hasPerssion($_SESSION['role'],'websetSystem')) { ?>
-			<li><a href="<?php echo URL_APP_C;?>/Webset/websetSystem" target="mainFrame">选号系统开启状态</a></li>
+			<li><a href="<?php echo URL_APP_C;?>/Webset/websetSystem" target="mainFrame">广结善缘开启状态</a></li>
 			<?php } ?>
 
 			<?php if(hasPerssion($_SESSION['role'],'websetCopy')) { ?>

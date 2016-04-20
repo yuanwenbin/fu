@@ -37,7 +37,7 @@
 </head>
 <body class="defaultInfos">
 <div class="container">
-<h2 class="headerLineBackground">订单列表</h2>
+<h2 class="headerLineBackground">捐赠列表</h2>
 <!--  bof infos -->
 <div class="roomListInfos orderListDiv">
 <?php if(!$resultList){?>
@@ -49,9 +49,9 @@
 	<th width="8%" align="center">房间号</th>
 	<th width="20%" align="center">牌位号信息</th>
 	<th width="10%" align="center">牌位类型</th>
-	<th width="12%" align="center">下单时间</th>
+	<th width="12%" align="center">捐赠时间</th>
 	<!--  <th width="10%" align="center">金额</th> -->
-	<th width="8%" align="center">是否支付</th>
+	<th width="8%" align="center">是否捐赠</th>
 	<th width="8%" align="center">订单来源</th>
 	<th width="10%" align="center">操作</th>
 	<th width="9%" align="center">操作员</th>

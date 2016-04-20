@@ -12,42 +12,42 @@
 </head>
 <body class="roomOpen">
 <div class="container">
-<h3>增加业务员分组</h3>
+<h3>增加义工分组</h3>
 <form action="<?php echo URL_APP_C;?>/Memberteam/memberteamAddDeal" method="post">
 <table width="100%" border="0" cellpadding="5" cellspacing="0">
 
 	<tr>
-		<td width="20%" align="right"><label>业务员分组名：</label></td>
+		<td width="20%" align="right"><label>义工分组名：</label></td>
 		<td><input type="text" name="memberteamAdd" value="" style="width:300px;" /></td>
 	</tr>
 
 	<tr>
-		<td width="20%" align="right"><label>业务员登陆名：</label></td>
+		<td width="20%" align="right"><label>义工登陆名：</label></td>
 		<td><input type="text" name="member_username" value="" style="width:120px;" />(*)</td>
 	</tr>
 
 	<tr>
-		<td width="20%" align="right"><label>业务员登陆密码：</label></td>
+		<td width="20%" align="right"><label>义工登陆密码：</label></td>
 		<td><input type="text" name="member_password" value="" style="width:120px;" />(*)</td>
 	</tr>
 
 	<tr>
-		<td width="20%" align="right"><label>业务员重复登陆密码：</label></td>
+		<td width="20%" align="right"><label>义工重复登陆密码：</label></td>
 		<td><input type="text" name="member_password_s" value="" style="width:120px;" />(*)</td>
 	</tr>
 
 	<tr>
-		<td width="20%" align="right"><label>业务员真实姓名：</label></td>
+		<td width="20%" align="right"><label>义工真实姓名：</label></td>
 		<td><input type="text" name="member_realname" value="" style="width:120px;" />(*)</td>
 	</tr>
 
 	<tr>
-		<td width="20%" align="right"><label>业务员手机号码：</label></td>
+		<td width="20%" align="right"><label>义工手机号码：</label></td>
 		<td><input type="text" name="member_telphone" value="" style="width:120px;" />(*)</td>
 	</tr>
 
 	<tr>
-		<td width="20%" align="right"><label>业务员电话号码：</label></td>
+		<td width="20%" align="right"><label>义工电话号码：</label></td>
 		<td><input type="text" name="member_phone" value="" style="width:120px;" /></td>
 	</tr>
 	

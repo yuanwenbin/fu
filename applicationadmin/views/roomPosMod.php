@@ -33,13 +33,13 @@ if(hasPerssion($_SESSION['role'], 'posLocation')){ ?>
 	</div>
 
 	<div class="modBox">
-		<p><a href="javascript:void(0);" id="modPrice">批量修改价格</a></p>
+		<p><a href="javascript:void(0);" id="modPrice">批量修改捐赠额</a></p>
 		<div class="modPrice">
 			&nbsp;&nbsp;开始位置:&nbsp;<input type="number" name="startPrice" value="" />(最小值<?php echo $max_min['min'];?>)
 			&nbsp;&nbsp;截止位置:&nbsp;<input type="number" name="endPrice" value="" />
 			(最大值<?php echo $max_min['max'];?>)&nbsp;&nbsp;
-			价格：&nbsp;<input type="number" name="price" value="" />&nbsp;&nbsp;
-			<input type="submit" name="subPrice" value="提交价格修改" />
+			捐赠额：&nbsp;<input type="number" name="price" value="" />&nbsp;&nbsp;
+			<input type="submit" name="subPrice" value="提交捐赠额修改" />
 		</div>
 	</div>
 	
@@ -121,7 +121,7 @@ $(document).ready(function(){
 		},'json');
 	});
 
-	// 价格提交
+	// 捐赠额提交
 	$("input[name='subPrice']").click(function(){
 		var start = $("input[name='startPrice']").val();
 		var end = $("input[name='endPrice']").val();

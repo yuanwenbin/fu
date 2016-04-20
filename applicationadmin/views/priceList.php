@@ -12,13 +12,13 @@
 <body class="roomList">
 <div class="roomListInfos container">
 <h3 class="headerLineBackground">
-价格分档设置,最小价格为：<?php echo $minMaxPrice['minVal'];?>,
-最大价格为：<?php echo $minMaxPrice['maxVal'];?></h3>
+捐赠额分档设置,最小捐赠额为：<?php echo $minMaxPrice['minVal'];?>,
+最大捐赠额为：<?php echo $minMaxPrice['maxVal'];?></h3>
 
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
-		<th width="30%" align="center">价格分类</th>
-		<th width="17%" align="center">价格名称</th>
+		<th width="30%" align="center">捐赠额分类</th>
+		<th width="17%" align="center">捐赠额名称</th>
 		<th width="18%" align="center">时间</th>
 		<th width="15%" align="center">管理员</th>
 		<th width="18%" align="center">操作</th>

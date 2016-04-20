@@ -11,13 +11,13 @@
 </head>
 <body class="roomList">
 <div class="roomInfosDiv container">
-<h3 class="headerLineBackground">牌位相关,房间号:<?php echo $result['location_room_id'];?>,牌位号:<?php echo $result['localtion_id'];?></h3>
+<h3 class="headerLineBackground">牌位相关,福位号:<?php echo $result['location_room_id'];?>,牌位号:<?php echo $result['localtion_id'];?></h3>
 <form action="<?php echo URL_APP_C;?>/Room/posLocationDeal" method="post" enctype="multipart/form-data">
 <input type="hidden" name="localtion_id" value="<?php echo $result['localtion_id'];?>"  />
 <table border="0" cellpadding="5" cellspacing="5" width="100%">	
 
 	<tr>
-		<td width="20%" align="right">牌位价格：</td>
+		<td width="20%" align="right">牌位捐赠额：</td>
 		<td>
 		<?php echo $result['location_price'];?>
 		</td>		

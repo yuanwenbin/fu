@@ -37,7 +37,7 @@
 </head>
 <body class="defaultInfos">
 <div class="container">
-<h2 class="headerLineBackground">订单列表</h2>
+<h2 class="headerLineBackground">捐赠列表</h2>
 
 <!-- bof one -->
 <div class="divInfos1 searchListPos">
@@ -107,9 +107,9 @@ if($result['order_payment'] == 'all'){
 	<th width="8%" align="center">房间号</th>
 	<th width="20%" align="center">牌位号信息</th>
 	<th width="10%" align="center">牌位类型</th>
-	<th width="12%" align="center">下单时间</th>
+	<th width="12%" align="center">捐赠时间</th>
 	<!--  <th width="10%" align="center">金额</th> -->
-	<th width="8%" align="center">是否支付</th>
+	<th width="8%" align="center">是否捐赠</th>
 	<th width="6%" align="center">订单来源</th>
 	<th width="10%" align="center">操作</th>
 	<th width="11%" align="center">到期时间</th>
@@ -156,8 +156,11 @@ foreach($result['resultList'] as $k=>$v){
 	<a href="<?php echo URL_APP_C;?>/Order/posInfos?id=<?php echo $v['order_id']; ?>">
 	查看
 	</a>&nbsp;&nbsp;
-	<a data-attr="<?php echo $v['order_id']; ?>" class="del" href="javascript:void(0);">删除</a>
-	<?php if(!$v['order_payment']) {?>
+	<?php if(hasPerssion($_SESSION['role'],'delOrder')) { ?>
+	<a data-attr="<?php echo $v['order_id']; ?>" class="del" href="javascript:void(0);">删除</a>		
+	<?php } ?>
+	
+	<?php if(!$v['order_payment'] && hasPerssion($_SESSION['role'],'posInfosDeal')) {?>
 	<a href="<?php echo URL_APP_C;?>/Order/addDate?id=<?php echo $v['order_id']; ?>">报备</a>
 	<?php }?>
 	</td>

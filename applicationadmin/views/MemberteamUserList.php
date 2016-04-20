@@ -12,7 +12,7 @@
 <body class="roomList">
 <div class="roomListInfos membersUserList">
 <h3 class="headerLineBackground">
-业务员&nbsp;<font><?php echo $memberInfos['member_username']; ?></font>&nbsp;登记用户列表
+业务员&nbsp;<font><?php echo $memberInfos['member_username']; ?></font>&nbsp;登记功德主列
 </h3>
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -24,10 +24,10 @@
 		<th width="18%" align="center">身份证号码</th>
 		<th width="10%" align="center">手机号码</th>
 		<th width="13%" align="center">选择号码</th>
-		<th width="10%" align="center">是否支付</th>
+		<th width="10%" align="center">是否捐赠</th>
 		<th width="25%" align="center">用户类型</th>
-		<th width="10%" align="center">价格</th>
-		<th width="14%" align="center">下单时间</th>
+		<th width="10%" align="center">捐赠额</th>
+		<th width="14%" align="center">捐赠时间</th>
 	</tr>
 	<?php
 		foreach($userList as $k=>$v) { 
@@ -101,7 +101,7 @@ if($page > 1) {
 <!--  eof 页码  -->
 
 <p class="backBtnMember">
-<a href="<?php echo URL_APP_C;?>/Memberteam/MemberteamOrderList?id=<?php echo $memberInfos['member_id'];?>">订单列表</a></p>
+<a href="<?php echo URL_APP_C;?>/Memberteam/MemberteamOrderList?id=<?php echo $memberInfos['member_id'];?>">捐赠列表</a></p>
 </div>
 
 

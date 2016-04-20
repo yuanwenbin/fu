@@ -30,7 +30,7 @@
 					<option value="1" selected>出售中</option>
 					<option value="0">已出售</option>
 				</select><br />
-				房间选择：
+				福位选择：
 				<select name="room_no">
 					<option value="0">--所有--</option>
 					<?php foreach($roomList as $kk=>$vv) { ?>
@@ -86,7 +86,7 @@
 	</tr>
 
 	<tr>
-		<td width="20%" align="right"><label>业务员列表：</label></td>
+		<td width="20%" align="right"><label>义工列表：</label></td>
 		<td>
 		业务人员:
 					<select name="member_id">
@@ -151,7 +151,7 @@ $(document).ready(function(){
 		var user_telphone = $("input[name='user_telphone']").val();
 		// 称呼
 		var user_phone = $("input[name='user_phone']").val();
-		// 房间id
+		// 福位id
 		var room_no = $("select[name='room_no']").val();	
 
 		if(user_telphone=='')

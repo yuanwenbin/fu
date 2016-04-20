@@ -59,7 +59,7 @@
 	<tr>
 		<td width="15%" align="right">权限列表：</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="all" />超级权限(注意)</p>
+		<p><input id="checkAll" type="checkbox" name="role[]" value="all" />超级权限(全选)</p>
 		</td>
 	</tr>
 
@@ -88,19 +88,20 @@
 		订单权限&nbsp;
 		</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="order|orderList" />查看订单列表</p>
+		<p><input type="checkbox" name="role[]" value="order|orderList" />查看捐赠列表</p>
 		<p><input type="checkbox" name="role[]" value="order|posInfosDeal" />订单修改</p>
+		<p><input type="checkbox" name="role[]" value="order|delOrder" />订单删除</p>
 		</td>
 	</tr>
 
 	<tr>
 		<td width="15%" align="right">
-		房间牌位权限&nbsp;</td>
+		福位牌位权限&nbsp;</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="room|roomOpen" />房间牌位开设</p>
-		<p><input type="checkbox" name="role[]" value="room|roomList" />房间查看</p>
-		<p><input type="checkbox" name="role[]" value="room|updateRoom" />房间编辑</p>
-		<p><input type="checkbox" name="role[]" value="room|delRoom" />房间删除</p>
+		<p><input type="checkbox" name="role[]" value="room|roomOpen" />福位牌位开设</p>
+		<p><input type="checkbox" name="role[]" value="room|roomList" />福位查看</p>
+		<p><input type="checkbox" name="role[]" value="room|updateRoom" />福位编辑</p>
+		<p><input type="checkbox" name="role[]" value="room|delRoom" />福位删除</p>
 		<p><input type="checkbox" name="role[]" value="room|roomInfos" />牌位查看</p>
 		<p><input type="checkbox" name="role[]" value="room|postionList" />牌位列表</p>
 		<p><input type="checkbox" name="role[]" value="room|posLocation" />牌位编辑</p>
@@ -114,6 +115,7 @@
 		统计权限&nbsp;</td>
 		<td>
 		<p><input type="checkbox" name="role[]" value="tongji|tongjiList" />查看统计</p>
+		<p><input type="checkbox" name="role[]" value="tongji|exportOrder" />导出订单</p>
 		<p><input type="checkbox" name="role[]" value="tongji|clearList" />清空无效订单</p>
 		</td>
 	</tr>
@@ -130,7 +132,7 @@
 		<td width="15%" align="right">
 		道教文化权限&nbsp;</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="curlture|curlture" />友情链接</p>
+		<p><input type="checkbox" name="role[]" value="curlture|curlture" />道教文化</p>
 		</td>
 	</tr>
 	<tr>
@@ -162,19 +164,19 @@
 	
 	<tr>
 		<td width="15%" align="right">
-		价格分类权限&nbsp;
+		捐赠额分类权限&nbsp;
 		</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="price|priceList" />价格查看</p>
-		<p><input type="checkbox" name="role[]" value="price|priceAdd" />价格增加</p>
-		<p><input type="checkbox" name="role[]" value="price|priceDel" />价格删除</p>
-		<p><input type="checkbox" name="role[]" value="price|priceUpdate" />价格修改</p>		
+		<p><input type="checkbox" name="role[]" value="price|priceList" />捐赠额查看</p>
+		<p><input type="checkbox" name="role[]" value="price|priceAdd" />捐赠额增加</p>
+		<p><input type="checkbox" name="role[]" value="price|priceDel" />捐赠额删除</p>
+		<p><input type="checkbox" name="role[]" value="price|priceUpdate" />捐赠额修改</p>		
 		</td>
 	</tr>	
 	
 	<tr>
 		<td width="15%" align="right">
-		业务员管理&nbsp;
+		义工管理&nbsp;
 		</td>
 		<td>
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamList" />分组查看</p>
@@ -183,11 +185,11 @@
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdate" />分组编辑</p>	
 		<p><input type="checkbox" name="role[]" value="memberteam|memberteamInfos" />分组详情</p>
 		
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamListUser" />业务员列表</p>
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAddUser" />业务员增加</p>
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamDelUser" />业务员删除</p>
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdateUser" />业务员编辑</p>	
-		<p><input type="checkbox" name="role[]" value="memberteam|memberteamSaleUser" />业务员业绩查看</p>			
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamListUser" />义工列表</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamAddUser" />义工增加</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamDelUser" />义工删除</p>
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamUpdateUser" />义工编辑</p>	
+		<p><input type="checkbox" name="role[]" value="memberteam|memberteamSaleUser" />义工业绩查看</p>			
 		</td>
 	</tr>	
 	
@@ -196,7 +198,7 @@
 		系统开启状态&nbsp;
 		</td>
 		<td>
-		<p><input type="checkbox" name="role[]" value="webset|websetSystem" />选号系统开启状态</p>
+		<p><input type="checkbox" name="role[]" value="webset|websetSystem" />广结善缘开启状态</p>
 		<p><input type="checkbox" name="role[]" value="webset|websetCopy" />官网开启状态</p>	
 		</td>
 	</tr>		
@@ -220,6 +222,16 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+	// 全选/反选择
+	$("#checkAll").click(function(){
+	    if($(this).attr("checked"))
+	    {
+	    	$("input[name='role[]']").attr("checked", true);  
+	    }else
+	    {
+	    	$("input[name='role[]']").attr("checked", false);
+	    }
+	});
 	$("input[name='submit']").click(function(){
 		var admin_user = $("input[name='admin_user']").val();
 		var admin_password = $("input[name='admin_password']").val();
@@ -241,17 +253,26 @@ $(document).ready(function(){
 		}
 		var roles = $("input[type='checkbox']");
 		var flag = 0;
+		var num = 0;
 		for(var i=0; i<roles.length; i++)
 		{
 			if(roles[i].checked)
 			{
 				flag = 1;
+				num++;
 			}
 		}
 		if(!flag)
 		{
 			alert("你没有添加任何权限");
 			return false;
+		}
+		if(num==roles.length)
+		{
+			$("#checkAll").attr("checked", true); 
+		}else
+		{
+			$("#checkAll").attr("checked", false); 
 		}
 		return true;
 	});

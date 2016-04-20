@@ -11,15 +11,15 @@
 </head>
 <body class="roomList">
 <div class="roomListInfos container">
-<h3 class="headerLineBackground">选号系统开启状态</h3>
+<h3 class="headerLineBackground">广结善缘开启状态</h3>
 <form action="<?php echo URL_APP_C;?>/Webset/websetSystemDeal" method="post">
 <table border="0" cellspacing="0" cellpadding="0" width="98%">
 	<tr>
 		<td>
 		修改状态：&nbsp;
 		<select name="flag">
-		<option value="1" <?php if($result->flag == 1) {echo "selected"; }?>>开启选号系统</option>
-		<option value="0" <?php if(!$result->flag) {echo "selected"; }?>>关闭选号系统</option>
+		<option value="1" <?php if($result->flag == 1) {echo "selected"; }?>>开启广结善缘</option>
+		<option value="0" <?php if(!$result->flag) {echo "selected"; }?>>关闭广结善缘</option>
 		</select>&nbsp;&nbsp;
 		<input type="submit" name="submit" value="修改提交" />
 		&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:history.go(-1);">返回</a>

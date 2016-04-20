@@ -10,12 +10,12 @@
 	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="defaultInfos">
-<h2 class="headerLineBackground">房间牌位查询</h2>
+<h2 class="headerLineBackground">福位牌位查询</h2>
 
 <!-- bof one -->
 <div class="divInfos1 searchListPos">
 <form method="get" action="<?php echo URL_APP_C;?>/Room/roomPosListSearch">
-查询房间号:
+查询福位号:
 <select name="roomId">
 <option value="all" <?php if(!$room_id){echo "selected";}?>>全部</option>
 <?php 
