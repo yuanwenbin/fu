@@ -2,8 +2,8 @@
 class Members_model extends CI_Model
 {
 	/**
-	 * 查询业务员的会员列表
-	 * @param string $member_id 业务员id
+	 * 查询义工的会员列表
+	 * @param string $member_id 义工id
 	 * @param int $page
 	 * @param int $pageSize
 	 * @return array
@@ -29,8 +29,8 @@ class Members_model extends CI_Model
 	}
 	
 	/**
-	 * 查询业务员的登记会员列表
-	 * @param string $member_id 业务员id
+	 * 查询义工的登记会员列表
+	 * @param string $member_id 义工id
 	 * @param int $page
 	 * @param int $pageSize
 	 * @return array
@@ -58,7 +58,7 @@ class Members_model extends CI_Model
 	}	
 	
 	/**
-	 * 业务员下的会员总数
+	 * 义工下的会员总数
 	 * @param int $member_id
 	 * @param array $param
 	 * @return int
@@ -80,7 +80,7 @@ class Members_model extends CI_Model
 	}
 
 	/**
-	 * 查询业务员的订单列表
+	 * 查询义工的捐赠列表
 	 * @param int $member_id
 	 * @param string $order_payment 订单状态
 	 * @param int $page
@@ -113,9 +113,9 @@ class Members_model extends CI_Model
 	}
 	
 	/**
-	 * 业务员订单总数
+	 * 义工订单总数
 	 * @param unknown $param
-	 * $member_id 业务员id
+	 * $member_id 义工id
 	 * $order_payment 订单支付状况
 	 * @return 总数
 	 */
@@ -134,7 +134,7 @@ class Members_model extends CI_Model
 	}
 	
 	/**
-	 * 业务员的总金额
+	 * 义工的总金额
 	 * @param array $param
 	 * $param['user_member_id']
 	 * $param['order_payment']

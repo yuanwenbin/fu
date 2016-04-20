@@ -337,7 +337,7 @@ class Choice_model extends CI_Model
     }
     
     /**
-     * 查询价格归档
+     * 查询捐赠额归档
      */
     function checkPriceModel()
     {
@@ -347,7 +347,7 @@ class Choice_model extends CI_Model
     }
     
     /**
-     * 查询房间号
+     * 查询福位号
      */
     function checkRoomModel($room_type=0,$room_id = 0)
     {

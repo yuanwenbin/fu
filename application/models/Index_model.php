@@ -35,7 +35,7 @@ class Index_model extends CI_Model
 	}
 	
 	/**
-	 * 业务员登陆验证
+	 * 义工登陆验证
 	 * @param string $username
 	 * @param string $password
 	 */
@@ -261,7 +261,7 @@ class Index_model extends CI_Model
 	}
 	
 	/**
-	 * 查询组长及旗下的订单列表
+	 * 查询组长及旗下的捐赠列表
 	 */
 	function orderTeamListModel($where,$page='',$pageSize='')
 	{
