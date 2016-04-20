@@ -76,17 +76,17 @@ function perssion()
 
 	// 订单权限
 	$per['order'] = array(
-		'orderList'=>'查看订单列表',	
+		'orderList'=>'查看捐赠列表',	
 		'orderSearch'=>'订单查询',
 		'posInfosDeal'=>'订单修改',
 	);
 
-	// 房间牌位权限
+	// 福位牌位权限
 	$per['room'] = array(
-		'roomOpen'=>'房间牌位开设',	
-		'roomList'=>'房间查看',
-		'updateRoom'=>'房间编辑',
-		'delRoom'=>'房间删除',
+		'roomOpen'=>'福位牌位开设',	
+		'roomList'=>'福位查看',
+		'updateRoom'=>'福位编辑',
+		'delRoom'=>'福位删除',
 		'roomInfos'=>'牌位查看',
 		'postionList'=>'牌位列表',
 		'posLocation'=>'牌位编辑',
@@ -135,31 +135,31 @@ function perssion()
 			'passwordAddForRand'=>'设置随机密码',
 			'passwordAddForHigh'=>'设置高端节密码',
 	);	
-	// 价格分类管理
+	// 捐赠分类管理
 	$per['price'] = array(
-			'priceList'=>'价格查看',
-			'priceAdd'=>'价格增加',
-			'priceDel'=>'价格删除',
-			'priceUpdate'=>'价格修改',
+			'priceList'=>'捐赠额查看',
+			'priceAdd'=>'捐赠额增加',
+			'priceDel'=>'捐赠额删除',
+			'priceUpdate'=>'捐赠额修改',
 	);
 
-	// 业务员管理
+	// 义工管理
 	$per['memberteam'] = array(
 	    'memberteamList'=>'分组查看',
 	    'memberteamAdd'=>'分组增加',
 	    'memberteamDel'=>'分组删除',
 	    'memberteamUpdate'=>'分组编辑',
 	    'memberteamInfos'=>'分组组长信息',
-	    'memberteamListUser'=>'业务员列表',
-	    'memberteamAddUser'=>'业务员增加',
-	    'memberteamDelUser'=>'业务员删除',
-	    'memberteamUpdateUser'=>'业务员编辑',
-	    'memberteamSaleUser'=>'业务员业绩',
+	    'memberteamListUser'=>'义工列表',
+	    'memberteamAddUser'=>'义工增加',
+	    'memberteamDelUser'=>'义工删除',
+	    'memberteamUpdateUser'=>'义工编辑',
+	    'memberteamSaleUser'=>'义工业绩',
 	);	
 	
 	// 关于我们
 	$per['webset'] = array(
-			'websetSystem'=>'选号系统开启状态',
+			'websetSystem'=>'广结善缘开启状态',
 			'websetCopy'=>'官网开启状态',
 	);	
 	return $per;
