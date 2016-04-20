@@ -2,7 +2,7 @@
 class Memberteam_model extends CI_Model
 {
 	/**
-	 * 查看业务员分组
+	 * 查看义工分组
 	 */
 	function memberteamListModel()
 	{
@@ -88,7 +88,7 @@ class Memberteam_model extends CI_Model
     }
     
     /**
-     * 业务员列表
+     * 义工列表
      * @param int $page
      * @param int $pageSize
      * @
@@ -112,9 +112,9 @@ class Memberteam_model extends CI_Model
     } 
     
     /**
-     * 业务员订单总数
+     * 义工订单总数
      * @param unknown $param
-     * $member_id 业务员id
+     * $member_id 义工id
      * $order_payment 订单支付状况
      * @return 总数
      */
@@ -133,7 +133,7 @@ class Memberteam_model extends CI_Model
     }
 
     /**
-     * 业务员的总金额
+     * 义工的总金额
      * @param array $param
      * $param['user_member_id']
      * $param['order_payment']
@@ -154,7 +154,7 @@ class Memberteam_model extends CI_Model
     }  
     
     /**
-     * 获取业务员信息
+     * 获取义工信息
      * @param unknown $member_id
      */
     function getMemberTeam($member_id)
@@ -171,7 +171,7 @@ class Memberteam_model extends CI_Model
     }
     
     /**
-     * 获取业务员组长信息
+     * 获取义工组长信息
      * @param unknown $member_id
      */
     function getMemberTeamInfo($member_id)
@@ -187,8 +187,8 @@ class Memberteam_model extends CI_Model
     
     }    
     /**
-     * 查询业务员的会员列表
-     * @param string $member_id 业务员id
+     * 查询义工的会员列表
+     * @param string $member_id 义工id
      * @param int $page
      * @param int $pageSize
      * @return array
@@ -214,7 +214,7 @@ class Memberteam_model extends CI_Model
     } 
 
     /**
-     * 查询业务员的订单列表
+     * 查询义工的捐赠列表
      * @param int $member_id
      * @param string $order_payment 订单状态
      * @param int $page
@@ -336,7 +336,7 @@ class Memberteam_model extends CI_Model
     }
     
     /**
-     * 查询组长及旗下的订单列表
+     * 查询组长及旗下的捐赠列表
      */
     function orderTeamListModel($where,$page='',$pageSize='')
     {

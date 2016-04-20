@@ -37,7 +37,7 @@ class Price_model extends CI_Model
 	}
 	
 	/**
-	 * 删除价格分档
+	 * 删除捐赠额分档
 	 * @param unknown $id
 	 */
 	function priceDelModel($id)
@@ -49,7 +49,7 @@ class Price_model extends CI_Model
 	}
 	
 	/**
-	 * 修改价格区间
+	 * 修改捐赠额区间
 	 * @param array $param
 	 * @param string $id
 	 */

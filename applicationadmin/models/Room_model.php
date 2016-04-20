@@ -2,7 +2,7 @@
 class Room_model extends CI_Model
 {
 	/**
-	 * 获取最大的房间号
+	 * 获取最大的福位号
 	 */
 	function roomMax()
 	{
@@ -20,11 +20,11 @@ class Room_model extends CI_Model
 	/**
 	 * 
 	 * @param int $userId 用户id
-	 * @param int $number 房间数
-	 * @param int $flag 是否开放房间，1开放,0-不开放
-	 * @param int $datetime 设置房间时间
-	 * @param int $alias 设置房间别名
-	 * @param int $description 设置房间描述
+	 * @param int $number 福位数
+	 * @param int $flag 是否开放福位，1开放,0-不开放
+	 * @param int $datetime 设置福位时间
+	 * @param int $alias 设置福位别名
+	 * @param int $description 设置福位描述
 	 */
 	function roomOpenAdd($userId,$number,$flag,$datetime,$alias,$description,$type)
 	{
@@ -35,7 +35,7 @@ class Room_model extends CI_Model
 	}
 	
 	/**
-	 * @deprecated 房间的总数目
+	 * @deprecated 福位的总数目
 	 */
 	function roomTotal()
 	{
@@ -50,8 +50,8 @@ class Room_model extends CI_Model
 	}
 	
 	/**
-	 * @deprecated 对应的房间牌位数目
-	 * @param int $roomId 房间号
+	 * @deprecated 对应的福位牌位数目
+	 * @param int $roomId 福位号
 	 */
 	function posTotal($roomId)
 	{
@@ -67,7 +67,7 @@ class Room_model extends CI_Model
 	
 	/**
 	 * @deprecated 牌位列表
-	 * @param int $roomId 房间号
+	 * @param int $roomId 福位号
 	 * @param int $page 页码
 	 * @param int $pageSize 每页大小
 	 */
@@ -80,7 +80,7 @@ class Room_model extends CI_Model
 	}
 	/**
 	 * @param int $page 页码数
-	 * 房间列表
+	 * 福位列表
 	 */
 	function roomList($page)
 	{
@@ -91,8 +91,8 @@ class Room_model extends CI_Model
 	}
 	
 	/**
-	 * @deprecated 删除房间及牌位
-	 * @param int $roomId 房间位
+	 * @deprecated 删除福位及牌位
+	 * @param int $roomId 福位位
 	 */
 	function delRoom($roomId)
 	{
@@ -112,9 +112,9 @@ class Room_model extends CI_Model
 	
 	/**
 	 * @deprecated 牌位开设
-	 * @param int $roomId 房间号
+	 * @param int $roomId 福位号
 	 * @param int $roomNumber 牌位数
-	 * @param float $price 价格
+	 * @param float $price 捐赠额
 	 * @param int $location_isshow 是否显示
 	 */
 	// ($roomId,$openFlag,$location_area,$location_prefix,$location_code,$location_numbers,$price);
@@ -134,13 +134,13 @@ class Room_model extends CI_Model
 	*/
 	/**
 	 * 
-	 * @param int $roomId 房间号
+	 * @param int $roomId 福位号
 	 * @param int $openFlag 是否显示
 	 * @param array $location_area 区域名称 
 	 * @param array $location_prefix 区域前缀
 	 * @param array $location_code 开始代码
 	 * @param array $location_numbers 开始数量
-	 * @param array $price 开始价格
+	 * @param array $price 开始捐赠额
 	 */
 	function roomOpenPosition($roomId,$openFlag,$location_area,$location_prefix,$location_code,$location_numbers,$price,$type)
 	{
@@ -161,8 +161,8 @@ class Room_model extends CI_Model
 		$this->db->query($sql);		
 	}
 	/**
-	 * @deprecated 房间相关信息
-	 * @param int $roomId 房间号码
+	 * @deprecated 福位相关信息
+	 * @param int $roomId 福位号码
 	 */
 	function roomInfos($roomId)
 	{
@@ -172,7 +172,7 @@ class Room_model extends CI_Model
 	}
 	
 	/**
-	 * @deprecated 对应的房间牌位总数
+	 * @deprecated 对应的福位牌位总数
 	 * @param int $pageSize 每页大小
 	 */
 	function locationNumber($roomId)
@@ -194,10 +194,10 @@ class Room_model extends CI_Model
 	}
 	
 	/**
-	 * @deprecated 修改房间信息
-	 * @param int $roomId 房间id
-	 * @param string $room_alias 房间别名
-	 * @param string $room_description 房间描述
+	 * @deprecated 修改福位信息
+	 * @param int $roomId 福位id
+	 * @param string $room_alias 福位别名
+	 * @param string $room_description 福位描述
 	 * @param int $room_flag 是否开启
 	 */
 	function updateRoomDeal($roomId,$room_alias,$room_description,$room_flag, $room_type)
@@ -222,7 +222,7 @@ class Room_model extends CI_Model
 	/**
 	 * @deprecated 牌位设置
 	 * @param int $localtion_id 牌位
-	 * @param float $location_price 价格
+	 * @param float $location_price 捐赠额
 	 * @param int $location_type 类型
 	 * @param string $location_alias 名称
 	 * @param string $location_details 描述
@@ -267,7 +267,7 @@ class Room_model extends CI_Model
 	}
 	
 	/**
-	 * 房间信息统计
+	 * 福位信息统计
 	 * 
 	 */
 	function roomTongJiModel()
@@ -295,7 +295,7 @@ class Room_model extends CI_Model
 	}
 	
 	/**
-	 * 获取房间号
+	 * 获取福位号
 	 */
 	function roomPosList()
 	{
@@ -305,7 +305,7 @@ class Room_model extends CI_Model
 	}
 	
 	/**
-	 * 获取房间信息
+	 * 获取福位信息
 	 */
 	function roomPosListDetails()
 	{
@@ -436,7 +436,7 @@ class Room_model extends CI_Model
 			return $this->db->affected_rows();			
 		}elseif($param['type'] == 'price')
 		{
-			// 修改价格
+			// 修改捐赠额
 			$location_price = $param['location_price'];
 			if(!$location_price)
 			{

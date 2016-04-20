@@ -71,7 +71,7 @@ class Tongji_model extends CI_Model
     	$order_room_id = '';
     	$data[0]=0; //出售中
     	$data[1]=0; // 已经出售
-    	//是否选择了房间或日期
+    	//是否选择了福位或日期
     	//$flag = 0;
     	if(isset($param['startTime']) && ($param['startTime']))
     	{
@@ -450,6 +450,17 @@ class Tongji_model extends CI_Model
     	$sql = "select * from fu_room_list";
     	$res = $this->db->query($sql);
     	return $res->result_array();
+    }
+    
+    function exportOrder()
+    {
+        $sql = "select * from fu_order_info as oi left join fu_user as u on oi.order_user = u.body_id
+                left join fu_room_list as rl on oi.order_room_id = rl.room_id
+                left join fu_location_list as ll on oi.order_location_id = ll.localtion_id
+                left join fu_member as m on u.user_member_id = m.member_id
+                left join fu_team as t on t.id = m.member_team_id order by oi.order_id desc";
+        $res = $this->db->query($sql);
+        return $res->result_array();
     }
  
 }
