@@ -19,13 +19,13 @@ class Index extends CI_Controller {
 				'isNew' => 1, // 是否是新用户
 				'is_complete' => 0, // 是否完成
 				'highFlag'=>'', // 是否验证过高端
-				'price'=>'', // 价格标识
-				'minPrice'=>'',  // 最小价格
-				'maxPrice'=>'', // 大价格
+				'price'=>'', // 捐赠额标识
+				'minPrice'=>'',  // 最小捐赠额
+				'maxPrice'=>'', // 大捐赠额
 				'count'=>0,	 // 选择的次数
 				'randThird'=>0, // 是否是已经验证可以进行第三次随机选号
 		 */
-		// 判断是否有业务员登陆了
+		// 判断是否有义工登陆了
 		if(!$this->session->member_id)
 		{
 			header("Location:". URL_APP_C ."/Index/member");
@@ -67,7 +67,7 @@ class Index extends CI_Controller {
 	
 	public function login()
 	{
-		// 判断是否有业务员登陆了
+		// 判断是否有义工登陆了
 		if(!$this->session->member_id)
 		{
 			header("Location:". URL_APP_C ."/Index/member");
@@ -134,7 +134,7 @@ class Index extends CI_Controller {
 	}
 	
 	/**
-	 * 业务员登陆入口
+	 * 义工登陆入口
 	 */
 	function member()
 	{
@@ -183,7 +183,7 @@ class Index extends CI_Controller {
 	 */ 
 	function logout()
 	{
-		// 判断是否有业务员登陆了
+		// 判断是否有义工登陆了
 		if(!$this->session->member_id)
 		{
 			header("Location:". URL_APP_C ."/Index/member");
@@ -202,13 +202,13 @@ class Index extends CI_Controller {
 	
 	function menus()
 	{
-		// 判断是否有业务员登陆了
+		// 判断是否有义工登陆了
 		if(!$this->session->member_id)
 		{
 			header("Location:". URL_APP_C ."/Index/member");
 			exit;
 		}
-		// 业务员选择
+		// 义工选择
 		$this->load->view('menus');		
 	}
 	
@@ -217,7 +217,7 @@ class Index extends CI_Controller {
 	 */
 	function register()
 	{
-		// 判断是否有业务员登陆了
+		// 判断是否有义工登陆了
 		if(!$this->session->member_id)
 		{
 			header("Location:". URL_APP_C ."/Index/member");
@@ -234,7 +234,7 @@ class Index extends CI_Controller {
 		$data = array();
 		$data['error'] = true;
 		$data['msg'] = '非法操作';
-		// 判断是否有业务员登陆了
+		// 判断是否有义工登陆了
 		if(!$this->session->member_id)
 		{
 			die(json_encode($data));
@@ -279,6 +279,19 @@ class Index extends CI_Controller {
     		{
     			$data['msg'] = '身份份证有误码';
     			die(json_encode($data));
+    		}
+    		//检查订单
+    		$orderInfo = $this->Index_model->searchInfos('fu_order_info', array('order_user'=>$body_id));
+    		if($orderInfo)
+    		{
+    		    if($orderInfo[0]['order_payment'])
+    		    {
+    		        $data['msg'] = '此用户已经购买过，并且已经支付完成,直接去广结善缘登记即可看到相亲信息';
+    		        die(json_encode($data));
+    		    }else {
+    		        $data['msg'] = '此用户已经购买过，但还没有支付,直接去广结善缘登记即可看到相亲信息';
+    		        die(json_encode($data));    		        
+    		    }
     		}
 	    }
 		$body_id = addslashes($body_id); 
@@ -353,7 +366,7 @@ class Index extends CI_Controller {
 	 */
 	function infoList()
 	{
-	    // 判断是否有业务员登陆了
+	    // 判断是否有义工登陆了
 	    if(!$this->session->member_id)
 	    {
 	        header("Location:". URL_APP_C ."/Index/member");
@@ -366,12 +379,12 @@ class Index extends CI_Controller {
 	        exit;
 	    }
 	    // 书写统计中心
-	    // 业务员总数
+	    // 义工总数
 	    $paramMember['member_team_id'] = $this->session->member_team_id;
 	    $memberCount = $this->Index_model->queryCountModel('fu_member',$paramMember);
  
 	    $view['userCount'] =  $memberCount;
-	    // 旗下业务员的用户总数
+	    // 旗下义工的用户总数
 	    // $paramMemberUser['member_team_id'] = $this->session->member_id;
 	    $paramMemberUser['member_team_id'] = $this->session->member_team_id;
 	    // $memberUserList = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
@@ -406,7 +419,7 @@ class Index extends CI_Controller {
 	    $orderNotPayCountMoney = 0.00;
 	    if($memberUserCount)
 	    {
-	        // 组长旗下业务员的用户列表 
+	        // 组长旗下义工的用户列表 
 	        // $memberForUserList = $this->Index_model->queryCountInListModel('fu_user',$ids,'user_team_id');
 	        $memberForUserList = $this->Index_model->queryCountInListModel('fu_user',$ids,'user_member_id');
 	        // bof 
@@ -417,7 +430,7 @@ class Index extends CI_Controller {
 	        	{
 	        		$idss .= "'".$v['body_id'] ."',";
 	        	}
-	        	// 组长旗下业务员的用户body_id值
+	        	// 组长旗下义工的用户body_id值
 	        	$idss = substr($idss,0,-1) . ")";
 
         		$idStr = substr($idss,0,-1) . ")";
@@ -443,7 +456,7 @@ class Index extends CI_Controller {
 	            {
 	                $idss .= "'".$v['user_id'] ."',";
 	            }
-	            // 组长旗下业务员的用户user_id值
+	            // 组长旗下义工的用户user_id值
 	            $idss = substr($idss,0,-1) . ")";
 	            $userList = $this->Index_model->queryCountInListModel('fu_user',$idss,'user_id');
 	            if($userList)
@@ -478,7 +491,7 @@ class Index extends CI_Controller {
 	 */
 	function indexUserListTeam()
 	{
-		// 判断是否有业务员登陆了
+		// 判断是否有义工登陆了
 		if(!$this->session->member_id)
 		{
 			header("Location:". URL_APP_C ."/Index/member");
@@ -499,7 +512,7 @@ class Index extends CI_Controller {
 		}
 		$pageSize = 10;
 		
-		// 业务员 id 列表
+		// 义工 id 列表
 		$paramMemberUser = array('member_team_id'=>$this->session->member_teamid);
 		$members = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
 		$member_ids = " (";
@@ -517,7 +530,7 @@ class Index extends CI_Controller {
 		// 登记用户总数
 		$userCount = $this->Index_model->queryCountInModel('fu_user',$member_ids,'user_member_id', array('user_location_id' => '0')); 
 		$totalPage = ceil($userCount/$pageSize);
-		// 登记用户列表
+		// 登记功德主列
 		$userNotOrder = $this->Index_model->queryTotalListModel('fu_user',$where,$page,$pageSize); 
 		
 		
@@ -530,11 +543,11 @@ class Index extends CI_Controller {
 	}
 
 	/**
-	 * 组长及旗下业务员和其业务员的订单
+	 * 组长及旗下义工和其义工的订单
 	 */
 	function orderListTeam()
 	{
-		// 判断是否有业务员登陆了
+		// 判断是否有义工登陆了
 		if(!$this->session->member_id)
 		{
 			header("Location:". URL_APP_C ."/Index/member");
@@ -554,7 +567,7 @@ class Index extends CI_Controller {
 		}
 		$pageSize = 10;
 	
-		// 业务员 id 列表
+		// 义工 id 列表
 		$paramMemberUser = array('member_team_id'=>$this->session->member_teamid);
 		$members = $this->Index_model->searchInfos('fu_member',$paramMemberUser);
 		$member_ids = " (";
@@ -567,7 +580,7 @@ class Index extends CI_Controller {
 		}else {
 			$member_ids .= "'-1',";
 		}
-		// 业务员编号
+		// 义工编号
 		$member_ids = substr($member_ids,0,-1) . ")"; // ('1','3','4')
 		$where = " in " . $member_ids;
 		$orderListTotal = $this->Index_model->orderTeamListModel($where); // 总记录
@@ -629,7 +642,7 @@ class Index extends CI_Controller {
 				{
 					// 订单详情
 					$view['orderInfo'] = $resInfo;
-					// 房间详情
+					// 福位详情
 					$roomInfo = $this->Choice_model->searchUser('fu_room_list',array('room_id'=>$resInfo['order_room_id']));
 					$view['roomInfo'] = $roomInfo;
 					// 牌位详情
@@ -660,7 +673,7 @@ class Index extends CI_Controller {
 					// 有详单，且失效,即当全新用户处理
 					if($order_datetime < $affectTime)
 					{
-						// 保存入数据库，并删除,修改房间牌位状态,重置用户信息
+						// 保存入数据库，并删除,修改福位牌位状态,重置用户信息
 						$table = 'fu_order_info_del_logs';
 						$orderId = $resInfo['order_id'];
 						unset($resInfo['order_id']);
@@ -670,7 +683,7 @@ class Index extends CI_Controller {
 						$affectRow = $this->Choice_model->insertOrder($table,$param);
 						// 删除数据
 						$this->Choice_model->delData('fu_order_info',array('order_id'=>$orderId));
-						// 修改房间牌位状态
+						// 修改福位牌位状态
 						$tableName = 'fu_location_list';
 						$paramUpdate = array('location_number'=>0);
 						$where = array('localtion_id'=>$resInfo['order_location_id']);
@@ -698,7 +711,7 @@ class Index extends CI_Controller {
 					}else {
 						//有订单，且没支付
 						$view['orderInfo'] = $resInfo;
-						// 房间详情
+						// 福位详情
 						$roomInfo = $this->Choice_model->searchUser('fu_room_list',array('room_id'=>$resInfo['order_room_id']));
 						$view['roomInfo'] = $roomInfo;
 						// 牌位详情

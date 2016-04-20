@@ -10,7 +10,7 @@ class Choice extends CI_Controller {
 	// 是否登陆了
 	function userIsLogin()
 	{
-		// 判断是否有业务员登陆了
+		// 判断是否有义工登陆了
 		if(!$this->session->member_id)
 		{
 			header("Location:". URL_APP_C ."/Index/member");
@@ -89,7 +89,7 @@ class Choice extends CI_Controller {
 			 	{
 			 		// 订单详情
 			 		$view['orderInfo'] = $resInfo;
-			 		// 房间详情
+			 		// 福位详情
 			 		$roomInfo = $this->Choice_model->searchUser('fu_room_list',array('room_id'=>$resInfo['order_room_id']));
 			 		$view['roomInfo'] = $roomInfo;
 			 		// 牌位详情
@@ -120,7 +120,7 @@ class Choice extends CI_Controller {
 			 		// 有详单，且失效,即当全新用户处理
 			 		if($order_datetime < $affectTime)
 			 		{
-			 			// 保存入数据库，并删除,修改房间牌位状态,重置用户信息
+			 			// 保存入数据库，并删除,修改福位牌位状态,重置用户信息
 			 			$table = 'fu_order_info_del_logs';
 			 			$orderId = $resInfo['order_id'];
 			 			unset($resInfo['order_id']);
@@ -131,7 +131,7 @@ class Choice extends CI_Controller {
 			 			$affectRow = $this->Choice_model->insertOrder($table,$param);
 			 			// 删除数据
 			 			$this->Choice_model->delData('fu_order_info',array('order_id'=>$orderId));
-			 			// 修改房间牌位状态
+			 			// 修改福位牌位状态
 			 			$tableName = 'fu_location_list';
 			 			$paramUpdate = array('location_number'=>2,'location_date'=>0);
 			 			$where = array('localtion_id'=>$resInfo['order_location_id']);
@@ -161,7 +161,7 @@ class Choice extends CI_Controller {
 			 		}else {
 			 			//有订单，且没支付
 			 			$view['orderInfo'] = $resInfo;
-			 			// 房间详情
+			 			// 福位详情
 			 			$roomInfo = $this->Choice_model->searchUser('fu_room_list',array('room_id'=>$resInfo['order_room_id']));
 			 			$view['roomInfo'] = $roomInfo;
 			 			// 牌位详情
@@ -334,7 +334,7 @@ class Choice extends CI_Controller {
 		}
 		// 查询牌位
 		$posInfo = $this->Choice_model->searchUser('fu_location_list', array('localtion_id'=>$userInfo['user_location_id']));
-		// 查询房间
+		// 查询福位
 		$roomInfo = $this->Choice_model->searchUser('fu_room_list', array('room_id'=>$posInfo['location_room_id']));
 		$view['result']['posInfo'] = $posInfo;
 		$view['result']['roomInfo'] = $roomInfo;
@@ -342,7 +342,7 @@ class Choice extends CI_Controller {
 	}
 	*/	
 	/**
-	 * 随机选号展示,以价格为准
+	 * 随机选号展示,以捐赠额为准
 	 */
 	function byRand_bak()
 	{	
@@ -370,7 +370,7 @@ class Choice extends CI_Controller {
 	   		}else {
 	   			$view['highFlag'] = 0;
 	   		}
-	   		// 价格归档是否选择
+	   		// 捐赠额归档是否选择
 	   		if($this->session->price)
 	   		{	
 	   			//设置过
@@ -391,7 +391,7 @@ class Choice extends CI_Controller {
 	}
 	
 	/**
-	 * 随机选号展示,以房间号为准
+	 * 随机选号展示,以福位号为准
 	 */
 	function byRand()
 	{
@@ -420,7 +420,7 @@ class Choice extends CI_Controller {
 				$view['highFlag'] = 0;
 			}
 			/*
-			// 价格归档是否选择
+			// 捐赠额归档是否选择
 			if($this->session->price)
 			{
 				//设置过
@@ -431,7 +431,7 @@ class Choice extends CI_Controller {
 				$view['maxPrice'] = -1;
 			}
 			*/
-			//房间号选择
+			//福位号选择
 			if($this->session->room_id)
 			{
 				//设置过
@@ -743,7 +743,7 @@ class Choice extends CI_Controller {
 	    	$view['highFlag'] = 0;
 	    }	
 		/*
-	    // 价格归档是否选择
+	    // 捐赠额归档是否选择
 	    if($this->session->price)
 	    {
 	        //设置过
@@ -756,7 +756,7 @@ class Choice extends CI_Controller {
 	    }
 	    $view['priceList'] = $this->checkPrice();	
 	    */  
-	    //房间号选择
+	    //福位号选择
 	    if($this->session->room_id)
 	    {
 	    	//设置过
@@ -853,7 +853,7 @@ class Choice extends CI_Controller {
 	}
 	
 	/**
-	 * 房间号列表
+	 * 福位号列表
 	 * @param unknown $roomId
 	 * @param array $param 
 	 */
@@ -922,7 +922,7 @@ class Choice extends CI_Controller {
 	    }	    
         //从此开始书写高端内容
         // 查询高端定制座位
-        // 房间是否开启
+        // 福位是否开启
         $roomList = $this->roomList('fu_room_list', array('room_flag'=>1,'room_type'=>1));
         
         if($roomList)
@@ -939,7 +939,7 @@ class Choice extends CI_Controller {
         	{
         		$roomId = $roomIds[0];
         	}
-        	// 判断是否合格的房间
+        	// 判断是否合格的福位
         	if(!in_array($roomId, $roomIds))
         	{
         		$roomId = $roomIds[0];
@@ -956,7 +956,7 @@ class Choice extends CI_Controller {
         	$view['roomInfos'] = $roomInfos;
         	$view['result'] = $res; 
         	/*
-        	// 价格归档是否选择
+        	// 捐赠额归档是否选择
         	if($this->session->price)
         	{
         		//设置过
@@ -969,7 +969,7 @@ class Choice extends CI_Controller {
         	}
         	$view['priceList'] = $this->checkPrice();	
         	*/
-        	//房间号选择
+        	//福位号选择
         	if($this->session->room_id)
         	{
         		//设置过
@@ -982,7 +982,7 @@ class Choice extends CI_Controller {
         	     	
         	$this->load->view('byHigh', $view);        	
         }else {
-        	// 没有相关房间
+        	// 没有相关福位
              $this->load->view('errorNone');
         }
 
@@ -1130,7 +1130,7 @@ class Choice extends CI_Controller {
 	    $data['msg'] = '成功';
 	    // 位置
 	    $data['position'] = $locationInfos['localtion_id'];
-	    // 价格
+	    // 捐赠额
 	    $data['price'] = $locationInfos['location_price']; 
 	    // 出售状态 
 	    $data['sale'] = $locationInfos['location_number'];
@@ -1208,7 +1208,7 @@ class Choice extends CI_Controller {
 	}	
 	
 	/**
-	 * 查询价格归档
+	 * 查询捐赠额归档
 	 */
 	private  function checkPrice()
 	{
@@ -1217,8 +1217,8 @@ class Choice extends CI_Controller {
 	}
 	
 	/**
-	 * 查询房间归档
-	 * @param int $room_type房间号
+	 * 查询福位归档
+	 * @param int $room_type福位号
 	 */
 	private  function checkRoom($room_type=0)
 	{
@@ -1229,7 +1229,7 @@ class Choice extends CI_Controller {
 		
 	
 	/**
-	 * 价格选择 
+	 * 捐赠额选择 
 	 */
 	function selectPrice()
 	{
@@ -1255,7 +1255,7 @@ class Choice extends CI_Controller {
 	}
 	
 	/**
-	 * 房间选择 
+	 * 福位选择 
 	 */
 	function selectRoom()
 	{
@@ -1272,7 +1272,7 @@ class Choice extends CI_Controller {
 		{
 			die(json_encode($data));
 		}
-		// 检查是否有可用的房间
+		// 检查是否有可用的福位
 		$checkExists = $this->Choice_model->checkRoomModel($type,$room_id);
 		if(!$checkExists)
 		{

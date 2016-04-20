@@ -8,7 +8,7 @@ class Members extends CI_Controller {
 	}
 	
 	/**
-	 * 判断是否有业务员登陆了
+	 * 判断是否有义工登陆了
 	 */
 	private function isLoginMember()
 	{
@@ -24,13 +24,13 @@ class Members extends CI_Controller {
 	 */
 	public function index()
 	{  
-		// 判断业务员是否登陆了
+		// 判断义工是否登陆了
 		$this->isLoginMember();
         /*
 		// 会员列表
 		$userList = $this->Members_model->userListModel($this->session->member_id);
-		// 订单列表
-		$order_payment = 'all'; // 是否支付
+		// 捐赠列表
+		$order_payment = 'all'; // 是否捐赠
 		$orderList = $this->Members_model->orderListModel($this->session->member_id, $order_payment);
         */
 		//会员总数
@@ -53,13 +53,14 @@ class Members extends CI_Controller {
 	 */
 	function userList()
 	{
-	    // 判断业务员是否登陆了
+	    // 判断义工是否登陆了
 	    $this->isLoginMember();	 
 	    // 会员总数，没有下过订单的
 	    $total = $this->Members_model->userListTotalModel($this->session->member_id,array('user_location_id'=>'0'));
 	    $pageSize = 10;
 	    $totalPage = ceil($total/$pageSize);
 	    $page = intval($this->input->get_post('page'));
+	    $type = addslashes($this->input->get_post('type'));
 	    if(!$page)
 	    {
 	    	$page = 1;
@@ -72,17 +73,18 @@ class Members extends CI_Controller {
 		$view['page'] = $page;
 		$view['totalPage'] = $totalPage;
 		$view['total'] = $total;
+		$view['type'] = $type;
 	    $this->load->view('memberUserList', $view);
 	}
 	
 	/**
-	 * 业务员订单列表
+	 * 义工捐赠列表
 	 */
 	function orderList()
 	{
-	    // 判断业务员是否登陆了
+	    // 判断义工是否登陆了
 	    $this->isLoginMember();	  
-	    $order_payment = 'all'; // 是否支付
+	    $order_payment = 'all'; // 是否捐赠
 	    //
 	    $pageSize = 10;
 	    //当前页码
@@ -112,7 +114,7 @@ class Members extends CI_Controller {
 	 */
 	function check()
 	{
-	    // 判断业务员是否登陆了
+	    // 判断义工是否登陆了
 	    $this->isLoginMember();	
 	    $view = array();
 	    $data = array();
@@ -143,7 +145,7 @@ class Members extends CI_Controller {
 	                            $data[$k]['order'] = $orderInfo[0];
 	                        }
 	                    }
-	                    // 业务员id
+	                    // 义工id
 	                    $member_id = $v['user_member_id'];
 	                    if($member_id)
 	                    {

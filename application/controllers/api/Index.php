@@ -90,7 +90,7 @@ class Index extends CI_Controller {
 					$this->uflag = 1;
  			 		// 订单详情
 			 		$data['orderInfo'] = $resInfo;
-			 		// 房间详情
+			 		// 福位详情
 			 		$roomInfo = $this->Choice_model->searchUser('fu_room_list',array('room_id'=>$resInfo['order_room_id']));
 			 		$data['roomInfo'] = $roomInfo;
 			 		// 牌位详情
@@ -108,7 +108,7 @@ class Index extends CI_Controller {
 			 		// 有详单，且失效,即当全新用户处理
 			 		if($order_datetime < $affectTime)
 			 		{
-			 			// 保存入数据库，并删除,修改房间牌位状态,重置用户信息
+			 			// 保存入数据库，并删除,修改福位牌位状态,重置用户信息
 			 			$table = 'fu_order_info_del_logs';
 			 			$orderId = $resInfo['order_id'];
 			 			unset($resInfo['order_id']);
@@ -121,7 +121,7 @@ class Index extends CI_Controller {
 			 			$affectRow = $this->Choice_model->insertOrder($table,$param);
 			 			// 删除数据
 			 			$this->Choice_model->delData('fu_order_info',array('order_id'=>$orderId));
-			 			// 修改房间牌位状态
+			 			// 修改福位牌位状态
 			 			$tableName = 'fu_location_list';
 			 			$paramUpdate = array('location_number'=>2,'location_date'=>0);
 			 			$where = array('localtion_id'=>$resInfo['order_location_id']);
@@ -139,7 +139,7 @@ class Index extends CI_Controller {
 					{
 			 			//有订单，且没支付
 			 			$data['orderInfo'] = $resInfo;
-			 			// 房间详情
+			 			// 福位详情
 			 			$roomInfo = $this->Choice_model->searchUser('fu_room_list',array('room_id'=>$resInfo['order_room_id']));
 			 			$data['roomInfo'] = $roomInfo;
 			 			// 牌位详情
@@ -260,8 +260,8 @@ class Index extends CI_Controller {
         "user_id": "1",
         "room_time": "1444731257",
         "room_full": "0",
-        "room_alias": "大发房间",
-        "room_description": "这是一个财运的房间，欢迎预订！！！"
+        "room_alias": "大发福位",
+        "room_description": "这是一个财运的福位，欢迎预订！！！"
     },
     "posInfo": {
         "localtion_id": "105",
@@ -314,8 +314,8 @@ class Index extends CI_Controller {
         "user_id": "1",
         "room_time": "1445393103",
         "room_full": "0",
-        "room_alias": "测试房间",
-        "room_description": "测试房间描述"
+        "room_alias": "测试福位",
+        "room_description": "测试福位描述"
     },
     "posInfo": {
         "localtion_id": "688",
