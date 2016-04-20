@@ -22,7 +22,7 @@ class Room extends CI_Controller {
 	}
 	
 	/**
-	 * 房间开设
+	 * 福位开设
 	 */
 	function roomOpen()
 	{
@@ -30,7 +30,7 @@ class Room extends CI_Controller {
 	        exit('无权限,请点击左栏目操作');
 	    }	    
 		$view = array();
-		// 获取房间号码
+		// 获取福位号码
 		$roomId = $this->Room_model->roomMax();
 		if(!$roomId)
 		{
@@ -43,7 +43,7 @@ class Room extends CI_Controller {
 	}
 	
 	/**
-	 * 增加房间处理
+	 * 增加福位处理
 	 */
 	function roomOpenAdd()
 	{
@@ -75,7 +75,7 @@ class Room extends CI_Controller {
 		// 对应的牌位数量
 		$location_numbers = $this->input->post_get('location_numbers');
 		
-		// 价格
+		// 捐赠额
 		$price = $this->input->post_get('price');
 		
 		// 对区域信息分别作判断
@@ -154,19 +154,19 @@ class Room extends CI_Controller {
 	}
 	
 	/**
-	 * 房间列表
+	 * 福位列表
 	 */
 	function roomList()
 	{
 	    if(!hasPerssion($_SESSION['role'], 'roomList')){
 	        exit('无权限,请点击左栏目操作');
 	    }		
-		// 总房间数
+		// 总福位数
 		$roomTotal = $this->Room_model->roomTotal();
 		if(!$roomTotal)
 		{
-			echo '暂时没有相关房间,请先开设房间';
-			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击开设房间</a>";
+			echo '暂时没有相关福位,请先开设福位';
+			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击开设福位</a>";
 			exit;
 		}
 		$totalPage = ceil($roomTotal/PAGESIZE);
@@ -212,7 +212,7 @@ class Room extends CI_Controller {
 	}
 	
 	/**
-	 * 删除房间及牌位
+	 * 删除福位及牌位
 	 */
 	function delRoom()
 	{
@@ -229,7 +229,7 @@ class Room extends CI_Controller {
 		}
 	}
     /**
-     * 房间对应的牌位列表
+     * 福位对应的牌位列表
      */
 	function roomInfos()
 	{
@@ -249,7 +249,7 @@ class Room extends CI_Controller {
 	}  
 	
 	/**
-	 * 房间编辑信息
+	 * 福位编辑信息
 	 */
 	function updateRoom()
 	{
@@ -267,7 +267,7 @@ class Room extends CI_Controller {
 	}
 	
 	/**
-	 * 处理房间信息
+	 * 处理福位信息
 	 */
 	function updateRoomDeal()
 	{
@@ -283,7 +283,7 @@ class Room extends CI_Controller {
 		}
 		if(!in_array($room_type,array(0,1)))
 		{
-			exit('出错了，房间类型不对！');
+			exit('出错了，福位类型不对！');
 		}
 		$room_alias = addslashes($this->input->post_get('room_alias'));
 		$room_description = addslashes($this->input->post_get('room_description'));
@@ -304,12 +304,12 @@ class Room extends CI_Controller {
 	    if(!hasPerssion($_SESSION['role'], 'postionList')){
 	        exit('无权限,请点击左栏目操作');
 	    }
-		// 总房间数
+		// 总福位数
 		$roomTotal = $this->Room_model->roomTotal();
 		if(!$roomTotal)
 		{
-			echo '暂时没有相关房间,请先开设房间';
-			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击开设房间</a>";
+			echo '暂时没有相关福位,请先开设福位';
+			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击开设福位</a>";
 			exit;
 		}
 		$totalPage = ceil($roomTotal/PAGESIZE);
@@ -344,7 +344,7 @@ class Room extends CI_Controller {
 	}
 	
 	/**
-	 * 房间对应的牌位列表
+	 * 福位对应的牌位列表
 	 */
 	function postionList()
 	{
@@ -352,8 +352,8 @@ class Room extends CI_Controller {
 		$total = $this->Room_model->posTotal($roomId);	
 		if(!$total)
 		{
-			echo '该房间暂时没有牌位，请删除该房间，然后';
-			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击开设房间</a>";
+			echo '该福位暂时没有牌位，请删除该福位，然后';
+			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击开设福位</a>";
 			exit;			
 		}
 		$page = $this->input->post_get('page');
@@ -475,7 +475,7 @@ class Room extends CI_Controller {
 		$location_price = $this->input->post_get('location_price');
 		$location_type = $this->input->post_get('location_type');
 		$location_alias = addslashes($this->input->post_get('location_alias'));
-		$location_details = addslashes($this->input->post_get('location_details'));
+		//$location_details = addslashes($this->input->post_get('location_details'));
 		
 		$location_area = addslashes($this->input->post_get('location_area'));
 		$location_prefix = addslashes($this->input->post_get('location_prefix'));
@@ -493,10 +493,12 @@ class Room extends CI_Controller {
 		// $location_paytime = '';
 		// 上传图片
 		$filePic = '';
+		$location_details = '';
+		/*
 		if($_FILES['location_pic_new']['name'])
 		{
 			$filePic = fileUpload($_FILES['location_pic_new']);
-		}
+		} */
 		// $result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_number,$location_ispayment,$location_paytime);
 		$result = $this->Room_model->posLocationDeal($localtion_id,$location_price,$location_type,$location_alias,$location_details,$filePic,$location_area,$location_prefix,$location_code,$location_number,$location_status,$param);
 		if($result)
@@ -532,7 +534,7 @@ class Room extends CI_Controller {
 	}
 	
 	/**
-	 * 房间牌位信息查询
+	 * 福位牌位信息查询
 	 */
 	function roomPosList()
 	{
@@ -550,13 +552,13 @@ class Room extends CI_Controller {
 	}
 	
 	/**
-	 * 根据查询条件筛选出的房间牌位信息
+	 * 根据查询条件筛选出的福位牌位信息
 	 */
 	function roomPosListSearch()
 	{
 		$view = array();
 		$param = array();
-		// 房间号
+		// 福位号
 		$room_id = $this->input->get_post('roomId');
 		if(!$room_id)
 		{
@@ -676,7 +678,7 @@ class Room extends CI_Controller {
 				$param['location_number'] = '0';
 			}
 		}
-		// 房间列表
+		// 福位列表
 		// $roomList = $this->Room_model->roomPosList();
 		$roomList = $this->Room_model->roomPosListDetails();
 		$roomArr = array();
@@ -781,7 +783,7 @@ class Room extends CI_Controller {
 			die(json_encode($data));
 		}elseif($type && $type == 'price')
 		{
-			// 价格
+			// 捐赠额
 			$location_price = $this->input->get_post('price');
 			$param['type'] = 'price';
 			$param['location_price'] = $location_price;

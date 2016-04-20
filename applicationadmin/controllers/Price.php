@@ -21,7 +21,7 @@ class Price extends CI_Controller {
 	    return true;
 	}
 	/**
-	 * 获取价格最小值和最大值
+	 * 获取捐赠额最小值和最大值
 	 * @return unknown
 	 */	
 	function checkMaxMinPrice()
@@ -39,7 +39,7 @@ class Price extends CI_Controller {
 		return $data;
 	}
 	/**
-	 * 查看价格列表
+	 * 查看捐赠额列表
 	 */
 	function priceList()
 	{
@@ -52,16 +52,16 @@ class Price extends CI_Controller {
 		{
 			echo '没有相关数据 ';
 			if(!hasPerssion($_SESSION['role'], 'priceList')){
-				echo "请联系管理员设置 价格分档";
+				echo "请联系管理员设置 捐赠额分档";
 			}else
 			{
-				echo "<a href='".URL_APP_C."/Price/priceAdd'>增加价格分档</a>";
+				echo "<a href='".URL_APP_C."/Price/priceAdd'>增加捐赠额分档</a>";
 			}
 			exit;
 		}
 		// 密码列表
 		$view = array();
-		$view['title'] = '分档价格列表';
+		$view['title'] = '分档捐赠额列表';
 		$view['priceList'] = $res;
 		$view['minMaxPrice'] = $this->checkMaxMinPrice();
 		$this->load->view('priceList', $view);
@@ -69,7 +69,7 @@ class Price extends CI_Controller {
 	 
 	
 	/**
-	 * 增加价格分档
+	 * 增加捐赠额分档
 	 */
 	function priceAdd()
 	{
@@ -77,12 +77,12 @@ class Price extends CI_Controller {
 	        exit('无权限,请点击左栏目操作');
 	    }
 	    $view = array();
-	    // 判断是否有查看价格的权限
+	    // 判断是否有查看捐赠额的权限
 	    $hasList = 1;
 	    if(!hasPerssion($_SESSION['role'], 'priceList')){
 	    	$hasList = 0;
 	    }
-	    // 价格分档是否有值
+	    // 捐赠额分档是否有值
 	    if($hasList)
 	    {	
 	    	$res = $this->Price_model->priceListModel();
@@ -101,7 +101,7 @@ class Price extends CI_Controller {
 	}
 
 	/**
-	 * 增加价格分档设置处理
+	 * 增加捐赠额分档设置处理
 	 */
 	 function priceAddDeal()
 	 {
@@ -117,16 +117,16 @@ class Price extends CI_Controller {
 		
 		if($param['price_min']== '' || $param['price_max'] == '')
 		{
-			exit('最小价格和最大价格不能为空!');
+			exit('最小捐赠额和最大捐赠额不能为空!');
 		}
 		if($param['price_min'] >= $param['price_max'])
 		{
-			exit('最小价格不能大于最大价格!');
+			exit('最小捐赠额不能大于最大捐赠额!');
 		}
 		
 		if($param['price_alias']== '')
 		{
-			exit('价格名称不能为空!');
+			exit('捐赠额名称不能为空!');
 		}		
 		$res = $this->Price_model->priceAddDealModel($param);
 		 if($res)
@@ -139,7 +139,7 @@ class Price extends CI_Controller {
 	 }
 
 	/**
-	 * 删除价格分档
+	 * 删除捐赠额分档
 	 */
 	function priceDel()
 	{
@@ -162,7 +162,7 @@ class Price extends CI_Controller {
 	}  
 	
 	/**
-	 * 编辑价格位
+	 * 编辑捐赠额位
 	 */
 	function priceUpdate()
 	{
@@ -187,7 +187,7 @@ class Price extends CI_Controller {
 	}
 	
 	/**
-	 * 价格修改设置
+	 * 捐赠额修改设置
 	 */
 	function priceUpdateDeal()
 	{
@@ -204,15 +204,15 @@ class Price extends CI_Controller {
 		$price_alias = addslashes($this->input->get_post('price_alias'));
 		if($price_min == '' || $price_max == '')
 		{
-			exit('最小价格和最大价格不能为空!');
+			exit('最小捐赠额和最大捐赠额不能为空!');
 		}
 		if($price_min >= $price_max)
 		{
-			exit('最小价格不能大于最大价格!');
+			exit('最小捐赠额不能大于最大捐赠额!');
 		}
 		if($price_alias == '')
 		{
-			exit('价格名称不能为空!');
+			exit('捐赠额名称不能为空!');
 		}
 		$param = array();
 		$param['price_min'] = $price_min;

@@ -69,16 +69,18 @@ class Order extends CI_Controller {
 	    }else {
 	        $day = $day * 3600*24;
 	      $res = $this->Order_model->updateData('fu_order_info',array('add_datetime'=>$day),array('order_id'=>$order_id));
+	      $view = array();
 	      if($res)
 	      {
-	          $this->load->view('success');
+	          $view['url'] = "/Order/orderList";
+	          $this->load->view('success',$view);
 	      }else {
 	          $this->load->view('failure');
 	      }
 	    }
 	}
 	/**
-	 * 订单列表
+	 * 捐赠列表
 	 */
 	function orderList()
 	{  
@@ -134,7 +136,7 @@ class Order extends CI_Controller {
 		    {
 		        $page = 1;
 		    }
-		    // 房间号
+		    // 福位号
 		    $order_room_id = $this->input->get_post('order_room_id');
 		    if(!$order_room_id)
 		    {
@@ -264,7 +266,7 @@ class Order extends CI_Controller {
 	    $posInfo = $this->Order_model->posInfosModel('fu_location_list', array('localtion_id'=>$orderInfo[0]['order_location_id']));
 	    // 用户信息
 	    $userInfo = $this->Order_model->posInfosModel('fu_user', array('body_id'=>$orderInfo[0]['order_user']));
-	    // 房间信息
+	    // 福位信息
 	    $roomInfo = $this->Order_model->posInfosModel('fu_room_list', array('room_id'=>$orderInfo[0]['order_room_id']));
 	    $view['result']['orderInfo'] = $orderInfo[0];
 	    $view['result']['posInfo'] = $posInfo[0];
@@ -434,7 +436,7 @@ class Order extends CI_Controller {
 		$memberInfo = $this->Order_model->searchInfos("fu_member", array('member_id'=>$member_id));
 		if(!$memberInfo)
 		{
-			$data["msg"] = '信息有误，此业务员还没有分组';
+			$data["msg"] = '信息有误，此义工还没有分组';
 			die(json_encode($data));			
 		}
 		if($order_location_type == 2)
@@ -504,7 +506,7 @@ class Order extends CI_Controller {
 	function delOrder()
 	{
 	    $data['error'] = true;
-	    if(!hasPerssion($_SESSION['role'], 'orderList')){
+	    if(!hasPerssion($_SESSION['role'], 'delOrder')){
 	        $data['msg'] = '你没有权限';
 	        die(json_encode($data));
 	    }

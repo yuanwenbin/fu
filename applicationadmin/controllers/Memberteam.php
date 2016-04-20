@@ -22,7 +22,7 @@ class Memberteam extends CI_Controller {
 	}
 	
 	/**
-	 * 业务员分组
+	 * 义工分组
 	 */
 	function memberteamList()
 	{
@@ -35,7 +35,7 @@ class Memberteam extends CI_Controller {
 			echo '暂时没有相关内容';
 			if(hasPerssion($_SESSION['role'], 'memberteamAdd'))
 			{
-				echo '<a href="'.URL_APP_C.'"/Memberteam/memberteamAdd">点击添加业务员分组</a>';
+				echo '<a href="'.URL_APP_C.'"/Memberteam/memberteamAdd">点击添加义工分组</a>';
 			}
 		}else {
 			$view = array();
@@ -47,7 +47,7 @@ class Memberteam extends CI_Controller {
 
 	
 	/**
-	 * 增加业务员分组
+	 * 增加义工分组
 	 */
 	function memberteamAdd()
 	{
@@ -68,7 +68,7 @@ class Memberteam extends CI_Controller {
 	}
 	
 	/**
-	 * 增加业务员分组处理
+	 * 增加义工分组处理
 	 */
 	function memberteamAddDeal()
 	{
@@ -94,7 +94,7 @@ class Memberteam extends CI_Controller {
 			$param['team_user_name'] = $this->session->admin_user;
 			// 增加分组
 			$insert_id = $this->Memberteam_model->memberteamAddModel('fu_team',$param, 1);
-			// 增加业务员
+			// 增加义工
 			$member_username = addslashes($this->input->get_post('member_username'));
 			$member_password = addslashes($this->input->get_post('member_password'));
 			$member_realname = addslashes($this->input->get_post('member_realname'));
@@ -146,7 +146,7 @@ class Memberteam extends CI_Controller {
 			echo '暂时没有相关内容';
 			if(hasPerssion($_SESSION['role'], 'memberteamAdd'))
 			{
-				echo '<a href="'.URL_APP_C.'"/Memberteam/memberteamAdd">点击添加业务员分组</a>';
+				echo '<a href="'.URL_APP_C.'"/Memberteam/memberteamAdd">点击添加义工分组</a>';
 			}
 		}else {
 			$view = array();
@@ -198,7 +198,7 @@ class Memberteam extends CI_Controller {
     		$view['memberteamList'] = $memberteamList;
     	}
 			$view['memberteamUpdate'] = $memberTeam;
-    	// 业务员列表
+    	// 义工列表
 		$this->load->model('Member_model');
 		$memberLists = $this->Member_model->searchInfos('fu_member',array('member_team_id'=>$id,'member_flag'=>1));
 		$view['memberLists'] = $memberLists;
@@ -260,7 +260,7 @@ class Memberteam extends CI_Controller {
 		die(json_encode($data));
 	}
 	/**
-	 * 业务员列表
+	 * 义工列表
 	 */
 	function memberteamListUser()
 	{
@@ -300,7 +300,7 @@ class Memberteam extends CI_Controller {
 	}
 	
 	/**
-	 * 增加业务员
+	 * 增加义工
 	 */
 	function memberteamAddUser()
 	{
@@ -312,10 +312,10 @@ class Memberteam extends CI_Controller {
 		{
 			echo ('没有相关分组');
 			if(!hasPerssion($_SESSION['role'], 'memberteamAdd')){
-				exit("，请先联系管理员添加业务员分组!");
+				exit("，请先联系管理员添加义工分组!");
 			}else
 			{
-				echo "<a href=\"".URL_APP_C."/Memberteam/memberteamAdd\">添加业务员分组</a>";
+				echo "<a href=\"".URL_APP_C."/Memberteam/memberteamAdd\">添加义工分组</a>";
 				exit();
 			}
 		}
@@ -326,7 +326,7 @@ class Memberteam extends CI_Controller {
 	}
 
 	/**
-	 * 增加业务员处理
+	 * 增加义工处理
 	 */
 	function memberteamAddUserDeal()
 	{
@@ -367,7 +367,7 @@ class Memberteam extends CI_Controller {
 		}
 	}
 	/**
-	 * 删除业务员
+	 * 删除义工
 	 */
 	function memberteamDelUser()
 	{
@@ -388,7 +388,7 @@ class Memberteam extends CI_Controller {
 	    }
 	}
 	/**
-	 * 编辑业务员
+	 * 编辑义工
 	 */
 	function memberteamUpdateUser()
 	{
@@ -400,7 +400,7 @@ class Memberteam extends CI_Controller {
 	    {
 	    	exit('非法操作');
 	    }
-	    // 展示业务员信息
+	    // 展示义工信息
 	    $memberteaminfos = $this->Memberteam_model->searchInfos('fu_member', array('member_id'=>$id));
 	    if(!$memberteaminfos)
 	    {
@@ -412,7 +412,7 @@ class Memberteam extends CI_Controller {
 	}
 	
 	/**
-	 * 业务员编辑处理
+	 * 义工编辑处理
 	 */
 	function memberteamUpdateUserDeal()
 	{
@@ -437,7 +437,7 @@ class Memberteam extends CI_Controller {
 		$hasRes = $this->Memberteam_model->searchInfos('fu_member', array('member_id'=>$id));
 		if(!$hasRes)
 		{
-			$data['msg'] = '该业务员不存在';
+			$data['msg'] = '该义工不存在';
 			die(json_encode($data));
 		}
 
@@ -465,7 +465,7 @@ class Memberteam extends CI_Controller {
 	}
 	
 	/**
-	 * 业务员业绩
+	 * 义工业绩
 	 */
 	function memberteamSaleUser()
 	{
@@ -498,7 +498,7 @@ class Memberteam extends CI_Controller {
 	}
 	
 	/**
-	 * 业务员用户列表
+	 * 义工用户列表
 	 */
 	function MemberteamUserList()
 	{
@@ -526,14 +526,14 @@ class Memberteam extends CI_Controller {
 	    // 会员列表
 	    $userList = $this->Memberteam_model->MemberteamUserListModel($id,$page,$pageSize);
 	    $view['userList'] = $userList;
-	    // 业务员详情信息
+	    // 义工详情信息
 	    $memberInfos = $this->Memberteam_model->getMemberTeam($id);
 	    $view['memberInfos'] = $memberInfos;
 	    $this->load->view('MemberteamUserList', $view);
 	}
 
 	/**
-	 * 业务员订单列表
+	 * 义工捐赠列表
 	 */
 	function MemberteamOrderList()
 	{	
@@ -552,7 +552,7 @@ class Memberteam extends CI_Controller {
 	    	$page = 1;
 	    }
 	    $pageSize = 10;
-	    $order_payment = 'all'; // 是否支付
+	    $order_payment = 'all'; // 是否捐赠
 	    // 总记录数
 	    $orderListCount = $this->Memberteam_model->memberteamOrderTotalModel($id, $order_payment);
 	    $view['id'] = $id;
@@ -560,10 +560,10 @@ class Memberteam extends CI_Controller {
 	    $view['page'] = $page;
 	    $totalPage = ceil($orderListCount/$pageSize);
 	    $view['totalPage'] = $totalPage;
-	    // 订单列表
+	    // 捐赠列表
 	    $orderList = $this->Memberteam_model->MemberteamOrderListModel($id, $order_payment,$page,$pageSize);
 	    $view['memberOrderList'] = $orderList;
-	    //业务员信息
+	    //义工信息
 	    $memberInfos = $this->Memberteam_model->getMemberTeam($id);
 	    $view['memberInfos'] = $memberInfos;
 	    $this->load->view('MemberteamOrderList', $view);
@@ -583,21 +583,21 @@ class Memberteam extends CI_Controller {
 	        exit('非法操作');
 	    }
 	    $view = array();
-	    // 该业务员信息
+	    // 该义工信息
 	    $param['member_teamid'] = $id;
 	    $memberteamInfos = $this->Memberteam_model->memberteamQueryModel('fu_member',$param);
 
 	    if(!$memberteamInfos)
 	    {
-	        exit('该组组长业务员不存在,请先编辑此组，增加组长，再进行操作');
+	        exit('该组组长义工不存在,请先编辑此组，增加组长，再进行操作');
 	    }
 	    $view['memberteamInfos'] =  $memberteamInfos; 
-	    // 业务员总数
+	    // 义工总数
 	    $paramMember['member_team_id'] = $id;
 	    $memberCount = $this->Memberteam_model->queryCountModel('fu_member',$paramMember);
 
 	    $view['userCount'] =  $memberCount;
-	    // 旗下业务员的用户总数
+	    // 旗下义工的用户总数
 	    // $paramMemberUser['member_team_id'] = $memberteamInfos[0]['member_team_id'];
 	    // $memberUserList = $this->Memberteam_model->searchInfos('fu_member',$paramMemberUser);
 	    $memberUserList = $this->Memberteam_model->searchInfos('fu_member',$paramMember);
@@ -625,7 +625,7 @@ class Memberteam extends CI_Controller {
 	    $orderNotPayCountMoney = 0.00;
 	    if($memberUserCount)
 	    {
-	        // 组长下的业务员列表
+	        // 组长下的义工列表
 	       // $memberForUserList = $this->Memberteam_model->queryCountInListModel('fu_user',$ids,'user_team_id');
 	        $memberForUserList = $this->Memberteam_model->queryCountInListModel('fu_user',$ids,'user_member_id');
 	        if($memberForUserList)
@@ -663,7 +663,7 @@ class Memberteam extends CI_Controller {
 	}
 	
 	/**
-	 * 组长及业务员登记用户列表
+	 * 组长及义工登记功德主列
 	 */
 	function memberTeamRegisterUser()
 	{
@@ -681,7 +681,7 @@ class Memberteam extends CI_Controller {
 		{
 			$page = 1;
 		}
-		// 业务员 id 列表
+		// 义工 id 列表
 		$paramMemberUser = array('member_team_id'=>$id);
 		$members = $this->Memberteam_model->searchInfos('fu_member',$paramMemberUser);
 		
@@ -702,7 +702,7 @@ class Memberteam extends CI_Controller {
 		$userCount = $this->Memberteam_model->queryCountInModel('fu_user',$member_ids,'user_member_id', array('user_location_id' => '0'));
 		$totalPage = ceil($userCount/$pageSize);
 		
-		// 登记用户列表
+		// 登记功德主列
 		$userNotOrder = $this->Memberteam_model->queryTotalListModel('fu_user',$where,$page,$pageSize);
 		$view['id'] = $id;
 		$view['total'] = $userCount;
@@ -715,7 +715,7 @@ class Memberteam extends CI_Controller {
 	}
 	
 	/**
-	 * 组长及业务员订单列表
+	 * 组长及义工捐赠列表
 	 */
 	function memberTeamOrder()
 	{
@@ -740,7 +740,7 @@ class Memberteam extends CI_Controller {
 			$page = 1;
 		}
 		$pageSize = 10;
-		// 业务员 id 列表
+		// 义工 id 列表
 		$paramMemberUser = array('member_team_id'=>$id);
 		$members = $this->Memberteam_model->searchInfos('fu_member',$paramMemberUser);
 		if(!$members)	
@@ -753,7 +753,7 @@ class Memberteam extends CI_Controller {
 		{
 			$member_ids .= "'" . $v['member_id'] . "',";
 		}
-		// 业务员编号
+		// 义工编号
 		$member_ids = substr($member_ids,0,-1) . ")"; // ('1','3','4')
 		$where = " in " . $member_ids;
 		$orderListTotal = $this->Memberteam_model->orderTeamListModel($where); // 总记录
