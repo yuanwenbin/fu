@@ -20,8 +20,20 @@
 </div>
 <div class="roomListInfos membersUserList">
 <h3 class="headerLineBackground">
-业务员&nbsp;<font><?php echo $name; ?></font>&nbsp;登记用户列表
+义工&nbsp;<font><?php echo $name; ?></font>&nbsp;登记功德主列
 </h3>
+<div class="headerLineBackground">
+<form method="get" action="<?php echo URL_APP;?>/index.php/Members/check">
+来访登记查询&nbsp;&nbsp; 
+<select name="type">
+<option value="user_telphone" <?php if($type=='user_telphone') echo 'selected';?>>手机号码</option>
+<option value="user_phone"  <?php if($type=='user_phone') echo 'selected';?>>姓名</option>
+<option value="body_id" <?php if($type=='body_id') echo 'selected';?>>身份证</option>
+</select>&nbsp;&nbsp;
+<input type="text" name="name" value="" />&nbsp;&nbsp;
+<input type="submit" name="submit" value="查找" />
+</form>
+</div>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<?php if(!$userList) { ?>
 	<tr><td align="center">没有相关数据</td></tr>

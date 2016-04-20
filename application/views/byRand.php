@@ -113,7 +113,7 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 </div>
 <!-- eof container -->
 
-<!-- bof 价格档次选择  -->
+<!-- bof 捐赠额档次选择  -->
 <?php if(!$room_id) { ?>
 <div id="priceContent">
 	
@@ -132,7 +132,7 @@ opacity:0.5;z-index:9999;margin-top:-187px;}
 	      
 </div>
 <?php } ?>
-<!-- eof 价格档次选择  -->
+<!-- eof 捐赠额档次选择  -->
 
 <!-- bof 高端验证入口  -->
 <div id="refuseContent">
@@ -475,7 +475,7 @@ $(document).ready(function(){
 	});
 });
 
-// 价格归档
+// 捐赠额归档
 $(document).ready(function(){
 	// 如果没有设置 0－没有,1-设置过
 	var room_id = "<?php echo $room_id; ?>";
@@ -508,7 +508,7 @@ $(document).ready(function(){
 		});			
 	}
 
-	// 可以重新选择价格
+	// 可以重新选择捐赠额
 	$("select[name='selectPriceBox']").change(function(){
 		var selectPrice = $(this).val();
 		var url = "<?php echo URL_APP_C;?>/Choice/selectRoom";

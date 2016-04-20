@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div>
-没有相关房间，有疑问联系管理员<br />
+没有相关福位，有疑问联系管理员<br />
 <a href="<?php echo URL_APP_C;?>/Index/index">点击返回登陆</a>
 </div>
 </body>

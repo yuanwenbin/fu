@@ -20,7 +20,7 @@
 </div>
 <div class="roomListInfos membersUserList">
 <h3 class="headerLineBackground">
-业务员组长&nbsp;<font><?php echo $this->session->member_username; ?></font>&nbsp;登记用户列表
+义工组长&nbsp;<font><?php echo $this->session->member_username; ?></font>&nbsp;登记功德主列
 </h3>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<?php if(!$userList) { ?>

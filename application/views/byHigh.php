@@ -154,7 +154,7 @@ $(document).ready(function(){
 		return true;
 	});
 
-	// 可以重新选择价格
+	// 可以重新选择捐赠额
 	$("select[name='selectPriceBox']").change(function(){
 		var selectPrice = $(this).val();
 		var url = "<?php echo URL_APP_C;?>/Choice/selectPrice";

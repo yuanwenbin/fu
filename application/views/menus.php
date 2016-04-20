@@ -19,18 +19,14 @@
 </div>
 <div class="menusBox">
 	<div class="menusTop">
-		<div class="menusTopLeft"><a href="<?php echo URL_APP_C;?>/Index/index">选号系统</a></div>
+		<div class="menusTopLeft"><a href="<?php echo URL_APP_C;?>/Index/index">广结善缘</a></div>
 		<div class="menusTopRight"><a href="<?php echo URL_APP_C;?>/Index/register">来访登记</a></div>
 		<br class="clearBoth" />
 	</div>
-	
-	<div class="menusTop">
-		<div  class="menusBottomLeft"><a href="<?php echo URL_APP_C;?>/Members/index">统计中心</a></div>
-		<div class="menusTopRight"><a href="<?php echo URL_APP_C;?>/Members/check">查询功能</a></div>
-		<br class="clearBoth" />
-	</div>	
+		
 	<div  class="menusBottom">
-		<div class="menusBottomLeft">
+	   <div  class="menusBottomLeft"><a href="<?php echo URL_APP_C;?>/Members/index">统计中心</a></div>
+		<div class="menusTopRight">
 		<?php if($_SESSION['member_teamid']) { ?>
 		<a href="<?php echo URL_APP_C;?>/Index/infoList" class="myBack">管理后台</a>
 		<?php }else { ?>
@@ -41,7 +37,7 @@
 		</div>
 		<br class="clearBoth" />
 		<div class="userMemberinfos">
-		当前登陆用户：<?php echo $_SESSION['member_username'];?>&nbsp;&nbsp;
+		当前登陆义工：<?php echo $_SESSION['member_username'];?>&nbsp;&nbsp;
 		<a href="<?php echo URL_APP_C;?>/Index/logout">切换账号？</a>
 		</div>
 	</div>
@@ -52,7 +48,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".noPower").click(function(){
-		alert("您是业务员，没有权限");
+		alert("您是义工，没有权限");
 	});
 });
 </script>

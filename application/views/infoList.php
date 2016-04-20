@@ -15,16 +15,16 @@
 </div>
 <div class="roomListInfos members">
 <h3 class="headerLineBackground">
-组长-业务员&nbsp;<font><?php echo $_SESSION['member_username']; ?></font>&nbsp;统计中心
+组长-义工&nbsp;<font><?php echo $_SESSION['member_username']; ?></font>&nbsp;统计中心
 </h3>
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
-		<td width="20%" align="right">旗下业务员总数：&nbsp;</td>
+		<td width="20%" align="right">旗下义工总数：&nbsp;</td>
 		<td width="20%" align="left"><?php echo $userCount;?></td>
 	</tr>
 	<tr>
-		<td width="20%" align="right">旗下业务员用户总数：&nbsp;</td>
+		<td width="20%" align="right">旗下义工用户总数：&nbsp;</td>
 		<td width="20%" align="left"><?php echo $memberUserCount;?></td>
 	</tr>
 	<tr>
@@ -60,8 +60,8 @@
 		<td width="20%" align="left"><?php echo $orderNotPayCountMoney;// number_format($orderNotPayCountMoney);?></td>
 	</tr>
 	<tr>
-		<td width="20%" align="right"><a href="<?php echo URL_APP_C;?>/Index/indexUserListTeam">本组登记用户列表</a>&nbsp;&nbsp;</td>
-		<td width="20%" align="left">&nbsp;&nbsp;<a href="<?php echo URL_APP_C;?>/Index/orderListTeam">本组订单列表</a>
+		<td width="20%" align="right"><a href="<?php echo URL_APP_C;?>/Index/indexUserListTeam">本组登记功德主列</a>&nbsp;&nbsp;</td>
+		<td width="20%" align="left">&nbsp;&nbsp;<a href="<?php echo URL_APP_C;?>/Index/orderListTeam">本组捐赠列表</a>
 		&nbsp;&nbsp;
 		<a href="<?php echo URL_APP_C;?>/Index/menus">菜单中心</a>
 		</td>

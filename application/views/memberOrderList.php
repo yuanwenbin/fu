@@ -15,7 +15,7 @@
 </div>
 <div class="roomListInfos membersUserList">
 <h3 class="headerLineBackground">
-业务员&nbsp;<font><?php echo $name; ?></font>&nbsp;订单列表
+义工&nbsp;<font><?php echo $name; ?></font>&nbsp;捐赠列表
 </h3>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<?php if(!$memberOrderList) { ?>
@@ -26,10 +26,10 @@
 		<th width="15%" align="center">身份证号码</th>
 		<th width="10%" align="center">手机号码</th>
 		<th width="9%" align="center">选择号码</th>
-		<th width="8%" align="center">是否支付</th>
+		<th width="8%" align="center">是否捐赠</th>
 		<th width="25%" align="center">用户类型</th>
-		<th width="10%" align="center">价格</th>
-		<th width="14%" align="center">下单时间</th>
+		<th width="10%" align="center">捐赠额</th>
+		<th width="14%" align="center">捐赠时间</th>
 	</tr>
 	<?php
 		foreach($memberOrderList as $k=>$v) { 

@@ -38,7 +38,7 @@
 		<th width="8%" align="center">称呼</th>
 		<th width="13%" align="center">手机号码</th>
 		<th width="23%" align="center">身份证号码</th>
-		<th width="10%" align="center">业务员</th>
+		<th width="10%" align="center">义工</th>
 		<th width="5%" align="center">登记次数</th>
 		<th width="15%" align="center">登记时间</th>
 		<th width="15%" align="center">登记过期时间</th>

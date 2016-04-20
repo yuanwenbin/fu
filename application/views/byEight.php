@@ -212,7 +212,7 @@ $(document).ready(function(){
 });
 
 });
-//可以重新选择价格
+//可以重新选择捐赠额
 $(document).ready(function(){
 	$("select[name='selectPriceBox']").change(function(){
 		var selectPrice = $(this).val();
