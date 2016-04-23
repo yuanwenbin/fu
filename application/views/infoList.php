@@ -20,35 +20,35 @@
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
-		<td width="20%" align="right">旗下义工总数：&nbsp;</td>
+		<td width="20%" align="right">旗下义工成员总数：&nbsp;</td>
 		<td width="20%" align="left"><?php echo $userCount;?></td>
 	</tr>
 	<tr>
-		<td width="20%" align="right">旗下义工用户总数：&nbsp;</td>
+		<td width="20%" align="right">旗下义工成员登记总数：&nbsp;</td>
 		<td width="20%" align="left"><?php echo $memberUserCount;?></td>
 	</tr>
 	<tr>
-		<td width="20%" align="right">订单总数：&nbsp;</td>
+		<td width="20%" align="right">捐赠总数：&nbsp;</td>
 		<td width="20%" align="left"><?php echo $orderAllCount;?></td>
 	</tr>
 	<tr>
-		<td width="20%" align="right">订单已支付数量总数：&nbsp;</td>
+		<td width="20%" align="right">捐赠已捐赠数量总数：&nbsp;</td>
 		<td width="20%" align="left"><?php echo ($orderAllCount - $orderNotPayCount);?></td>
 	</tr>
 
 	<tr>
-		<td width="20%" align="right">订单未支付数量总数：&nbsp;</td>
+		<td width="20%" align="right">捐赠未捐赠数量总数：&nbsp;</td>
 		<td width="20%" align="left"><?php echo $orderNotPayCount;?></td>
 	</tr>
 
 	<tr>
-		<td width="20%" align="right">订单总金额数：&nbsp;</td>
+		<td width="20%" align="right">捐赠总金额数：&nbsp;</td>
 		<td width="20%" align="left">
 		<?php echo number_format($orderAllCountMoney,2); //echo $orderAllCountMoney; // echo number_format($orderAllCountMoney,2);?></td>
 	</tr>
 
 	<tr>
-		<td width="20%" align="right">订单已支付金额数：&nbsp;</td>
+		<td width="20%" align="right">捐赠已捐赠金额数：&nbsp;</td>
 		<td width="20%" align="left">
 		<?php echo number_format(($orderAllCountMoney - $orderNotPayCountMoney),2);
 		// number_format($orderAllCountMoney - $orderNotPayCountMoney);?>
@@ -56,7 +56,7 @@
 	</tr>
 
 	<tr>
-		<td width="20%" align="right">订单未支付金额数：&nbsp;</td>
+		<td width="20%" align="right">捐赠未捐赠金额数：&nbsp;</td>
 		<td width="20%" align="left"><?php echo $orderNotPayCountMoney;// number_format($orderNotPayCountMoney);?></td>
 	</tr>
 	<tr>
