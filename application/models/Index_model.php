@@ -70,6 +70,15 @@ class Index_model extends CI_Model
 		}
 		return true;		
 	}
+	/**
+	 * 处理组长增加的报备时间
+	 */
+	function addDateDeal($user_id)
+	{
+		$sql = "update fu_user set user_dateline = user_dateline + 864000,user_addtime=1 where user_id = " . $user_id;
+		$this->db->query($sql);
+		return $this->db->affected_rows();
+	}
 	
 	/**
 	 * 检查是否登记过
