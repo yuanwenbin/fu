@@ -362,6 +362,42 @@ class Index extends CI_Controller {
 	}
 	
 	/**
+	 * 组长报备
+	 */
+	function addDateDeal()
+	{
+		$data['error'] = true;
+	    // 判断是否有义工登陆了
+	    if(!$this->session->member_id)
+	    {
+			$data['message'] = '请先登录';
+			die(json_encode($data));
+	    }
+	    // 判断是否是组长
+	    if(!$this->session->member_teamid)
+	    {
+			$data['message'] = '请不是组长';
+			die(json_encode($data));
+	    }
+		$user_id = intval($this->input->get_post('user_id'));
+		if($user_id < 1)
+		{
+			$data['message'] = '非法操作';
+			die(json_encode($data));
+		}
+		$res = $this->Index_model->addDateDeal($user_id);
+		if($res === false)
+		{
+			$data['message'] = '操作失败,请稍后重试';
+			die(json_encode($data));
+		}else
+		{
+			$data['error'] = false;
+			$data['message'] = '报备成功';
+			die(json_encode($data));
+		}
+	}
+	/**
 	 * 组长登陆
 	 */
 	function infoList()
