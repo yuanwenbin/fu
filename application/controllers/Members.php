@@ -69,11 +69,20 @@ class Members extends CI_Controller {
 	    // 会员列表,登记的，没有下过订单的
 	    $userList = $this->Members_model->userListRegisterModel($this->session->member_id, $page, $pageSize);
 	    $view['userList'] = $userList;
+	    // 业务员列表
+	    $memberList = $this->Members_model->search('fu_member');
+	    $members = array();
+	    foreach($memberList as $k=>$v)
+	    {
+	        $members[$v['member_id']] = $v['member_realname'].'|'.$v['member_username'] . '|' . $v['member_telphone'];
+	    }
+	    
 	    $view['name'] = $this->session->member_username;
 		$view['page'] = $page;
 		$view['totalPage'] = $totalPage;
 		$view['total'] = $total;
 		$view['type'] = $type;
+		$view['members'] = $members;
 	    $this->load->view('memberUserList', $view);
 	}
 	

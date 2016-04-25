@@ -243,13 +243,7 @@ class Index extends CI_Controller {
 		$body_id = $body_id ? $body_id : 0;
 		$user_telphone = strip_addslashe(trim($this->input->get_post('user_telphone'))); // 手机
 		$user_phone = strip_addslashe(trim($this->input->get_post('user_phone'))); // 称呼
-		$user_dateline = intval($this->input->get_post('user_dateline'));
-		if($user_dateline==1)
-		{
-		    $user_dateline = 3600 * 24;
-		}else {
-		    $user_dateline = 3600 * 24 * 10;
-		}
+
 		// 身份证号码
 		/*
 		if(!$body_id || (strlen($body_id) != 15 || strlen($body_id) != 18))
@@ -319,7 +313,6 @@ class Index extends CI_Controller {
 			$paramUpdate['user_telphone'] = $user_telphone;
 			$paramUpdate['user_regtimes'] = ($resUser['user_regtimes']+1) >=6 ? 6 : ($resUser['user_regtimes']+1);
 			$paramUpdate['user_datetime'] = time(); 
-			$paramUpdate['user_dateline'] = $user_dateline; // 有效登记时间
 			if($user_phone)
 			{
 			 $paramUpdate['user_phone'] = $user_phone;
@@ -349,7 +342,6 @@ class Index extends CI_Controller {
 		$param['user_member_id'] = $this->session->member_id; 
 		$param['user_type'] = -1;
 		$param['user_datetime'] = time();
-		$param['user_dateline'] = $user_dateline;
 		$res = $this->Index_model->bodyInsert($param);
 		if($res)
 		{
@@ -569,12 +561,20 @@ class Index extends CI_Controller {
 		// 登记功德主列
 		$userNotOrder = $this->Index_model->queryTotalListModel('fu_user',$where,$page,$pageSize); 
 		
-		
+		// 业务员列表
+		$this->load->model('Members_model');
+		$memberList = $this->Members_model->search('fu_member');
+		$members = array();
+		foreach($memberList as $k=>$v)
+		{
+		    $members[$v['member_id']] = $v['member_realname'].'|'.$v['member_username'] . '|' . $v['member_telphone'];
+		}		
 		$view['total'] = $userCount;
 		$view['page'] = $page;
 		$view['totalPage'] = $totalPage;
 		$view['records'] = $userNotOrder;
 		$view['userList'] = $userNotOrder;
+		$view['members'] = $members;
 		$this->load->view('indexUserListTeam',$view);
 	}
 
