@@ -8,6 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>统计中心</title>
 	<link href="<?php echo URL_APP;?>/css/style.css" rel="stylesheet" type="text/css" />
+	<script src="<?php echo URL_APP;?>/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 	<style type="text/css">
 	.pages{width:100%;line-height:40px;text-align:center;}	
 	.pages a{color:#333;border:1px solid #888;padding:0 5px;}
@@ -39,28 +40,39 @@
 	<tr><td align="center">没有相关数据</td></tr>
 	<?php }else{ ?>
 	<tr>
-		<th width="20%" align="center">称呼</th>
-		<th width="25%" align="center">手机号码</th>
+		<th width="15%" align="center">称呼</th>
+		<th width="15%" align="center">手机号码</th>
 		<th width="25%" align="center">身份证号码</th>
-		<th width="30%" align="center">登记时间</th>
+		<th width="15%" align="center">登记时间</th>
+		<th width="20%" align="center">义工</th>
+		<th width="15%" align="center">操作</th>
 	</tr>
 	<?php
 		foreach($userList as $k=>$v) { 
 	?>
 	<tr>
-		<td widtd="20%" align="center"><?php echo $v['user_phone'] ? $v['user_phone'] :'无'; ?></td>
-		<td widtd="25%" align="center">
+		<td widtd="15%" align="center"><?php echo $v['user_phone'] ? $v['user_phone'] :'无'; ?></td>
+		<td widtd="15%" align="center">
 		<?php echo $v['user_telphone'] ? $v['user_telphone'] : '无'; ?>
 		</td>
 		<td widtd="25%" align="center">
 		<?php echo $v['body_id'] ? $v['body_id'] : '无'; ?>
 		</td>
-		<td widtd="30%" align="center">
+		<td widtd="15%" align="center">
 		<?php  
 		echo date('Y-m-d H:i:s', $v['user_datetime']);
-		?>
-		
+		?>		
 		</td>
+        <td widtd="20%" align="center">
+        <?php echo $members[$v['user_member_id']]; ?>
+        </td>
+        <td widtd="15%" align="center">
+        <?php if($v['user_addtime']) { ?>
+                                已经报备
+        <?php }else{?>
+        <a href="javascript:void(0)" class="addDate" data-attr="<?php echo $v['user_id']; ?>">增加报备</a>
+        <?php } ?>
+        </td>		
 	</tr>
 	<?php } } ?>
 </table>
@@ -100,7 +112,24 @@ if($page > 1) {
 &nbsp;&nbsp;
 <a href="<?php echo URL_APP_C;?>/Index/menus">菜单中心</a></p>
 </div>
-
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".addDate").click(function(){
+		var url = "<?php echo URL_APP_C;?>/Index/addDateDeal";
+		var user_id = $(this).attr('data-attr');
+		$.post(url,{user_id:user_id},function(data){
+			if(data.error)
+			{
+				alert(data.message);
+			}else
+			{
+				window.location.href="<?php echo URL_APP_C;?>/Members/userList";
+			}
+		},'json');
+		
+	});
+});
+</script>
 
 </body>
 </html>

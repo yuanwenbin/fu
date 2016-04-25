@@ -29,30 +29,36 @@
 	<?php }else{ ?>
 	<tr>
 		<th width="15%" align="center">称呼</th>
-		<th width="25%" align="center">手机号码</th>
-		<th width="25%" align="center">身份证号码</th>
-		<th width="20%" align="center">登记时间</th>
-		<th width="15%" align="center">报备</th>
+		<th width="15%" align="center">手机号码</th>
+		<th width="20%" align="center">身份证号码</th>
+		<th width="15%" align="center">登记时间</th>
+		<th width="25%" align="center">义工</th>
+		<th width="10%" align="center">报备</th>
 	</tr>
 	<?php
 		foreach($userList as $k=>$v) { 
 	?>
 	<tr>
 		<td widtd="15%" align="center"><?php echo $v['user_phone'] ? $v['user_phone'] :'无'; ?></td>
-		<td widtd="25%" align="center">
+		<td widtd="15%" align="center">
 		<?php echo $v['user_telphone'] ? $v['user_telphone'] : '无'; ?>
 		</td>
-		<td widtd="25%" align="center">
-		<?php echo $v['body_id'] ? $v['body_id'] : '无'; ?>
-		</td>
 		<td widtd="20%" align="center">
+		<?php echo $v['body_id'] ? $v['body_id'] : '无'; ?>
+		</td>	
+		<td widtd="15%" align="center">
 		<?php  
 		echo date('Y-m-d H:i:s', $v['user_datetime']);
 		?>		
 		</td>
-		<td width="15%" align="center">
+		<td widtd="25%" align="center">
+		<?php echo $members[$v['user_member_id']]; ?>
+		</td>			
+		<td width="10%" align="center">
 		<?php if($v['user_addtime']) { ?>
 		已报备
+		<?php }elseif($v['user_datetime']+86400 > time()){?>
+		&nbsp;
 		<?php }else { ?>
 		<a href="javascript:void(0)" class="addDate" data-attr="<?php echo $v['user_id']; ?>">增加报备</a>
 		<?php } ?>
