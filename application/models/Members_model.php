@@ -158,12 +158,15 @@ class Members_model extends CI_Model
 	 * @param unknown $tableName
 	 * @param unknown $param
 	 */
-	function search($tableName, $param)
+	function search($tableName, $param = array())
 	{
 	    $where = " where 1=1 ";
-	    foreach($param as $kk=>$vv)
+	    if($param)
 	    {
-	        $where .= " and " . $kk . "='" . $vv . "'";
+    	    foreach($param as $kk=>$vv)
+    	    {
+    	        $where .= " and " . $kk . "='" . $vv . "'";
+    	    }
 	    }
 	    $sql = "select * from " . $tableName . $where;
 	    $query = $this->db->query($sql);
