@@ -17,11 +17,11 @@
 	<table border="0" cellpadding="5" cellspacing="5" class="loginTxt">
 	<tr>
 
-		<td><input type="text" name="username" value="" maxlength="30" class="loginInput" /></td>
+		<td><input type="text" name="username" value="" maxlength="30" class="loginInput" placeholder="登陆名" /></td>
 	</tr>
 	<tr>
 
-		<td><input type="password" name="password" value="" maxlength="30" class="loginInput2" /></td>
+		<td><input type="password" name="password" value="" maxlength="30" class="loginInput2" placeholder="登陆密码" /></td>
 	</tr>
 	<tr>
 
