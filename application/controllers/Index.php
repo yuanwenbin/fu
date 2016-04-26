@@ -575,6 +575,7 @@ class Index extends CI_Controller {
 		$view['records'] = $userNotOrder;
 		$view['userList'] = $userNotOrder;
 		$view['members'] = $members;
+		$view['team_id'] = $this->session->member_id;
 		$this->load->view('indexUserListTeam',$view);
 	}
 
