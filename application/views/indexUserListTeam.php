@@ -57,6 +57,8 @@
 		<td width="10%" align="center">
 		<?php if($v['user_addtime']) { ?>
 		已报备
+		<?php }elseif($v['user_member_id'] == $team_id){ ?>
+		<a href="javascript:void(0)" class="addDate" data-attr="<?php echo $v['user_id']; ?>">增加报备</a>
 		<?php }elseif($v['user_datetime']+86400 > time()){?>
 		&nbsp;
 		<?php }else { ?>
