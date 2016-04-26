@@ -294,6 +294,7 @@ class Index extends CI_Controller {
 		// 先判断用户是否已经登记过
 		// $status = $this->Index_model->userCheck($body_id);
 		$resUser = $this->Index_model->userCheckReg($body_id,$user_phone);
+		
 		// 存在的，则更新手机号，电话号码
 		if($resUser)
 		{
@@ -308,8 +309,35 @@ class Index extends CI_Controller {
 		        }
 		        
 		    }
+		    $flag = 0;// 是否更新登记用户人
+		    //判断24小时内，是否是同一业务员
+		    if($resUser['user_member_id'] != $this->session->member_id)
+		    {
+		        if($resUser['user_datetime']+86400 > time())
+		        {
+		            $memberName = '';
+		            $memberReg = $this->Index_model->searchInfos('fu_member', array('member_id'=>$resUser['user_member_id']));
+		            if($memberReg)
+		            {
+		                $memberName = $memberReg[0]['member_username'];
+		            }
+		            $data['msg'] = '登记失败，因为24小时内，义工 '.$memberName.' 登记过了';
+		            die(json_encode($data));
+		        }
+		        //不同业务员时，看是否有必要更新用户
+		        if($resUser['user_datetime']+86400 + $resUser['user_dateline'] < time())
+		        {
+		            $flag = 1;
+		        }
+
+		    }
+
 			$paramUpdate = array();
 			$where = array();
+			if($flag){
+    			$paramUpdate['user_member_id'] = $this->session->member_id;
+    			$paramUpdate['user_team_id'] = $this->session->member_team_id;
+		     }
 			$paramUpdate['user_telphone'] = $user_telphone;
 			$paramUpdate['user_regtimes'] = ($resUser['user_regtimes']+1) >=6 ? 6 : ($resUser['user_regtimes']+1);
 			$paramUpdate['user_datetime'] = time(); 
