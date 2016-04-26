@@ -20,7 +20,7 @@
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
-		<td width="20%" align="right">登记数：&nbsp;</td>
+		<td width="20%" align="right">已捐赠数：&nbsp;</td>
 		<td width="20%" align="left"><?php echo $totalMembers;?></td>
 	</tr>
 	<tr>
