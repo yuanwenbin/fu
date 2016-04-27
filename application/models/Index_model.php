@@ -91,12 +91,21 @@ class Index_model extends CI_Model
 	    {
     	    $sql = "select * from fu_user where body_id = '".$bodyId."' limit 1";
     	    $res = $this->db->query($sql);
-    	    if($res->num_rows() < 1)
+    	    if($res->num_rows() > 0)
     	    {
-    	        return false;
+    	        return $res->row_array();
+    	    }else {
+    	        $sql = "select * from fu_user where user_telphone = '".$phone."' limit 1";
+    	        $res = $this->db->query($sql);
+    	        if($res->num_rows() < 1)
+    	        {
+    	            return false;
+    	        }
+    	        return $res->row_array();
     	    }
-    	    return $res->row_array();
+    	    
 	    }
+
 	    if($phone)
 	    {
 	        $sql = "select * from fu_user where user_telphone = '".$phone."' limit 1";
