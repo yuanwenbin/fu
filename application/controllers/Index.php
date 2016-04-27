@@ -241,7 +241,7 @@ class Index extends CI_Controller {
 		}	
 		$body_id = strip_addslashe(trim($this->input->get_post('body_id')));
 		$body_id = $body_id ? $body_id : 0;
-		$user_telphone = strip_addslashe(trim($this->input->get_post('user_telphone'))); // 手机
+		$user_telphone = strip_addslashe(trim($this->input->get_post('user_telphone'))); // 手机  
 		$user_phone = strip_addslashe(trim($this->input->get_post('user_phone'))); // 称呼
 
 		// 身份证号码
@@ -293,8 +293,7 @@ class Index extends CI_Controller {
 		$user_phone = $user_phone ? addslashes($user_phone) : '0';
 		// 先判断用户是否已经登记过
 		// $status = $this->Index_model->userCheck($body_id);
-		$resUser = $this->Index_model->userCheckReg($body_id,$user_phone);
-		
+		$resUser = $this->Index_model->userCheckReg($body_id,$user_telphone);
 		// 存在的，则更新手机号，电话号码
 		if($resUser)
 		{
