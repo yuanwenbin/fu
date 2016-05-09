@@ -62,6 +62,16 @@
 	    <input type="submit" name="submit" value="查找" />
 	    </form>
 	</div>
+	
+	<div class="tongJiSearch">
+	    <form action="<?php echo URL_APP_C;?>/Tongji/tongjiListSearch" method="get"> 
+	    &nbsp;&nbsp;
+	    手机号码查找：<input type="text" name="location_info_tel" value="" />
+	    &nbsp;&nbsp;
+
+	    <input type="submit" name="submit" id="searchTelphone" value=" 手机号码查找" />
+	    </form>
+	</div>	
 
 	<div class="tongJiTop">
 	<table width="100%" cellpadding="0" cellspacing="0">
@@ -132,6 +142,19 @@ if($page > 1) {
 	
 	
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#searchTelphone").click(function(){
+	    var tel = $("input[name='location_info_tel'").val();
+	    if(tel.length != 11)
+	    {
+	        alert("请输入正确的手机");
+	        return false;
+	    }
+	});
 
+	
+});
+ </script>
 </body>
 </html>
