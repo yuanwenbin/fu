@@ -151,6 +151,22 @@ class Tongji extends CI_Controller {
 	     
 	}
 	
+	function tongjiListSearch()
+	{
+	    if(!hasPerssion($_SESSION['role'], 'tongjiList')){
+	        exit('无权限,请点击左栏目操作');
+	    }
+	    $telPhone = addslashes($this->input->get_post('location_info_tel')); 
+	    $res = $this->Tongji_model->tongListSearchForTel($telPhone);
+	    if(!$res)
+	    {
+	        header("Content-type:text/html;charset=utf-8");
+	        exit('没有相关数据');
+	    }
+	    $view['res'] = $res;   
+	   $this->load->view('tongjiListSearch', $view);
+	}
+	
 	/**
 	 *清空无效订单
 	 */
