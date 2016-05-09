@@ -462,5 +462,20 @@ class Tongji_model extends CI_Model
         $res = $this->db->query($sql);
         return $res->result_array();
     }
+    
+    function tongListSearchForTel($tel)
+    {
+        $sql = "select * from fu_order_info,fu_user 
+            where fu_order_info.order_location_id = fu_user.user_location_id
+            and fu_user.user_telphone = '" .$tel."'";
+        $res = $this->db->query($sql);
+        if($res->num_rows() > 0)
+        {
+            return $res->result_array();
+        }else {
+            return array();
+        }        
+                
+    }
  
 }
