@@ -62,7 +62,7 @@ class Tongji extends CI_Controller {
 			$view['list'] = $resLocation;
 			$this->load->view('tongjiListForLocation',$view);
     	// eof牌位编号
-	    }else {
+	    }else {    
 		    $param = array();
 		    $condition = array();
 		    // 开始时间
@@ -165,6 +165,38 @@ class Tongji extends CI_Controller {
 	    }
 	    $view['res'] = $res;   
 	   $this->load->view('tongjiListSearch', $view);
+	}
+	/**
+	 * 查找业务员业务业绩
+	 */
+	function tongjiListSearchMember()
+	{
+	   $type= intval($this->input->get_post('type')); 
+	   $searchInfo= addslashes($this->input->get_post('searchInfo'));
+	   if(!in_array($type,array(1,2,3)) || $searchInfo=='')
+	   {
+	       header("Content-type:text/html;charset=utf-8");
+	       exit('非法访问');	       
+	   }
+	   $result  = $this->Tongji_model->tongListSearchMemberOrder($type,$searchInfo);
+	   $lockIds = 0;
+	   $payIds = 0;
+	   if($result)
+	   {
+	       foreach ($result as $v)
+	       {
+	           if($v['location_ispayment'])
+	           {
+	               $payIds++;
+	           }else {
+	               $lockIds++;
+	           }
+	       }
+	   }
+	   $view['data'] = $result;
+	   $view['payIds'] = $payIds;
+	   $view['lockIds'] = $lockIds;
+	   $this->load->view('tongjiListNoneForMember',$view);
 	}
 	
 	/**
