@@ -73,6 +73,21 @@
 	    </form>
 	</div>	
 
+	<div class="tongJiSearch">
+	    <form action="<?php echo URL_APP_C;?>/Tongji/tongjiListSearchMember" method="get"> 
+	    &nbsp;&nbsp;
+	    <select name="type">
+	    <option value="1">按手机号码查找</option>
+	    <option value="2">登陆用户名</option>
+	    <option value="3">真实姓名</option>
+	    </select>
+	    查找内容：<input type="text" name="searchInfo" value="" />
+	    &nbsp;&nbsp;
+
+	    <input type="submit" name="submit" id="searchMember" value="业务员查找" />
+	    </form>
+	</div>		
+	
 	<div class="tongJiTop">
 	<table width="100%" cellpadding="0" cellspacing="0">
 	    <tr>
@@ -152,6 +167,15 @@ $(document).ready(function(){
 	        return false;
 	    }
 	});
+
+	$("#searchMember").click(function(){
+	    var tel = $("input[name='searchInfo'").val();
+	    if(tel.length == '')
+	    {
+	        alert("请输入查找内容");
+	        return false;
+	    }
+	});	
 
 	
 });
