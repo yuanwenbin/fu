@@ -477,5 +477,41 @@ class Tongji_model extends CI_Model
         }        
                 
     }
+    
+    function tongListSearchMemberOrder($type, $memberInfo)
+    {
+        // 查找业务员
+        if($type == 1)
+        {
+            $sql = "select * from fu_member where member_telphone = '".$memberInfo."' limit 1";
+        }elseif($type == 2)
+        {
+            $sql = "select * from fu_member where member_username = '".$memberInfo."'  limit 1";
+        }else
+        {
+            $sql = "select * from fu_member where member_realname = '".$memberInfo."'  limit 1";
+        } 
+        $res = $this->db->query($sql);
+        if($res->num_rows() > 0)
+        {
+            $member = $res->row_array();
+        }else {
+            return array();
+        }
+        $memberId = $member['member_id'];
+        // 查找业务
+        $sqlQuery = "select * from fu_user as u,fu_order_info as oi,fu_location_list as ll
+                     where u.body_id = oi.order_user
+                     and oi.order_location_id = ll.localtion_id
+                     and u.user_member_id = " . $memberId;
+        $res = $this->db->query($sqlQuery);
+        if($res->num_rows() > 0)
+        {
+           return $res->result_array();
+        }else {
+            return array();
+        }
+        
+    }
  
 }
