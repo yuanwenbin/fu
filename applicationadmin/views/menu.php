@@ -40,6 +40,9 @@
 		<ul>
 			<li><a href="<?php echo URL_APP_C;?>/Order/orderList" target="mainFrame">捐赠列表</a></li>
 			<li><a href="<?php echo URL_APP_C;?>/Order/orderSelf" target="mainFrame">自助下单</a></li>
+			<?php if(hasPerssion($_SESSION['role'],'exportOrder')) { ?>
+			<li><a href="<?php echo URL_APP_C;?>/Tongji/exportOrder" target="mainFrame">导出订单</a></li>
+			<?php } ?>
 		</ul>
 	</li>
 	<?php } ?>
