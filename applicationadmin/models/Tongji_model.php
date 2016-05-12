@@ -507,7 +507,9 @@ class Tongji_model extends CI_Model
         $res = $this->db->query($sqlQuery);
         if($res->num_rows() > 0)
         {
-           return $res->result_array();
+            $data['member'] = $member;
+            $data['lists'] = $res->result_array();
+            return $data;
         }else {
             return array();
         }
