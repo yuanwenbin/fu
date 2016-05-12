@@ -59,7 +59,7 @@
 		<?php } ?>
 	</ul>
 	<div style="clear:both;"></div>
-
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo URL_APP_C;?>/Tongji/exportOrderForMember?tel_phone=<?php echo $member['member_telphone'];?>">导出数据</a>
 	</div>
 	<?php	} ?>
 	
