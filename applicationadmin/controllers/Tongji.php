@@ -171,6 +171,9 @@ class Tongji extends CI_Controller {
 	 */
 	function tongjiListSearchMember()
 	{
+	   if(!hasPerssion($_SESSION['role'], 'tongjiList')){
+	        exit('无权限,请点击左栏目操作');
+	    }
 	   $type= intval($this->input->get_post('type')); 
 	   $searchInfo= addslashes($this->input->get_post('searchInfo'));
 	   if(!in_array($type,array(1,2,3)) || $searchInfo=='')
@@ -183,7 +186,7 @@ class Tongji extends CI_Controller {
 	   $payIds = 0;
 	   if($result)
 	   {
-	       foreach ($result as $v)
+	       foreach ($result['lists'] as $v)
 	       {
 	           if($v['location_ispayment'])
 	           {
@@ -193,7 +196,8 @@ class Tongji extends CI_Controller {
 	           }
 	       }
 	   }
-	   $view['data'] = $result;
+	   $view['member'] = isset($result['member']) ? $result['member'] : array();
+	   $view['data'] = isset($result['lists']) ? $result['lists'] : array();
 	   $view['payIds'] = $payIds;
 	   $view['lockIds'] = $lockIds;
 	   $this->load->view('tongjiListNoneForMember',$view);
@@ -370,6 +374,139 @@ class Tongji extends CI_Controller {
 	    $objWriter->save('php://output');
 	    exit;	    	    
 	}
+	
+	/**
+	 * 导出订单
+	 */
+	function exportOrderForMember()
+	{
+		if(!hasPerssion($_SESSION['role'], 'tongjiList')){
+	        exit('无权限,请点击左栏目操作');
+	    }
+	    if (PHP_SAPI == 'cli'){
+	        header("Content-type:html/text;charset=utf-8");
+	        die('你的服务器不支持 cli ');
+	    }
+	     
+	    /** Include PHPExcel */
+	    require_once dirname(__FILE__) . '/phpexcel/PHPExcel.php';
+	
+	     
+	     
+	    // Create new PHPExcel object
+	    $objPHPExcel = new PHPExcel();
+	     
+	    // Set document properties
+	    $objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
+	    ->setLastModifiedBy("Maarten Balliauw")
+	    ->setTitle("Office 2007 XLSX Test Document")
+	    ->setSubject("Office 2007 XLSX Test Document")
+	    ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+	    ->setKeywords("office 2007 openxml php")
+	    ->setCategory("Test result file");
+	     
+	    $objPHPExcel->setActiveSheetIndex(0)
+	    ->setCellValue('A1', '身份证号')
+	    ->setCellValue('B1', '手机号码')
+	    ->setCellValue('C1', '牌位号信息')
+	    ->setCellValue('D1', '牌位类型')
+	    ->setCellValue('E1', '捐赠时间')
+	    ->setCellValue('F1', '是否已捐赠')
+	    ->setCellValue('G1', '到期时间')
+	    ->setCellValue('H1', '福位号')
+	    ->setCellValue('I1', '时辰');
+
+	     
+	    //查找订单
+	    $tel_phone = $this->input->get_post('tel_phone', true);
+	    $orderRes = $this->Tongji_model->tongListSearchMemberOrder(1,$tel_phone);
+	   
+	    if($orderRes && isset($orderRes['lists']) && $orderRes['member'])
+	    {
+	        $num = 2;
+	        foreach($orderRes['lists'] as $v)
+	        {
+	            $order_location_type = '';// 订单类型
+	            $order_pay_time = '否'; //支付
+	            $birthday = ' '; //生辰
+	            $order_datetime = ' '; // 到期时间
+	            $user_dateline = '0天'; //增加报备时间
+	            $user_regtimes = 0; //登记次数
+	            $user_addtime = '否'; //是否增加报备
+	
+	            if($v['user_addtime'])
+	            {
+	                $user_addtime = '是';
+	            }
+	
+	            if($v['user_regtimes'])
+	            {
+	                $user_regtimes = $v['user_regtimes'];
+	            }
+	              /* 
+	            if($v['user_dateline'])
+	            {
+	                $user_dateline = $v['user_dateline']/24/3600 . '天';
+	            }
+	            */   
+	            if(!$v['order_location_type'])
+	            {
+	                $order_location_type = '随机';
+	            }elseif($v['order_location_type'] == 1)
+	            {
+	                $order_location_type = '高端定制';
+	            }else {
+	                $order_location_type = '生辰八字';
+	                $birthday .= $v['user_birthday'].'|'.$v['user_time'];
+	            }
+	
+	            if($v['order_payment'])
+	            {
+	                $order_pay_time = '是';
+	            }else {
+	                $order_datetime .= date('Y-m-d H:i:s',$v['order_datetime']+$v['user_dateline']);
+	            }
+	
+	            $objPHPExcel->setActiveSheetIndex(0)
+	            ->setCellValue('A'.$num, ' '.$v['order_user'])
+	            ->setCellValue('B'.$num, ' ' . $v['user_telphone'])
+	            ->setCellValue('C'.$num, ' '.$v['location_area'].$v['location_prefix'].$v['location_code'].'('.$v['localtion_id'].')')
+	            ->setCellValue('D'.$num, $order_location_type)
+	            ->setCellValue('E'.$num, ' ' . date('Y-m-d H:i:s', $v['order_datetime']))
+	            ->setCellValue('F'.$num, $order_pay_time)
+	            ->setCellValue('G'.$num, $order_datetime)
+	            ->setCellValue('H'.$num, $v['order_room_id'])
+	            ->setCellValue('I'.$num, $birthday);
+	            $num++;
+	        }
+	    }
+	     
+	    // Rename worksheet
+	    $title = $orderRes['member']['member_realname'] . '-' . $orderRes['member']['member_username'] . '-' . $orderRes['member']['member_telphone'];
+	    $objPHPExcel->getActiveSheet()->setTitle($title);
+	    $fileName = $title.'-'.date('Ymd-His', time()) . '.xlsx';
+	     
+	    // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+	    $objPHPExcel->setActiveSheetIndex(0);
+	     
+	     
+	    // Redirect output to a client’s web browser (Excel2007)
+	    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	    header('Content-Disposition: attachment;filename="'.$fileName.'"');
+	    header('Cache-Control: max-age=0');
+	    // If you're serving to IE 9, then the following may be needed
+	    header('Cache-Control: max-age=1');
+	     
+	    // If you're serving to IE over SSL, then the following may be needed
+	    header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+	    header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+	    header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+	    header ('Pragma: public'); // HTTP/1.0
+	     
+	    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+	    $objWriter->save('php://output');
+	    exit;
+	}	
 	
 
 }
