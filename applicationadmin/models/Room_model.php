@@ -136,8 +136,8 @@ class Room_model extends CI_Model
 	 * 
 	 * @param int $roomId 福位号
 	 * @param int $openFlag 是否显示
-	 * @param array $location_area 区域名称 
-	 * @param array $location_prefix 区域前缀
+	 * @param array $location_area 域名称 
+	 * @param array $location_prefix 域前缀
 	 * @param array $location_code 开始代码
 	 * @param array $location_numbers 开始数量
 	 * @param array $price 开始捐赠额
