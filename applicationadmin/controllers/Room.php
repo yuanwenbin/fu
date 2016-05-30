@@ -63,7 +63,7 @@ class Room extends CI_Controller {
 		{
 			header("Location:/Index/index");
 		} */
-		// 区域名称
+		// 该域名称
 		$location_area = $this->input->post_get('location_area');
 
 		//牌位前缀
@@ -78,10 +78,10 @@ class Room extends CI_Controller {
 		// 捐赠额
 		$price = $this->input->post_get('price');
 		
-		// 对区域信息分别作判断
+		// 对该域信息分别作判断
 		if(count($location_area) != count($location_prefix) || count($location_area) != count($location_code) || count($location_area) != count($location_numbers) || count($price) != count($location_area))
 		{
-			echo '区域信息不对应 ';
+			echo '该域信息不对应 ';
 			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击返回</a>";
 			exit;
 		}
@@ -141,7 +141,7 @@ class Room extends CI_Controller {
 		
 		if(!$isEqual)
 		{
-			echo '区域信息没有填写完整 ';
+			echo '该域信息没有填写完整 ';
 			echo "<a href='".URL_APP_C."/Room/roomOpen'>点击返回</a>";
 			exit;			
 		}
