@@ -74,7 +74,7 @@
 	<?php if($result) {
 	foreach($result as $vv){ ?>
 	<li data-label="<?php echo $vv['localtion_id']; ?>" data-attr="<?php echo $vv['location_number']; ?>"><a href="javascript:void(0);">
-	<img alt="点击在选号区显示相关信息" title="点击在选号区显示相关信息" src="<?php echo URL_APP;?>/images/ws_<?php echo $vv['location_number']; ?>.png" />
+	<img alt="点击在选号显示相关信息" title="点击在选号显示相关信息" src="<?php echo URL_APP;?>/images/ws_<?php echo $vv['location_number']; ?>.png" />
 	</a></li>
 	<?php } }else { ?>
 	<li>暂无数据</li>
