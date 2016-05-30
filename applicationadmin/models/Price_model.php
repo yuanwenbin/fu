@@ -49,7 +49,7 @@ class Price_model extends CI_Model
 	}
 	
 	/**
-	 * 修改捐赠额区间
+	 * 修改捐赠额域间
 	 * @param array $param
 	 * @param string $id
 	 */
