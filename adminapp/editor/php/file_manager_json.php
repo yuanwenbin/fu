@@ -28,7 +28,8 @@ $ext_arr = array('gif', 'jpg', 'jpeg', 'png', 'bmp');
 $php_path = '/';
 $root_path = '/';
 $root_url = '/';
-$myUrl = 'http://www.ci.com/images/article/';
+// $myUrl = 'http://www.ci.com/images/article/'; 
+ $myUrl = 'http://192.168.1.227/fu/qiye/'; 
 
 //////////
 

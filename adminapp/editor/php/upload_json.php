@@ -10,7 +10,9 @@
 require_once 'JSON.php';
 if(!defined('FRONT_DOMAIN'))
 {
-	define('FRONT_DOMAIN', 'http://www.ci.com/');
+	// define('FRONT_DOMAIN', 'http://www.ci.com/'); 
+	 define('FRONT_DOMAIN', 'http://192.168.1.227/fu/qiye/');
+	// define('FRONT_DOMAIN', 'http://192.168.1.13/fu/qiye/');
 }
 $php_path = dirname(__FILE__) . '/';
 
@@ -135,7 +137,8 @@ if (empty($_FILES) === false) {
 	}
 	*/
 
-	$save_path = dirname(dirname(dirname($save_path))) .'/app/images/article/';
+	// $save_path = dirname(dirname(dirname($save_path))) .'/app/images/article/';
+	$save_path = dirname(dirname(dirname($save_path))) .'/qiye/images/article/';
 	//$save_url = $save_path;
 	$save_url = FRONT_DOMAIN . 'images/article/';
 	//新文件名
