@@ -1276,7 +1276,7 @@ class Choice extends CI_Controller {
 		$checkExists = $this->Choice_model->checkRoomModel($type,$room_id);
 		if(!$checkExists)
 		{
-			$data = array('error'=>true,'msg'=>'该区域牌位已经出售完了');
+			$data = array('error'=>true,'msg'=>'该域牌位已经出售完了');
 			die(json_encode($data));
 		}
 		$param['room_id'] =$room_id;
