@@ -70,7 +70,7 @@
 	</tr>
 	
 	<tr>
-		<td width="20%" align="right">区域名称：</td>
+		<td width="20%" align="right">该域名称：</td>
 		<td>
 		<input type="text" name="location_area" value="<?php echo $result['location_area'];?>" />
 		</td>		

@@ -35,14 +35,14 @@
 	<div class="location_area_div">
 		<table width="100%" border="0" cellpadding="5" cellspacing="0">
 		<tr>
-			<td width="20%" align="right"><label>区位信息：</label></td>
+			<td width="20%" align="right"><label>域信息：</label></td>
 			<td>
-			区位名称：<input type="text" name="location_area[]" value="" />&nbsp;(如:A区)<br />
+			该域名称：<input type="text" name="location_area[]" value="" />&nbsp;(如:A)<br />
 			牌位前缀：<input type="text" name="location_prefix[]" value="" />&nbsp;(如:1-)<br />
 			起始号码：<input type="text" name="location_code[]" value="" />&nbsp;(即牌位开始号码)<br />
 			牌位数量：<input type="text" name="location_numbers[]" value="" />&nbsp;<br />
 			定位价位：<input type="text" name="price[]" value="" />&nbsp;&nbsp;
-			<a id="location_area" href="javascript:void(0)">增加区位</a></td>
+			<a id="location_area" href="javascript:void(0)">增加域</a></td>
 		</tr>
 		<tr>
 			<td colspan="2">&nbsp;</td>
@@ -111,13 +111,13 @@ $(document).ready(function(){
 	});*/
 	$("#location_area").click(function(){
 		var html = "<table width=\"100%\" border=\"0\" cellpadding=\"5\" cellspacing=\"0\">";
-		html += "<tr><td width=\"20%\" align=\"right\"><label>区位信息：</label></td>";
-		html +=	"<td>区位名称：<input type=\"text\" name=\"location_area[]\" value=\"\" />&nbsp;<br />";
+		html += "<tr><td width=\"20%\" align=\"right\"><label>域信息：</label></td>";
+		html +=	"<td>域名称：<input type=\"text\" name=\"location_area[]\" value=\"\" />&nbsp;<br />";
 		html += "牌位前缀：<input type=\"text\" name=\"location_prefix[]\" value=\"\" />&nbsp;<br />";
 		html +=	"起始号码：<input type=\"text\" name=\"location_code[]\" value=\"\" />&nbsp;(即牌位开始号码)<br />";
 		html += "牌位数量：<input type=\"text\" name=\"location_numbers[]\" value=\"\" />&nbsp;<br />";
 		html += "牌位捐赠额：<input type=\"text\" name=\"price[]\" value=\"\" />&nbsp;&nbsp;"; 
-		html += "<a class=\"location_area_del\" href=\"javascript:void(0)\">删除区位</a></td>";
+		html += "<a class=\"location_area_del\" href=\"javascript:void(0)\">删除域</a></td>";
 		html += "</tr><tr><td colspan=\"2\">&nbsp;</td></tr></table>";
 		$('.location_area_div').append(html);
 	});

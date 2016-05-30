@@ -66,7 +66,7 @@ if(isset($roomList) && $roomList)
 <table border="0" cellpadding="0" cellspacing="0" width="100%">	
 	<tr class='headerLineBackground1'>
 		<th width="10%" align="center">操作</th>
-		<th width="15%" align="center">区域信息</th>
+		<th width="15%" align="center">该域信息</th>
 		<th width="11%" align="center">福位号</th>
 		<th width="5%" align="center">牌位号</th>
 		<th width="10%" align="center">牌位名称</th>

@@ -15,7 +15,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="98%">	
 	<tr>
 		<th width="10%" align="center">操作</th>
-		<th width="8%" align="center">牌位区名</th>
+		<th width="8%" align="center">牌位名称</th>
 		<th width="8%" align="center">牌位前缀</th>
 		<th width="5%" align="center">福位号</th>
 		<th width="5%" align="center">牌位号</th>
