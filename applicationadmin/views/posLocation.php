@@ -125,6 +125,32 @@
 
 		</td>		
 	</tr>	
+	
+	<tr>
+		<td width="20%" align="right">捐赠金额：</td>
+		<td>
+		<?php echo $result['location_price'];?>&nbsp;(对自动下单)
+		</td>		
+	</tr>
+	
+	<tr>
+		<td width="20%" align="right">证书编号：</td>
+		<td>
+		<?php echo $result['location_sno'];?>
+		</td>		
+	</tr>	
+	
+	<tr>
+		<td width="20%" align="right">是否已付款：</td>
+		<td>
+		<?php if($result['location_ispayment']) {?>
+		已付款
+		<?php }else{ ?>
+		未付款	
+		<?php } ?>
+
+		</td>		
+	</tr>		
 	<!-- 	
 	<tr>
 		<td width="20%" align="right">牌位原图片：</td>

@@ -72,6 +72,20 @@
 		<?php echo $result['orderInfo']['order_location_id'];?>
 		</td>		
 	</tr>	
+	
+	<tr>
+		<td width="20%" align="right">捐赠金额：</td>
+		<td>
+		<?php echo $result['posInfo']['location_price'];?>&nbsp;(自助下订单的金额)
+		</td>		
+	</tr>	
+	
+	<tr>
+		<td width="20%" align="right">证书编号：</td>
+		<td>
+		<?php echo $result['posInfo']['location_sno'];?>
+		</td>		
+	</tr>		
 
 	<tr>
 		<td width="20%" align="right">牌位捐赠额：</td>

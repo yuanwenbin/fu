@@ -36,9 +36,12 @@
 					<?php foreach($roomList as $kk=>$vv) { ?>
 					<option value="<?php echo $vv['room_id'];?>"><?php echo $vv['room_alias']. '(' . $vv['room_id'] . ')'; ?></option>
 					<?php } ?>
-				</select>
+				</select><br />
+				捐赠金额:<input type="text" name="location_price" value="0" /><br />
+				证书编号:<input type="text" name="location_sno" value="" /><br />
 			</td>
 		</tr>
+
 		<tr>
 			<td colspan="2">&nbsp;</td>
 		</tr>
@@ -154,6 +157,11 @@ $(document).ready(function(){
 		// 福位id
 		var room_no = $("select[name='room_no']").val();	
 
+		// 价格
+		var location_price = $("input[name='location_price']").val();
+		// 证书编号
+		var location_sno = $("input[name='location_sno']").val();		
+
 		if(user_telphone=='')
 		{
 			alert("用户手机号码不能为空");
@@ -161,7 +169,7 @@ $(document).ready(function(){
 		}
 
 		var url = "<?php echo URL_APP_C;?>/Order/orderSelfAdd";
-		var param = {localtion_id:localtion_id,body_id:body_id,location_number:location_number,user_name:user_name,user_birthday:user_birthday,stime:stime,order_location_type:order_location_type,member_id:member_id,user_telphone:user_telphone,user_phone:user_phone,room_no:room_no};
+		var param = {localtion_id:localtion_id,body_id:body_id,location_number:location_number,user_name:user_name,user_birthday:user_birthday,stime:stime,order_location_type:order_location_type,member_id:member_id,user_telphone:user_telphone,user_phone:user_phone,location_price:location_price,location_sno:location_sno};
 		$.post(url,param,function(data){
 			alert(data.msg);	
 			if(data.error)
