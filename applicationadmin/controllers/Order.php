@@ -394,6 +394,11 @@ class Order extends CI_Controller {
 			$data['msg'] = "信息有误，该牌位是自己刷单的";
 			die(json_encode($data));
 		}
+		// 金额
+		$location_price = $this->input->get_post('location_price', true);
+		//证书编号
+		$location_sno = $this->input->get_post('location_sno',true);
+		
 		// 类型    0-随机,1-高端定制式
 		$location_type = $locationInfo['location_type'];
 		if($location_type == 1 && $order_location_type != 1)
@@ -423,7 +428,7 @@ class Order extends CI_Controller {
 			die(json_encode($data));
 		}
 		// 更新牌位
-		$fu_location_list = array('localtion_id'=>$localtion_id, 'location_date'=>$createTime,'location_number'=>$location_number);
+		$fu_location_list = array('localtion_id'=>$localtion_id, 'location_date'=>$createTime,'location_number'=>$location_number,'location_price'=>$location_price,'location_sno'=>$location_sno);
 		
 		// 插入订单
 		$fu_order_info = array('order_user'=>$body_id,
