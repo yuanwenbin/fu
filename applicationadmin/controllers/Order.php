@@ -90,10 +90,11 @@ class Order extends CI_Controller {
 	    // bof 牌位编号
 	    $location_info = trim($this->input->get_post('location_info'));
 	    if($location_info)
-	    {
+	    {  
 	    	// 非数字
     		if(!is_numeric($location_info))
     		{	
+    		    $flag = 1; // 表示直接查找 fu_location_list 表
     			$resLocation = $this->Order_model->checkNoForCode($location_info);
     			if(!$resLocation)
     			{
@@ -108,15 +109,22 @@ class Order extends CI_Controller {
     					exit;
     				}
     				$resLocation = $this->Order_model->posInfosModel('fu_order_info', array('order_location_id'=>$locationListInfo['localtion_id']));
+    				$flag = 0; // 查fu_order_info表
     			}
     		}else {
     			$resLocation = $this->Order_model->posInfosModel('fu_order_info', array('order_location_id'=>$location_info));
+    			$flag = 0; // 查fu_order_info表
     		}
     		if(!$resLocation)
     		{
     			echo "没有相关数据，&nbsp;<a href='".URL_APP_C."/Order/orderList'>点击返回</a>";exit;
     		}
+    		if($flag)
+    		{
+    		    $resLocation = $this->Order_model->posInfosModel('fu_order_info', array('order_location_id'=>$resLocation['localtion_id']));
+    		}
     		$view = array();
+    		// 是牌位列表还是订单列表查询  
     		$locationId = $resLocation[0]['order_location_id']; 
     		$location_list = $this->Order_model->searchInfos('fu_location_list', array('localtion_id'=>$locationId));
 			$view['resultList'] = $resLocation[0];
