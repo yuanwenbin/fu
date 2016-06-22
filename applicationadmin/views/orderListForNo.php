@@ -96,7 +96,7 @@
 	<a href="<?php echo URL_APP_C;?>/Order/posInfos?id=<?php echo $resultList['order_id']; ?>">
 	查看
 	</a>&nbsp;&nbsp;
-	<a data-attr="<?php echo $v['order_id']; ?>" class="del" href="javascript:void(0);">删除</a>
+	<a data-attr="<?php echo $resultList['order_id']; ?>" class="del" href="javascript:void(0);">删除</a>
 	</td>
 	<td width="9%" align="center"><?php echo $resultList['order_admin']; ?></td>
 </tr>
